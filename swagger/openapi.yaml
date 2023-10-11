@@ -1,12 +1,22 @@
-openapi: "3.0.2"
+openapi: "3.0.3"
 info:
-  title: API Title
+  title: Todo API
+  description: |-
+    Todoアプリケーション用API
   version: "1.0"
 servers:
-  - url: https://api.server.test/v1
+  - url: https://localhost:8080
+    description: ローカル開発用
+  - url: https://sample.com
+    description: モックサーバー用
+tags:
+  - name: Signs
+    description: ユーザーのサインイン状態に関するAPI。
+  - name: Users
+    description: ユーザー情報に関するAPI。
+  - name: Todos
+    description: Todoに関するAPI。
+
 paths:
-  /test:
-    get:
-      responses:
-        '200':
-          description: OK
+  /sign_up:
+    $ref: './components/paths/Signs/PostSignUp.yaml'

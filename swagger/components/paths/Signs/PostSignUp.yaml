@@ -1,0 +1,17 @@
+post:
+  summary: SIGN-001 サインアップ
+  tags:
+    - Signs
+  deprecated: false
+  responses:
+    '201':
+      description:
+        成功
+    '400':
+      $ref: '../../responses/Signs/SignUpBadRequest.yaml'
+    '401':
+      $ref: '../../responses/Signs/SignUpUnauthorized.yaml'
+    '500':
+      $ref: '../../responses/Signs/SignUpInternalServerError.yaml'
+    '503':
+      $ref: '../../responses/Signs/SignUpServiceUnavailable.yaml'

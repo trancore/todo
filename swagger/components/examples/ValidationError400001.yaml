@@ -1,0 +1,10 @@
+summary: "E400001：必須エラー"
+description: "`{fieldName}` には、バリデーションエラーの対象名が動的に入る。"
+value:
+  title: "Your request had validated errors."
+  detail: "{fieldName} didn't exist."
+  instance: "/example/400001"
+  invalidParameters:
+    - code: "E400001"
+      fieldName: "{fieldName}"
+      reason: "{fieldName} didn't exist."

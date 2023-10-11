@@ -1,0 +1,39 @@
+type: object
+title: GetBadRequest
+description: "Bad Request"
+properties:
+  title:
+    type: string
+    description: "人間が読める形式の問題タイプの概要。エラーのタイトル。"
+  detail:
+    type: string
+    description: "この問題の発生に固有の人間が読める説明。エラーの説明。"
+  instance:
+    type: string
+    description: "問題の特定の発生を識別する URL 。"
+  invalidParameters:
+    type: array
+    title: ValidationError
+    description: "Validation Error."
+    items:
+      type: object
+      title: ValidationErrorDetail
+      description: "Validation Error Detail."
+      properties:
+        code:
+          type: enum
+          description: "バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。"
+        fieldName:
+          type: string
+          description: "人間が読めるバリデーションエラーの対象名。"
+        reason:
+          type: string
+          description: "人間が読めるバリデーションエラーの理由。"
+      required:
+        - code
+        - fieldName
+        - reason
+required:
+  - title
+  - detail
+  - instance

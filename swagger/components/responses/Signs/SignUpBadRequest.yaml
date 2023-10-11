@@ -1,0 +1,18 @@
+description: |-
+  Bad Request.
+  
+  バリデーションエラーが複数入る場合、`invalidParameters`に複数要素が入る。
+  
+  各`fieldName`に対して起こりうるバリデーションは、[DB設計](https://docs.google.com/spreadsheets/d/1laxRl4AyPfnK5LhEcTJVjCsepJ0s1V_2tTStYSwc9BI/edit#gid=0)を参照してください。
+content:
+  application/json:
+    schema:
+      $ref: '../../schemas/BadRequest.yaml'
+    examples:
+      BadRequest:
+        value:
+          title: "Your request didn't understand."
+          detail: "about:blank"
+          instance: "/example/400"
+      ValidationError-400001:
+        $ref: '../../examples/ValidationError400001.yaml'

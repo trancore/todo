@@ -20,3 +20,5 @@ tags:
 paths:
   /sign_up:
     $ref: './components/paths/Signs/PostSignUp.yaml'
+  /sign_in:
+    $ref: './components/paths/Signs/PostSignIn.yaml'

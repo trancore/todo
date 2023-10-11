@@ -14,5 +14,3 @@ content:
           title: "Your request didn't understand."
           detail: "about:blank"
           instance: "/example/400"
-      ValidationError-400001:
-        $ref: '../../examples/ValidationError400001.yaml'

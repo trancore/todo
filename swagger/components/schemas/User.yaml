@@ -1,0 +1,33 @@
+type: object
+title: GetUser
+description: "会員情報"
+properties:
+  userId:
+    type: integer
+    description: "ユーザーID"
+    example: 1
+  name:
+    type: string
+    description: "ユーザー名"
+    minLength: 1
+    maxLength: 20
+  mailAddress:
+    type: string
+    format: email
+    description: "メールアドレス"
+    minLength: 1
+    maxLength: 254
+  createdAt:
+    type: string
+    format: date-time
+    description: "作成日"
+  updatedAt:
+    type: string
+    format: date-time
+    description: "更新日"
+required:
+  - userId
+  - name
+  - mail_address
+  - createdAt
+  - updatedAt

@@ -24,3 +24,6 @@ paths:
     $ref: './components/paths/Signs/PostSignIn.yaml'
   /sign_out:
     $ref: './components/paths/Signs/PostSignOut.yaml'
+
+  /user:
+    $ref: './components/paths/Users/GetUser.yaml'

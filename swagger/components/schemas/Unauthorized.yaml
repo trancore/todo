@@ -5,7 +5,7 @@ properties:
   title:
     type: string
     description: "人間が読める形式の問題タイプの概要。エラーのタイトル。"
-    example: "Your request wasn't unauthorized."
+    example: "Your request was unauthorized."
   detail:
     type: string
     description: "この問題の発生に固有の人間が読める説明。エラーの説明。"

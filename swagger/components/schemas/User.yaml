@@ -28,6 +28,6 @@ properties:
 required:
   - userId
   - name
-  - mail_address
+  - mailAddress
   - createdAt
   - updatedAt

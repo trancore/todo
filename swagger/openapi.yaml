@@ -27,3 +27,6 @@ paths:
 
   /user:
     $ref: './components/paths/Users/GetUser.yaml'
+
+  /todos:
+    $ref: './components/paths/Todos/GetTodos.yaml'

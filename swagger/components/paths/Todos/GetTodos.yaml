@@ -1,0 +1,20 @@
+get:
+  summary: TODO-001 Todo一覧取得
+  tags:
+    - Todos
+  deprecated: false
+  responses:
+    '200':
+      $ref: '../../responses/Todos/GetTodos.yaml'
+    '400':
+      $ref: '../../responses/Todos/BadRequest.yaml'
+    '401':
+      $ref: '../../responses/Todos/Unauthorized.yaml'
+    '403':
+      $ref: '../../responses/Todos/Forbidden.yaml'
+    '404':
+      $ref: '../../responses/Todos/NotFound.yaml'
+    '500':
+      $ref: '../../responses/Todos/InternalServerError.yaml'
+    '503':
+      $ref: '../../responses/Todos/ServiceUnavailable.yaml'

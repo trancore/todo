@@ -11,12 +11,14 @@ properties:
     description: "ユーザー名"
     minLength: 1
     maxLength: 20
+    example: "ユーザー名"
   mailAddress:
     type: string
     format: email
     description: "メールアドレス"
     minLength: 1
     maxLength: 254
+    example: "example@gmail.com"
   createdAt:
     type: string
     format: date-time

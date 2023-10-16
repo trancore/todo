@@ -16,8 +16,8 @@ properties:
     type: string
     format: email
     description: "メールアドレス"
-    minLength: 1
-    maxLength: 254
+    minLength: 0
+    maxLength: 255
     example: "example@gmail.com"
   createdAt:
     type: string

@@ -1,0 +1,29 @@
+get:
+  summary: TODO-002 Todo取得
+  tags:
+    - Todos
+  deprecated: false
+  parameters:
+    - name: todo_Id
+      description: |-
+        TodoID
+      in: path
+      required: true
+      schema:
+        type: integer
+      example: 1
+  responses:
+    '200':
+      $ref: '../../responses/Todos/GetTodo.yaml'
+    '400':
+      $ref: '../../responses/Todos/BadRequest.yaml'
+    '401':
+      $ref: '../../responses/Todos/Unauthorized.yaml'
+    '403':
+      $ref: '../../responses/Todos/Forbidden.yaml'
+    '404':
+      $ref: '../../responses/Todos/NotFound.yaml'
+    '500':
+      $ref: '../../responses/Todos/InternalServerError.yaml'
+    '503':
+      $ref: '../../responses/Todos/ServiceUnavailable.yaml'

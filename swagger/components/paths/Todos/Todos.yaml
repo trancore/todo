@@ -1,20 +1,11 @@
 get:
-  summary: TODO-002 Todo取得
+  summary: TODO-001 Todo一覧取得
   tags:
     - Todos
   deprecated: false
-  parameters:
-    - name: todo_Id
-      description: |-
-        TodoID
-      in: path
-      required: true
-      schema:
-        type: integer
-      example: 1
   responses:
     '200':
-      $ref: '../../responses/Todos/GetTodo.yaml'
+      $ref: '../../responses/Todos/GetTodos.yaml'
     '400':
       $ref: '../../responses/Todos/BadRequest.yaml'
     '401':

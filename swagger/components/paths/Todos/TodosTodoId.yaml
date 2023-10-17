@@ -4,14 +4,7 @@ get:
     - Todos
   deprecated: false
   parameters:
-    - name: todo_Id
-      description: |-
-        TodoID
-      in: path
-      required: true
-      schema:
-        type: integer
-      example: 1
+    $ref: '../../requestBodies/TodosTodoId.yaml'
   responses:
     '200':
       $ref: '../../responses/Todos/GetTodo.yaml'

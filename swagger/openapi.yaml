@@ -19,16 +19,16 @@ tags:
 
 paths:
   /sign_up:
-    $ref: './components/paths/Signs/PostSignUp.yaml'
+    $ref: './components/paths/Signs/SignUp.yaml'
   /sign_in:
-    $ref: './components/paths/Signs/PostSignIn.yaml'
+    $ref: './components/paths/Signs/SignIn.yaml'
   /sign_out:
-    $ref: './components/paths/Signs/PostSignOut.yaml'
+    $ref: './components/paths/Signs/SignOut.yaml'
 
   /user:
-    $ref: './components/paths/Users/GetUser.yaml'
+    $ref: './components/paths/Users/User.yaml'
 
   /todos:
-    $ref: './components/paths/Todos/GetTodos.yaml'
+    $ref: './components/paths/Todos/TodosTodoId.yaml'
   /todos/{todo_id}:
-    $ref: './components/paths/Todos/GetTodo.yaml'
+    $ref: './components/paths/Todos/TodosTodoId.yaml'

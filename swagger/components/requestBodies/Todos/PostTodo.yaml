@@ -1,0 +1,26 @@
+description: |-
+  Todo情報
+required: true
+content:
+  application/json:
+    schema:
+      type: object
+      title: "PostTodo"
+      properties:
+        title:
+          type: string
+          minLength: 0
+          maxLength: 101
+          example: "TodoタイトルTodoタイトルTodoタイトル"
+        description:
+          type: string
+          description: "Todo説明"
+          minLength: 0
+          maxLength: 501
+          example: "Todo説明Todo説明Todo説明"
+        deadlineAt:
+          type: string
+          format: date
+          description: "対応期限"
+      required:
+        - title

@@ -1,7 +1,7 @@
 description: |-
   Not Found.
   
-  Todo情報が一つも見つからなかった場合。
+  指定したTodoが見つからなかった場合。
 content:
   application/json:
     schema:

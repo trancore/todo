@@ -1,13 +1,35 @@
+parameters:
+  $ref: '../../parameters/Todos/TodosTodoId.yaml'
 get:
   summary: TODO-002 Todo取得
   tags:
     - Todos
   deprecated: false
-  parameters:
-    $ref: '../../parameters/Todos/TodosTodoId.yaml'
   responses:
     '200':
       $ref: '../../responses/Todos/GetTodo.yaml'
+    '400':
+      $ref: '../../responses/Todos/BadRequest.yaml'
+    '401':
+      $ref: '../../responses/Todos/Unauthorized.yaml'
+    '403':
+      $ref: '../../responses/Todos/Forbidden.yaml'
+    '404':
+      $ref: '../../responses/Todos/NotFound.yaml'
+    '500':
+      $ref: '../../responses/Todos/InternalServerError.yaml'
+    '503':
+      $ref: '../../responses/Todos/ServiceUnavailable.yaml'
+put:
+  summary: TODO-004 Todo更新
+  tags:
+    - Todos
+  deprecated: false
+  requestBody:
+    $ref: '../../requestBodies/Todos/PostTodo.yaml'
+  responses:
+    '201':
+      $ref: '../../responses/Todos/Created.yaml'
     '400':
       $ref: '../../responses/Todos/BadRequest.yaml'
     '401':

@@ -1,0 +1,11 @@
+type: string
+enum:
+  - "TODO"
+  - "WIP"
+  - "DONE"
+description: |-
+  対応状態。
+  
+  "TODO": 未着手。 
+  "WIP": 対応中。
+  "DONE": 完了。

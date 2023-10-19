@@ -1,0 +1,36 @@
+openapi: "3.0.3"
+info:
+  title: Todo API
+  description: |-
+    Todoアプリケーション用API
+  version: "1.0"
+servers:
+  - url: https://localhost:8080
+    description: ローカル開発用
+  - url: https://sample.com
+    description: モックサーバー用
+tags:
+  - name: Signs
+    description: ユーザーのサインイン状態に関するAPI。
+  - name: Users
+    description: ユーザー情報に関するAPI。
+  - name: Todos
+    description: Todoに関するAPI。
+
+paths:
+  /sign_up:
+    $ref: './components/paths/Signs/SignUp.yaml'
+  /sign_in:
+    $ref: './components/paths/Signs/SignIn.yaml'
+  /sign_out:
+    $ref: './components/paths/Signs/SignOut.yaml'
+
+  /user:
+    $ref: './components/paths/Users/User.yaml'
+
+  /todos:
+    $ref: './components/paths/Todos/Todos.yaml'
+  /todos/{todo_id}:
+    $ref: './components/paths/Todos/TodosTodoId.yaml'
+  /todos/{todo_id}/status:
+    $ref: './components/paths/Todos/TodosTodoIdStatus.yaml'

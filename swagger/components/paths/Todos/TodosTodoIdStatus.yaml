@@ -1,0 +1,24 @@
+parameters:
+  $ref: '../../parameters/Todos/TodosTodoIdStatus.yaml'
+put:
+  summary: TODO-006 Todo状態更新
+  tags:
+    - Todos
+  deprecated: false
+  requestBody:
+    $ref: '../../requestBodies/Todos/PutTodosTodoIdStatus.yaml'
+  responses:
+    '204':
+      $ref: '../../responses/Todos/NoContent.yaml'
+    '400':
+      $ref: '../../responses/Todos/BadRequest.yaml'
+    '401':
+      $ref: '../../responses/Todos/Unauthorized.yaml'
+    '403':
+      $ref: '../../responses/Todos/Forbidden.yaml'
+    '404':
+      $ref: '../../responses/Todos/NotFound.yaml'
+    '500':
+      $ref: '../../responses/Todos/InternalServerError.yaml'
+    '503':
+      $ref: '../../responses/Todos/ServiceUnavailable.yaml'

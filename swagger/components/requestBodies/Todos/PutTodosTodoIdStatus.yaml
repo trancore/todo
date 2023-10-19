@@ -1,0 +1,13 @@
+description: |-
+  Todo状態
+required: true
+content:
+  application/json:
+    schema:
+      type: object
+      title: "PutTodoStatus"
+      properties:
+        status:
+          $ref: '../../enum/TodoStatus.yaml'
+      required:
+        - status

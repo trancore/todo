@@ -28,8 +28,8 @@ put:
   requestBody:
     $ref: '../../requestBodies/Todos/PostTodo.yaml'
   responses:
-    '201':
-      $ref: '../../responses/Todos/Created.yaml'
+    '204':
+      $ref: '../../responses/Todos/NoContent.yaml'
     '400':
       $ref: '../../responses/Todos/BadRequest.yaml'
     '401':

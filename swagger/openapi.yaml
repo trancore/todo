@@ -32,3 +32,5 @@ paths:
     $ref: './components/paths/Todos/Todos.yaml'
   /todos/{todo_id}:
     $ref: './components/paths/Todos/TodosTodoId.yaml'
+  /todos/{todo_id}/status:
+    $ref: './components/paths/Todos/TodosTodoIdStatus.yaml'

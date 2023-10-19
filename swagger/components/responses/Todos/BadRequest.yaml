@@ -10,3 +10,9 @@ content:
           title: "Your request didn't understand."
           detail: "about:blank"
           instance: "/example/400"
+      E400001:
+        $ref: '../../examples/ValidationError400001.yaml'
+      E400003:
+        $ref: '../../examples/ValidationError400003.yaml'
+      E400004:
+        $ref: '../../examples/ValidationError400004.yaml'

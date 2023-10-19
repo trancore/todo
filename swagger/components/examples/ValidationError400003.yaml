@@ -1,16 +1,17 @@
-summary: "E400001：必須エラー"
+summary: "E400003：最大値エラー"
 description: |-
   `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+  
+  `{value}` には、上限値が動的に入る。
   
   起こりうるAPI
   - TODO-003
   - TODO-004
-  - TODO-006
 value:
   title: "Your request had validated errors."
-  detail: "{fieldName} must exist."
-  instance: "/example/400001"
+  detail: "{fieldName} must be less than {value}"
+  instance: "/example/400003"
   invalidParameters:
-    - code: "E400001"
+    - code: "E400003"
       fieldName: "{fieldName}"
-      reason: "{fieldName} must exist."
+      reason: "{value}"

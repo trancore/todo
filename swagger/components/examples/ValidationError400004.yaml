@@ -1,16 +1,14 @@
-summary: "E400001：必須エラー"
+summary: "E400004：パターンエラー"
 description: |-
   `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
   
   起こりうるAPI
-  - TODO-003
-  - TODO-004
   - TODO-006
 value:
   title: "Your request had validated errors."
-  detail: "{fieldName} must exist."
-  instance: "/example/400001"
+  detail: "{fieldName}'s pattern is wrong"
+  instance: "/example/400004"
   invalidParameters:
-    - code: "E400001"
+    - code: "E400004"
       fieldName: "{fieldName}"
-      reason: "{fieldName} must exist."
+      reason: "{fieldName}'s pattern is wrong"

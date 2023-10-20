@@ -7,6 +7,8 @@
 |Node.js|v18.18.2|開発言語|
 |Volta|v1.1.1|Node.js管理ツール|
 |Yarn|v4.0.0-rc.53|packageマネージャー|
+|TypeScript|v5.2.2|静的型付け用言語|
+|ts-node|v10.9.1|TypeScriptのままNode.jsを実行できるようにする|
 
 ### voltaのインストール方法
 

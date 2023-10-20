@@ -1,0 +1,12 @@
+description: |-
+  Bad Request.
+content:
+  application/json:
+    schema:
+      $ref: '../../schemas/BadRequest.yaml'
+    examples:
+      BadRequest:
+        value:
+          title: "Your request didn't understand."
+          detail: "about:blank"
+          instance: "/example/400"

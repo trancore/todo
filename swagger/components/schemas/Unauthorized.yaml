@@ -1,0 +1,20 @@
+type: object
+title: GetUnauthorized
+description: "Unauthorized"
+properties:
+  title:
+    type: string
+    description: "人間が読める形式の問題タイプの概要。エラーのタイトル。"
+    example: "Your request was unauthorized."
+  detail:
+    type: string
+    description: "この問題の発生に固有の人間が読める説明。エラーの説明。"
+    example: "about:blank"
+  instance:
+    type: string
+    description: "問題の特定の発生を識別する URL 。"
+    example: "/example/401"
+required:
+  - title
+  - detail
+  - instance

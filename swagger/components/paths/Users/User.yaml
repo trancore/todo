@@ -1,0 +1,20 @@
+get:
+  summary: USER-001 ユーザー情報取得
+  tags:
+    - Users
+  deprecated: false
+  responses:
+    '200':
+      $ref: '../../responses/Users/GetUser.yaml'
+    '400':
+      $ref: '../../responses/Users/BadRequest.yaml'
+    '401':
+      $ref: '../../responses/Users/Unauthorized.yaml'
+    '403':
+      $ref: '../../responses/Users/Forbidden.yaml'
+    '404':
+      $ref: '../../responses/Users/NotFound.yaml'
+    '500':
+      $ref: '../../responses/Users/InternalServerError.yaml'
+    '503':
+      $ref: '../../responses/Users/ServiceUnavailable.yaml'

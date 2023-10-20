@@ -1,0 +1,5 @@
+type: array
+title: GetTodos
+description: "Todo情報一覧"
+items:
+  $ref: './Todo.yaml'

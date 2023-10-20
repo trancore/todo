@@ -1,0 +1,8 @@
+description: |-
+  Not Found.
+  
+  指定したTodoが見つからなかった場合。
+content:
+  application/json:
+    schema:
+      $ref: '../../schemas/NotFound.yaml'

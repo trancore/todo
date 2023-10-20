@@ -11,6 +11,16 @@
 |ts-node|v10.9.1|TypeScriptのままNode.jsを実行できるようにする|
 |Express|v4.18.2|Node.jsのWebフレームワーク|
 
+## ライブラリ・フレームワークのインストール
+
+```zsh
+# ライブラリのインストール
+yarn
+
+# remarkのためのインストール
+npm install
+```
+
 ### voltaのインストール方法
 
 以下コマンドで、LTSバージョンのNode.jsをインストールし、使用できるようになリます。パスも自動で通ります。
@@ -20,3 +30,9 @@ curl https://get.volta.sh | bash
 ```
 
 voltaをinstallしていただければ、`package.json`に記載しているnodeのバージョンを自動で読み取り、バージョンを合わせてくれます。
+
+### Markdown formatterのremarkについて
+
+Markdownファイルは、remarkを使ってformatしています。
+
+しかし、yarnではremarkが動かないため、ここだけnpmを使ってライブラリを管理しています。そのため、yarnだけではなく、`npm install`することも忘れないでください。

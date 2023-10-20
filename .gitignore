@@ -1,15 +1,10 @@
-HELP.md
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+.vscode
+.yarn
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+node_modules
+
+.pnp.cjs
+.pnp.loader.mjs
+
+package-lock.json
+yarn.lock

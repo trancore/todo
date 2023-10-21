@@ -6,7 +6,7 @@
     // コンパイルする際に使用する組み込みライブラリ
     // "lib": [],
     // 出力するJSのモジュールの仕組み
-    "module": "ES2022",
+    "module": "ESNext",
     // .jsと.jsxもコンパイル対象にするか
     "allowJs": false,
     // tsxファイルをjsxやjsにコンパイルする際の出力形式
@@ -33,9 +33,13 @@
     // "paths": {
     //   "": [""]
     // }
-  }
+  },
   // コンパイルする対象ファイル
-  // "include": [],
+  "include": ["src/**/*"],
   // includeで指定したファイルから特別に除外するファイル
   // "exclude": []
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
 }

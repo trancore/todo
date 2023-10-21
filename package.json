@@ -4,6 +4,10 @@
   "volta": {
     "node": "18.18.2"
   },
+  "type": "module",
+  "scripts": {
+    "start": "ts-node src/server.ts"
+  },
   "dependencies": {
     "express": "^4.18.2"
   },

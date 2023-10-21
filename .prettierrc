@@ -9,8 +9,9 @@
 
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
-    "^(.*)/controllers/(.*)$",
     "^(.*)/configurations/(.*)$",
+    "^(.*)/constants(.*)$",
+    "^(.*)/controllers/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,

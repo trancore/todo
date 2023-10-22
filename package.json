@@ -8,7 +8,7 @@
   "scripts": {
     "start": "ts-node src/server.ts",
     "contaner": "docker-compose up -d",
-    "migrate": "yarn prisma migrate dev --name init"
+    "migrate": "yarn prisma migrate dev"
   },
   "dependencies": {
     "@prisma/client": "5.4.2",

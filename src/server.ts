@@ -10,6 +10,7 @@ const PATH = `${API.API}/${CONFIG.API_VERSION}`;
 
 const app = express();
 
+app.use(express.json());
 // controller
 app.use(PATH, todoController);
 

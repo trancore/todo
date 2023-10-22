@@ -1,8 +1,8 @@
-- name: todo_Id
-  description: |-
-    TodoID
-  in: path
-  required: true
-  schema:
-    type: integer
-  example: 1
+name: todo_Id
+description: |-
+  TodoID
+in: path
+required: true
+schema:
+  type: integer
+example: 1

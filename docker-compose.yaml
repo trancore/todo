@@ -1,0 +1,18 @@
+﻿version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0.28
+    platform: linux/amd64
+    container_name: mysql-container
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: todo-db
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - ./docker/my.cnf:/etc/mysql/conf.d/my.cnf
+      - todo-mysql-db:/var/lib/mysql
+volumes:
+  todo-mysql-db:

@@ -50,3 +50,9 @@ Dockerの設定を変える場合は、`docker-compose.yaml`を編集してく�
 ```zsh
 docker exec -it mysql-container zsh
 ```
+
+## OpenAPI generatorについて
+
+OpenAPI generatorで自動生成したファイルは、/modelのみ使用しています。
+
+他の自動生成された成果物は使用しません。

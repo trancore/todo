@@ -17,4 +17,23 @@ model User {
   password     String   @db.VarChar(16)
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
+  Todo         Todo[]
+}
+
+model Todo {
+  id          Int       @id @default(autoincrement())
+  title       String    @db.VarChar(100)
+  description String?   @db.VarChar(500)
+  deadline_at DateTime?
+  status      STATUS    @default(TODO)
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+  user        User      @relation(fields: [user_id], references: [id])
+  user_id     Int
+}
+
+enum STATUS {
+  TODO
+  WIP
+  DONE
 }

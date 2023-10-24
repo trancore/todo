@@ -1,43 +1,43 @@
 type: object
 title: GetTodo
-description: "Todo情報"
+description: 'Todo情報'
 properties:
-  todoId:
+  id:
     type: integer
-    description: "TodoID"
+    description: 'TodoID'
     example: 1
   userId:
     type: integer
-    description: "ユーザーID"
+    description: 'ユーザーID'
     example: 1
   title:
     type: string
-    description: "Todoタイトル"
+    description: 'Todoタイトル'
     minLength: 0
     maxLength: 101
-    example: "TodoタイトルTodoタイトルTodoタイトル"
+    example: 'TodoタイトルTodoタイトルTodoタイトル'
   description:
     type: string
-    description: "Todo説明"
+    description: 'Todo説明'
     minLength: 0
     maxLength: 501
-    example: "Todo説明Todo説明Todo説明"
+    example: 'Todo説明Todo説明Todo説明'
   deadlineAt:
     type: string
     format: date
-    description: "対応期限"
+    description: '対応期限'
   status:
     $ref: '../enum/TodoStatus.yaml'
   createdAt:
     type: string
     format: date-time
-    description: "作成日"
+    description: '作成日'
   updatedAt:
     type: string
     format: date-time
-    description: "更新日"
+    description: '更新日'
 required:
-  - todoId
+  - id
   - userId
   - title
   - status

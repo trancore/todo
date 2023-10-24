@@ -2,7 +2,17 @@
 import { PostTodo } from '../types/typescript-node/api';
 
 export const todoService = async () => {
-  const { findAllTodos, createTodo } = await todoRepository();
+  const { findTodo, findAllTodos, createTodo } = await todoRepository();
+
+  const getTodo = async (todoId: string) => {
+    const todoIdNum = Number(todoId);
+    if (!todoIdNum) {
+      // TODO エラーハンドリング
+      return;
+    }
+
+    return await findTodo(todoIdNum);
+  };
 
   const getTodos = async () => {
     return await findAllTodos();
@@ -12,5 +22,5 @@ export const todoService = async () => {
     await createTodo(todo);
   };
 
-  return { getTodos, postTodo };
+  return { getTodo, getTodos, postTodo };
 };

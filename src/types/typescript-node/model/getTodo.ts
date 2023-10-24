@@ -19,7 +19,7 @@ export class GetTodo {
     /**
     * TodoID
     */
-    'todoId': number;
+    'id': number;
     /**
     * ユーザーID
     */
@@ -53,8 +53,8 @@ export class GetTodo {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "todoId",
-            "baseName": "todoId",
+            "name": "id",
+            "baseName": "id",
             "type": "number"
         },
         {

@@ -14,11 +14,16 @@ const { getTodo, getTodos, postTodo } = await todoService();
 /**
  * TODO-001 Todo一覧取得
  */
-todoController.get('/todos', async (req, res) => {
-  console.log('GET /todos');
-  const todos = await getTodos();
-  res.json(todos);
-});
+todoController.get(
+  '/todos',
+  async (
+    req: ExpressRequest<undefined, Todo[], undefined, undefined, undefined>,
+    res: ExpressResponse<Todo[], any>,
+  ) => {
+    const todos = await getTodos();
+    res.json(todos);
+  },
+);
 
 /**
  * TODO-003 Todo作成
@@ -26,10 +31,9 @@ todoController.get('/todos', async (req, res) => {
 todoController.post(
   '/todos',
   async (
-    req: Request<undefined, undefined, PostTodo, undefined>,
-    res: Response<undefined, any>,
+    req: ExpressRequest<undefined, undefined, PostTodo, undefined, undefined>,
+    res: ExpressResponse<undefined, any>,
   ) => {
-    console.log('post /todos');
     const requestTodo = req.body;
     await postTodo(requestTodo);
     res.end();

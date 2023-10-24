@@ -6,7 +6,7 @@
   },
   "type": "module",
   "scripts": {
-    "start": "ts-node src/server.ts",
+    "start": "nodemon src/server.ts",
     "contaner": "docker-compose up -d",
     "migrate": "yarn prisma migrate dev --name init",
     "generate:swagger": "openapi-generator-cli generate -g typescript-node -i ./swagger/openapi.yaml -o ./src/types/typescript-node"
@@ -27,6 +27,7 @@
     "@typescript-eslint/parser": "^6.2.0",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^8.9.0",
+    "nodemon": "^3.0.1",
     "prettier": "^3.0.3",
     "remark": "^15.0.1",
     "typescript": "^5.2.2"

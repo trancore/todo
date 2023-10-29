@@ -30,12 +30,39 @@ export const todoRepository = async () => {
     try {
       await prisma.todo.create({
         // TODO user_id を取得する。
-        data: { title, description, deadline_at: deadlineAt, user_id: 1 },
+        data: {
+          title,
+          description,
+          deadline_at: deadlineAt && new Date(deadlineAt),
+          user_id: 1,
+        },
       });
     } catch (error) {
       // TODO 一旦無視
     }
   };
 
-  return { findTodo, findAllTodos, createTodo };
+  const updateTodo = async (
+    todoId: number,
+    { title, description, deadlineAt }: PostTodo,
+  ) => {
+    try {
+      await prisma.todo.update({
+        where: {
+          id: todoId,
+        },
+        // TODO user_id を取得する。
+        data: {
+          title,
+          description,
+          deadline_at: deadlineAt && new Date(deadlineAt),
+          user_id: 1,
+        },
+      });
+    } catch (error) {
+      // TODO 一旦無視
+    }
+  };
+
+  return { findTodo, findAllTodos, createTodo, updateTodo };
 };

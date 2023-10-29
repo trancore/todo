@@ -9,7 +9,7 @@ const app = express;
 
 export const todoController = app.Router();
 
-const { getTodo, getTodos, postTodo } = await todoService();
+const { getTodo, getTodos, postTodo, putTodo } = await todoService();
 
 /**
  * TODO-001 Todo一覧取得
@@ -36,7 +36,7 @@ todoController.post(
   ) => {
     const requestTodo = req.body;
     await postTodo(requestTodo);
-    res.end();
+    res.status(204).end();
   },
 );
 
@@ -58,5 +58,27 @@ todoController.get(
     const todoId = req.params.todo_id;
     const todo = await getTodo(todoId);
     res.json(todo);
+  },
+);
+
+/**
+ * TODO-004 Todo更新
+ */
+todoController.put(
+  '/todos/:todo_id',
+  async (
+    req: ExpressRequest<
+      { todo_id: string },
+      undefined,
+      PostTodo,
+      undefined,
+      undefined
+    >,
+    res: ExpressResponse<undefined, any>,
+  ) => {
+    const todoId = req.params.todo_id;
+    const requestTodo = req.body;
+    await putTodo(todoId, requestTodo);
+    res.status(204).end();
   },
 );

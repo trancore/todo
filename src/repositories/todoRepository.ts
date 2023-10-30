@@ -64,5 +64,17 @@ export const todoRepository = async () => {
     }
   };
 
-  return { findTodo, findAllTodos, createTodo, updateTodo };
+  const deleteTodo = async (todoId: number) => {
+    try {
+      await prisma.todo.delete({
+        where: {
+          id: todoId,
+        },
+      });
+    } catch (error) {
+      // TODO 一旦無視
+    }
+  };
+
+  return { findTodo, findAllTodos, createTodo, updateTodo, deleteTodo };
 };

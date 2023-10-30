@@ -9,7 +9,8 @@ const app = express;
 
 export const todoController = app.Router();
 
-const { getTodo, getTodos, postTodo, putTodo } = await todoService();
+const { getTodo, getTodos, postTodo, putTodo, deleteTodo } =
+  await todoService();
 
 /**
  * TODO-001 Todo一覧取得
@@ -79,6 +80,27 @@ todoController.put(
     const todoId = req.params.todo_id;
     const requestTodo = req.body;
     await putTodo(todoId, requestTodo);
+    res.status(204).end();
+  },
+);
+
+/**
+ * TODO-005 Todo削除
+ */
+todoController.delete(
+  '/todos/:todo_id',
+  async (
+    req: ExpressRequest<
+      { todo_id: string },
+      undefined,
+      PostTodo,
+      undefined,
+      undefined
+    >,
+    res: ExpressResponse<undefined, any>,
+  ) => {
+    const todoId = req.params.todo_id;
+    await deleteTodo(todoId);
     res.status(204).end();
   },
 );

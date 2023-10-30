@@ -3,8 +3,11 @@
 
 node_modules
 
+.env
 .pnp.cjs
 .pnp.loader.mjs
 
 package-lock.json
 yarn.lock
+
+prisma/migrations

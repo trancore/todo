@@ -1,5 +1,5 @@
 parameters:
-  $ref: '../../parameters/Todos/TodosTodoIdStatus.yaml'
+  - $ref: '../../parameters/Todos/TodosTodoIdStatus.yaml'
 put:
   summary: TODO-006 Todo状態更新
   tags:

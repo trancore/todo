@@ -4,17 +4,32 @@
   "volta": {
     "node": "18.18.2"
   },
+  "type": "module",
+  "scripts": {
+    "start": "nodemon src/server.ts",
+    "container": "docker-compose up -d",
+    "migrate": "yarn prisma migrate dev --name init",
+    "generate:swagger": "openapi-generator-cli generate -g typescript-node -i ./swagger/openapi.yaml -o ./src/types/typescript-node"
+  },
   "dependencies": {
-    "express": "^4.18.2"
+    "@prisma/client": "5.4.2",
+    "express": "^4.18.2",
+    "prisma": "^5.4.2",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.7.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/eslint": "^8",
     "@types/express": "^4.17.20",
     "@types/node": "^20.8.7",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
     "eslint": "^8.51.0",
+    "eslint-config-prettier": "^8.9.0",
+    "nodemon": "^3.0.1",
     "prettier": "^3.0.3",
     "remark": "^15.0.1",
-    "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   }
 }

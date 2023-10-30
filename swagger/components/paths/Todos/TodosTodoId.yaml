@@ -1,5 +1,5 @@
 parameters:
-  $ref: '../../parameters/Todos/TodosTodoId.yaml'
+  - $ref: '../../parameters/Todos/TodosTodoId.yaml'
 get:
   summary: TODO-002 Todo取得
   tags:

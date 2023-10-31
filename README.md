@@ -56,3 +56,29 @@ docker exec -it mysql-container zsh
 OpenAPI generatorで自動生成したファイルは、/modelのみ使用しています。
 
 他の自動生成された成果物は使用しません。
+
+## サインイン、サインアウトについて
+
+<!-- TODO シーケンス図について書く -->
+
+このTODOアプリでは、GitHubによる認証認可によってのみサインイン・サインアウトができます。
+
+そのために、まずGitHubのDeveloper SettingのOAuth Applicationを登録してください。
+
+そこで設定した`Client ID`、`Client secrets`、`Authorization callback URL`を`.env`ファイルに設定してください。
+
+※ `Authorization callback URL`は`http://localhost:8080/api/v1/auth/github/callback`を設定してください。このアプリは、本番環境にデプロイする想定はないため、ローカル環境の固定値で設定します。
+
+## .envについて
+
+以下コードブロック内のkey名に合わせて設定してください。
+
+`DATABASE_URL`：データソースにアクセスするためのURL。
+
+```.env
+DATABASE_URL=""
+
+GITHUB_CLIENT_ID="" 
+GITHUB_CLIENT_SECRET=""
+GITHUB_CALLBACK_URL="http://localhost:8080/api/v1/auth/github/callback"
+```

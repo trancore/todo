@@ -10,8 +10,8 @@
 |TypeScript|v5.2.2|静的型付け用言語|
 |ts-node|v10.9.1|TypeScriptのままNode.jsを実行できるようにする|
 |Express|v4.18.2|Node.jsのWebフレームワーク|
-|Docker||仮想コンテナ環境構築プラットフォーム|
-|OpenAPI generator||swaggerからの型自動生成ツール。リクエストやレスポンスに型を定義するために使用する。|
+|Docker| |仮想コンテナ環境構築プラットフォーム|
+|OpenAPI generator| |swaggerからの型自動生成ツール。リクエストやレスポンスに型を定義するために使用する。|
 
 ## yarn scriptsについて
 

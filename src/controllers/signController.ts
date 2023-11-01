@@ -14,15 +14,12 @@ passport.deserializeUser((user: Express.User, done) => {
 });
 
 signController.get(
-  '/auth/github',
+  '/sign_in',
   passport.authenticate('github', { scope: ['user:email'] }),
 );
 
 signController.get(
-  '/auth/github/callback',
-  passport.authenticate('github', { failureRedirect: '/login' }),
-  function (req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  },
+  '/auth/callback',
+  passport.authenticate('github'),
+  function (req, res) {},
 );

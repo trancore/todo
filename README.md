@@ -10,8 +10,8 @@
 |TypeScript|v5.2.2|静的型付け用言語|
 |ts-node|v10.9.1|TypeScriptのままNode.jsを実行できるようにする|
 |Express|v4.18.2|Node.jsのWebフレームワーク|
-|Docker|仮想コンテナ環境構築プラットフォーム|
-|OpenAPI generator|swaggerからの型自動生成ツール。リクエストやレスポンスに型を定義するために使用する。|
+|Docker||仮想コンテナ環境構築プラットフォーム|
+|OpenAPI generator||swaggerからの型自動生成ツール。リクエストやレスポンスに型を定義するために使用する。|
 
 ## yarn scriptsについて
 
@@ -51,13 +51,13 @@ Dockerの設定を変える場合は、`docker-compose.yaml`を編集してく�
 docker exec -it mysql-container zsh
 ```
 
-## OpenAPI generatorについて
+## 📝OpenAPI generatorについて
 
 OpenAPI generatorで自動生成したファイルは、/modelのみ使用しています。
 
 他の自動生成された成果物は使用しません。
 
-## サインイン、サインアウトについて
+## 🪵サインイン、サインアウトについて
 
 <!-- TODO シーケンス図について書く -->
 
@@ -69,7 +69,7 @@ OpenAPI generatorで自動生成したファイルは、/modelのみ使用して
 
 ※ `Authorization callback URL`は`http://localhost:8080/api/v1/auth/github/callback`を設定してください。このアプリは、本番環境にデプロイする想定はないため、ローカル環境の固定値で設定します。
 
-## .envについて
+## 🌲.envについて
 
 以下コードブロック内のkey名に合わせて設定してください。
 
@@ -81,4 +81,42 @@ DATABASE_URL=""
 GITHUB_CLIENT_ID="" 
 GITHUB_CLIENT_SECRET=""
 GITHUB_CALLBACK_URL="http://localhost:8080/api/v1/auth/github/callback"
+```
+
+## ✏️ER図
+
+```mermaid
+---
+title: Todo RESTful API ER図
+---
+
+erDiagram
+    User {
+        Integer id
+        Integer node_id
+        String name
+        String mail_address
+        DateTime created_at
+        DateTime updated_at
+    }
+    Token {
+        Integer id
+        Integer user_id
+        String accessToken
+        String refreshToken
+        DateTime created_at
+        DateTime updated_at
+    }
+    Todo {
+        Integer id
+        String title
+        String description
+        DateTime deadline_at
+        STATUS status
+        DateTime created_at
+        DateTime updated_at
+    }
+
+    User ||--|{ Todo : has
+    User ||--|{ Token : has
 ```

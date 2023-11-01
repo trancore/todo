@@ -12,12 +12,23 @@ datasource db {
 
 model User {
   id           Int      @id @default(autoincrement())
+  node_id      Int      @unique
   name         String   @db.VarChar(20)
   mail_address String   @unique @db.VarChar(254)
-  password     String   @db.VarChar(16)
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
   Todo         Todo[]
+  Token        Token[]
+}
+
+model Token {
+  id           Int      @id @default(autoincrement())
+  user_id      Int
+  accessToken  String   @db.VarChar(40)
+  refreshToken String   @db.VarChar(40)
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  user         User     @relation(fields: [user_id], references: [id])
 }
 
 model Todo {

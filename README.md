@@ -51,8 +51,46 @@ Dockerの設定を変える場合は、`docker-compose.yaml`を編集してく�
 docker exec -it mysql-container zsh
 ```
 
-## OpenAPI generatorについて
+## 📝OpenAPI generatorについて
 
 OpenAPI generatorで自動生成したファイルは、/modelのみ使用しています。
 
 他の自動生成された成果物は使用しません。
+
+## ✏️ER図
+
+```mermaid
+---
+title: Todo RESTful API ER図
+---
+
+erDiagram
+    User {
+        Integer id
+        Integer node_id
+        String name
+        String mail_address
+        DateTime created_at
+        DateTime updated_at
+    }
+    Token {
+        Integer id
+        Integer user_id
+        String accessToken
+        String refreshToken
+        DateTime created_at
+        DateTime updated_at
+    }
+    Todo {
+        Integer id
+        String title
+        String description
+        DateTime deadline_at
+        STATUS status
+        DateTime created_at
+        DateTime updated_at
+    }
+
+    User ||--|{ Todo : has
+    User ||--|{ Token : has
+```

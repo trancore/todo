@@ -17,7 +17,7 @@ tags:
     description: Todoに関するAPI。
 paths:
   /sign_up:
-    post:
+    get:
       summary: SIGN-001 サインアップ
       tags:
         - Signs
@@ -56,7 +56,7 @@ paths:
               schema:
                 $ref: '#/paths/~1user/get/responses/503/content/application~1json/schema'
   /sign_in:
-    post:
+    get:
       summary: SIGN-002 サインイン
       tags:
         - Signs
@@ -65,15 +65,15 @@ paths:
         '201':
           description: 成功
         '400':
-          $ref: '#/paths/~1sign_up/post/responses/400'
+          $ref: '#/paths/~1sign_up/get/responses/400'
         '401':
-          $ref: '#/paths/~1sign_up/post/responses/401'
+          $ref: '#/paths/~1sign_up/get/responses/401'
         '500':
-          $ref: '#/paths/~1sign_up/post/responses/500'
+          $ref: '#/paths/~1sign_up/get/responses/500'
         '503':
-          $ref: '#/paths/~1sign_up/post/responses/503'
+          $ref: '#/paths/~1sign_up/get/responses/503'
   /sign_out:
-    post:
+    get:
       summary: SIGN-003 サインアウト
       tags:
         - Signs
@@ -82,13 +82,13 @@ paths:
         '201':
           description: 成功
         '400':
-          $ref: '#/paths/~1sign_up/post/responses/400'
+          $ref: '#/paths/~1sign_up/get/responses/400'
         '401':
-          $ref: '#/paths/~1sign_up/post/responses/401'
+          $ref: '#/paths/~1sign_up/get/responses/401'
         '500':
-          $ref: '#/paths/~1sign_up/post/responses/500'
+          $ref: '#/paths/~1sign_up/get/responses/500'
         '503':
-          $ref: '#/paths/~1sign_up/post/responses/503'
+          $ref: '#/paths/~1sign_up/get/responses/503'
   /user:
     get:
       summary: USER-001 ユーザー情報取得
@@ -108,6 +108,10 @@ paths:
                   userId:
                     type: integer
                     description: ユーザーID
+                    example: 1
+                  nodeId:
+                    type: integer
+                    description: ノードID
                     example: 1
                   name:
                     type: string
@@ -132,8 +136,8 @@ paths:
                     description: 更新日
                 required:
                   - userId
+                  - nodeId
                   - name
-                  - mailAddress
                   - createdAt
                   - updatedAt
         '400':

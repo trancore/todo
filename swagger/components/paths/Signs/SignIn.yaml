@@ -1,12 +1,11 @@
-post:
+get:
   summary: SIGN-002 サインイン
   tags:
     - Signs
   deprecated: false
   responses:
     '201':
-      description:
-        成功
+      description: 成功
     '400':
       $ref: '../../responses/Signs/BadRequest.yaml'
     '401':

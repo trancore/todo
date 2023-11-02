@@ -20,6 +20,7 @@ const app = express();
 const auth = passport;
 
 app.use(express.json());
+
 app.use(
   session({
     name: SESSION_CONFIG.NAME,
@@ -29,6 +30,8 @@ app.use(
     cookie: { maxAge: SESSION_CONFIG.COOKIE.MAX_AGE },
   }),
 );
+app.use(auth.initialize());
+app.use(auth.session());
 
 auth.use(
   new github.Strategy(

@@ -16,19 +16,15 @@ const { signIn, signOut } = await signService();
 signController.get(
   '/sign_in',
   passport.authenticate('github', { scope: ['user:email'] }),
-  async () => {
-    const { errorObject } = await signIn();
-
-    if (errorObject) {
-      // TODO: 一旦何も記載しない
-    }
-  },
 );
 
 signController.get(
   '/auth/github/callback',
   passport.authenticate('github'),
-  (req, res) => {
+  (
+    req: ExpressRequest<undefined, any, undefined, undefined, undefined>,
+    res: ExpressResponse<any, undefined>,
+  ) => {
     // TODO 暫定対応
     res.status(201).redirect('/');
   },

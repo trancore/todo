@@ -1,25 +1,21 @@
-﻿import express from 'express';
+﻿import express, { NextFunction } from 'express';
 import passport from 'passport';
+
+import { signService } from '../services/signService';
+import { ExpressRequest, ExpressResponse } from '../types/express';
 
 const app = express;
 
 export const signController = app.Router();
 
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser((user: Express.User, done) => {
-  done(null, user);
-});
+const { signIn, signOut } = await signService();
 
 /**
  * SIGN-002 サインイン
  */
-signController.get(
-  '/sign_in',
-  passport.authenticate('github', { scope: ['user:email'] }),
-);
+signController.get('/sign_in', async () => {
+  await signIn();
+});
 
 signController.get(
   '/auth/github/callback',
@@ -33,11 +29,19 @@ signController.get(
 /**
  * SIGN-003 サインアウト
  */
-signController.get('/sign_out', (req, res, next) => {
-  req.logout((error) => {
-    if (error) {
-      next(error);
+signController.get(
+  '/sign_out',
+  async (
+    req: ExpressRequest<undefined, any, undefined, undefined, undefined>,
+    res: ExpressResponse<any, undefined>,
+  ) => {
+    const { errorObject } = await signOut(req);
+
+    if (errorObject) {
+      // TODO: 一旦何も記載しない
     }
+
+    // TODO 暫定対応
     res.status(201).redirect('/');
-  });
-});
+  },
+);

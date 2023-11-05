@@ -1,5 +1,5 @@
 ﻿import { Todo } from '@prisma/client';
-import express, { Request, Response } from 'express';
+import express from 'express';
 
 import { todoService } from '../services/todoService';
 import { ExpressRequest, ExpressResponse } from '../types/express';

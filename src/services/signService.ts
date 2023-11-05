@@ -1,7 +1,7 @@
 ﻿import { NextFunction } from 'express';
 import passport from 'passport';
 
-import { ExpressRequest, ExpressResponse } from '../types/express';
+import { ExpressRequest } from '../types/express';
 
 passport.serializeUser((user, done) => {
   done(null, user);
@@ -13,7 +13,14 @@ passport.deserializeUser((user: Express.User, done) => {
 
 export const signService = async () => {
   const signIn = async () => {
-    await passport.authenticate('github', { scope: ['user:email'] });
+    let errorObject = {};
+    try {
+      await passport.authenticate('github', { scope: ['user:email'] });
+    } catch (error) {
+      // TODO: 一旦無視
+    }
+
+    return { errorObject };
   };
 
   const signOut = async (

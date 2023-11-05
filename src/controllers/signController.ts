@@ -1,4 +1,4 @@
-﻿import express, { NextFunction } from 'express';
+﻿import express from 'express';
 import passport from 'passport';
 
 import { signService } from '../services/signService';
@@ -13,9 +13,17 @@ const { signIn, signOut } = await signService();
 /**
  * SIGN-002 サインイン
  */
-signController.get('/sign_in', async () => {
-  await signIn();
-});
+signController.get(
+  '/sign_in',
+  passport.authenticate('github', { scope: ['user:email'] }),
+  async () => {
+    const { errorObject } = await signIn();
+
+    if (errorObject) {
+      // TODO: 一旦何も記載しない
+    }
+  },
+);
 
 signController.get(
   '/auth/github/callback',

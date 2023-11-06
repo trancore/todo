@@ -16,11 +16,13 @@ export const tokenRepository = async () => {
         },
         update: {
           accessToken: accessToken,
+          // TODO refreshTokenの取得
           refreshToken: refreshToken || 'hoge',
         },
         create: {
           user_id: userId,
           accessToken: accessToken,
+          // TODO refreshTokenの取得
           refreshToken: refreshToken || 'hoge',
         },
       });

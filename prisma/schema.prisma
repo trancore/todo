@@ -12,9 +12,9 @@ datasource db {
 
 model User {
   id           Int      @id @default(autoincrement())
-  node_id      Int      @unique
+  node_id      String   @unique @db.VarChar(20)
   name         String   @db.VarChar(20)
-  mail_address String   @unique @db.VarChar(254)
+  mail_address String?  @unique @db.VarChar(254)
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
   Todo         Todo[]

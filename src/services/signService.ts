@@ -11,12 +11,12 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((user: Express.User, done) => {
-  done(null, user);
+  return done(null, user);
 });
 
 export const signService = async () => {
   const { saveUser } = await userRepository();
-  const { saveToken } = await tokenRepository();
+  const { saveToken, deleteToken } = await tokenRepository();
 
   const signIn = async (authData: AuthenticationData | undefined) => {
     try {
@@ -35,14 +35,27 @@ export const signService = async () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     req: ExpressRequest<undefined, any, undefined, undefined, undefined>,
   ) => {
-    // TODO: 一旦any型で定義
-    let errorObject = {};
+    const nodeId = req.user?.userData.node_id;
+
+    if (!nodeId) {
+      // TODO 一旦エラーに飛ばす
+      throw Error;
+    }
+
+    deleteToken(nodeId);
+
     req.logout((error) => {
       if (error) {
-        errorObject = error;
+        // TODO: 一旦errorそのものを返す
+        throw error || 'error';
       }
     });
-    return { errorObject };
+    req.session.destroy((error) => {
+      // TODO: 一旦errorそのものを返す
+      if (error) {
+        throw error || 'error';
+      }
+    });
   };
 
   return { signIn, signOut };

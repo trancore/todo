@@ -22,14 +22,14 @@ signController.get(
 signController.get(
   '/auth/github/callback',
   passport.authenticate('github'),
-  (
+  async (
     req: ExpressRequest<undefined, undefined, undefined, undefined, undefined>,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     res: ExpressResponse<any, undefined>,
   ) => {
-    signIn(req.user);
+    await signIn(req.user);
     // TODO 暫定対応
-    res.status(201).redirect('/');
+    res.status(201).json();
   },
 );
 
@@ -44,13 +44,9 @@ signController.get(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     res: ExpressResponse<any, undefined>,
   ) => {
-    const { errorObject } = await signOut(req);
-
-    if (errorObject) {
-      // TODO: 一旦何も記載しない
-    }
+    await signOut(req);
 
     // TODO 暫定対応
-    res.status(201).redirect('/');
+    res.status(201).json();
   },
 );

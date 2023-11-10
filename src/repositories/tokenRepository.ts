@@ -31,5 +31,28 @@ export const tokenRepository = async () => {
     }
   };
 
-  return { saveToken };
+  const deleteToken = async (nodeId: string) => {
+    try {
+      const user = await prisma.user.findUnique({
+        where: {
+          node_id: nodeId,
+        },
+      });
+
+      // TODO 一旦エラーを返す
+      if (!user) throw Error;
+
+      const userId = user.id;
+
+      await prisma.token.deleteMany({
+        where: {
+          id: userId,
+        },
+      });
+    } catch (error) {
+      // TODO 一旦無視
+    }
+  };
+
+  return { saveToken, deleteToken };
 };

@@ -90,7 +90,7 @@ export interface paths {
                * @description ノードID
                * @example 1
                */
-              nodeId: number;
+              nodeId: string;
               /**
                * @description ユーザー名
                * @example ユーザー名

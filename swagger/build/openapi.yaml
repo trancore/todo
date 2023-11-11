@@ -110,7 +110,7 @@ paths:
                     description: ユーザーID
                     example: 1
                   nodeId:
-                    type: integer
+                    type: string
                     description: ノードID
                     example: 1
                   name:
@@ -391,12 +391,12 @@ paths:
                     - TODO-006
                   value:
                     title: Your request had validated errors.
-                    detail: "{fieldName}'s pattern is wrong"
+                    detail: '{fieldName}''s pattern is wrong'
                     instance: /example/400004
                     invalidParameters:
                       - code: E400004
                         fieldName: '{fieldName}'
-                        reason: "{fieldName}'s pattern is wrong"
+                        reason: '{fieldName}''s pattern is wrong'
         '401':
           description: Unauthorized.
           content:

@@ -4,13 +4,15 @@ import session from 'express-session';
 import passport from 'passport';
 import github from 'passport-github2';
 
+import { CONFIG } from './configrations/config';
+import { SESSION_CONFIG } from './configrations/session';
+
 import { API } from './constants';
 
 import { signController } from './controllers/signController';
 import { todoController } from './controllers/todoController';
 
-import { CONFIG } from './configrations/config';
-import { SESSION_CONFIG } from './configrations/session';
+import { TokenData, UserData } from './types/authentication';
 
 dotenv.config();
 
@@ -40,8 +42,21 @@ auth.use(
       clientSecret: process.env.GITHUB_CLIENT_SECRET || '',
       callbackURL: process.env.GITHUB_CALLBACK_URL || '',
     },
-    (accessToken: string, refreshToken: string, profile: any, done: any) => {
-      return done(null, profile);
+    (
+      accessToken: string,
+      refreshToken: string | null,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      profile: any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      done: any,
+    ) => {
+      const userData: UserData = {
+        node_id: profile.nodeId,
+        name: profile.username,
+        mail_address: profile._json_email,
+      };
+      const tokenData: TokenData = { accessToken, refreshToken };
+      return done(null, { userData, tokenData });
     },
   ),
 );

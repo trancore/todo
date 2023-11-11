@@ -1,8 +1,9 @@
 ﻿import express from 'express';
 import passport from 'passport';
 
-import { signService } from '../services/signService';
 import { ExpressRequest, ExpressResponse } from '../types/express';
+
+import { signService } from '../services/signService';
 
 const app = express;
 
@@ -21,12 +22,14 @@ signController.get(
 signController.get(
   '/auth/github/callback',
   passport.authenticate('github'),
-  (
-    req: ExpressRequest<undefined, any, undefined, undefined, undefined>,
+  async (
+    req: ExpressRequest<undefined, undefined, undefined, undefined, undefined>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     res: ExpressResponse<any, undefined>,
   ) => {
+    await signIn(req.user);
     // TODO 暫定対応
-    res.status(201).redirect('/');
+    res.status(201).json();
   },
 );
 
@@ -36,16 +39,14 @@ signController.get(
 signController.get(
   '/sign_out',
   async (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     req: ExpressRequest<undefined, any, undefined, undefined, undefined>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     res: ExpressResponse<any, undefined>,
   ) => {
-    const { errorObject } = await signOut(req);
-
-    if (errorObject) {
-      // TODO: 一旦何も記載しない
-    }
+    await signOut(req);
 
     // TODO 暫定対応
-    res.status(201).redirect('/');
+    res.status(201).json();
   },
 );

@@ -27,7 +27,8 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "typeRoots": ["src/@types", "node_modules/@types"]
     // non-relativeなimportにおいて、相対的なカレントディレクトリの指定
     // "baseUrl": "",
     // "paths": {

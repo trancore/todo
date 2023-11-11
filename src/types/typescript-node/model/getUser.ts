@@ -21,13 +21,17 @@ export class GetUser {
     */
     'userId': number;
     /**
+    * ノードID
+    */
+    'nodeId': number;
+    /**
     * ユーザー名
     */
     'name': string;
     /**
     * メールアドレス
     */
-    'mailAddress': string;
+    'mailAddress'?: string;
     /**
     * 作成日
     */
@@ -43,6 +47,11 @@ export class GetUser {
         {
             "name": "userId",
             "baseName": "userId",
+            "type": "number"
+        },
+        {
+            "name": "nodeId",
+            "baseName": "nodeId",
             "type": "number"
         },
         {

@@ -1,9 +1,11 @@
 ﻿import { Todo } from '@prisma/client';
-import express from 'express';
+import express, { Request, Response } from 'express';
 
-import { todoService } from '../services/todoService';
+import { GetTodosResponse } from '../types/api/todos';
 import { ExpressRequest, ExpressResponse } from '../types/express';
 import { PostTodo } from '../types/typescript-node/api';
+
+import { todoService } from '../services/todoService';
 
 const app = express;
 
@@ -18,8 +20,8 @@ const { getTodo, getTodos, postTodo, putTodo, deleteTodo } =
 todoController.get(
   '/todos',
   async (
-    req: ExpressRequest<undefined, Todo[], undefined, undefined, undefined>,
-    res: ExpressResponse<Todo[], any>,
+    req: Request<undefined, GetTodosResponse, undefined, undefined>,
+    res: Response<GetTodosResponse>,
   ) => {
     const todos = await getTodos();
     res.json(todos);

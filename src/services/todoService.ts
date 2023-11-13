@@ -1,5 +1,9 @@
-﻿import { todoRepository } from '../repositories/todoRepository';
+﻿import { threadId } from 'worker_threads';
+
+import { GetTodosResponse } from '../types/api/todos';
 import { PostTodo } from '../types/typescript-node/api';
+
+import { todoRepository } from '../repositories/todoRepository';
 
 export const todoService = async () => {
   const {
@@ -20,8 +24,29 @@ export const todoService = async () => {
     return await findTodo(todoIdNum);
   };
 
-  const getTodos = async () => {
-    return await findAllTodos();
+  const getTodos = async (): Promise<GetTodosResponse | undefined> => {
+    try {
+      const todos = await findAllTodos();
+      if (!todos || todos.length < 1) {
+        // TODO 一旦適当にエラーを定義
+        throw Error;
+      }
+
+      return todos.map((todo) => {
+        return {
+          id: todo.id,
+          userId: todo.user_id,
+          title: todo.title,
+          description: todo.description ?? '',
+          deadlineAt: todo.deadline_at ? todo.deadline_at.toLocaleString() : '',
+          status: todo.status,
+          createdAt: todo.created_at.toLocaleString(),
+          updatedAt: todo.updated_at.toLocaleString(),
+        };
+      });
+    } catch (error) {
+      // TODO 一旦適当にエラーを定義
+    }
   };
 
   const postTodo = async (todo: PostTodo) => {

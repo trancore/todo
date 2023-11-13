@@ -19,11 +19,7 @@ export const todoRepository = async () => {
   };
 
   const findAllTodos = async () => {
-    try {
-      return await prisma.todo.findMany();
-    } catch (error) {
-      // TODO 一旦無視
-    }
+    return await prisma.todo.findMany();
   };
 
   const createTodo = async ({ title, description, deadlineAt }: PostTodo) => {

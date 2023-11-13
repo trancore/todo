@@ -19,25 +19,92 @@ export interface paths {
         /** @description Bad Request. */
         400: {
           content: {
-            "application/json": paths["/user"]["get"]["responses"]["400"]["content"]["application/json"]["schema"];
+            "application/json": {
+              /** @description 人間が読める形式の問題タイプの概要。エラーのタイトル。 */
+              title: string;
+              /** @description この問題の発生に固有の人間が読める説明。エラーの説明。 */
+              detail: string;
+              /** @description 問題の特定の発生を識別する URL 。 */
+              instance: string;
+              /**
+               * ValidationError
+               * @description Validation Error.
+               */
+              invalidParameters?: {
+                  /** @description バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。 */
+                  code: Record<string, never>;
+                  /** @description 人間が読めるバリデーションエラーの対象名。 */
+                  fieldName: string;
+                  /** @description 人間が読めるバリデーションエラーの理由。 */
+                  reason: string;
+                }[];
+            };
           };
         };
         /** @description Unauthorized. */
         401: {
           content: {
-            "application/json": paths["/user"]["get"]["responses"]["401"]["content"]["application/json"]["schema"];
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request was unauthorized.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/401
+               */
+              instance: string;
+            };
           };
         };
         /** @description Internal Server Error */
         500: {
           content: {
-            "application/json": paths["/user"]["get"]["responses"]["500"]["content"]["application/json"]["schema"];
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Server didn't understand.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/500
+               */
+              instance: string;
+            };
           };
         };
         /** @description Service Unavailable */
         503: {
           content: {
-            "application/json": paths["/user"]["get"]["responses"]["503"]["content"]["application/json"]["schema"];
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Service didn't Unavailable.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/503
+               */
+              instance: string;
+            };
           };
         };
       };
@@ -51,10 +118,97 @@ export interface paths {
         201: {
           content: never;
         };
-        400: paths["/sign_up"]["get"]["responses"]["400"];
-        401: paths["/sign_up"]["get"]["responses"]["401"];
-        500: paths["/sign_up"]["get"]["responses"]["500"];
-        503: paths["/sign_up"]["get"]["responses"]["503"];
+        /** @description Bad Request. */
+        400: {
+          content: {
+            "application/json": {
+              /** @description 人間が読める形式の問題タイプの概要。エラーのタイトル。 */
+              title: string;
+              /** @description この問題の発生に固有の人間が読める説明。エラーの説明。 */
+              detail: string;
+              /** @description 問題の特定の発生を識別する URL 。 */
+              instance: string;
+              /**
+               * ValidationError
+               * @description Validation Error.
+               */
+              invalidParameters?: {
+                  /** @description バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。 */
+                  code: Record<string, never>;
+                  /** @description 人間が読めるバリデーションエラーの対象名。 */
+                  fieldName: string;
+                  /** @description 人間が読めるバリデーションエラーの理由。 */
+                  reason: string;
+                }[];
+            };
+          };
+        };
+        /** @description Unauthorized. */
+        401: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request was unauthorized.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/401
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Server didn't understand.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/500
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Service Unavailable */
+        503: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Service didn't Unavailable.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/503
+               */
+              instance: string;
+            };
+          };
+        };
       };
     };
   };
@@ -66,10 +220,97 @@ export interface paths {
         201: {
           content: never;
         };
-        400: paths["/sign_up"]["get"]["responses"]["400"];
-        401: paths["/sign_up"]["get"]["responses"]["401"];
-        500: paths["/sign_up"]["get"]["responses"]["500"];
-        503: paths["/sign_up"]["get"]["responses"]["503"];
+        /** @description Bad Request. */
+        400: {
+          content: {
+            "application/json": {
+              /** @description 人間が読める形式の問題タイプの概要。エラーのタイトル。 */
+              title: string;
+              /** @description この問題の発生に固有の人間が読める説明。エラーの説明。 */
+              detail: string;
+              /** @description 問題の特定の発生を識別する URL 。 */
+              instance: string;
+              /**
+               * ValidationError
+               * @description Validation Error.
+               */
+              invalidParameters?: {
+                  /** @description バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。 */
+                  code: Record<string, never>;
+                  /** @description 人間が読めるバリデーションエラーの対象名。 */
+                  fieldName: string;
+                  /** @description 人間が読めるバリデーションエラーの理由。 */
+                  reason: string;
+                }[];
+            };
+          };
+        };
+        /** @description Unauthorized. */
+        401: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request was unauthorized.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/401
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Server didn't understand.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/500
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Service Unavailable */
+        503: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Service didn't Unavailable.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/503
+               */
+              instance: string;
+            };
+          };
+        };
       };
     };
   };
@@ -264,25 +505,121 @@ export interface paths {
         /** @description 成功 */
         200: {
           content: {
-            "application/json": paths["/todos/%7Btodo_id%7D"]["get"]["responses"]["200"]["content"]["application/json"]["schema"][];
+            "application/json": ({
+                /**
+                 * @description TodoID
+                 * @example 1
+                 */
+                id: number;
+                /**
+                 * @description ユーザーID
+                 * @example 1
+                 */
+                userId: number;
+                /**
+                 * @description Todoタイトル
+                 * @example TodoタイトルTodoタイトルTodoタイトル
+                 */
+                title: string;
+                /**
+                 * @description Todo説明
+                 * @example Todo説明Todo説明Todo説明
+                 */
+                description?: string;
+                /**
+                 * Format: date
+                 * @description 対応期限
+                 */
+                deadlineAt?: string;
+                /**
+                 * @description 対応状態。
+                 *
+                 * "TODO": 未着手。
+                 * "WIP": 対応中。
+                 * "DONE": 完了。
+                 * @enum {string}
+                 */
+                status: "TODO" | "WIP" | "DONE";
+                /**
+                 * Format: date-time
+                 * @description 作成日
+                 */
+                createdAt: string;
+                /**
+                 * Format: date-time
+                 * @description 更新日
+                 */
+                updatedAt: string;
+              })[];
           };
         };
         /** @description Bad Request. */
         400: {
           content: {
-            "application/json": paths["/user"]["get"]["responses"]["400"]["content"]["application/json"]["schema"];
+            "application/json": {
+              /** @description 人間が読める形式の問題タイプの概要。エラーのタイトル。 */
+              title: string;
+              /** @description この問題の発生に固有の人間が読める説明。エラーの説明。 */
+              detail: string;
+              /** @description 問題の特定の発生を識別する URL 。 */
+              instance: string;
+              /**
+               * ValidationError
+               * @description Validation Error.
+               */
+              invalidParameters?: {
+                  /** @description バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。 */
+                  code: Record<string, never>;
+                  /** @description 人間が読めるバリデーションエラーの対象名。 */
+                  fieldName: string;
+                  /** @description 人間が読めるバリデーションエラーの理由。 */
+                  reason: string;
+                }[];
+            };
           };
         };
         /** @description Unauthorized. */
         401: {
           content: {
-            "application/json": paths["/user"]["get"]["responses"]["401"]["content"]["application/json"]["schema"];
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request was unauthorized.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/401
+               */
+              instance: string;
+            };
           };
         };
         /** @description Forbidden. */
         403: {
           content: {
-            "application/json": paths["/user"]["get"]["responses"]["403"]["content"]["application/json"]["schema"];
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request was forbidden.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/403
+               */
+              instance: string;
+            };
           };
         };
         /**
@@ -292,19 +629,67 @@ export interface paths {
          */
         404: {
           content: {
-            "application/json": paths["/user"]["get"]["responses"]["404"]["content"]["application/json"]["schema"];
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request couldn't find user.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/404
+               */
+              instance: string;
+            };
           };
         };
         /** @description Internal Server Error */
         500: {
           content: {
-            "application/json": paths["/user"]["get"]["responses"]["500"]["content"]["application/json"]["schema"];
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Server didn't understand.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/500
+               */
+              instance: string;
+            };
           };
         };
         /** @description Service Unavailable */
         503: {
           content: {
-            "application/json": paths["/user"]["get"]["responses"]["503"]["content"]["application/json"]["schema"];
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Service didn't Unavailable.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/503
+               */
+              instance: string;
+            };
           };
         };
       };
@@ -335,11 +720,119 @@ export interface paths {
         201: {
           content: never;
         };
-        400: paths["/todos"]["get"]["responses"]["400"];
-        401: paths["/todos"]["get"]["responses"]["401"];
-        403: paths["/todos"]["get"]["responses"]["403"];
-        500: paths["/todos"]["get"]["responses"]["500"];
-        503: paths["/todos"]["get"]["responses"]["503"];
+        /** @description Bad Request. */
+        400: {
+          content: {
+            "application/json": {
+              /** @description 人間が読める形式の問題タイプの概要。エラーのタイトル。 */
+              title: string;
+              /** @description この問題の発生に固有の人間が読める説明。エラーの説明。 */
+              detail: string;
+              /** @description 問題の特定の発生を識別する URL 。 */
+              instance: string;
+              /**
+               * ValidationError
+               * @description Validation Error.
+               */
+              invalidParameters?: {
+                  /** @description バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。 */
+                  code: Record<string, never>;
+                  /** @description 人間が読めるバリデーションエラーの対象名。 */
+                  fieldName: string;
+                  /** @description 人間が読めるバリデーションエラーの理由。 */
+                  reason: string;
+                }[];
+            };
+          };
+        };
+        /** @description Unauthorized. */
+        401: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request was unauthorized.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/401
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Forbidden. */
+        403: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request was forbidden.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/403
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Server didn't understand.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/500
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Service Unavailable */
+        503: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Service didn't Unavailable.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/503
+               */
+              instance: string;
+            };
+          };
+        };
       };
     };
   };
@@ -385,7 +878,15 @@ export interface paths {
                * @description 対応期限
                */
               deadlineAt?: string;
-              status: paths["/todos/%7Btodo_id%7D/status"]["put"]["requestBody"]["content"]["application/json"]["schema"]["status"];
+              /**
+               * @description 対応状態。
+               *
+               * "TODO": 未着手。
+               * "WIP": 対応中。
+               * "DONE": 完了。
+               * @enum {string}
+               */
+              status: "TODO" | "WIP" | "DONE";
               /**
                * Format: date-time
                * @description 作成日
@@ -399,12 +900,145 @@ export interface paths {
             };
           };
         };
-        400: paths["/todos"]["get"]["responses"]["400"];
-        401: paths["/todos"]["get"]["responses"]["401"];
-        403: paths["/todos"]["get"]["responses"]["403"];
-        404: paths["/todos"]["get"]["responses"]["404"];
-        500: paths["/todos"]["get"]["responses"]["500"];
-        503: paths["/todos"]["get"]["responses"]["503"];
+        /** @description Bad Request. */
+        400: {
+          content: {
+            "application/json": {
+              /** @description 人間が読める形式の問題タイプの概要。エラーのタイトル。 */
+              title: string;
+              /** @description この問題の発生に固有の人間が読める説明。エラーの説明。 */
+              detail: string;
+              /** @description 問題の特定の発生を識別する URL 。 */
+              instance: string;
+              /**
+               * ValidationError
+               * @description Validation Error.
+               */
+              invalidParameters?: {
+                  /** @description バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。 */
+                  code: Record<string, never>;
+                  /** @description 人間が読めるバリデーションエラーの対象名。 */
+                  fieldName: string;
+                  /** @description 人間が読めるバリデーションエラーの理由。 */
+                  reason: string;
+                }[];
+            };
+          };
+        };
+        /** @description Unauthorized. */
+        401: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request was unauthorized.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/401
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Forbidden. */
+        403: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request was forbidden.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/403
+               */
+              instance: string;
+            };
+          };
+        };
+        /**
+         * @description Not Found.
+         *
+         * 指定したTodoが見つからなかった場合。
+         */
+        404: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request couldn't find user.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/404
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Server didn't understand.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/500
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Service Unavailable */
+        503: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Service didn't Unavailable.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/503
+               */
+              instance: string;
+            };
+          };
+        };
       };
     };
     /** TODO-004 Todo更新 */
@@ -418,18 +1052,169 @@ export interface paths {
           todo_Id: number;
         };
       };
-      requestBody: paths["/todos"]["post"]["requestBody"];
+      /** @description Todo情報 */
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @example TodoタイトルTodoタイトルTodoタイトル */
+            title: string;
+            /**
+             * @description Todo説明
+             * @example Todo説明Todo説明Todo説明
+             */
+            description?: string;
+            /**
+             * Format: date
+             * @description 対応期限
+             */
+            deadlineAt?: string;
+          };
+        };
+      };
       responses: {
         /** @description No Content. */
         204: {
           content: never;
         };
-        400: paths["/todos"]["get"]["responses"]["400"];
-        401: paths["/todos"]["get"]["responses"]["401"];
-        403: paths["/todos"]["get"]["responses"]["403"];
-        404: paths["/todos"]["get"]["responses"]["404"];
-        500: paths["/todos"]["get"]["responses"]["500"];
-        503: paths["/todos"]["get"]["responses"]["503"];
+        /** @description Bad Request. */
+        400: {
+          content: {
+            "application/json": {
+              /** @description 人間が読める形式の問題タイプの概要。エラーのタイトル。 */
+              title: string;
+              /** @description この問題の発生に固有の人間が読める説明。エラーの説明。 */
+              detail: string;
+              /** @description 問題の特定の発生を識別する URL 。 */
+              instance: string;
+              /**
+               * ValidationError
+               * @description Validation Error.
+               */
+              invalidParameters?: {
+                  /** @description バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。 */
+                  code: Record<string, never>;
+                  /** @description 人間が読めるバリデーションエラーの対象名。 */
+                  fieldName: string;
+                  /** @description 人間が読めるバリデーションエラーの理由。 */
+                  reason: string;
+                }[];
+            };
+          };
+        };
+        /** @description Unauthorized. */
+        401: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request was unauthorized.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/401
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Forbidden. */
+        403: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request was forbidden.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/403
+               */
+              instance: string;
+            };
+          };
+        };
+        /**
+         * @description Not Found.
+         *
+         * 指定したTodoが見つからなかった場合。
+         */
+        404: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request couldn't find user.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/404
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Server didn't understand.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/500
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Service Unavailable */
+        503: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Service didn't Unavailable.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/503
+               */
+              instance: string;
+            };
+          };
+        };
       };
     };
     /** TODO-005 Todo削除 */
@@ -444,13 +1229,149 @@ export interface paths {
         };
       };
       responses: {
-        204: paths["/todos/%7Btodo_id%7D"]["put"]["responses"]["204"];
-        400: paths["/todos"]["get"]["responses"]["400"];
-        401: paths["/todos"]["get"]["responses"]["401"];
-        403: paths["/todos"]["get"]["responses"]["403"];
-        404: paths["/todos"]["get"]["responses"]["404"];
-        500: paths["/todos"]["get"]["responses"]["500"];
-        503: paths["/todos"]["get"]["responses"]["503"];
+        /** @description No Content. */
+        204: {
+          content: never;
+        };
+        /** @description Bad Request. */
+        400: {
+          content: {
+            "application/json": {
+              /** @description 人間が読める形式の問題タイプの概要。エラーのタイトル。 */
+              title: string;
+              /** @description この問題の発生に固有の人間が読める説明。エラーの説明。 */
+              detail: string;
+              /** @description 問題の特定の発生を識別する URL 。 */
+              instance: string;
+              /**
+               * ValidationError
+               * @description Validation Error.
+               */
+              invalidParameters?: {
+                  /** @description バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。 */
+                  code: Record<string, never>;
+                  /** @description 人間が読めるバリデーションエラーの対象名。 */
+                  fieldName: string;
+                  /** @description 人間が読めるバリデーションエラーの理由。 */
+                  reason: string;
+                }[];
+            };
+          };
+        };
+        /** @description Unauthorized. */
+        401: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request was unauthorized.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/401
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Forbidden. */
+        403: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request was forbidden.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/403
+               */
+              instance: string;
+            };
+          };
+        };
+        /**
+         * @description Not Found.
+         *
+         * 指定したTodoが見つからなかった場合。
+         */
+        404: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request couldn't find user.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/404
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Server didn't understand.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/500
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Service Unavailable */
+        503: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Service didn't Unavailable.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/503
+               */
+              instance: string;
+            };
+          };
+        };
       };
     };
     parameters: {
@@ -492,13 +1413,149 @@ export interface paths {
         };
       };
       responses: {
-        204: paths["/todos/%7Btodo_id%7D"]["put"]["responses"]["204"];
-        400: paths["/todos"]["get"]["responses"]["400"];
-        401: paths["/todos"]["get"]["responses"]["401"];
-        403: paths["/todos"]["get"]["responses"]["403"];
-        404: paths["/todos"]["get"]["responses"]["404"];
-        500: paths["/todos"]["get"]["responses"]["500"];
-        503: paths["/todos"]["get"]["responses"]["503"];
+        /** @description No Content. */
+        204: {
+          content: never;
+        };
+        /** @description Bad Request. */
+        400: {
+          content: {
+            "application/json": {
+              /** @description 人間が読める形式の問題タイプの概要。エラーのタイトル。 */
+              title: string;
+              /** @description この問題の発生に固有の人間が読める説明。エラーの説明。 */
+              detail: string;
+              /** @description 問題の特定の発生を識別する URL 。 */
+              instance: string;
+              /**
+               * ValidationError
+               * @description Validation Error.
+               */
+              invalidParameters?: {
+                  /** @description バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。 */
+                  code: Record<string, never>;
+                  /** @description 人間が読めるバリデーションエラーの対象名。 */
+                  fieldName: string;
+                  /** @description 人間が読めるバリデーションエラーの理由。 */
+                  reason: string;
+                }[];
+            };
+          };
+        };
+        /** @description Unauthorized. */
+        401: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request was unauthorized.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/401
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Forbidden. */
+        403: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request was forbidden.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/403
+               */
+              instance: string;
+            };
+          };
+        };
+        /**
+         * @description Not Found.
+         *
+         * 指定したTodoが見つからなかった場合。
+         */
+        404: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Your request couldn't find user.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別する URL 。
+               * @example /example/404
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Server didn't understand.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/500
+               */
+              instance: string;
+            };
+          };
+        };
+        /** @description Service Unavailable */
+        503: {
+          content: {
+            "application/json": {
+              /**
+               * @description 人間が読める形式の問題タイプの概要。エラーのタイトル。
+               * @example Service didn't Unavailable.
+               */
+              title: string;
+              /**
+               * @description この問題の発生に固有の人間が読める説明。エラーの説明。
+               * @example about:blank
+               */
+              detail: string;
+              /**
+               * @description 問題の特定の発生を識別するURL。
+               * @example /example/503
+               */
+              instance: string;
+            };
+          };
+        };
       };
     };
     parameters: {

@@ -1,5 +1,6 @@
 ﻿import { PrismaClient } from '@prisma/client';
 
+import { PostTodoRequest } from '../types/api/todos';
 import { PostTodo } from '../types/typescript-node/api';
 
 export const todoRepository = async () => {
@@ -22,20 +23,20 @@ export const todoRepository = async () => {
     return await prisma.todo.findMany();
   };
 
-  const createTodo = async ({ title, description, deadlineAt }: PostTodo) => {
-    try {
-      await prisma.todo.create({
-        // TODO user_id を取得する。
-        data: {
-          title,
-          description,
-          deadline_at: deadlineAt && new Date(deadlineAt),
-          user_id: 1,
-        },
-      });
-    } catch (error) {
-      // TODO 一旦無視
-    }
+  const createTodo = async ({
+    title,
+    description,
+    deadlineAt,
+  }: PostTodoRequest) => {
+    await prisma.todo.create({
+      // TODO user_id を取得する。
+      data: {
+        title,
+        description,
+        deadline_at: deadlineAt && new Date(deadlineAt),
+        user_id: 1,
+      },
+    });
   };
 
   const updateTodo = async (

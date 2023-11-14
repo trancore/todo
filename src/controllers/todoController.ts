@@ -1,7 +1,11 @@
 ﻿import { Todo } from '@prisma/client';
 import express, { Request, Response } from 'express';
 
-import { GetTodosResponse } from '../types/api/todos';
+import {
+  GetTodosResponse,
+  PostTodoRequest,
+  PostTodoResponse,
+} from '../types/api/todos';
 import { ExpressRequest, ExpressResponse } from '../types/express';
 import { PostTodo } from '../types/typescript-node/api';
 
@@ -15,7 +19,7 @@ const { getTodo, getTodos, postTodo, putTodo, deleteTodo } =
   await todoService();
 
 /**
- * TODO-001 Todo一覧取得
+ * Todo一覧取得
  */
 todoController.get(
   '/todos',
@@ -29,17 +33,18 @@ todoController.get(
 );
 
 /**
- * TODO-003 Todo作成
+ * Todo作成
  */
 todoController.post(
   '/todos',
   async (
-    req: ExpressRequest<undefined, undefined, PostTodo, undefined, undefined>,
-    res: ExpressResponse<undefined, any>,
+    req: Request<undefined, PostTodoResponse, PostTodoRequest, undefined>,
+    res: Response<PostTodoResponse>,
   ) => {
     const requestTodo = req.body;
     await postTodo(requestTodo);
-    res.status(204).end();
+
+    res.status(201).end();
   },
 );
 

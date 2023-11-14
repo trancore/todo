@@ -1,6 +1,4 @@
-﻿import { threadId } from 'worker_threads';
-
-import { GetTodosResponse } from '../types/api/todos';
+﻿import { GetTodosResponse, PostTodoRequest } from '../types/api/todos';
 import { PostTodo } from '../types/typescript-node/api';
 
 import { todoRepository } from '../repositories/todoRepository';
@@ -49,8 +47,12 @@ export const todoService = async () => {
     }
   };
 
-  const postTodo = async (todo: PostTodo) => {
-    await createTodo(todo);
+  const postTodo = async (todo: PostTodoRequest) => {
+    try {
+      await createTodo(todo);
+    } catch (error) {
+      // TODO 一旦適当にエラーを定義
+    }
   };
 
   const putTodo = async (todoId: string, todo: PostTodo) => {

@@ -1182,7 +1182,7 @@ paths:
                   - instance
   '/todos/{todo_id}':
     parameters:
-      - name: todo_Id
+      - name: todo_id
         description: TodoID
         in: path
         required: true

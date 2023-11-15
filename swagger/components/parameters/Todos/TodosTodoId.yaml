@@ -1,4 +1,4 @@
-name: todo_Id
+name: todo_id
 description: |-
   TodoID
 in: path

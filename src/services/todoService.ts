@@ -1,4 +1,8 @@
-﻿import { GetTodosResponse, PostTodoRequest } from '../types/api/todos';
+﻿import {
+  GetTodosResponse,
+  PostTodoRequest,
+  PostTodosTodoIdResponse,
+} from '../types/api/todos';
 import { PostTodo } from '../types/typescript-node/api';
 
 import { todoRepository } from '../repositories/todoRepository';
@@ -12,14 +16,31 @@ export const todoService = async () => {
     deleteTodo: deleteTodoRepository,
   } = await todoRepository();
 
-  const getTodo = async (todoId: string) => {
-    const todoIdNum = Number(todoId);
-    if (!todoIdNum) {
-      // TODO エラーハンドリング
-      return;
-    }
+  const getTodo = async (
+    todoId: number,
+  ): Promise<PostTodosTodoIdResponse | undefined> => {
+    try {
+      const todo = await findTodo(todoId);
 
-    return await findTodo(todoIdNum);
+      if (!todo) {
+        // Todoが見つからない場合
+        // TODO: 一旦適当にエラーを定義
+        throw Error;
+      }
+
+      return {
+        id: todo.id,
+        userId: todo.user_id,
+        title: todo.title,
+        description: todo.description ?? '',
+        deadlineAt: todo.deadline_at ? todo.deadline_at.toLocaleString() : '',
+        status: todo.status,
+        createdAt: todo.created_at.toLocaleString(),
+        updatedAt: todo.updated_at.toLocaleString(),
+      };
+    } catch (error) {
+      // TODO 一旦適当にエラーを定義
+    }
   };
 
   const getTodos = async (): Promise<GetTodosResponse | undefined> => {

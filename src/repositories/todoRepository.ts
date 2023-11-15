@@ -7,16 +7,11 @@ export const todoRepository = async () => {
   const prisma = new PrismaClient();
 
   const findTodo = async (todoId: number) => {
-    try {
-      return await prisma.todo.findUniqueOrThrow({
-        where: {
-          id: todoId,
-        },
-      });
-    } catch (error) {
-      // TODO 一旦無視
-      console.log(error);
-    }
+    return await prisma.todo.findUnique({
+      where: {
+        id: todoId,
+      },
+    });
   };
 
   const findAllTodos = async () => {

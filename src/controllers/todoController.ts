@@ -5,6 +5,8 @@ import {
   GetTodosResponse,
   PostTodoRequest,
   PostTodoResponse,
+  PostTodosTodoIdParams,
+  PostTodosTodoIdResponse,
 } from '../types/api/todos';
 import { ExpressRequest, ExpressResponse } from '../types/express';
 import { PostTodo } from '../types/typescript-node/api';
@@ -18,9 +20,7 @@ export const todoController = app.Router();
 const { getTodo, getTodos, postTodo, putTodo, deleteTodo } =
   await todoService();
 
-/**
- * Todo一覧取得
- */
+/** Todo一覧取得 */
 todoController.get(
   '/todos',
   async (
@@ -32,9 +32,7 @@ todoController.get(
   },
 );
 
-/**
- * Todo作成
- */
+/** Todo作成 */
 todoController.post(
   '/todos',
   async (
@@ -48,20 +46,17 @@ todoController.post(
   },
 );
 
-/**
- * TODO-002 Todo詳細取得
- */
+/** Todo詳細取得 */
 todoController.get(
   '/todos/:todo_id',
   async (
-    req: ExpressRequest<
-      { todo_id: string },
-      Todo,
-      undefined,
+    req: Request<
+      PostTodosTodoIdParams,
+      PostTodosTodoIdResponse,
       undefined,
       undefined
     >,
-    res: ExpressResponse<Todo, any>,
+    res: Response<PostTodosTodoIdResponse>,
   ) => {
     const todoId = req.params.todo_id;
     const todo = await getTodo(todoId);

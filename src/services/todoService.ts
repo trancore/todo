@@ -1,7 +1,7 @@
 ﻿import {
   GetTodosResponse,
+  GetTodosTodoIdResponse,
   PostTodoRequest,
-  PostTodosTodoIdResponse,
 } from '../types/api/todos';
 import { PostTodo } from '../types/typescript-node/api';
 
@@ -18,7 +18,7 @@ export const todoService = async () => {
 
   const getTodo = async (
     todoId: number,
-  ): Promise<PostTodosTodoIdResponse | undefined> => {
+  ): Promise<GetTodosTodoIdResponse | undefined> => {
     try {
       const todo = await findTodo(todoId);
 

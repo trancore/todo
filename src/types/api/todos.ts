@@ -9,8 +9,11 @@ export type PostTodoRequest =
 export type PostTodoResponse =
   paths['/todos']['post']['responses']['201']['content'];
 
-export type PostTodosTodoIdParams =
-  paths['/todos/{todo_id}']['get']['parameters']['path'];
+export type GetTodosTodoIdParams =
+  paths['/todos/{todo_id}']['parameters']['path'];
 
-export type PostTodosTodoIdResponse =
+export type GetTodosTodoIdResponse =
+  paths['/todos/{todo_id}']['get']['responses']['200']['content']['application/json'];
+
+export type PutTodosTodoIdResponse =
   paths['/todos/{todo_id}']['get']['responses']['200']['content']['application/json'];

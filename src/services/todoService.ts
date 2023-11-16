@@ -2,8 +2,8 @@
   GetTodosResponse,
   GetTodosTodoIdResponse,
   PostTodoRequest,
+  PutTodosTodoIdRequest,
 } from '../types/api/todos';
-import { PostTodo } from '../types/typescript-node/api';
 
 import { todoRepository } from '../repositories/todoRepository';
 
@@ -76,9 +76,12 @@ export const todoService = async () => {
     }
   };
 
-  const putTodo = async (todoId: string, todo: PostTodo) => {
-    const todoIdNum = Number(todoId);
-    await updateTodo(todoIdNum, todo);
+  const putTodo = async (todoId: number, todo: PutTodosTodoIdRequest) => {
+    try {
+      await updateTodo(todoId, todo);
+    } catch (error) {
+      // TODO 一旦適当にエラーを定義
+    }
   };
 
   const deleteTodo = async (todoId: string) => {

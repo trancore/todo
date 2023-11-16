@@ -2,10 +2,12 @@
 
 import {
   GetTodosResponse,
-  GetTodosTodoIdParams,
   GetTodosTodoIdResponse,
   PostTodoRequest,
   PostTodoResponse,
+  PutTodosTodoIdRequest,
+  PutTodosTodoIdResponse,
+  TodosTodoIdParams,
 } from '../types/api/todos';
 import { ExpressRequest, ExpressResponse } from '../types/express';
 import { PostTodo } from '../types/typescript-node/api';
@@ -50,7 +52,7 @@ todoController.get(
   '/todos/:todo_id',
   async (
     req: Request<
-      GetTodosTodoIdParams,
+      TodosTodoIdParams,
       GetTodosTodoIdResponse,
       undefined,
       undefined
@@ -67,8 +69,13 @@ todoController.get(
 todoController.put(
   '/todos/:todo_id',
   async (
-    req: Request<{ todo_id: string }, undefined, PostTodo, undefined>,
-    res: ExpressResponse<undefined, any>,
+    req: Request<
+      TodosTodoIdParams,
+      PutTodosTodoIdResponse,
+      PutTodosTodoIdRequest,
+      undefined
+    >,
+    res: Response<PutTodosTodoIdResponse>,
   ) => {
     const todoId = req.params.todo_id;
     const requestTodo = req.body;

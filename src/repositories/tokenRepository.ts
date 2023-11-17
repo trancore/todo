@@ -9,49 +9,30 @@ export const tokenRepository = async () => {
     userId: number,
     { accessToken, refreshToken }: TokenData,
   ) => {
-    try {
-      await prisma.token.upsert({
-        where: {
-          id: userId,
-        },
-        update: {
-          accessToken: accessToken,
-          // TODO refreshTokenの取得
-          refreshToken: refreshToken || 'hoge',
-        },
-        create: {
-          user_id: userId,
-          accessToken: accessToken,
-          // TODO refreshTokenの取得
-          refreshToken: refreshToken || 'hoge',
-        },
-      });
-    } catch (error) {
-      // TODO 一旦無視
-    }
+    await prisma.token.upsert({
+      where: {
+        id: userId,
+      },
+      update: {
+        accessToken: accessToken,
+        // TODO refreshTokenの取得
+        refreshToken: refreshToken || 'hoge',
+      },
+      create: {
+        user_id: userId,
+        accessToken: accessToken,
+        // TODO refreshTokenの取得
+        refreshToken: refreshToken || 'hoge',
+      },
+    });
   };
 
-  const deleteToken = async (nodeId: string) => {
-    try {
-      const user = await prisma.user.findUnique({
-        where: {
-          node_id: nodeId,
-        },
-      });
-
-      // TODO 一旦エラーを返す
-      if (!user) throw Error;
-
-      const userId = user.id;
-
-      await prisma.token.deleteMany({
-        where: {
-          id: userId,
-        },
-      });
-    } catch (error) {
-      // TODO 一旦無視
-    }
+  const deleteToken = async (userId: number) => {
+    await prisma.token.deleteMany({
+      where: {
+        id: userId,
+      },
+    });
   };
 
   return { saveToken, deleteToken };

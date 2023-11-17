@@ -7,7 +7,7 @@ properties:
     description: 'ユーザーID'
     example: 1
   nodeId:
-    type: integer
+    type: string
     description: 'ノードID'
     example: 1
   name:

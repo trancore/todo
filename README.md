@@ -10,8 +10,8 @@
 |TypeScript|v5.2.2|静的型付け用言語|
 |ts-node|v10.9.1|TypeScriptのままNode.jsを実行できるようにする|
 |Express|v4.18.2|Node.jsのWebフレームワーク|
+|passport|v0.6.0|Node.jsの認証認可ミドルウェア|
 |Docker| |仮想コンテナ環境構築プラットフォーム|
-|OpenAPI generator| |swaggerからの型自動生成ツール。リクエストやレスポンスに型を定義するために使用する。|
 
 ## yarn scriptsについて
 
@@ -20,6 +20,8 @@
 |`start`|サーバーの起動|
 |`contaner`|Dockerコンテナの起動|
 |`migrate`|Prismaのschemaファイルのマイグレート|
+|`generate:swagger`|分割して作成したswaggerコンポーネントを一つのファイルに統合する|
+|`generate:swagger-type`|swaggerを元にしたAPIの型定義を生成する|
 
 ## 📚ライブラリ・フレームワークのインストール
 
@@ -50,12 +52,6 @@ Dockerの設定を変える場合は、`docker-compose.yaml`を編集してく�
 ```zsh
 docker exec -it mysql-container zsh
 ```
-
-## 📝OpenAPI generatorについて
-
-OpenAPI generatorで自動生成したファイルは、/modelのみ使用しています。
-
-他の自動生成された成果物は使用しません。
 
 ## 🪵サインイン、サインアウトについて
 
@@ -120,3 +116,7 @@ erDiagram
     User ||--|{ Todo : has
     User ||--|{ Token : has
 ```
+
+## 📊 認証認可シーケンス
+
+WIP

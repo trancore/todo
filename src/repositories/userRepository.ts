@@ -11,20 +11,18 @@ export const userRepository = async () => {
     });
   };
 
-  const saveUser = async ({ node_id, name, mail_address }: UserData) => {
-    try {
-      const user = await prisma.user.create({
-        // TODO user_id を取得する。
-        data: {
-          node_id: node_id,
-          name: name,
-          mail_address: mail_address,
-        },
-      });
-      return user.id;
-    } catch (error) {
-      // TODO 一旦無視
-    }
+  const saveUser = async ({
+    nodeId,
+    name,
+    mailAddress,
+  }: UserData): Promise<User> => {
+    return await prisma.user.create({
+      data: {
+        node_id: nodeId,
+        name: name,
+        mail_address: mailAddress,
+      },
+    });
   };
 
   return { findUser, saveUser };

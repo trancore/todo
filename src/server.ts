@@ -51,9 +51,9 @@ auth.use(
       done: any,
     ) => {
       const userData: UserData = {
-        node_id: profile.nodeId,
+        nodeId: profile.nodeId,
         name: profile.username,
-        mail_address: profile._json_email,
+        mailAddress: profile._json_email,
       };
       const tokenData: TokenData = { accessToken, refreshToken };
       return done(null, { userData, tokenData });

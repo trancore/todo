@@ -10,9 +10,7 @@ export const userController = app.Router();
 
 const { getUser } = await userService();
 
-/**
- * 会員情報取得
- */
+/** 会員情報取得 */
 userController.get(
   '/user',
   async (

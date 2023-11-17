@@ -9,26 +9,22 @@ export const tokenRepository = async () => {
     userId: number,
     { accessToken, refreshToken }: TokenData,
   ) => {
-    try {
-      await prisma.token.upsert({
-        where: {
-          id: userId,
-        },
-        update: {
-          accessToken: accessToken,
-          // TODO refreshTokenの取得
-          refreshToken: refreshToken || 'hoge',
-        },
-        create: {
-          user_id: userId,
-          accessToken: accessToken,
-          // TODO refreshTokenの取得
-          refreshToken: refreshToken || 'hoge',
-        },
-      });
-    } catch (error) {
-      // TODO 一旦無視
-    }
+    await prisma.token.upsert({
+      where: {
+        id: userId,
+      },
+      update: {
+        accessToken: accessToken,
+        // TODO refreshTokenの取得
+        refreshToken: refreshToken || 'hoge',
+      },
+      create: {
+        user_id: userId,
+        accessToken: accessToken,
+        // TODO refreshTokenの取得
+        refreshToken: refreshToken || 'hoge',
+      },
+    });
   };
 
   const deleteToken = async (nodeId: string) => {

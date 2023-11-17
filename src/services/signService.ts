@@ -20,12 +20,12 @@ export const signService = async () => {
 
   const signIn = async (authData: AuthenticationData | undefined) => {
     try {
+      // TODO 一旦適当に定義
       if (!authData) throw Error;
 
-      const userId = await saveUser(authData.userData);
-      if (!userId) throw Error;
+      const user = await saveUser(authData.userData);
 
-      await saveToken(userId, authData.tokenData);
+      await saveToken(user.id, authData.tokenData);
     } catch (error) {
       // TODO: 一旦無視
     }
@@ -35,7 +35,7 @@ export const signService = async () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     req: ExpressRequest<undefined, any, undefined, undefined, undefined>,
   ) => {
-    const nodeId = req.user?.userData.node_id;
+    const nodeId = req.user?.userData.nodeId;
 
     if (!nodeId) {
       // TODO 一旦エラーに飛ばす

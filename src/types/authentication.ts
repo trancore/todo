@@ -1,7 +1,7 @@
 ﻿export type UserData = {
-  node_id: string;
+  nodeId: string;
   name: string;
-  mail_address: string | null | undefined;
+  mailAddress: string | null | undefined;
 };
 
 export type TokenData = {

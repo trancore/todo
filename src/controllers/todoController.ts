@@ -10,7 +10,6 @@ import {
   PutTodosTodoIdResponse,
   TodosTodoIdParams,
 } from '../types/api/todos';
-import { ExpressResponse } from '../types/express';
 
 import { todoService } from '../services/todoService';
 

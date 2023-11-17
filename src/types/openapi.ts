@@ -845,7 +845,7 @@ export interface paths {
            * @description TodoID
            * @example 1
            */
-          todo_id: number;
+          todo_id: string;
         };
       };
       responses: {
@@ -1049,7 +1049,7 @@ export interface paths {
            * @description TodoID
            * @example 1
            */
-          todo_id: number;
+          todo_id: string;
         };
       };
       /** @description Todo情報 */
@@ -1225,7 +1225,7 @@ export interface paths {
            * @description TodoID
            * @example 1
            */
-          todo_id: number;
+          todo_id: string;
         };
       };
       responses: {
@@ -1380,7 +1380,7 @@ export interface paths {
          * @description TodoID
          * @example 1
          */
-        todo_id: number;
+        todo_id: string;
       };
     };
   };

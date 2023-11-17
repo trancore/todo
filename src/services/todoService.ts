@@ -17,10 +17,15 @@ export const todoService = async () => {
   } = await todoRepository();
 
   const getTodo = async (
-    todoId: number,
+    todoId: string,
   ): Promise<GetTodosTodoIdResponse | undefined> => {
     try {
-      const todo = await findTodo(todoId);
+      const todoIdNum = Number(todoId);
+      if (todoIdNum) {
+        // TODO 一旦適当に定義
+        throw Error;
+      }
+      const todo = await findTodo(todoIdNum);
 
       if (!todo) {
         // Todoが見つからない場合
@@ -76,17 +81,29 @@ export const todoService = async () => {
     }
   };
 
-  const putTodo = async (todoId: number, todo: PutTodosTodoIdRequest) => {
+  const putTodo = async (todoId: string, todo: PutTodosTodoIdRequest) => {
     try {
-      await updateTodo(todoId, todo);
+      const todoIdNum = Number(todoId);
+      if (!todoIdNum) {
+        // TODO 一旦適当に定義
+        throw Error;
+      }
+
+      await updateTodo(todoIdNum, todo);
     } catch (error) {
       // TODO 一旦適当にエラーを定義
     }
   };
 
-  const deleteTodo = async (todoId: number) => {
+  const deleteTodo = async (todoId: string) => {
     try {
-      await deleteTodoRepository(todoId);
+      const todoIdNum = Number(todoId);
+      if (!todoIdNum) {
+        // TODO 一旦適当に定義
+        throw Error;
+      }
+
+      await deleteTodoRepository(todoIdNum);
     } catch (error) {
       // TODO 一旦適当にエラーを定義
     }

@@ -21,7 +21,7 @@ export const todoService = async () => {
   ): Promise<GetTodosTodoIdResponse | undefined> => {
     try {
       const todoIdNum = Number(todoId);
-      if (todoIdNum) {
+      if (!todoIdNum) {
         // TODO 一旦適当に定義
         throw Error;
       }

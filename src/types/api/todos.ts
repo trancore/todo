@@ -19,3 +19,6 @@ export type PutTodosTodoIdRequest =
 
 export type PutTodosTodoIdResponse =
   paths['/todos/{todo_id}']['put']['responses']['204']['content'];
+
+export type DeleteTodosTodoIdResponse =
+  paths['/todos/{todo_id}']['delete']['responses']['204']['content'];

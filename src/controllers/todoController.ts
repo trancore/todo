@@ -1,6 +1,7 @@
 ﻿import express, { Request, Response } from 'express';
 
 import {
+  DeleteTodosTodoIdResponse,
   GetTodosResponse,
   GetTodosTodoIdResponse,
   PostTodoRequest,
@@ -9,8 +10,7 @@ import {
   PutTodosTodoIdResponse,
   TodosTodoIdParams,
 } from '../types/api/todos';
-import { ExpressRequest, ExpressResponse } from '../types/express';
-import { PostTodo } from '../types/typescript-node/api';
+import { ExpressResponse } from '../types/express';
 
 import { todoService } from '../services/todoService';
 
@@ -85,19 +85,18 @@ todoController.put(
 );
 
 /**
- * TODO-005 Todo削除
+ * Todo削除
  */
 todoController.delete(
   '/todos/:todo_id',
   async (
-    req: ExpressRequest<
-      { todo_id: string },
+    req: Request<
+      TodosTodoIdParams,
       undefined,
-      PostTodo,
-      undefined,
+      DeleteTodosTodoIdResponse,
       undefined
     >,
-    res: ExpressResponse<undefined, any>,
+    res: Response<undefined>,
   ) => {
     const todoId = req.params.todo_id;
     await deleteTodo(todoId);

@@ -84,9 +84,12 @@ export const todoService = async () => {
     }
   };
 
-  const deleteTodo = async (todoId: string) => {
-    const todoIdNum = Number(todoId);
-    await deleteTodoRepository(todoIdNum);
+  const deleteTodo = async (todoId: number) => {
+    try {
+      await deleteTodoRepository(todoId);
+    } catch (error) {
+      // TODO 一旦適当にエラーを定義
+    }
   };
 
   return { getTodo, getTodos, postTodo, putTodo, deleteTodo };

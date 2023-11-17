@@ -1,7 +1,6 @@
 ﻿import { PrismaClient } from '@prisma/client';
 
 import { PostTodoRequest, PutTodosTodoIdRequest } from '../types/api/todos';
-import { PostTodo } from '../types/typescript-node/api';
 
 export const todoRepository = async () => {
   const prisma = new PrismaClient();
@@ -53,15 +52,11 @@ export const todoRepository = async () => {
   };
 
   const deleteTodo = async (todoId: number) => {
-    try {
-      await prisma.todo.delete({
-        where: {
-          id: todoId,
-        },
-      });
-    } catch (error) {
-      // TODO 一旦無視
-    }
+    await prisma.todo.delete({
+      where: {
+        id: todoId,
+      },
+    });
   };
 
   return { findTodo, findAllTodos, createTodo, updateTodo, deleteTodo };

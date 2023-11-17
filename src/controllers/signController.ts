@@ -1,8 +1,6 @@
 ﻿import express, { Request, Response } from 'express';
 import passport from 'passport';
 
-import { ExpressRequest, ExpressResponse } from '../types/express';
-
 import { signService } from '../services/signService';
 
 const app = express;
@@ -31,20 +29,16 @@ signController.get(
   },
 );
 
-/**
- * SIGN-003 サインアウト
- */
+/** サインアウト */
 signController.get(
   '/sign_out',
   async (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    req: ExpressRequest<undefined, any, undefined, undefined, undefined>,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    res: ExpressResponse<any, undefined>,
+    req: Request<undefined, undefined, undefined, undefined>,
+    res: Response<undefined>,
   ) => {
     await signOut(req);
 
     // TODO 暫定対応
-    res.status(201).json();
+    res.status(201).end();
   },
 );

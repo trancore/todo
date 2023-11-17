@@ -1,19 +1,14 @@
-﻿import { PrismaClient } from '@prisma/client';
+﻿import { PrismaClient, User } from '@prisma/client';
 
 import { UserData } from '../types/authentication';
 
 export const userRepository = async () => {
   const prisma = new PrismaClient();
 
-  const findUser = async (userId: number) => {
-    try {
-      const user = await prisma.user.findUnique({
-        where: { id: userId },
-      });
-      return user;
-    } catch (error) {
-      // TODO 一旦無視
-    }
+  const findUser = async (userId: number): Promise<User | null> => {
+    return await prisma.user.findUnique({
+      where: { id: userId },
+    });
   };
 
   const saveUser = async ({ node_id, name, mail_address }: UserData) => {

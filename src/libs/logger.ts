@@ -1,4 +1,4 @@
-﻿import { ErrorRequestHandler } from 'express';
+﻿import { ErrorRequestHandler, RequestHandler } from 'express';
 import log4js from 'log4js';
 
 import { loggerConfig } from '../configurations/logger';
@@ -8,6 +8,7 @@ log4js.configure(loggerConfig);
 export const console = log4js.getLogger();
 export const system = log4js.getLogger('system');
 export const logger = log4js.getLogger('application');
+export const access = log4js.getLogger('access');
 
 /** システムロガー */
 export const systemLogger = (options = {}): ErrorRequestHandler => {
@@ -15,4 +16,26 @@ export const systemLogger = (options = {}): ErrorRequestHandler => {
     system.error(err.message);
     next(err);
   };
+};
+
+/**
+ * アクセスロガー
+ * any型を許容しているのは、log4jsに合わせるため。
+ * @param options ロガーオプション
+ * @returns any コネクトロガー
+ */
+export const accessLogger = (options?: {
+  format?: log4js.Format | undefined;
+  level?: string | undefined;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  nolog?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  statusRules?: any[] | undefined;
+  context?: boolean | undefined;
+}) => {
+  const option: typeof options = {
+    level: options?.level || 'auto',
+    ...options,
+  };
+  return log4js.connectLogger(access, option);
 };

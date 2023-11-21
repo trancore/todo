@@ -49,8 +49,8 @@ export const loggerConfig: log4js.Configuration = {
       level: 'ERROR',
     },
     application: {
-      appenders: ['console', 'application'],
-      level: 'INFO',
+      appenders: ['application'],
+      level: 'ERROR',
     },
     access: {
       appenders: ['console', 'access'],

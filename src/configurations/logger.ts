@@ -17,7 +17,6 @@ const logCommonConfig: log4js.Appender = {
   pattern: 'yyyy-MM-dd',
   keepFileExt: true,
   numBackups: 3,
-  compress: true,
 };
 
 export const loggerConfig: log4js.Configuration = {
@@ -49,8 +48,8 @@ export const loggerConfig: log4js.Configuration = {
       level: 'ERROR',
     },
     application: {
-      appenders: ['application'],
-      level: 'ERROR',
+      appenders: ['console', 'application'],
+      level: 'INFO',
     },
     access: {
       appenders: ['console', 'access'],

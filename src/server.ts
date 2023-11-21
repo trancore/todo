@@ -9,7 +9,7 @@ import { API } from './constants';
 import { signController } from './controllers/signController';
 import { todoController } from './controllers/todoController';
 
-import { systemLogger } from './libs/logger';
+import { logger, systemLogger } from './libs/logger';
 
 import { TokenData, UserData } from './types/authentication';
 
@@ -69,6 +69,8 @@ app.use(PATH, signController);
 
 // logger
 app.use(systemLogger());
+
+logger.error('error');
 
 app.listen(CONFIG.PORT, () => {
   console.log('server start.');

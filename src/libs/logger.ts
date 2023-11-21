@@ -7,6 +7,7 @@ log4js.configure(loggerConfig);
 
 export const console = log4js.getLogger();
 export const system = log4js.getLogger('system');
+export const logger = log4js.getLogger('application');
 
 /** システムロガー */
 export const systemLogger = (options = {}): ErrorRequestHandler => {

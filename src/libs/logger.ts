@@ -1,4 +1,4 @@
-﻿import { ErrorRequestHandler, RequestHandler } from 'express';
+﻿import { ErrorRequestHandler } from 'express';
 import log4js from 'log4js';
 
 import { loggerConfig } from '../configurations/logger';

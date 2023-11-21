@@ -4,15 +4,17 @@ import session from 'express-session';
 import passport from 'passport';
 import github from 'passport-github2';
 
-import { CONFIG } from './configrations/config';
-import { SESSION_CONFIG } from './configrations/session';
-
 import { API } from './constants';
 
 import { signController } from './controllers/signController';
 import { todoController } from './controllers/todoController';
 
+import { systemLogger } from './libs/logger';
+
 import { TokenData, UserData } from './types/authentication';
+
+import { CONFIG } from './configurations/config';
+import { SESSION_CONFIG } from './configurations/session';
 
 dotenv.config();
 
@@ -64,6 +66,9 @@ auth.use(
 // controller
 app.use(PATH, todoController);
 app.use(PATH, signController);
+
+// logger
+app.use(systemLogger());
 
 app.listen(CONFIG.PORT, () => {
   console.log('server start.');

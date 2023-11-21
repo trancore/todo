@@ -12,7 +12,7 @@ const LOG_DIR = path.join(__dirname, '../logs');
  * 本アプリケーションにおけるログの役割は動作確認が主であるため、
  * 同じ日付断面と設定にしている。
  */
-const logCommonConfig = {
+const logCommonConfig: log4js.Appender = {
   type: 'dateFile',
   pattern: 'yyyy-MM-dd',
   keepFileExt: true,

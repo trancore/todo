@@ -38,7 +38,7 @@ export const accessLogger = (options?: AccessLoggerOptions) => {
   const option: typeof options = {
     level: options?.level || 'auto',
     format: (req, res, formatter) => {
-      return formatter(`:method :status :url`);
+      return formatter(`:method :status :url req: ${JSON.stringify(req.body)}`);
     },
     ...options,
   };

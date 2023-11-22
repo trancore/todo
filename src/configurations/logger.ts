@@ -46,7 +46,6 @@ export const loggerConfig: log4js.Configuration = {
       type: 'console',
       layout,
     },
-    // システムエラー・キャッチできなかった例外
     system: {
       type: 'dateFile',
       filename: path.join(LOG_DIR, './system/system.log'),
@@ -55,7 +54,6 @@ export const loggerConfig: log4js.Configuration = {
       numBackups: 3,
       layout,
     },
-    // アプリケーションの動作状況・ある実行された操作の内容と操作時の値
     application: {
       type: 'dateFile',
       filename: path.join(LOG_DIR, './application/application.log'),
@@ -64,7 +62,6 @@ export const loggerConfig: log4js.Configuration = {
       numBackups: 3,
       layout,
     },
-    // サーバリクエスト、レスポンス
     access: {
       type: 'dateFile',
       filename: path.join(LOG_DIR, './access/access.log'),

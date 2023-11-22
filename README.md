@@ -12,6 +12,7 @@
 |Express|v4.18.2|Node.jsのWebフレームワーク|
 |passport|v0.6.0|Node.jsの認証認可ミドルウェア|
 |Docker| |仮想コンテナ環境構築プラットフォーム|
+|log4js| |ロギングライブラリ|
 
 ## yarn scriptsについて
 
@@ -53,7 +54,7 @@ Dockerの設定を変える場合は、`docker-compose.yaml`を編集してく�
 docker exec -it mysql-container zsh
 ```
 
-## 🪵サインイン、サインアウトについて
+## 🤟サインイン、サインアウトについて
 
 <!-- TODO シーケンス図について書く -->
 
@@ -78,6 +79,30 @@ GITHUB_CLIENT_ID=""
 GITHUB_CLIENT_SECRET=""
 GITHUB_CALLBACK_URL="http://localhost:8080/api/v1/auth/github/callback"
 ```
+
+## 🪵ロガーについて
+
+ロガーの設定は、`/confiigurations/logger.ts`に記載しています。
+
+ログには、以下の3つの種類を想定しています。
+
+|ログ種類|用途|
+|---|---|
+|システムログ|システムエラーやキャッチできなかった例外を収集する|
+|アプリケーションログ|アプリケーションの動作状況や実行された操作の内容と操作時の値を収集、表示する|
+|アクセスログ|サーバアクセス・リクエストボディの収集、表示する|
+
+これらのログはファイル出力もしています。初期設定時は、`/src/log`にそれぞれ作成されます（`/confiigurations/logger.ts`で変更できます）。
+
+一部ロガーは、`Express`と連携させるためにモジュール化しており、`/src/libs/logger.ts`を参照してください。
+
+ログをコンソールに表示させたい場合は、
+
+```javascript
+import { logger } from './libs/logger';
+```
+
+で、`logger`を`import`して、使用してください。
 
 ## ✏️ER図
 

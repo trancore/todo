@@ -35,6 +35,9 @@ export const accessLogger = (options?: {
 }) => {
   const option: typeof options = {
     level: options?.level || 'auto',
+    format: (req, res, formatter) => {
+      return formatter(`:method :status :url`);
+    },
     ...options,
   };
   return log4js.connectLogger(access, option);

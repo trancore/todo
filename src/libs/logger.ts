@@ -3,6 +3,16 @@ import log4js from 'log4js';
 
 import { loggerConfig } from '../configurations/logger';
 
+type AccessLoggerOptions = {
+  format?: log4js.Format | undefined;
+  level?: string | undefined;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  nolog?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  statusRules?: any[] | undefined;
+  context?: boolean | undefined;
+};
+
 log4js.configure(loggerConfig);
 
 export const console = log4js.getLogger();
@@ -24,15 +34,7 @@ export const systemLogger = (options = {}): ErrorRequestHandler => {
  * @param options ロガーオプション
  * @returns any コネクトロガー
  */
-export const accessLogger = (options?: {
-  format?: log4js.Format | undefined;
-  level?: string | undefined;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  nolog?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  statusRules?: any[] | undefined;
-  context?: boolean | undefined;
-}) => {
+export const accessLogger = (options?: AccessLoggerOptions) => {
   const option: typeof options = {
     level: options?.level || 'auto',
     format: (req, res, formatter) => {

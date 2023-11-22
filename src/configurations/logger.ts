@@ -1,6 +1,7 @@
-﻿import log4js, { Layout } from 'log4js';
+﻿import log4js from 'log4js';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import util from 'util';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -8,9 +9,29 @@ const __dirname = path.dirname(__filename);
 const LOG_DIR = path.join(__dirname, '../logs');
 
 /** ログの共通レイアウト設定 */
-const layout: Layout = {
+const layout: log4js.Layout = {
   type: 'pattern',
-  pattern: '[%d{yyyy-MM-dd hh:mm:ss}] %[%5p%] -%c: %m',
+  pattern: '[%d{yyyy-MM-dd hh:mm:ss}] %[%5p%] %f:%l -%c: %x{singleLine}',
+  tokens: {
+    singleLine: function (logEvent: { data: Array<unknown> }) {
+      return logEvent.data
+        .map((d) => {
+          if (
+            typeof d === 'boolean' ||
+            typeof d === 'number' ||
+            typeof d === 'string'
+          ) {
+            return d.toString().replace(/\n/gm, '\\n');
+          } else {
+            return util
+              .inspect(d, { breakLength: Infinity })
+              .replace(/\n/gm, '\\n');
+          }
+        })
+        .filter((d) => d.length > 0)
+        .join(' ');
+    },
+  },
 };
 
 /**
@@ -57,18 +78,22 @@ export const loggerConfig: log4js.Configuration = {
     default: {
       appenders: ['console'],
       level: 'INFO',
+      enableCallStack: true,
     },
     system: {
       appenders: ['system'],
       level: 'ERROR',
+      enableCallStack: true,
     },
     application: {
       appenders: ['console', 'application'],
       level: 'INFO',
+      enableCallStack: true,
     },
     access: {
       appenders: ['console', 'access'],
       level: 'INFO',
+      enableCallStack: true,
     },
   },
 };

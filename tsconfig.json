@@ -28,7 +28,7 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "typeRoots": ["src/@types", "node_modules/@types"]
+    "typeRoots": ["apps/api/src/@types", "node_modules/@types"]
     // non-relativeなimportにおいて、相対的なカレントディレクトリの指定
     // "baseUrl": "",
     // "paths": {
@@ -36,7 +36,7 @@
     // }
   },
   // コンパイルする対象ファイル
-  "include": ["src/**/*"],
+  "include": ["apps/api/src/**/*"],
   // includeで指定したファイルから特別に除外するファイル
   // "exclude": []
   "ts-node": {

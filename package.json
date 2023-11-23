@@ -6,7 +6,7 @@
   },
   "type": "module",
   "scripts": {
-    "start": "nodemon src/server.ts",
+    "start": "nodemon ./apps/api/src/server.ts",
     "container": "docker-compose up -d",
     "migrate": "yarn prisma migrate dev --name init",
     "generate:swagger": "swagger-cli bundle ./apps/api/swagger/openapi.yaml -o ./apps/api/swagger/build/openapi.yaml -t yaml -r",

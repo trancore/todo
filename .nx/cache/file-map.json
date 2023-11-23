@@ -1,0 +1,511 @@
+{
+  "version": "6.0",
+  "nxVersion": "17.1.3",
+  "deps": {
+    "@prisma/client": "5.4.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "log4js": "^6.9.1",
+    "passport": "^0.6.0",
+    "passport-github2": "^0.1.12",
+    "prisma": "^5.4.2",
+    "ts-node": "^10.9.1",
+    "@apidevtools/swagger-cli": "^4.0.4",
+    "@openapitools/openapi-generator-cli": "^2.7.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
+    "@types/eslint": "^8",
+    "@types/express": "^4.17.20",
+    "@types/express-session": "^1.17.9",
+    "@types/node": "^20.8.7",
+    "@types/passport": "^1.0.14",
+    "@types/passport-github2": "^1.2.8",
+    "@types/passport-oauth2": "^1.4.14",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^8.9.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "nodemon": "^3.0.1",
+    "openapi-typescript": "^6.7.1",
+    "prettier": "^3.0.3",
+    "remark": "^15.0.1",
+    "typescript": "^5.2.2"
+  },
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {},
+    "nonProjectFiles": [
+      {
+        "file": ".eslintrc",
+        "hash": "1752871323997140095"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/task.md",
+        "hash": "6890960756793516343"
+      },
+      {
+        "file": ".github/pull_request_template.md",
+        "hash": "10942783752950239510"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "3948337839289766213"
+      },
+      {
+        "file": ".nx/cache/file-map.json",
+        "hash": "2529556360698400592"
+      },
+      {
+        "file": ".nx/cache/lockfile.hash",
+        "hash": "14452496754536207431"
+      },
+      {
+        "file": ".nx/cache/nx-console-project-graph/project-graph.html",
+        "hash": "17036869540637447991"
+      },
+      {
+        "file": ".nx/cache/nx-console-project-graph/static/3rdpartylicenses.txt",
+        "hash": "5667550289807473445"
+      },
+      {
+        "file": ".nx/cache/nx-console-project-graph/static/environment.js",
+        "hash": "5018250891076049163"
+      },
+      {
+        "file": ".nx/cache/nx-console-project-graph/static/favicon.ico",
+        "hash": "9303420814833116677"
+      },
+      {
+        "file": ".nx/cache/nx-console-project-graph/static/main.js",
+        "hash": "11366588937091843483"
+      },
+      {
+        "file": ".nx/cache/nx-console-project-graph/static/polyfills.js",
+        "hash": "2110773196768975388"
+      },
+      {
+        "file": ".nx/cache/nx-console-project-graph/static/runtime.js",
+        "hash": "9652903316845995179"
+      },
+      {
+        "file": ".nx/cache/nx-console-project-graph/static/styles.css",
+        "hash": "5562174198026097626"
+      },
+      {
+        "file": ".nx/cache/nx-console-project-graph/static/styles.js",
+        "hash": "13596360365094399219"
+      },
+      {
+        "file": ".nx/cache/parsed-lock-file.json",
+        "hash": "17155864984113408410"
+      },
+      {
+        "file": ".nx/cache/project-graph.json",
+        "hash": "17289852913997677231"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "10372016373651167320"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "9892347433429191802"
+      },
+      {
+        "file": ".remarkrc.yml",
+        "hash": "8859900215615758282"
+      },
+      {
+        "file": "README.md",
+        "hash": "5414766818515776758"
+      },
+      {
+        "file": "apps/api/swagger/build/openapi.yaml",
+        "hash": "16945521865143890633"
+      },
+      {
+        "file": "apps/api/swagger/components/enum/TodoStatus.yaml",
+        "hash": "10098718330413578913"
+      },
+      {
+        "file": "apps/api/swagger/components/examples/ValidationError400001.yaml",
+        "hash": "17642995057423769430"
+      },
+      {
+        "file": "apps/api/swagger/components/examples/ValidationError400003.yaml",
+        "hash": "1479464631236604030"
+      },
+      {
+        "file": "apps/api/swagger/components/examples/ValidationError400004.yaml",
+        "hash": "636218478143391086"
+      },
+      {
+        "file": "apps/api/swagger/components/parameters/Todos/TodosTodoId.yaml",
+        "hash": "4829393030201353181"
+      },
+      {
+        "file": "apps/api/swagger/components/parameters/Todos/TodosTodoIdStatus.yaml",
+        "hash": "4146191588048066005"
+      },
+      {
+        "file": "apps/api/swagger/components/paths/Signs/SignIn.yaml",
+        "hash": "7942973595803318493"
+      },
+      {
+        "file": "apps/api/swagger/components/paths/Signs/SignOut.yaml",
+        "hash": "16703734891801830191"
+      },
+      {
+        "file": "apps/api/swagger/components/paths/Signs/SignUp.yaml",
+        "hash": "2291009941550729473"
+      },
+      {
+        "file": "apps/api/swagger/components/paths/Todos/Todos.yaml",
+        "hash": "1881296438107074787"
+      },
+      {
+        "file": "apps/api/swagger/components/paths/Todos/TodosTodoId.yaml",
+        "hash": "8047779586122682352"
+      },
+      {
+        "file": "apps/api/swagger/components/paths/Todos/TodosTodoIdStatus.yaml",
+        "hash": "5778874440064207062"
+      },
+      {
+        "file": "apps/api/swagger/components/paths/Users/User.yaml",
+        "hash": "8305761807744444064"
+      },
+      {
+        "file": "apps/api/swagger/components/requestBodies/Todos/PostTodo.yaml",
+        "hash": "6852187874273691154"
+      },
+      {
+        "file": "apps/api/swagger/components/requestBodies/Todos/PutTodosTodoIdStatus.yaml",
+        "hash": "2181032183939547429"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Signs/BadRequest.yaml",
+        "hash": "13065611819797691648"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Signs/InternalServerError.yaml",
+        "hash": "16366212488362176358"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Signs/ServiceUnavailable.yaml",
+        "hash": "4215215564411094665"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Signs/Unauthorized.yaml",
+        "hash": "6762923734622494151"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Todos/BadRequest.yaml",
+        "hash": "9626545570653644149"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Todos/Created.yaml",
+        "hash": "16476532595401749554"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Todos/Forbidden.yaml",
+        "hash": "2971836028607147090"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Todos/GetTodo.yaml",
+        "hash": "13834992021121431077"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Todos/GetTodos.yaml",
+        "hash": "4049237021863630098"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Todos/InternalServerError.yaml",
+        "hash": "16366212488362176358"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Todos/NoContent.yaml",
+        "hash": "12348716604056336997"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Todos/NotFound.yaml",
+        "hash": "16030229206950356573"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Todos/ServiceUnavailable.yaml",
+        "hash": "4215215564411094665"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Todos/Unauthorized.yaml",
+        "hash": "6762923734622494151"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Users/BadRequest.yaml",
+        "hash": "13065611819797691648"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Users/Forbidden.yaml",
+        "hash": "2971836028607147090"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Users/GetUser.yaml",
+        "hash": "9628713390122375685"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Users/InternalServerError.yaml",
+        "hash": "16366212488362176358"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Users/NotFound.yaml",
+        "hash": "17147940164424859347"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Users/ServiceUnavailable.yaml",
+        "hash": "4215215564411094665"
+      },
+      {
+        "file": "apps/api/swagger/components/responses/Users/Unauthorized.yaml",
+        "hash": "6762923734622494151"
+      },
+      {
+        "file": "apps/api/swagger/components/schemas/BadRequest.yaml",
+        "hash": "2789959275916443846"
+      },
+      {
+        "file": "apps/api/swagger/components/schemas/Forbidden.yaml",
+        "hash": "11597139083547771849"
+      },
+      {
+        "file": "apps/api/swagger/components/schemas/InternalServerError.yaml",
+        "hash": "13721690570733951345"
+      },
+      {
+        "file": "apps/api/swagger/components/schemas/NotFound.yaml",
+        "hash": "11687469421985724930"
+      },
+      {
+        "file": "apps/api/swagger/components/schemas/ServiceUnavailable.yaml",
+        "hash": "5060277387762764720"
+      },
+      {
+        "file": "apps/api/swagger/components/schemas/Todo.yaml",
+        "hash": "15903929214349864719"
+      },
+      {
+        "file": "apps/api/swagger/components/schemas/Todos.yaml",
+        "hash": "4896676244589042660"
+      },
+      {
+        "file": "apps/api/swagger/components/schemas/Unauthorized.yaml",
+        "hash": "18275074681019787735"
+      },
+      {
+        "file": "apps/api/swagger/components/schemas/User.yaml",
+        "hash": "14998342763933561700"
+      },
+      {
+        "file": "apps/api/swagger/openapi.yaml",
+        "hash": "5502627996662095584"
+      },
+      {
+        "file": "docker/my.cnf",
+        "hash": "9861733189080881693"
+      },
+      {
+        "file": "docker-compose.yaml",
+        "hash": "3009302113242319386"
+      },
+      {
+        "file": "openapitools.json",
+        "hash": "1326245794052633056"
+      },
+      {
+        "file": "package.json",
+        "hash": "14272000924457226776"
+      },
+      {
+        "file": "prisma/schema.prisma",
+        "hash": "8972848450957176205"
+      },
+      {
+        "file": "src/@types/passport/index.d.ts",
+        "hash": "4852738912581237853"
+      },
+      {
+        "file": "src/configurations/config.ts",
+        "hash": "10551064524758858185"
+      },
+      {
+        "file": "src/configurations/logger.ts",
+        "hash": "1179834678231354375"
+      },
+      {
+        "file": "src/configurations/session.ts",
+        "hash": "15356199132261115392"
+      },
+      {
+        "file": "src/constants/api.ts",
+        "hash": "626297712877645490"
+      },
+      {
+        "file": "src/constants/index.ts",
+        "hash": "11950671172485592028"
+      },
+      {
+        "file": "src/controllers/signController.ts",
+        "hash": "16320800598332858701"
+      },
+      {
+        "file": "src/controllers/todoController.ts",
+        "hash": "5246642740678579273"
+      },
+      {
+        "file": "src/controllers/userController.ts",
+        "hash": "8163344062837549989"
+      },
+      {
+        "file": "src/libs/logger.ts",
+        "hash": "12260278109784896881"
+      },
+      {
+        "file": "src/repositories/todoRepository.ts",
+        "hash": "5674235761158262615"
+      },
+      {
+        "file": "src/repositories/tokenRepository.ts",
+        "hash": "14229281191345853771"
+      },
+      {
+        "file": "src/repositories/userRepository.ts",
+        "hash": "3889881775277998259"
+      },
+      {
+        "file": "src/server.ts",
+        "hash": "1925765158149917838"
+      },
+      {
+        "file": "src/services/signService.ts",
+        "hash": "9631753285367790852"
+      },
+      {
+        "file": "src/services/todoService.ts",
+        "hash": "7158378380338715638"
+      },
+      {
+        "file": "src/services/userService.ts",
+        "hash": "12047341955634533414"
+      },
+      {
+        "file": "src/types/api/todos.ts",
+        "hash": "8066643495240209959"
+      },
+      {
+        "file": "src/types/api/users.ts",
+        "hash": "1509659436747589323"
+      },
+      {
+        "file": "src/types/authentication.ts",
+        "hash": "16340078442797011532"
+      },
+      {
+        "file": "src/types/openapi.ts",
+        "hash": "2546500458625751939"
+      },
+      {
+        "file": "src/types/typescript-node/.gitignore",
+        "hash": "14031326617291468971"
+      },
+      {
+        "file": "src/types/typescript-node/.openapi-generator/FILES",
+        "hash": "6995047626631673733"
+      },
+      {
+        "file": "src/types/typescript-node/.openapi-generator/VERSION",
+        "hash": "1591660717642428446"
+      },
+      {
+        "file": "src/types/typescript-node/.openapi-generator-ignore",
+        "hash": "5921108589004068994"
+      },
+      {
+        "file": "src/types/typescript-node/api/apis.ts",
+        "hash": "226811898026255833"
+      },
+      {
+        "file": "src/types/typescript-node/api/signsApi.ts",
+        "hash": "4657081342460819047"
+      },
+      {
+        "file": "src/types/typescript-node/api/todosApi.ts",
+        "hash": "10089062918333600107"
+      },
+      {
+        "file": "src/types/typescript-node/api/usersApi.ts",
+        "hash": "12518472801702011512"
+      },
+      {
+        "file": "src/types/typescript-node/api.ts",
+        "hash": "9816440560438563851"
+      },
+      {
+        "file": "src/types/typescript-node/git_push.sh",
+        "hash": "257268719382818012"
+      },
+      {
+        "file": "src/types/typescript-node/model/getBadRequest.ts",
+        "hash": "1405944644618287941"
+      },
+      {
+        "file": "src/types/typescript-node/model/getForbidden.ts",
+        "hash": "9595175877362465503"
+      },
+      {
+        "file": "src/types/typescript-node/model/getInternalServerError.ts",
+        "hash": "10137180612801566673"
+      },
+      {
+        "file": "src/types/typescript-node/model/getNotFound.ts",
+        "hash": "3290258269282593838"
+      },
+      {
+        "file": "src/types/typescript-node/model/getServiceUnavailable.ts",
+        "hash": "9664094038058308096"
+      },
+      {
+        "file": "src/types/typescript-node/model/getTodo.ts",
+        "hash": "14744149132296200836"
+      },
+      {
+        "file": "src/types/typescript-node/model/getUnauthorized.ts",
+        "hash": "806197278367161657"
+      },
+      {
+        "file": "src/types/typescript-node/model/getUser.ts",
+        "hash": "11130062609200788428"
+      },
+      {
+        "file": "src/types/typescript-node/model/models.ts",
+        "hash": "176555023462804654"
+      },
+      {
+        "file": "src/types/typescript-node/model/postTodo.ts",
+        "hash": "4410073111193974776"
+      },
+      {
+        "file": "src/types/typescript-node/model/putTodoStatus.ts",
+        "hash": "2179660167760850685"
+      },
+      {
+        "file": "src/types/typescript-node/model/validationErrorDetail.ts",
+        "hash": "13408065314996583847"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "13825740704888175909"
+      }
+    ]
+  }
+}

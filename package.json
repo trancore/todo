@@ -9,8 +9,8 @@
     "start": "nodemon src/server.ts",
     "container": "docker-compose up -d",
     "migrate": "yarn prisma migrate dev --name init",
-    "generate:swagger": "swagger-cli bundle ./swagger/openapi.yaml -o ./swagger/build/openapi.yaml -t yaml -r",
-    "generate:swagger-type": "openapi-typescript ./swagger/build/openapi.yaml -o ./src/types/openapi.ts"
+    "generate:swagger": "swagger-cli bundle ./apps/api/swagger/openapi.yaml -o ./apps/api/swagger/build/openapi.yaml -t yaml -r",
+    "generate:swagger-type:api": "openapi-typescript ./apps/api/swagger/build/openapi.yaml -o ./apps/api/src/types/openapi.ts"
   },
   "dependencies": {
     "@prisma/client": "5.4.2",

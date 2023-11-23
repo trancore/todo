@@ -1,0 +1,39 @@
+{
+  "name": "todoapi",
+  "packageManager": "yarn@1.22.19",
+  "volta": {
+    "node": "18.18.2"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "nodemon ./src/server.ts",
+    "container": "docker-compose up -d",
+    "migrate": "yarn prisma migrate dev --name init",
+    "generate:swagger": "swagger-cli bundle ./swagger/openapi.yaml -o ./swagger/build/openapi.yaml -t yaml -r",
+    "generate:swagger-type:api": "openapi-typescript ./swagger/build/openapi.yaml -o ./src/types/openapi.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "5.4.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "log4js": "^6.9.1",
+    "passport": "^0.6.0",
+    "passport-github2": "^0.1.12",
+    "prisma": "^5.4.2",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@apidevtools/swagger-cli": "^4.0.4",
+    "@openapitools/openapi-generator-cli": "^2.7.0",
+    "@types/express": "^4.17.20",
+    "@types/express-session": "^1.17.9",
+    "@types/node": "^20.8.7",
+    "@types/passport": "^1.0.14",
+    "@types/passport-github2": "^1.2.8",
+    "@types/passport-oauth2": "^1.4.14",
+    "nodemon": "^3.0.1",
+    "openapi-typescript": "^6.7.1",
+    "typescript": "^5.2.2"
+  }
+}

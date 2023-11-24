@@ -1,0 +1,10 @@
+﻿settings:
+  bullet: "-"
+  closeAtx: false
+  fences: false
+  incrementListMarker: true
+  resourceLink: false
+  ruleRepetition: 3
+  ruleSpaces: false
+  setext: false
+  tightDefinitions: false

@@ -1,0 +1,15 @@
+{
+  "plugins": ["stylelint-prettier", "stylelint-scss", "stylelint-order"],
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-prettier/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": true,
+    "order/properties-alphabetical-order": true,
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "media-feature-range-notation": "prefix"
+  },
+  "customSyntax": "postcss-scss"
+}

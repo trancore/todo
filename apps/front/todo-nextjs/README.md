@@ -17,7 +17,9 @@
 |`dev`|開発環境でのサーバーの起動|
 |`build`|Nextアプリケーションのビルド|
 |`start`|本番環境でのサーバーの起動|
+|`format`|prettierの実行|
 |`lint`|eslintの実行|
+|`stylelint`|stylelintの実行|
 
 ## 📚ライブラリ・フレームワークのインストール
 

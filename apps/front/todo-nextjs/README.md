@@ -8,7 +8,7 @@
 |Yarn|v1.22.19|packageマネージャー|
 |TypeScript|v5.2.2|静的型付け用言語|
 |React.js|v18|JavaScriptライブラリ|
-|Next.js|v14.0.2|React.jsnWebフレームワーク|
+|Next.js|v14.0.2|React.jsのWebフレームワーク|
 
 ## yarn scriptsについて
 

@@ -9,6 +9,7 @@
 |TypeScript|v5.2.2|静的型付け用言語|
 |React.js|v18|JavaScriptライブラリ|
 |Next.js|v14.0.2|React.jsのWebフレームワーク|
+|Styled-component|v6.1.1|CSS-in-JS|
 
 ## yarn scriptsについて
 

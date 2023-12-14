@@ -30,6 +30,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-unused-imports": "^3.0.0",
+    "msw": "^2.0.11",
     "postcss-scss": "^4.0.9",
     "prettier": "^3.0.3",
     "remark": "^15.0.1",

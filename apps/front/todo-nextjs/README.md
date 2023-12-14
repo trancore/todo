@@ -27,7 +27,4 @@
 ```zsh
 # ライブラリのインストール
 yarn
-
-# remarkのためのインストール
-npm install
 ```

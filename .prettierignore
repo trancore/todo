@@ -7,4 +7,3 @@ src/types/openapi.ts
 
 # front
 **/*.scss
-**/*.md

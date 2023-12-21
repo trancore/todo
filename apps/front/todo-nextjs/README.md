@@ -1,4 +1,4 @@
-# Todo RESTful API
+# Todo Next.js FrontEnd
 
 ## 📡使用ライブラリ・フレームワーク
 
@@ -34,3 +34,18 @@
 # ライブラリのインストール
 yarn
 ```
+
+### 1. 技術選定
+
+[issue: Next.js 開発環境構築と技術選定 #18](https://github.com/trancore/todo/issues/18)
+
+### 2. コンポーネント設計
+
+Next.js では、CSS として `Styled-component`を使用するため、ロジック用コンポーネントと表示用コンポーネントで分ける、
+`Container/Presentational`コンポーネントを用いた設計を考えました。これは、CSS用スクリプトとロジック用スクリプトが混在することを防ぎ、可読性を上げるためです。
+
+これより、一つのコンポーネント単位には、`ContainerComponent`と`PresentationalComponent`を含みます。
+
+さらに、この2つの包含関係は、`PresentationalComponent ⊂ ContainerComponent`と定義することにします（つまり、`PresentationalComponent`は`ContainerComponent`に含まれる、という関係になります）。
+
+そのため、`PresentationalComponent`は必ず同じコンポーネントの`ContainerComponent`から呼び出されること、と定義します。

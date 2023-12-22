@@ -10,6 +10,7 @@
 | React.js                   | v18        | JavaScriptライブラリ                                             |
 | Next.js                    | v14.0.2    | React.jsのWebフレームワーク                                      |
 | Styled-component           | v6.1.1     | CSS-in-JS                                                        |
+| Storybook                  | v7.6.6     | コンポーネントのデザインカタログ用フレームワーク                 |
 | Redux                      | v8.1.3     | 状態管理ライブラリ                                               |
 | RTK Query                  | v2.0.1     | データフェッチとキャッシュ用ライブラリ                           |
 | msw                        | v2.0.11    | APIモックサーバ用ライブラリ                                      |

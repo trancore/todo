@@ -8,7 +8,9 @@
     "start": "next start",
     "format": "eslint --fix",
     "lint": "next lint",
-    "stylelint": "stylelint \"**/*.css\" --fix"
+    "stylelint": "stylelint \"**/*.css\" --fix",
+    "build-storybook": "storybook build",
+    "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
@@ -19,6 +21,14 @@
     "styled-components": "^6.1.1"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.6",
+    "@storybook/addon-interactions": "^7.6.6",
+    "@storybook/addon-links": "^7.6.6",
+    "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/blocks": "^7.6.6",
+    "@storybook/nextjs": "^7.6.6",
+    "@storybook/react": "^7.6.6",
+    "@storybook/test": "^7.6.6",
     "@testing-library/react": "^14.1.2",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/eslint": "^8",
@@ -32,11 +42,13 @@
     "eslint-config-next": "14.0.3",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-storybook": "^0.6.15",
     "eslint-plugin-unused-imports": "^3.0.0",
     "jest": "^29.7.0",
     "msw": "^2.0.11",
     "postcss-scss": "^4.0.9",
     "prettier": "^3.0.3",
+    "storybook": "^7.6.6",
     "stylelint": "^15.11.0",
     "stylelint-config-standard-scss": "^11.1.0",
     "stylelint-order": "^6.0.3",

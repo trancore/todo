@@ -39,6 +39,10 @@
 yarn
 ```
 
+## 📚auto-create-storybook
+
+詳しい使い方は、[こちらのリポジトリ](https://github.com/trancore/auto-create_storybook)をご覧ください。
+
 ### 1. 技術選定
 
 [issue: Next.js 開発環境構築と技術選定 #18](https://github.com/trancore/todo/issues/18)

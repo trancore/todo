@@ -10,18 +10,3 @@ const meta: Meta<typeof ButtonContainer> = {
 export default meta;
 
 type Story = StoryObj<typeof ButtonContainer>;
-
-/**
- * パターン
- */
-export const Selectable: Story = {
-  args: {
-    presentational: { text: 'テキスト' },
-  },
-};
-
-export const Pattern1: Story = {
-  render: () => {
-    return <ButtonContainer presentational={{ text: 'テキスト' }} />;
-  },
-};

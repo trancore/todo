@@ -10,7 +10,8 @@
     "lint": "next lint",
     "stylelint": "stylelint \"**/*.css\" --fix",
     "build-storybook": "storybook build",
-    "storybook": "storybook dev -p 6006"
+    "storybook": "storybook dev -p 6006",
+    "auto-create-storybook": "node --loader esbuild-register/loader -r esbuild-register ./scripts/auto-create-storybook.ts"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
@@ -32,12 +33,14 @@
     "@testing-library/react": "^14.1.2",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/eslint": "^8",
-    "@types/node": "^20",
+    "@types/node": "^20.10.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",
     "cypress": "^13.6.1",
+    "esbuild": "^0.19.10",
+    "esbuild-register": "^3.5.0",
     "eslint": "^8.54.0",
     "eslint-config-next": "14.0.3",
     "eslint-config-prettier": "^9.0.0",
@@ -54,6 +57,7 @@
     "stylelint-order": "^6.0.3",
     "stylelint-prettier": "^4.0.2",
     "stylelint-scss": "^5.3.1",
+    "ts-morph": "^21.0.1",
     "typescript": "^5.2.2"
   },
   "resolutions": {

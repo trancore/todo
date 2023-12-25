@@ -7,7 +7,7 @@ import { promisify } from 'util';
 /**
  * 自動生成したいcomponentファイルのパス
  */
-const COMPONENTS_PATH = '/components/';
+const COMPONENTS_PATH = '/components/presentational';
 /**
  * 自動生成したいcomponentファイルの絶対パス
  */

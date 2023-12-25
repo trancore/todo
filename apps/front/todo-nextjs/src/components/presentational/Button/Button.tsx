@@ -5,7 +5,7 @@ type Props = {
   width?: number;
 };
 
-export default function ButtonPresentational({ text, width }: Props) {
+export default function Button({ text, width }: Props) {
   const Button = styled.button<{ width?: number }>`
     border: none;
     border-radius: 9em;

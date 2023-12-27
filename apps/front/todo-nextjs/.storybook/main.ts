@@ -21,8 +21,15 @@ const config: StorybookConfig = {
       config.resolve.alias = {
         ...config.resolve?.alias,
         '~': [path.resolve(__dirname, '../src/')],
+        // public: path.join(__dirname, '../public'),
       };
     }
+
+    // config.module?.rules?.push({
+    //   test: /\.svg$/,
+    //   use: ['@svgr/webpack'],
+    // });
+
     return config;
   },
 };

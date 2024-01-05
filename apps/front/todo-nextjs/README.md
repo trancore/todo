@@ -8,15 +8,17 @@
 | Yarn                       | v1.22.19   | Nodeのpackageマネージャー                                        |
 | TypeScript                 | v5.2.2     | 静的型付け用言語                                                 |
 | React.js                   | v18        | JavaScriptライブラリ                                             |
-| Next.js                    | v14.0.2    | React.jsのWebフレームワーク                                      |
-| Styled-component           | v6.1.1     | CSS-in-JS                                                        |
-| Storybook                  | v7.6.6     | コンポーネントのデザインカタログ用フレームワーク                 |
-| Redux                      | v8.1.3     | 状態管理ライブラリ                                               |
+| Next.js                    | v14.0.4    | React.jsのWebフレームワーク                                      |
+| Styled-component           | v6.1.6     | CSS-in-JS                                                        |
+| Storybook                  | v7.6.7     | コンポーネントのデザインカタログ用フレームワーク                 |
+| React-Hooks-Form           | v7.49.2    | フォーム用ライブラリ                                             |
+| yup                        | v1.3.3     | バリデーションスキーマ用ライブラリ                               |
+| Redux                      | v9.0.4     | 状態管理ライブラリ                                               |
 | RTK Query                  | v2.0.1     | データフェッチとキャッシュ用ライブラリ                           |
 | msw                        | v2.0.11    | APIモックサーバ用ライブラリ                                      |
 | jest                       | v29.7.0    | Unit Test, コンポーネントテスト用ライブラリ                      |
 | testing-library/react      | v14.1.2    | React用testing-libraryで、便利なテスティングマッチャーを提供する |
-| Cypress                    | v13.6.1    | E2E Test用ライブラリ                                             |
+| Cypress                    | v13.6.2    | E2E Test用ライブラリ                                             |
 
 ## yarn scriptsについて
 

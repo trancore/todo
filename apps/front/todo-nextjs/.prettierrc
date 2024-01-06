@@ -6,6 +6,7 @@
   "tabWidth": 2,
   "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "importOrder": [
+    "use client",
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",

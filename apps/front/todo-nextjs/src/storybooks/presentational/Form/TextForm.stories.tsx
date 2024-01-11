@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
+import Form from '~/components/presentational/Form/Form';
 import TextForm from '~/components/presentational/Form/TextForm';
 
 const meta: Meta<typeof TextForm> = {
@@ -20,16 +21,25 @@ export const Selectable: Story = {
     errorMessage: 'ダミーデータ',
     // register: ,
   },
+  render: (args) => {
+    return (
+      <Form submit={() => {}}>
+        <TextForm {...args}></TextForm>
+      </Form>
+    );
+  },
 };
 
 export const TodoTitleForm: Story = {
   render: () => {
     return (
-      <TextForm
-        labelName="タイトル"
-        errorMessage="エラーメッセージが表示されます。"
-        register={undefined}
-      />
+      <Form submit={() => {}}>
+        <TextForm
+          labelName="タイトル"
+          errorMessage="エラーメッセージが表示されます。"
+          register={undefined}
+        />
+      </Form>
     );
   },
 };

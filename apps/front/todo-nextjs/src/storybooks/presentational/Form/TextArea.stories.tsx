@@ -21,6 +21,13 @@ export const Selectable: Story = {
     errorMessage: 'ダミーデータ',
     register: undefined,
   },
+  render: (args) => {
+    return (
+      <Form submit={() => {}}>
+        <TextArea {...args} />
+      </Form>
+    );
+  },
 };
 
 export const TodoDescriptionTextArea: Story = {

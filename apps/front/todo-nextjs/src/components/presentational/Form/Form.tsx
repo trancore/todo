@@ -11,6 +11,12 @@ const StyledForm = styled.form`
   align-items: flex-start;
   gap: 6px;
 
+  > input {
+    width: 100%;
+    border: 2px solid #000000;
+    padding: 8px 10px;
+  }
+
   > textarea {
     width: 100%;
     border: 2px solid #000000;

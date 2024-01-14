@@ -6,6 +6,6 @@ type Props = {
   children: JSX.Element;
 };
 
-export default function Form({ children }: Props) {
+export default function Modal({ children }: Props) {
   return <ModalPresentational>{children}</ModalPresentational>;
 }

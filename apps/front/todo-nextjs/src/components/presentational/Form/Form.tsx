@@ -6,24 +6,35 @@ type Props = {
 };
 
 const StyledForm = styled.form`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 6px;
 
-  > input {
+  label {
+    display: block;
+  }
+
+  input {
     width: 100%;
+    box-sizing: content-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     border: 2px solid #000000;
     padding: 8px 10px;
   }
 
-  > textarea {
+  textarea {
     width: 100%;
+    box-sizing: content-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     border: 2px solid #000000;
     padding: 8px 10px;
   }
 
-  > p {
+  p {
     margin-left: 10px;
     color: #ff0000;
   }

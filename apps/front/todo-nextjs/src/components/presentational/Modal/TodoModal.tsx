@@ -10,8 +10,16 @@ type Props = {
   children: JSX.Element;
 };
 
+const StyledModalBox = styled.div`
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+`;
 const StyledIcon = styled.div`
   float: right;
+  top: 8px;
+  position: sticky;
+  position: -webkit-sticky;
   margin: 8px 8px 0px 0px;
 `;
 const StyledContentsBox = styled.div`
@@ -28,7 +36,7 @@ const StyledContent = styled.div`
 export default function TodoModal({ title, contents, children }: Props) {
   return (
     <Modal>
-      <>
+      <StyledModalBox>
         <StyledIcon>
           <Icon presentational={{ name: 'Close', size: 32 }} />
         </StyledIcon>
@@ -46,7 +54,7 @@ export default function TodoModal({ title, contents, children }: Props) {
           </StyledContent>
           {children}
         </StyledContentsBox>
-      </>
+      </StyledModalBox>
     </Modal>
   );
 }

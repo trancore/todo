@@ -39,7 +39,7 @@ export default function TodoDetail({ title, description, deadline }: Props) {
   return (
     <Modal>
       <>
-        <h1>{title}</h1>
+        <h1>詳細</h1>
         <StyledContent>
           <h3>タイトル</h3>
           <p>{title}</p>

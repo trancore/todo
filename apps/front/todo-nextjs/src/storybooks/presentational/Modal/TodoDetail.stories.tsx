@@ -18,7 +18,7 @@ export const TodoDetailModal: Story = {
   render: () => {
     return (
       <TodoDetail
-        title="詳細"
+        title="やることやることやること"
         description="やることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやること"
         deadline={new Date('2024/01/01')}
       />

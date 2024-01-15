@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 import Button from '~/components/container/Button/Button';
-import TodoModal from '~/components/container/Modal/TodoModal';
+import Modal from '~/components/container/Modal/Modal';
 import { dateFormat } from '~/utiles/date';
 
 type Props = {
@@ -23,6 +23,13 @@ const StyledSecondButtonBox = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+const StyledContent = styled.div`
+  margin-bottom: 24px;
+
+  > p {
+    padding-left: 8px;
+  }
+`;
 
 export default function TodoDetail({ title, description, deadline }: Props) {
   const { formatToYYYYMMdd } = dateFormat();
@@ -30,17 +37,21 @@ export default function TodoDetail({ title, description, deadline }: Props) {
   const formattedDeadline = deadline ? formatToYYYYMMdd(deadline) : '';
 
   return (
-    <TodoModal
-      presentational={{
-        title: '詳細',
-        contents: [
-          { h3: 'タイトル', p: title },
-          { h3: '説明', p: description || '' },
-          { h3: '期限', p: formattedDeadline || '' },
-        ],
-      }}
-    >
+    <Modal>
       <>
+        <h1>{title}</h1>
+        <StyledContent>
+          <h3>タイトル</h3>
+          <p>{title}</p>
+        </StyledContent>
+        <StyledContent>
+          <h3>説明</h3>
+          <p>{description}</p>
+        </StyledContent>
+        <StyledContent>
+          <h3>期限</h3>
+          <p>{formattedDeadline}</p>
+        </StyledContent>
         <StyledButtonBox>
           <Button presentational={{ text: '完了' }} />
           <StyledSecondButtonBox>
@@ -49,6 +60,6 @@ export default function TodoDetail({ title, description, deadline }: Props) {
           </StyledSecondButtonBox>
         </StyledButtonBox>
       </>
-    </TodoModal>
+    </Modal>
   );
 }

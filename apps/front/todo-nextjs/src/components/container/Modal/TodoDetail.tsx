@@ -2,12 +2,12 @@
 
 import { ComponentProps } from 'react';
 
-import TodoModalPresentational from '~/components/presentational/Modal/TodoModal';
+import ModalPresentational from '~/components/presentational/Modal/Modal';
 
 type Props = {
-  presentational: ComponentProps<typeof TodoModalPresentational>;
+  presentational: ComponentProps<typeof ModalPresentational>;
 };
 
 export default function TodoModal({ presentational }: Props) {
-  return <TodoModalPresentational {...presentational} />;
+  return <ModalPresentational {...presentational} />;
 }

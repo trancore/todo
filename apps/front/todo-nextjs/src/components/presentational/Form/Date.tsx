@@ -12,7 +12,7 @@ export default function Date({ labelName, errorMessage, register }: Props) {
   return (
     <>
       <label>{labelName}</label>
-      <input {...register} type="date"></input>
+      <input type="date" {...register}></input>
       <p>{errorMessage}</p>
     </>
   );

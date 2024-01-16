@@ -7,12 +7,13 @@ type Props = {
 };
 
 export default function TextForm({ presentational }: Props) {
-  const { labelName, errorMessage, register } = presentational;
+  const { labelName, placeholder, errorMessage, register } = presentational;
 
   return (
     <TextFormPresentation
       labelName={labelName}
       errorMessage={errorMessage}
+      placeholder={placeholder}
       register={register}
     />
   );

@@ -18,6 +18,7 @@ type Story = StoryObj<typeof TextForm>;
 export const Selectable: Story = {
   args: {
     labelName: 'ダミーデータ',
+    placeholder: 'ダミーデータ',
     errorMessage: 'ダミーデータ',
     // register: ,
   },
@@ -36,6 +37,7 @@ export const TodoTitleForm: Story = {
       <Form submit={() => {}}>
         <TextForm
           labelName="タイトル"
+          placeholder="やることやることやること"
           errorMessage="エラーメッセージが表示されます。"
           register={undefined}
         />

@@ -10,10 +10,10 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 6px;
 
   label {
     display: block;
+    margin-bottom: 6px;
   }
 
   input {

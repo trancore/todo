@@ -18,6 +18,7 @@ type Story = StoryObj<typeof TextArea>;
 export const Selectable: Story = {
   args: {
     labelName: 'ダミーデータ',
+    placeholder: 'ダミーデータ',
     errorMessage: 'ダミーデータ',
     register: undefined,
   },
@@ -36,6 +37,7 @@ export const TodoDescriptionTextArea: Story = {
       <Form submit={() => {}}>
         <TextArea
           labelName="説明"
+          placeholder="やることやることやることやることやることやることやることやることやることやること"
           errorMessage="エラーメッセージが表示されます。"
           register={undefined}
         />

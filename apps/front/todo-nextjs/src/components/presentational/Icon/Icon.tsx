@@ -6,6 +6,7 @@ import SquareEdit from '/public/images/icons/square-edit.svg';
 import TrashCan from '/public/images/icons/trash-can.svg';
 import Uncheck from '/public/images/icons/uncheck.svg';
 import UserCircle from '/public/images/icons/user-circle.svg';
+import styled from 'styled-components';
 
 const ICONS = {
   Check,
@@ -31,8 +32,12 @@ export default function Icon({ name, size, clickIcon, color }: Props) {
   const Icon = ICONS[name];
   const isStroke = Icon.toString().includes('stroke:');
 
+  const StyledIcon = styled(Icon)`
+    cursor: pointer;
+  `;
+
   return (
-    <Icon
+    <StyledIcon
       height={size}
       width={size}
       fill={isStroke ? undefined : color}

@@ -23,12 +23,14 @@ export const Selectable: Story = {
 
 export const Check_32_black: Story = {
   render: () => {
-    return <Icon name="Check" size={32} color="#000000" />;
+    return <Icon name="Check" size={32} color="#000000" clickIcon={() => {}} />;
   },
 };
 
 export const Uncheck_64_red: Story = {
   render: () => {
-    return <Icon name="Uncheck" size={64} color="#FF0000" />;
+    return (
+      <Icon name="Uncheck" size={64} color="#FF0000" clickIcon={() => {}} />
+    );
   },
 };

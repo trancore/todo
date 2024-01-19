@@ -24,9 +24,10 @@ type Props = {
   name: IconName;
   size: Size;
   color?: string;
+  clickIcon: () => void;
 };
 
-export default function Icon({ name, size, color }: Props) {
+export default function Icon({ name, size, clickIcon, color }: Props) {
   const Icon = ICONS[name];
   const isStroke = Icon.toString().includes('stroke:');
 
@@ -36,6 +37,7 @@ export default function Icon({ name, size, color }: Props) {
       width={size}
       fill={isStroke ? undefined : color}
       stroke={isStroke ? color : undefined}
+      onClick={clickIcon}
     />
   );
 }

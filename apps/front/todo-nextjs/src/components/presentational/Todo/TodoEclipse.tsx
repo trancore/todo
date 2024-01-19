@@ -12,7 +12,7 @@ const StyledTodoEcipse = styled.div`
   border-radius: 90px;
   cursor: pointer;
 `;
-const StyledTodoTitle = styled.p`
+const StyledTodoTitle = styled.h3`
   margin: 0px 0px 6px 0px;
   display: -webkit-box;
   overflow: hidden;
@@ -29,7 +29,7 @@ const StyledTodoDescription = styled.p`
 
 export default function TodoEclipse({ title, description, click }: Props) {
   return (
-    <StyledTodoEcipse>
+    <StyledTodoEcipse onClick={click}>
       <StyledTodoTitle>{title}</StyledTodoTitle>
       <StyledTodoDescription>{description}</StyledTodoDescription>
     </StyledTodoEcipse>

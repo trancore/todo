@@ -4,19 +4,19 @@ import Icon from '~/components/container/Icon/Icon';
 type Props = {
   uncheck: {
     has: boolean;
-    clickUncheck: () => void;
+    click: () => void;
   };
   check: {
     has: boolean;
-    clickCheck: () => void;
+    click: () => void;
   };
   squareEdit: {
     has: boolean;
-    clickSquareEdit: () => void;
+    click: () => void;
   };
   trashCan: {
     has: boolean;
-    clickTrashCan: () => void;
+    click: () => void;
   };
 };
 
@@ -36,25 +36,25 @@ export default function TodoIconBox({
       {uncheck.has && (
         <Icon
           presentational={{ name: `Uncheck`, size: 48 }}
-          clickIcon={uncheck.clickUncheck}
+          clickIcon={uncheck.click}
         />
       )}
       {check.has && (
         <Icon
           presentational={{ name: 'Check', size: 48 }}
-          clickIcon={check.clickCheck}
+          clickIcon={check.click}
         />
       )}
       {squareEdit.has && (
         <Icon
           presentational={{ name: `SquareEdit`, size: 48 }}
-          clickIcon={squareEdit.clickSquareEdit}
+          clickIcon={squareEdit.click}
         />
       )}
       {trashCan.has && (
         <Icon
           presentational={{ name: 'TrashCan', size: 48 }}
-          clickIcon={trashCan.clickTrashCan}
+          clickIcon={trashCan.click}
         />
       )}
     </StyledTodoIconBox>

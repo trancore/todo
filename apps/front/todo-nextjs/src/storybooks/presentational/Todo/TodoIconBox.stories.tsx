@@ -18,19 +18,19 @@ export const Selectable: Story = {
   args: {
     uncheck: {
       has: true,
-      clickUncheck: () => {},
+      click: () => {},
     },
     check: {
       has: true,
-      clickCheck: () => {},
+      click: () => {},
     },
     squareEdit: {
       has: true,
-      clickSquareEdit: () => {},
+      click: () => {},
     },
     trashCan: {
       has: true,
-      clickTrashCan: () => {},
+      click: () => {},
     },
   },
 };
@@ -39,10 +39,10 @@ export const AllHas: Story = {
   render: () => {
     return (
       <TodoIconBox
-        uncheck={{ has: true, clickUncheck: () => {} }}
-        check={{ has: true, clickCheck: () => {} }}
-        squareEdit={{ has: true, clickSquareEdit: () => {} }}
-        trashCan={{ has: true, clickTrashCan: () => {} }}
+        uncheck={{ has: true, click: () => {} }}
+        check={{ has: true, click: () => {} }}
+        squareEdit={{ has: true, click: () => {} }}
+        trashCan={{ has: true, click: () => {} }}
       />
     );
   },

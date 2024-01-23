@@ -1,13 +1,4 @@
-﻿import { ComponentProps } from 'react';
-
-import TodoIconBoxPresentation from '~/components/presentational/Todo/TodoIconBox';
-
-type Props = {
-  presentational: Omit<
-    ComponentProps<typeof TodoIconBoxPresentation>,
-    'uncheck' | 'check' | 'squareEdit' | 'trashCan'
-  >;
-};
+﻿import TodoIconBoxPresentation from '~/components/presentational/Todo/TodoIconBox';
 
 export default function TodoIconBox() {
   const uncheck = {

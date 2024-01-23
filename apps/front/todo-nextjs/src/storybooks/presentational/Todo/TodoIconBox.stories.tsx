@@ -35,13 +35,26 @@ export const Selectable: Story = {
   },
 };
 
-export const AllHas: Story = {
+export const Incomplete: Story = {
+  render: () => {
+    return (
+      <TodoIconBox
+        uncheck={{ has: false, click: () => {} }}
+        check={{ has: true, click: () => {} }}
+        squareEdit={{ has: true, click: () => {} }}
+        trashCan={{ has: true, click: () => {} }}
+      />
+    );
+  },
+};
+
+export const Completed: Story = {
   render: () => {
     return (
       <TodoIconBox
         uncheck={{ has: true, click: () => {} }}
-        check={{ has: true, click: () => {} }}
-        squareEdit={{ has: true, click: () => {} }}
+        check={{ has: false, click: () => {} }}
+        squareEdit={{ has: false, click: () => {} }}
         trashCan={{ has: true, click: () => {} }}
       />
     );

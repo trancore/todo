@@ -1,3 +1,4 @@
+import '../public/css/base.scss';
 import '../public/css/reset.css';
 import type { Preview } from '@storybook/react';
 

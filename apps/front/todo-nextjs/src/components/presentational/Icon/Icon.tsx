@@ -1,6 +1,7 @@
 ﻿import Check from '/public/images/icons/check.svg';
 import Close from '/public/images/icons/close.svg';
 import Menu from '/public/images/icons/menu.svg';
+import PersonOff from '/public/images/icons/person-off.svg';
 import Plus from '/public/images/icons/plus.svg';
 import SquareEdit from '/public/images/icons/square-edit.svg';
 import TrashCan from '/public/images/icons/trash-can.svg';
@@ -12,6 +13,7 @@ const ICONS = {
   Check,
   Close,
   Menu,
+  PersonOff,
   Plus,
   SquareEdit,
   TrashCan,

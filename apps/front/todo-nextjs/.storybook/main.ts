@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/nextjs';
+// import autoStoryGenerator from '@takuma-ru/auto-story-generator';
 import path from 'path';
 
 const config: StorybookConfig = {
@@ -19,6 +20,18 @@ const config: StorybookConfig = {
     autodocs: 'tag',
   },
   webpackFinal: async (config) => {
+    // if (config.plugins) {
+    //   config.plugins.push(
+    //     autoStoryGenerator.webpack({
+    //       preset: 'react',
+    //       imports: [
+    //         path.resolve(__dirname, '../src/components/presentational/**/*'),
+    //       ],
+    //       prettierConfigPath: path.resolve(__dirname, '../.prettierrc'),
+    //     }),
+    //   );
+    // }
+
     if (config.resolve) {
       config.resolve.alias = {
         ...config.resolve.alias,

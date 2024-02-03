@@ -2,8 +2,10 @@
 
 import { UseFormRegisterReturn } from 'react-hook-form';
 import styled from 'styled-components';
+import { InputType } from '~/components/container/Form/UserTextForm';
 
 type Props = {
+  type: InputType;
   labelName: string;
   placeholder?: string;
   errorMessage: string | undefined;
@@ -14,7 +16,8 @@ const StyledInput = styled.input`
   border-radius: 50px;
 `;
 
-export default function Name({
+export default function UserTextForm({
+  type,
   labelName,
   placeholder,
   errorMessage,
@@ -23,7 +26,7 @@ export default function Name({
   return (
     <>
       <label>{labelName}</label>
-      <StyledInput placeholder={placeholder} {...register} />
+      <StyledInput type={type} placeholder={placeholder} {...register} />
       <p>{errorMessage}</p>
     </>
   );

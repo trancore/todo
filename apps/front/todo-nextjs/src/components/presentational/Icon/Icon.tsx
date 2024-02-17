@@ -30,21 +30,24 @@ type Props = {
   clickIcon: () => void;
 };
 
+const StyledIcon = styled.div`
+  display: inline;
+  cursor: pointer;
+`;
+
 export default function Icon({ name, size, clickIcon, color }: Props) {
   const Icon = ICONS[name];
   const isStroke = Icon.toString().includes('stroke:');
 
-  const StyledIcon = styled(Icon)`
-    cursor: pointer;
-  `;
-
   return (
-    <StyledIcon
-      height={size}
-      width={size}
-      fill={isStroke ? undefined : color}
-      stroke={isStroke ? color : undefined}
-      onClick={clickIcon}
-    />
+    <StyledIcon>
+      <Icon
+        height={size}
+        width={size}
+        fill={isStroke ? undefined : color}
+        stroke={isStroke ? color : undefined}
+        onClick={clickIcon}
+      />
+    </StyledIcon>
   );
 }

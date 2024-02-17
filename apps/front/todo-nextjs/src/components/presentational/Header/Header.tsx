@@ -5,30 +5,39 @@ type Props = {
   isSignin: boolean;
 };
 
-export default function Header({ isSignin }: Props) {
-  const Header = styled.header`
-    height: 64px;
-    padding: 18px 21px;
-    background-color: #8f8f8f;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  `;
-  const HeadingOne = styled.h1`
-    margin: auto;
-  `;
+const StyledHeader = styled.header`
+  height: 64px;
+  padding: 18px 21px;
+  background-color: #8f8f8f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const StyledHeadingOne = styled.h1`
+  margin: auto;
+`;
 
+export default function Header({ isSignin }: Props) {
   return (
-    <Header>
+    <StyledHeader>
       {isSignin ? (
         <>
-          <Icon presentational={{ name: 'Menu', size: 64 }}></Icon>
-          <Icon presentational={{ name: 'UserCircle', size: 64 }}></Icon>
-          <Icon presentational={{ name: 'Plus', size: 64 }}></Icon>{' '}
+          <Icon
+            presentational={{ name: 'Menu', size: 64 }}
+            clickIcon={() => {}}
+          ></Icon>
+          <Icon
+            presentational={{ name: 'UserCircle', size: 64 }}
+            clickIcon={() => {}}
+          ></Icon>
+          <Icon
+            presentational={{ name: 'Plus', size: 64 }}
+            clickIcon={() => {}}
+          ></Icon>
         </>
       ) : (
-        <HeadingOne>todo</HeadingOne>
+        <StyledHeadingOne>todo</StyledHeadingOne>
       )}
-    </Header>
+    </StyledHeader>
   );
 }

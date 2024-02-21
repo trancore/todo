@@ -1,9 +1,5 @@
-﻿import Layout from '~/components/container/Layout/Layout';
+﻿import { AppProps } from 'next/app';
 
-export default function App() {
-  return (
-    <Layout>
-      <></>
-    </Layout>
-  );
+export default function App({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />;
 }

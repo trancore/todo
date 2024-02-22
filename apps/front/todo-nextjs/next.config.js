@@ -16,6 +16,7 @@ const nextConfig = {
   images: {
     disableStaticImages: true,
   },
+  compiler: { styledComponents: true },
 };
 
 export default nextConfig;

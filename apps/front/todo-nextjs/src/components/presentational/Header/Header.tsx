@@ -6,7 +6,6 @@ type Props = {
 };
 
 const StyledHeader = styled.header`
-  height: 64px;
   padding: 18px 21px;
   background-color: #8f8f8f;
   display: flex;

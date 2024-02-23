@@ -3,8 +3,6 @@ import TodoEclipse from '~/components/container/Todo/TodoEclipse';
 import TodoIconBox from '~/components/container/Todo/TodoIconBox';
 
 const StyledTodoList = styled.div`
-  max-width: 512px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 48px;

@@ -6,7 +6,9 @@ type Props = {
 };
 
 const StyledLayout = styled.div`
+  margin: 0 auto;
   padding: 44px 15px;
+  max-width: 512px;
 `;
 
 export default function Layout({ children }: Props) {

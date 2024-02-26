@@ -3,8 +3,6 @@ import Button from '~/components/container/Button/Button';
 import Form from '~/components/container/Form/Form';
 import UserTextForm from '~/components/container/Form/UserTextForm';
 import Icon from '~/components/container/Icon/Icon';
-import TodoEclipse from '~/components/container/Todo/TodoEclipse';
-import TodoIconBox from '~/components/container/Todo/TodoIconBox';
 
 const StyledSignup = styled.div`
   display: flex;

@@ -22,7 +22,7 @@ const ICONS = {
 };
 
 type IconName = keyof typeof ICONS;
-type Size = 16 | 24 | 32 | 48 | 64;
+type Size = 16 | 24 | 32 | 48 | 64 | 128;
 type Props = {
   name: IconName;
   size: Size;

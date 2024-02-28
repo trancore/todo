@@ -24,10 +24,7 @@ const StyledWrapButton = styled.div`
 export default function Signin() {
   return (
     <StyledSignup>
-      <Icon
-        presentational={{ name: 'UserCircle', size: 128 }}
-        clickIcon={() => {}}
-      />
+      <Icon presentational={{ name: 'UserCircle', size: 128 }} />
       <Form submit={() => {}}>
         <>
           <StyledInputForm>

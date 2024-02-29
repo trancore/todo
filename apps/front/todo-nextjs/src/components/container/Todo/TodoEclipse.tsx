@@ -4,7 +4,6 @@ import TextEclipsePresentation from '~/components/presentational/Todo/TodoEclips
 
 type Props = {
   presentational: Omit<ComponentProps<typeof TextEclipsePresentation>, 'click'>;
-  click: () => undefined;
 };
 
 export default function TodoEclipse({ presentational }: Props) {

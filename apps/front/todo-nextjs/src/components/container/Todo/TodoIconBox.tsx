@@ -2,7 +2,7 @@
 
 export default function TodoIconBox() {
   const uncheck = {
-    has: true,
+    has: false,
     click: () => {},
   };
   const check = {

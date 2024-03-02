@@ -45,9 +45,6 @@ export default function Register() {
     formState: { errors },
   } = useForm<Inputs>({
     mode: 'onChange',
-    defaultValues: {
-      deadline: undefined,
-    },
     resolver: yupResolver(inputsSchema),
   });
 

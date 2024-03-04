@@ -1,7 +1,9 @@
 ﻿import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import * as yup from 'yup';
+
+import yup from '~/libs/yup';
+
 import Button from '~/components/container/Button/Button';
 import DateForm from '~/components/container/Form/Date';
 import Form from '~/components/container/Form/Form';
@@ -15,18 +17,9 @@ type Inputs = {
 };
 
 const inputsSchema = yup.object().shape({
-  title: yup
-    .string()
-    .required('必須項目です')
-    .max(100, '100文字以下で入力してください'),
-  description: yup.string().max(500, '500文字以下で入力してください'),
-  deadline: yup.date().transform(function (value, originalValue) {
-    if (originalValue === '') {
-      return undefined;
-    }
-
-    return value;
-  }),
+  title: yup.string().todoText(),
+  description: yup.string().todoDescription(),
+  deadline: yup.date().todoDeadline(),
 });
 
 const StyledInputForm = styled.div`

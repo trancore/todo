@@ -11,8 +11,10 @@
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
     "^~/libs/(.*)$",
-    "^~/components/(.*)$",
+    "^~/store/(.*)$",
     "^~/styles/(.*)$",
+    "^~/components/(.*)$",
+    "^~/services/(.*)$",
     "^~/utils/(.*)$",
     "^[./]"
   ],

@@ -10,6 +10,8 @@ import Form from '~/components/container/Form/Form';
 import TextArea from '~/components/container/Form/TextArea';
 import TextForm from '~/components/container/Form/TextForm';
 
+import { useCreateTodoMutation, useGetTodosQuery } from '~/services/todo';
+
 type Inputs = {
   title: string;
   description?: string;
@@ -41,8 +43,11 @@ export default function Register() {
     resolver: yupResolver(inputsSchema),
   });
 
+  const { data } = useGetTodosQuery();
+  const [createTodo, { isLoading }] = useCreateTodoMutation();
+
   const submit: SubmitHandler<Inputs> = (inputs) => {
-    console.log('🚀 ~ Register ~ inputs:', inputs);
+    createTodo(inputs);
   };
 
   return (

@@ -17,6 +17,10 @@ const nextConfig = {
     disableStaticImages: true,
   },
   compiler: { styledComponents: true },
+  env: {
+    // TODO APIサーバのURL
+    TODO_API_URL: 'http://localhost:8080/api/v1',
+  },
 };
 
 export default nextConfig;

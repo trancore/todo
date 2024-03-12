@@ -9,7 +9,15 @@ type PostTodoRequest =
 export const todoApi = createApi({
   reducerPath: 'todoApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8080/api/v1',
+    baseUrl: process.env.TODO_API_URL,
+    prepareHeaders: (headers) => {
+      headers.set(
+        'Access-Control-Allow-Origin',
+        process.env.TODO_API_URL || '',
+      );
+
+      return headers;
+    },
   }),
   endpoints: (builder) => ({
     getTodos: builder.query<GetTodosResponse, void>({

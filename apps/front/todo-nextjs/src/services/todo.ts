@@ -25,7 +25,7 @@ export const todoApi = createApi({
     }),
     createTodo: builder.mutation<undefined, PostTodoRequest>({
       query: ({ title, description, deadlineAt }) => ({
-        url: '/todo',
+        url: '/todos',
         method: 'POST',
         body: {
           title: title,

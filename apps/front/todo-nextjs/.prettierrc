@@ -12,10 +12,12 @@
     "<THIRD_PARTY_MODULES>",
     "^~/libs/(.*)$",
     "^~/store/(.*)$",
+    "^~/features/(.*)$",
     "^~/styles/(.*)$",
     "^~/components/(.*)$",
     "^~/constants(.*)$",
     "^~/services/(.*)$",
+    "^~/hooks/(.*)$",
     "^~/utils/(.*)$",
     "^[./]"
   ],

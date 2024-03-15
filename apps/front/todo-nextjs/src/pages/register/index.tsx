@@ -1,8 +1,12 @@
-﻿import { yupResolver } from '@hookform/resolvers/yup';
+﻿import { useRouter } from 'next/navigation';
+
+import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 import yup from '~/libs/yup';
+
+import { hide, show } from '~/features/toast';
 
 import Button from '~/components/container/Button/Button';
 import DateForm from '~/components/container/Form/Date';
@@ -10,12 +14,16 @@ import Form from '~/components/container/Form/Form';
 import TextArea from '~/components/container/Form/TextArea';
 import TextForm from '~/components/container/Form/TextForm';
 
-import { useCreateTodoMutation, useGetTodosQuery } from '~/services/todo';
+import { PAGE_PATH } from '~/constants';
+
+import { useCreateTodoMutation } from '~/services/todo';
+
+import { useAppDispatch } from '~/hooks/useRedux';
 
 type Inputs = {
   title: string;
   description?: string;
-  deadline?: Date;
+  deadlineAt?: string;
 };
 
 const inputsSchema = yup.object().shape({
@@ -42,12 +50,18 @@ export default function Register() {
     mode: 'onChange',
     resolver: yupResolver(inputsSchema),
   });
-
-  const { data } = useGetTodosQuery();
-  const [createTodo, { isLoading }] = useCreateTodoMutation();
+  const [createTodo] = useCreateTodoMutation();
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const submit: SubmitHandler<Inputs> = (inputs) => {
     createTodo(inputs);
+
+    router.push(PAGE_PATH.TOP);
+
+    dispatch(show({ text: 'TODOが作成されました' }));
+    const timeoutId = setTimeout(() => dispatch(hide()), 2000);
+    clearTimeout(timeoutId);
   };
 
   return (
@@ -73,8 +87,8 @@ export default function Register() {
             <DateForm
               presentational={{
                 labelName: '期限',
-                errorMessage: errors.deadline?.message,
-                register: register('deadline'),
+                errorMessage: errors.deadlineAt?.message,
+                register: register('deadlineAt'),
               }}
             />
           </StyledInputForm>

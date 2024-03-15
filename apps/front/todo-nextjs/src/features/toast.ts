@@ -6,19 +6,22 @@ export const toastSlice = createSlice({
   name: 'toast',
   initialState: {
     displayed: false,
+    text: '',
   },
   reducers: {
-    display: (state) => {
+    show: (state, action: { payload: { text: string } }) => {
+      state.text = action.payload.text;
       state.displayed = true;
     },
-    undesplay: (state) => {
+    hide: (state) => {
       state.displayed = false;
+      state.text = '';
     },
   },
 });
 
-export const { display, undesplay } = toastSlice.actions;
+export const { show, hide } = toastSlice.actions;
 
-export const selectToast = (state: RootState) => state.toast.displayed;
+export const selectToast = (state: RootState) => state.toast;
 
 export default toastSlice.reducer;

@@ -5,9 +5,10 @@ type Props = {
 };
 
 const StyledErrorparagraph = styled.p`
+  margin: 0px;
   padding: 24px 24px;
-  background-color: lightcoral;
-  color: crimson;
+  background-color: pink;
+  color: red;
 `;
 
 export default function Error({ text }: Props) {

@@ -6,7 +6,8 @@ import styled from 'styled-components';
 
 import yup from '~/libs/yup';
 
-import { hide, show } from '~/features/toast';
+import { hide as hideError, show as showError } from '~/features/error';
+import { hide as hideTodo, show as showTodo } from '~/features/toast';
 
 import Button from '~/components/container/Button/Button';
 import DateForm from '~/components/container/Form/Date';
@@ -55,13 +56,19 @@ export default function Register() {
   const router = useRouter();
 
   const submit: SubmitHandler<Inputs> = (inputs) => {
-    createTodo(inputs);
+    createTodo(inputs)
+      .unwrap()
+      .then(() => {
+        dispatch(hideError());
+        router.push(PAGE_PATH.TOP);
 
-    router.push(PAGE_PATH.TOP);
-
-    dispatch(show({ text: 'TODOが作成されました' }));
-    const timeoutId = setTimeout(() => dispatch(hide()), 2000);
-    clearTimeout(timeoutId);
+        dispatch(showTodo({ text: 'TODOが作成されました' }));
+        const timeoutId = setTimeout(() => dispatch(hideTodo()), 2000);
+        clearTimeout(timeoutId);
+      })
+      .catch(() => {
+        dispatch(showError({ text: 'エラーが発生しました' }));
+      });
   };
 
   return (

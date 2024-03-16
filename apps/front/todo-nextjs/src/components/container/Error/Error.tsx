@@ -1,5 +1,11 @@
-﻿import ErrorPresentation from '~/components/presentational/Error/Error';
+﻿import { selectError } from '~/features/error';
+
+import ErrorPresentation from '~/components/presentational/Error/Error';
+
+import { useAppSelector } from '~/hooks/useRedux';
 
 export default function Error() {
-  return <ErrorPresentation text={'エラーが発生しました'} />;
+  const store = useAppSelector(selectError);
+
+  return <ErrorPresentation displayed={store.displayed} text={store.text} />;
 }

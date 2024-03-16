@@ -5,6 +5,7 @@ type GetTodosResponse =
   paths['/todos']['get']['responses']['200']['content']['application/json'];
 type PostTodoRequest =
   paths['/todos']['post']['requestBody']['content']['application/json'];
+type PostTodoResponse = undefined;
 
 export const todoApi = createApi({
   reducerPath: 'todoApi',
@@ -23,7 +24,7 @@ export const todoApi = createApi({
     getTodos: builder.query<GetTodosResponse, void>({
       query: () => '/todos',
     }),
-    createTodo: builder.mutation<undefined, PostTodoRequest>({
+    createTodo: builder.mutation<PostTodoResponse, PostTodoRequest>({
       query: ({ title, description, deadlineAt }) => ({
         url: '/todos',
         method: 'POST',

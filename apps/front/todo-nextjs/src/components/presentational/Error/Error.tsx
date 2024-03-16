@@ -1,6 +1,7 @@
 ﻿import { styled } from 'styled-components';
 
 type Props = {
+  displayed: boolean;
   text?: string;
 };
 
@@ -11,6 +12,6 @@ const StyledErrorparagraph = styled.p`
   color: red;
 `;
 
-export default function Error({ text }: Props) {
-  return <StyledErrorparagraph>{text}</StyledErrorparagraph>;
+export default function Error({ displayed, text }: Props) {
+  return displayed && <StyledErrorparagraph>{text}</StyledErrorparagraph>;
 }

@@ -1,6 +1,7 @@
 ﻿import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
 
+import errorReducer from '~/features/error';
 import toastReducer from '~/features/toast';
 
 import { todoApi } from '~/services/todo';
@@ -12,6 +13,7 @@ export const rootStore = configureStore({
   reducer: {
     toast: toastReducer,
     [todoApi.reducerPath]: todoApi.reducer,
+    error: errorReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(todoApi.middleware),

@@ -21,8 +21,6 @@ import { useCreateTodoMutation } from '~/services/todo';
 
 import { useAppDispatch } from '~/hooks/useRedux';
 
-import { scrollTop } from '~/utils/scroll';
-
 type Inputs = {
   title: string;
   description?: string;

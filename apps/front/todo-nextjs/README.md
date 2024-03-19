@@ -59,3 +59,51 @@ Next.js では、CSS として `Styled-component`を使用するため、ロジ�
 さらに、この2つの包含関係は、`PresentationalComponent ⊂ ContainerComponent`と定義することにします（つまり、`PresentationalComponent`は`ContainerComponent`に含まれる、という関係になります）。
 
 そのため、`PresentationalComponent`は必ず同じコンポーネントの`ContainerComponent`から呼び出されること、と定義します。
+
+### 4.JavaScript 実装
+
+#### Formライブラリとバリデーション
+
+Formライブラリには、[React-Hooks-Form](https://react-hook-form.com/get-started)を使用しています。以前から使用しているライブラリであり、後述するバリデーションスキーマである[yup](https://github.com/jquense/yup)の導入も既知であるため使用しています。他ライブラリを使用する理由がなかったため、React-Hooks-Formを選択しました。
+
+バリデーションスキーマには、yupを用いています。別のバリデーションスキーマにはzodがあるのですが、私自身はyupしか使ったことが無く、zodを使ったことがありません。
+
+参考：[react-hook-formでyupとzodの違いを検証](https://zenn.dev/wintyo/articles/6122304cb56c86)
+
+React-Hooks-Formとyupの実装は、[src/pages/register/index.tsx](/apps/front/todo-nextjs/src/pages/register/index.tsx)を参考にしてください。
+
+#### Reduxによる状態管理
+
+[Redux](https://redux.js.org/introduction/getting-started)は以下のデータフローによって状態を管理しています。
+
+![データフロー図](https://redux.js.org/assets/images/ReduxDataFlowDiagram-49fa8c3968371d9ef6f2a1486bd40a26.gif)
+
+詳しい説明は公式ドキュメントを参考していただきたいですが、
+
+1. 何らかのイベントなどによって
+2. Dispatchを呼び出し
+3. Actionによって、どのようなStoreの更新を行うかを選択し
+4. ReducerでStoreの内容を更新し、
+5. 各画面(UI)で取得しているStore情報が更新される
+
+かと思います。
+
+現在のReduxでは、`slice`によって`state`, `reducer`, `action`を定義してしまいます（[定義の例](/apps/front/todo-nextjs/src/features)）。これらを`reducer`として`Store`に登録しています（[登録の例](/apps/front/todo-nextjs/src/store/root.ts)）。
+
+そして、上記で定義した`Store`や`State`の情報を型情報として持つために、`dispatch`, `Store`を取得するための`hooks`を作成しています（[hooksの例](/apps/front/todo-nextjs/src/hooks/useRedux.ts)）。
+
+#### RTK Queryを使ったfetchとキャッシュ保持
+
+[RTK Query](https://redux.js.org/introduction/getting-started)は、fetchしたデータを上記のstore機構を使ってキャッシュを保持しているのではないか、と思う。。（ここは、公式ドキュメントを確認する）。
+
+特に何も設定しなければ、RTK Queryはfetchライブラリをwrapしており、このライブラリをfetcherとしています。もちろん、axiosをfetcherとして設定することもできます（[Axiosの設定例](https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#axios-basequery)）。
+
+fetchした情報をキャッシュに保持するには、`services`としてfetchするエンドポイントや`header`の設定を行います([servicesの定義例](/apps/front/todo-nextjs/src/services/todo.ts))。このservicesをstoreに登録します([storeへの登録例](/apps/front/todo-nextjs/src/store/root.ts))。
+
+SSRで使う場合は、[next-redux-wrapper](https://github.com/kirill-konshin/next-redux-wrapper)を使う[方法が公式で説明されています](https://redux-toolkit.js.org/rtk-query/usage/server-side-rendering)。
+
+#### fetchのエラーハンドリング
+
+RTK Queryのエラーハンドリングは、fetch hooksから`unwrap`関数をチェーンして`then`関数、`catch`関数を使ってエラーハンドリングを行います。
+
+#### mock server

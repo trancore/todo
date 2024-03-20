@@ -19,6 +19,7 @@
     "^~/services/(.*)$",
     "^~/hooks/(.*)$",
     "^~/utils/(.*)$",
+    "^~/mock/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,

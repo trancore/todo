@@ -13,6 +13,10 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
 `;
 
+if (process.env.NODE_ENV === 'development') {
+  require('~/mock');
+}
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={rootStore}>

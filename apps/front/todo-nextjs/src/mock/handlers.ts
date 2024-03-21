@@ -10,7 +10,7 @@ export const handlers = [
     `${process.env.TODO_API_URL}/todos`,
     async ({ request, params, cookies }) => {
       console.log('POST: /todos req:', request.json());
-      return new HttpResponse(null, { status: 201 });
+      return new HttpResponse(undefined, { status: 201 });
     },
   ),
 ];

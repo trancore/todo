@@ -107,3 +107,6 @@ SSRで使う場合は、[next-redux-wrapper](https://github.com/kirill-konshin/n
 RTK Queryのエラーハンドリングは、fetch hooksから`unwrap`関数をチェーンして`then`関数、`catch`関数を使ってエラーハンドリングを行います。
 
 #### mock server
+
+mswは、API fetchをinterceptすることで、リクエストやレスポンスなどを代替して通信します。
+json-serverのようなThird Partyライブラリによるサーバの起動やNextのAPI Routesを使わない場合は、[/src/mock/server.ts](/apps/front/todo-nextjs/src/mock/server.ts)と[/src/mock/browser.ts](/apps/front/todo-nextjs/src/mock/browser.ts)を用意し、サーバレンダリング時やクライアントレンダリング後のfetchをinterceptできるようにする必要があります。

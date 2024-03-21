@@ -1,4 +1,4 @@
-﻿import { http } from 'msw';
+﻿import { HttpResponse, http } from 'msw';
 import { paths } from '~/types/openapi';
 
 type PostTodoRequest =
@@ -6,7 +6,11 @@ type PostTodoRequest =
 type PostTodoResponse = undefined;
 
 export const handlers = [
-  http.post('/todos', async ({ request, params, cookies }) => {
-    console.log('POST: /todos req:', request.json());
-  }),
+  http.post(
+    `${process.env.TODO_API_URL}/todos`,
+    async ({ request, params, cookies }) => {
+      console.log('POST: /todos req:', request.json());
+      return new HttpResponse(null, { status: 201 });
+    },
+  ),
 ];

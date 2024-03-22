@@ -3,14 +3,16 @@
 import ButtonPresentational from '~/components/presentational/Button/Button';
 
 type Props = {
-  presentational: ComponentProps<typeof ButtonPresentational>;
+  presentational: Omit<ComponentProps<typeof ButtonPresentational>, 'onClick'>;
+  onClick: () => void;
 };
 
-export default function Button({ presentational }: Props) {
+export default function Button({ presentational, onClick }: Props) {
   return (
     <ButtonPresentational
       text={presentational.text}
       width={presentational.width}
+      onClick={onClick}
     ></ButtonPresentational>
   );
 }

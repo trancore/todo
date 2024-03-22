@@ -1,4 +1,6 @@
 ﻿import styled from 'styled-components';
+
+import Error from '~/components/container/Error/Error';
 import Header from '~/components/container/Header/Header';
 
 type Props = {
@@ -15,6 +17,7 @@ export default function Layout({ children }: Props) {
   return (
     <>
       <Header />
+      <Error />
       <StyledLayout>{children}</StyledLayout>
     </>
   );

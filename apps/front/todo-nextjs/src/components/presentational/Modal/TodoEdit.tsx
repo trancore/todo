@@ -2,13 +2,15 @@
 
 import { UseFormRegisterReturn } from 'react-hook-form';
 import styled from 'styled-components';
+
 import Button from '~/components/container/Button/Button';
 import Date from '~/components/container/Form/Date';
 import Form from '~/components/container/Form/Form';
 import TextArea from '~/components/container/Form/TextArea';
 import TextForm from '~/components/container/Form/TextForm';
 import Modal from '~/components/container/Modal/Modal';
-import { dateFormat } from '~/utiles/date';
+
+import { dateFormat } from '~/utils/date';
 
 type Props = {
   title: string;

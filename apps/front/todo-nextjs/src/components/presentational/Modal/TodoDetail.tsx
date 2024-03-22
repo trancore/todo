@@ -1,9 +1,11 @@
 ﻿'use client';
 
 import styled from 'styled-components';
+
 import Button from '~/components/container/Button/Button';
 import Modal from '~/components/container/Modal/Modal';
-import { dateFormat } from '~/utiles/date';
+
+import { dateFormat } from '~/utils/date';
 
 type Props = {
   title: string;

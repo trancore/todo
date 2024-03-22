@@ -3,6 +3,7 @@
 type Props = {
   text: string;
   width?: number;
+  onClick: () => void;
 };
 
 const StyledButton = styled.button<{ width?: number }>`
@@ -17,6 +18,10 @@ const StyledButton = styled.button<{ width?: number }>`
   background-color: #8f8f8f;
 `;
 
-export default function Button({ text, width }: Props) {
-  return <StyledButton width={width}>{text}</StyledButton>;
+export default function Button({ text, width, onClick }: Props) {
+  return (
+    <StyledButton width={width} onClick={onClick}>
+      {text}
+    </StyledButton>
+  );
 }

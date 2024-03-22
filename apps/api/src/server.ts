@@ -1,4 +1,5 @@
-﻿import dotenv from 'dotenv';
+﻿import cors from 'cors';
+import dotenv from 'dotenv';
 import express from 'express';
 import session from 'express-session';
 import passport from 'passport';
@@ -14,6 +15,7 @@ import { accessLogger, logger, systemLogger } from './libs/logger';
 import { TokenData, UserData } from './types/authentication';
 
 import { CONFIG } from './configurations/config';
+import { corsOptions } from './configurations/cors';
 import { SESSION_CONFIG } from './configurations/session';
 
 dotenv.config();
@@ -24,6 +26,7 @@ const app = express();
 const auth = passport;
 
 app.use(express.json());
+app.use(cors(corsOptions));
 
 app.use(
   session({

@@ -2,7 +2,7 @@
 
 type Props = {
   children: JSX.Element;
-  submit: () => undefined;
+  submit?: () => undefined;
 };
 
 const StyledForm = styled.form`
@@ -40,5 +40,5 @@ const StyledForm = styled.form`
 `;
 
 export default function Form({ submit, children }: Props) {
-  return <StyledForm onSubmit={submit()}>{children}</StyledForm>;
+  return <StyledForm onSubmit={submit && submit()}>{children}</StyledForm>;
 }

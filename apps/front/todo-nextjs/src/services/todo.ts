@@ -1,6 +1,8 @@
 ﻿import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { paths } from '~/types/openapi';
 
+import { todoAxiosBaseQuery } from '~/libs/reduxQuery';
+
 type GetTodosResponse =
   paths['/todos']['get']['responses']['200']['content']['application/json'];
 type PostTodoRequest =
@@ -9,26 +11,16 @@ type PostTodoResponse = undefined;
 
 export const todoApi = createApi({
   reducerPath: 'todoApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: process.env.TODO_API_URL,
-    prepareHeaders: (headers) => {
-      headers.set(
-        'Access-Control-Allow-Origin',
-        process.env.TODO_API_URL || '',
-      );
-
-      return headers;
-    },
-  }),
+  baseQuery: todoAxiosBaseQuery(),
   endpoints: (builder) => ({
     getTodos: builder.query<GetTodosResponse, void>({
-      query: () => '/todos',
+      query: () => ({ url: '/todos', method: 'get' }),
     }),
     createTodo: builder.mutation<PostTodoResponse, PostTodoRequest>({
       query: ({ title, description, deadlineAt }) => ({
         url: '/todos',
-        method: 'POST',
-        body: {
+        method: 'post',
+        data: {
           title: title,
           description: description,
           deadlineAt: deadlineAt,

@@ -45,7 +45,7 @@ export default function Icon({ name, size, clickIcon, color }: Props) {
 
   if (hasClickIcon) {
     return (
-      <StyledIcon $hasClickIcon>
+      <StyledIcon $hasClickIcon={hasClickIcon}>
         <Icon
           height={size}
           width={size}

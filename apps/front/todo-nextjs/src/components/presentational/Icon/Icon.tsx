@@ -1,4 +1,6 @@
-﻿import Check from '/public/images/icons/check.svg';
+﻿import styled from 'styled-components';
+
+import Check from '/public/images/icons/check.svg';
 import Close from '/public/images/icons/close.svg';
 import Error from '/public/images/icons/error.svg';
 import Menu from '/public/images/icons/menu.svg';
@@ -8,7 +10,6 @@ import SquareEdit from '/public/images/icons/square-edit.svg';
 import TrashCan from '/public/images/icons/trash-can.svg';
 import Uncheck from '/public/images/icons/uncheck.svg';
 import UserCircle from '/public/images/icons/user-circle.svg';
-import styled from 'styled-components';
 
 const ICONS = {
   Check,
@@ -32,9 +33,9 @@ type Props = {
   clickIcon?: () => void;
 };
 
-const StyledIcon = styled.div<{ hasClickIcon?: boolean }>`
+const StyledIcon = styled.div<{ $hasClickIcon?: boolean }>`
   display: inline;
-  cursor: ${({ hasClickIcon }) => (hasClickIcon ? 'pointer' : 'default')};
+  cursor: ${({ $hasClickIcon }) => ($hasClickIcon ? 'pointer' : 'default')};
 `;
 
 export default function Icon({ name, size, clickIcon, color }: Props) {
@@ -44,7 +45,7 @@ export default function Icon({ name, size, clickIcon, color }: Props) {
 
   if (hasClickIcon) {
     return (
-      <StyledIcon hasClickIcon>
+      <StyledIcon $hasClickIcon>
         <Icon
           height={size}
           width={size}

@@ -61,6 +61,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
     store.dispatch(getTodos.initiate());
     await Promise.all(store.dispatch(getRunningQueriesThunk()));
 
-    return { props: {} };
+    return { props: '' };
   },
 );

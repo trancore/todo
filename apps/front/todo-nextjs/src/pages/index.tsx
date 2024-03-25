@@ -28,11 +28,15 @@ const StyledTodoUnder = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+const StyledTodoDeadlineAt = styled.p<{ color: string }>`
+  color: ${({ color }) => color};
+  font-weight: bold;
+`;
 
 export default function Top() {
   const { data: todoList } = useGetTodosQuery();
 
-  const { formatToYYYYMMdd } = dateFormat();
+  const { formatToYYYYMMdd, colorizeDate } = dateFormat();
 
   return (
     <StyledTodoList>
@@ -46,7 +50,11 @@ export default function Top() {
           />
           <StyledTodoUnder>
             {todo.deadlineAt ? (
-              <p>{formatToYYYYMMdd(new Date(todo.deadlineAt))}</p>
+              <StyledTodoDeadlineAt
+                color={colorizeDate(new Date(todo.deadlineAt))}
+              >
+                {formatToYYYYMMdd(new Date(todo.deadlineAt))}
+              </StyledTodoDeadlineAt>
             ) : (
               <p>{''}</p>
             )}

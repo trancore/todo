@@ -1,4 +1,6 @@
-﻿/**
+﻿import { addDay, format, isAfter, isBefore, isEqual } from '@formkit/tempo';
+
+/**
  * 日付変換用ユーティーリティー
  */
 export function dateFormat() {
@@ -8,12 +10,39 @@ export function dateFormat() {
    * @returns YYYY/MM/dd
    */
   function formatToYYYYMMdd(date: Date) {
-    return date.toLocaleDateString('ja-JP', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    });
+    return format(date, 'YYYY/MM/DD');
   }
 
-  return { formatToYYYYMMdd };
+  /**
+   * 現在に応じた対応期限に対する色を取得する
+   * @param deadlineAt 対応期限
+   * @returns カラーコード #
+   */
+  function colorizeDate(deadlineAt: Date) {
+    const now = new Date();
+    const beforeThreeDay = addDay(now, -4);
+    const beforeSevenDay = addDay(now, -8);
+
+    if (isAfter(deadlineAt, now)) {
+      // 期限切れ
+      return '#ff0000';
+    }
+    if (isEqual(deadlineAt, now)) {
+      // 当日
+      return '#ff4500';
+    }
+    if (isAfter(deadlineAt, beforeThreeDay)) {
+      // 3日前
+      return '#bdb76b';
+    }
+    if (isAfter(deadlineAt, beforeSevenDay)) {
+      // 7日前
+      return '#008000';
+    }
+
+    // 7日以降
+    return '#000000';
+  }
+
+  return { formatToYYYYMMdd, colorizeDate };
 }

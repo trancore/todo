@@ -17,6 +17,7 @@
     "generate:swagger-type:api": "openapi-typescript ./openapi.yaml -o ./src/types/openapi.ts"
   },
   "dependencies": {
+    "@formkit/tempo": "^0.0.17",
     "@hookform/resolvers": "^3.3.4",
     "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.8",

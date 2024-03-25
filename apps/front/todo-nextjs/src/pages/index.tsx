@@ -45,8 +45,10 @@ export default function Top() {
             }}
           />
           <StyledTodoUnder>
-            {todo.deadlineAt && (
+            {todo.deadlineAt ? (
               <p>{formatToYYYYMMdd(new Date(todo.deadlineAt))}</p>
+            ) : (
+              <p>{''}</p>
             )}
             <TodoIconBox />
           </StyledTodoUnder>

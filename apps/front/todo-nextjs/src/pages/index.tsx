@@ -5,6 +5,8 @@ import { wrapper } from '~/store/root';
 import TodoEclipse from '~/components/container/Todo/TodoEclipse';
 import TodoIconBox from '~/components/container/Todo/TodoIconBox';
 
+import { STATUS } from '~/constants';
+
 import {
   getRunningQueriesThunk,
   getTodos,
@@ -40,28 +42,31 @@ export default function Top() {
 
   return (
     <StyledTodoList>
-      {(todoList ?? []).map((todo) => (
-        <StyledTodo key={todo.id}>
-          <TodoEclipse
-            presentational={{
-              title: todo.title,
-              description: todo.description || '',
-            }}
-          />
-          <StyledTodoUnder>
-            {todo.deadlineAt ? (
-              <StyledTodoDeadlineAt
-                color={colorizeDate(new Date(todo.deadlineAt))}
-              >
-                {formatToYYYYMMdd(new Date(todo.deadlineAt))}
-              </StyledTodoDeadlineAt>
-            ) : (
-              <p>{''}</p>
-            )}
-            <TodoIconBox />
-          </StyledTodoUnder>
-        </StyledTodo>
-      ))}
+      {(todoList ?? []).map(
+        (todo) =>
+          todo.status !== STATUS.DONE && (
+            <StyledTodo key={todo.id}>
+              <TodoEclipse
+                presentational={{
+                  title: todo.title,
+                  description: todo.description || '',
+                }}
+              />
+              <StyledTodoUnder>
+                {todo.deadlineAt ? (
+                  <StyledTodoDeadlineAt
+                    color={colorizeDate(new Date(todo.deadlineAt))}
+                  >
+                    {formatToYYYYMMdd(new Date(todo.deadlineAt))}
+                  </StyledTodoDeadlineAt>
+                ) : (
+                  <p>{''}</p>
+                )}
+                <TodoIconBox />
+              </StyledTodoUnder>
+            </StyledTodo>
+          ),
+      )}
     </StyledTodoList>
   );
 }

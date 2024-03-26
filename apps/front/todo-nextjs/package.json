@@ -77,7 +77,8 @@
     "typescript": "^5.3.3"
   },
   "resolutions": {
-    "styled-components": "^6"
+    "styled-components": "^6",
+    "jackspeak": "2.1.1"
   },
   "msw": {
     "workerDirectory": [

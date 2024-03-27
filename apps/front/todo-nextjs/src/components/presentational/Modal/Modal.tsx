@@ -1,10 +1,12 @@
 ﻿'use client';
 
 import styled from 'styled-components';
+
 import Icon from '~/components/container/Icon/Icon';
 
 type Props = {
   children: JSX.Element;
+  clickClose: () => void;
 };
 
 const StyledBackFloat = styled.div`
@@ -39,13 +41,16 @@ const StyledTodoContent = styled.div`
   padding: 40px 24px;
 `;
 
-export default function Modal({ children }: Props) {
+export default function Modal({ children, clickClose }: Props) {
   return (
     <StyledBackFloat>
       <StyledModalBox>
         <StyledContent>
           <StyledIcon>
-            <Icon presentational={{ name: 'Close', size: 32 }} />
+            <Icon
+              presentational={{ name: 'Close', size: 32 }}
+              clickIcon={clickClose}
+            />
           </StyledIcon>
           <StyledTodoContent>{children}</StyledTodoContent>
         </StyledContent>

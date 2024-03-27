@@ -51,6 +51,7 @@ export default function Top() {
                   title: todo.title,
                   description: todo.description || '',
                 }}
+                deadlineAt={todo.deadlineAt}
               />
               <StyledTodoUnder>
                 {todo.deadlineAt ? (

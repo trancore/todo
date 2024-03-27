@@ -1,11 +1,25 @@
 ﻿'use client';
 
+import { close } from '~/features/modal';
+
 import ModalPresentational from '~/components/presentational/Modal/Modal';
+
+import { useAppDispatch } from '~/hooks/useRedux';
 
 type Props = {
   children: JSX.Element;
 };
 
 export default function Modal({ children }: Props) {
-  return <ModalPresentational>{children}</ModalPresentational>;
+  const dispatch = useAppDispatch();
+
+  const clickClose = () => {
+    dispatch(close());
+  };
+
+  return (
+    <ModalPresentational clickClose={clickClose}>
+      {children}
+    </ModalPresentational>
+  );
 }

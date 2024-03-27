@@ -2,9 +2,11 @@
 
 import Error from '~/components/container/Error/Error';
 import Header from '~/components/container/Header/Header';
+import TodoDetail from '~/components/container/Modal/TodoDetail';
 
 type Props = {
   children: JSX.Element;
+  opendModal: boolean;
 };
 
 const StyledLayout = styled.div`
@@ -13,9 +15,10 @@ const StyledLayout = styled.div`
   max-width: 512px;
 `;
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children, opendModal }: Props) {
   return (
     <>
+      {opendModal && <TodoDetail />}
       <Header />
       <Error />
       <StyledLayout>{children}</StyledLayout>

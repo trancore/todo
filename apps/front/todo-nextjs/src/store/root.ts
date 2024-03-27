@@ -5,6 +5,7 @@ import { createWrapper } from 'next-redux-wrapper';
 import errorReducer from '~/features/error';
 import modalReducer from '~/features/modal';
 import toastReducer from '~/features/toast';
+import todoReducer from '~/features/todo';
 
 import { todoApi } from '~/services/todo';
 
@@ -18,6 +19,7 @@ export const rootStore = configureStore({
     [todoApi.reducerPath]: todoApi.reducer,
     error: errorReducer,
     modal: modalReducer,
+    todo: todoReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(todoApi.middleware),

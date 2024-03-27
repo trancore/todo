@@ -3,8 +3,8 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { createWrapper } from 'next-redux-wrapper';
 
 import errorReducer from '~/features/error';
+import modalReducer from '~/features/modal';
 import toastReducer from '~/features/toast';
-import todoModalReducer from '~/features/todoModal';
 
 import { todoApi } from '~/services/todo';
 
@@ -17,7 +17,7 @@ export const rootStore = configureStore({
     toast: toastReducer,
     [todoApi.reducerPath]: todoApi.reducer,
     error: errorReducer,
-    todoModal: todoModalReducer,
+    modal: modalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(todoApi.middleware),

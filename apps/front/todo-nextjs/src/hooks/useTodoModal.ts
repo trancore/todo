@@ -1,18 +1,18 @@
 ﻿import { TodoForm } from '~/types/todo';
 
-import { selectTodoModal } from '~/features/todoModal';
-import { close, open } from '~/features/todoModal';
+import { selectModal } from '~/features/modal';
+import { close, open } from '~/features/modal';
 
 import { useAppDispatch, useAppSelector } from '~/hooks/useRedux';
 
 export const useTodoModal = () => {
-  const store = useAppSelector(selectTodoModal);
+  const storeModal = useAppSelector(selectModal);
   const dispatch = useAppDispatch();
 
-  const isOpendModal = store.displayed;
+  const isOpendModal = storeModal.displayed;
 
   const openTodoModal = (todo: TodoForm) => {
-    dispatch(open(todo));
+    dispatch(open());
   };
 
   const closeTodoModal = () => {

@@ -1,13 +1,13 @@
 ﻿'use client';
 
-import { ComponentProps } from 'react';
+import { selectTodo } from '~/features/todo';
 
-import ModalPresentational from '~/components/presentational/Modal/Modal';
+import TodoDetailPresentational from '~/components/presentational/Modal/TodoDetail';
 
-type Props = {
-  presentational: ComponentProps<typeof ModalPresentational>;
-};
+import { useAppSelector } from '~/hooks/useRedux';
 
-export default function TodoModal({ presentational }: Props) {
-  return <ModalPresentational {...presentational} />;
+export default function TodoDetail() {
+  const store = useAppSelector(selectTodo);
+
+  return <TodoDetailPresentational {...store} />;
 }

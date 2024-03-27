@@ -17,10 +17,12 @@
     "generate:swagger-type:api": "openapi-typescript ./openapi.yaml -o ./src/types/openapi.ts"
   },
   "dependencies": {
+    "@formkit/tempo": "^0.0.17",
     "@hookform/resolvers": "^3.3.4",
     "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.8",
     "next": "14.0.4",
+    "next-redux-wrapper": "^8.1.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.49.2",
@@ -75,7 +77,8 @@
     "typescript": "^5.3.3"
   },
   "resolutions": {
-    "styled-components": "^6"
+    "styled-components": "^6",
+    "jackspeak": "2.1.1"
   },
   "msw": {
     "workerDirectory": [

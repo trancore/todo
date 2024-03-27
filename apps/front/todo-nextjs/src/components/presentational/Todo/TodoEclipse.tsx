@@ -3,7 +3,7 @@
 type Props = {
   title: string;
   description: string | undefined;
-  click: () => undefined;
+  click: () => void;
 };
 
 const StyledTodoEcipse = styled.div`

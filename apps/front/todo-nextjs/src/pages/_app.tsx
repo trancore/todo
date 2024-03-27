@@ -4,10 +4,10 @@ import { Provider } from 'react-redux';
 import reset from 'sanitize.css';
 import { createGlobalStyle } from 'styled-components';
 
-import { rootStore } from '~/store/root';
-
 import Layout from '~/components/container/Layout/Layout';
 import Toast from '~/components/container/Toast/Toast';
+
+import { useAppWrappedStore } from '~/hooks/useRedux';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -21,11 +21,13 @@ if (
 }
 
 export default function App({ Component, pageProps }: AppProps) {
+  const { store, props } = useAppWrappedStore(pageProps);
+
   return (
-    <Provider store={rootStore}>
+    <Provider store={store}>
       <GlobalStyle />
       <Layout>
-        <Component {...pageProps} />
+        <Component {...props} />
       </Layout>
       <Toast />
     </Provider>

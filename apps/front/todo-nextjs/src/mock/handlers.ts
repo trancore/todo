@@ -64,4 +64,7 @@ export const handlers = [
   http.post(`${process.env.TODO_API_URL}/todos`, async () => {
     return new HttpResponse(undefined, { status: 201 });
   }),
+  http.put(`${process.env.TODO_API_URL}/todos/:todoId/status`, async () => {
+    return new HttpResponse(undefined, { status: 204 });
+  }),
 ];

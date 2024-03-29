@@ -1,13 +1,23 @@
 ﻿import TodoIconBoxPresentation from '~/components/presentational/Todo/TodoIconBox';
 
-export default function TodoIconBox() {
+import { STATUS } from '~/constants';
+
+import { useChangeStatusTodoMutation } from '~/services/todo';
+
+type Props = {
+  todoId: number;
+};
+
+export default function TodoIconBox({ todoId }: Props) {
+  const [changeTodoStatus] = useChangeStatusTodoMutation();
+
   const uncheck = {
     has: false,
     click: () => {},
   };
   const check = {
     has: true,
-    click: () => {},
+    click: () => changeTodoStatus({ todo_Id: todoId, status: STATUS.DONE }),
   };
   const squareEdit = {
     has: true,

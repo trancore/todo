@@ -13,6 +13,11 @@ type GetTodosResponse =
 type PostTodoRequest =
   paths['/todos']['post']['requestBody']['content']['application/json'];
 type PostTodoResponse = undefined;
+type PutTodosTodoIdStatusPath =
+  paths['/todos/{todo_id}/status']['put']['parameters']['path'];
+type PutTodosTodoIdStatusRequest =
+  paths['/todos/{todo_id}/status']['put']['requestBody']['content']['application/json'];
+type PutTodosTodoIdStatusResponse = undefined;
 
 function isHydrateAction(action: Action): action is PayloadAction<RootState> {
   return action.type === HYDRATE;
@@ -42,12 +47,25 @@ export const todoApi = createApi({
         },
       }),
     }),
+    changeStatusTodo: builder.mutation<
+      PutTodosTodoIdStatusResponse,
+      PutTodosTodoIdStatusPath & PutTodosTodoIdStatusRequest
+    >({
+      query: ({ todo_Id: todoId, status }) => ({
+        url: `/todos/${todoId}/status`,
+        method: 'put',
+        data: {
+          status,
+        },
+      }),
+    }),
   }),
 });
 
 export const {
   useGetTodosQuery,
   useCreateTodoMutation,
+  useChangeStatusTodoMutation,
   util: { getRunningQueriesThunk },
 } = todoApi;
 export const { getTodos } = todoApi.endpoints;

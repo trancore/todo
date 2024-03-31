@@ -22,3 +22,12 @@ export type PutTodosTodoIdResponse =
 
 export type DeleteTodosTodoIdResponse =
   paths['/todos/{todo_id}']['delete']['responses']['204']['content'];
+
+export type PutTodosTodoIdStatusParams =
+  paths['/todos/{todo_id}/status']['parameters']['path'];
+
+export type PutTodosTodoIdStatusRequest =
+  paths['/todos/{todo_id}/status']['put']['requestBody']['content']['application/json'];
+
+export type PutTodosTodoIdStatusResponse =
+  paths['/todos/{todo_id}/status']['put']['responses']['204']['content'];

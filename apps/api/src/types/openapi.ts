@@ -1393,7 +1393,7 @@ export interface paths {
            * @description TodoID
            * @example 1
            */
-          todo_Id: number;
+          todo_id: string;
         };
       };
       /** @description Todo状態 */
@@ -1564,7 +1564,7 @@ export interface paths {
          * @description TodoID
          * @example 1
          */
-        todo_Id: number;
+        todo_id: string;
       };
     };
   };

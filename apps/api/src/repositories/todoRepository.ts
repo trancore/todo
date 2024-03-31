@@ -1,6 +1,10 @@
 ﻿import { PrismaClient } from '@prisma/client';
 
-import { PostTodoRequest, PutTodosTodoIdRequest } from '../types/api/todos';
+import {
+  PostTodoRequest,
+  PutTodosTodoIdRequest,
+  PutTodosTodoIdStatusRequest,
+} from '../types/api/todos';
 
 export const todoRepository = async () => {
   const prisma = new PrismaClient();
@@ -59,5 +63,26 @@ export const todoRepository = async () => {
     });
   };
 
-  return { findTodo, findAllTodos, createTodo, updateTodo, deleteTodo };
+  const putTodoStatus = async (
+    todoId: number,
+    { status }: PutTodosTodoIdStatusRequest,
+  ) => {
+    await prisma.todo.update({
+      where: {
+        id: todoId,
+      },
+      data: {
+        status: status,
+      },
+    });
+  };
+
+  return {
+    findTodo,
+    findAllTodos,
+    createTodo,
+    updateTodo,
+    deleteTodo,
+    putTodoStatus,
+  };
 };

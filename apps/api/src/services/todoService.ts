@@ -3,6 +3,7 @@
   GetTodosTodoIdResponse,
   PostTodoRequest,
   PutTodosTodoIdRequest,
+  PutTodosTodoIdStatusRequest,
 } from '../types/api/todos';
 
 import { todoRepository } from '../repositories/todoRepository';
@@ -14,6 +15,7 @@ export const todoService = async () => {
     createTodo,
     updateTodo,
     deleteTodo: deleteTodoRepository,
+    putTodoStatus: putTodoStatusRepository,
   } = await todoRepository();
 
   const getTodo = async (
@@ -109,5 +111,22 @@ export const todoService = async () => {
     }
   };
 
-  return { getTodo, getTodos, postTodo, putTodo, deleteTodo };
+  const putTodoStatus = async (
+    todoId: string,
+    status: PutTodosTodoIdStatusRequest,
+  ) => {
+    try {
+      const todoIdNum = Number(todoId);
+      if (!todoIdNum) {
+        // TODO 一旦適当に定義
+        throw Error;
+      }
+
+      await putTodoStatusRepository(todoIdNum, status);
+    } catch (error) {
+      // TODO 一旦適当にエラーを定義
+    }
+  };
+
+  return { getTodo, getTodos, postTodo, putTodo, deleteTodo, putTodoStatus };
 };

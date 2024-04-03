@@ -36,45 +36,44 @@ const StyledTodoDeadlineAt = styled.p<{ color: string }>`
 `;
 
 export default function Top() {
-  const { data: todoList } = useGetTodosQuery();
+  const { data: todoList } = useGetTodosQuery(`${STATUS.TODO},${STATUS.WIP}`, {
+    refetchOnMountOrArgChange: true,
+  });
 
   const { formatToYYYYMMdd, colorizeDate } = dateFormat();
 
   return (
     <StyledTodoList>
-      {(todoList ?? []).map(
-        (todo) =>
-          todo.status !== STATUS.DONE && (
-            <StyledTodo key={todo.id}>
-              <TodoEclipse
-                presentational={{
-                  title: todo.title,
-                  description: todo.description || '',
-                }}
-                deadlineAt={todo.deadlineAt}
-              />
-              <StyledTodoUnder>
-                {todo.deadlineAt ? (
-                  <StyledTodoDeadlineAt
-                    color={colorizeDate(new Date(todo.deadlineAt))}
-                  >
-                    {formatToYYYYMMdd(new Date(todo.deadlineAt))}
-                  </StyledTodoDeadlineAt>
-                ) : (
-                  <p>{''}</p>
-                )}
-                <TodoIconBox todoId={todo.id} />
-              </StyledTodoUnder>
-            </StyledTodo>
-          ),
-      )}
+      {(todoList || []).map((todo) => (
+        <StyledTodo key={todo.id}>
+          <TodoEclipse
+            presentational={{
+              title: todo.title,
+              description: todo.description || '',
+            }}
+            deadlineAt={todo.deadlineAt}
+          />
+          <StyledTodoUnder>
+            {todo.deadlineAt ? (
+              <StyledTodoDeadlineAt
+                color={colorizeDate(new Date(todo.deadlineAt))}
+              >
+                {formatToYYYYMMdd(new Date(todo.deadlineAt))}
+              </StyledTodoDeadlineAt>
+            ) : (
+              <p>{''}</p>
+            )}
+            <TodoIconBox todoId={todo.id} />
+          </StyledTodoUnder>
+        </StyledTodo>
+      ))}
     </StyledTodoList>
   );
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
-    store.dispatch(getTodos.initiate());
+    await store.dispatch(getTodos.initiate(`${STATUS.TODO},${STATUS.WIP}`));
     await Promise.all(store.dispatch(getRunningQueriesThunk()));
 
     return { props: '' };

@@ -8,6 +8,8 @@ import { todoAxiosBaseQuery } from '~/libs/reduxQuery';
 
 import { RootState } from '~/store/root';
 
+import { STATUS } from '~/constants';
+
 type GetTodosResponse =
   paths['/todos']['get']['responses']['200']['content']['application/json'];
 type PostTodoRequest =
@@ -33,8 +35,8 @@ export const todoApi = createApi({
     }
   },
   endpoints: (builder) => ({
-    getTodos: builder.query<GetTodosResponse, void>({
-      query: () => ({ url: '/todos', method: 'get' }),
+    getTodos: builder.query<GetTodosResponse, string>({
+      query: (status) => ({ url: `/todos?status=${status}`, method: 'get' }),
     }),
     createTodo: builder.mutation<PostTodoResponse, PostTodoRequest>({
       query: ({ title, description, deadlineAt }) => ({
@@ -58,6 +60,17 @@ export const todoApi = createApi({
           status,
         },
       }),
+      async onQueryStarted({ todo_Id }, { dispatch }) {
+        dispatch(
+          todoApi.util.updateQueryData(
+            'getTodos',
+            `${STATUS.TODO},${STATUS.WIP}`,
+            (draft) => {
+              return draft.filter((value) => value.id !== todo_Id);
+            },
+          ),
+        );
+      },
     }),
   }),
 });

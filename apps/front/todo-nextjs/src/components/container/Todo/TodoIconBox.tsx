@@ -17,7 +17,9 @@ export default function TodoIconBox({ todoId }: Props) {
   };
   const check = {
     has: true,
-    click: () => changeTodoStatus({ todo_Id: todoId, status: STATUS.DONE }),
+    click: async () => {
+      await changeTodoStatus({ todo_Id: todoId, status: STATUS.DONE });
+    },
   };
   const squareEdit = {
     has: true,

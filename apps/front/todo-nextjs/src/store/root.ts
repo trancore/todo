@@ -25,6 +25,6 @@ export const rootStore = configureStore({
     getDefaultMiddleware().concat(todoApi.middleware),
 });
 
-export const wrapper = createWrapper<AppStore>(() => rootStore, {});
+export const wrapper = createWrapper<AppStore>(() => rootStore);
 
 setupListeners(rootStore.dispatch);

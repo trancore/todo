@@ -1,4 +1,4 @@
-﻿import { PrismaClient } from '@prisma/client';
+﻿import { $Enums, Prisma, PrismaClient } from '@prisma/client';
 
 import {
   PostTodoRequest,
@@ -17,8 +17,14 @@ export const todoRepository = async () => {
     });
   };
 
-  const findAllTodos = async () => {
-    return await prisma.todo.findMany();
+  const findAllTodos = async (statusList: $Enums.STATUS[] | undefined) => {
+    return await prisma.todo.findMany({
+      where: {
+        OR: statusList?.map((stat) => {
+          return { status: stat };
+        }),
+      },
+    });
   };
 
   const createTodo = async ({

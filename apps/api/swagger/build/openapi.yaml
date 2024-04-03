@@ -653,6 +653,12 @@ paths:
       tags:
         - Todos
       deprecated: false
+      parameters:
+        - in: query
+          name: status
+          schema:
+            type: string
+          description: Todo状態
       responses:
         '200':
           description: 成功

@@ -2,6 +2,7 @@
 
 import {
   DeleteTodosTodoIdResponse,
+  GetTodosParams,
   GetTodosResponse,
   GetTodosTodoIdResponse,
   PostTodoRequest,
@@ -27,10 +28,11 @@ const { getTodo, getTodos, postTodo, putTodo, deleteTodo, putTodoStatus } =
 todoController.get(
   '/todos',
   async (
-    req: Request<undefined, GetTodosResponse, undefined, undefined>,
+    req: Request<undefined, GetTodosResponse, undefined, GetTodosParams>,
     res: Response<GetTodosResponse>,
   ) => {
-    const todos = await getTodos();
+    const { query } = req;
+    const todos = await getTodos(query);
     res.json(todos);
   },
 );

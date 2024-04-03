@@ -1,5 +1,7 @@
 ﻿import { paths } from '../openapi';
 
+export type GetTodosParams = paths['/todos']['get']['parameters']['query'];
+
 export type GetTodosResponse =
   paths['/todos']['get']['responses']['200']['content']['application/json'];
 

@@ -1,4 +1,7 @@
-﻿import {
+﻿import { $Enums } from '@prisma/client';
+
+import {
+  GetTodosParams,
   GetTodosResponse,
   GetTodosTodoIdResponse,
   PostTodoRequest,
@@ -50,9 +53,13 @@ export const todoService = async () => {
     }
   };
 
-  const getTodos = async (): Promise<GetTodosResponse | undefined> => {
+  const getTodos = async (
+    params: GetTodosParams,
+  ): Promise<GetTodosResponse | undefined> => {
+    const status = params?.status?.split(',') as $Enums.STATUS[] | undefined;
+
     try {
-      const todos = await findAllTodos();
+      const todos = await findAllTodos(status);
       if (!todos || todos.length < 1) {
         // TODO 一旦適当にエラーを定義
         throw Error;

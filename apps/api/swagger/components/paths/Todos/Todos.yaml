@@ -3,6 +3,13 @@ get:
   tags:
     - Todos
   deprecated: false
+  parameters:
+    - in: query
+      name: status
+      schema:
+        type: string
+        example: WIP,TODO
+      description: Todo状態。複数の状態を指定する場合は、","で区切る。
   responses:
     '200':
       $ref: '../../responses/Todos/GetTodos.yaml'

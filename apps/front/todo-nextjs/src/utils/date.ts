@@ -1,4 +1,12 @@
-﻿import { addDay, format, isAfter, isBefore, isEqual } from '@formkit/tempo';
+﻿import {
+  addDay,
+  format,
+  isAfter,
+  isBefore,
+  isEqual,
+  sameDay,
+  sameYear,
+} from '@formkit/tempo';
 
 /**
  * 日付変換用ユーティーリティー
@@ -20,22 +28,22 @@ export function dateFormat() {
    */
   function colorizeDate(deadlineAt: Date) {
     const now = new Date();
-    const beforeThreeDay = addDay(now, -4);
-    const beforeSevenDay = addDay(now, -8);
+    const afterThreeDay = addDay(now, 3);
+    const afterSevenDay = addDay(now, 6);
 
-    if (isAfter(deadlineAt, now)) {
-      // 期限切れ
-      return '#ff0000';
-    }
-    if (isEqual(deadlineAt, now)) {
+    if (format(deadlineAt, 'YYYY-MM-DD') === format(now, 'YYYY-MM-DD')) {
       // 当日
       return '#ff4500';
     }
-    if (isAfter(deadlineAt, beforeThreeDay)) {
+    if (isBefore(deadlineAt, now)) {
+      // 期限切れ
+      return '#ff0000';
+    }
+    if (isBefore(deadlineAt, afterThreeDay)) {
       // 3日前
       return '#bdb76b';
     }
-    if (isAfter(deadlineAt, beforeSevenDay)) {
+    if (isBefore(deadlineAt, afterSevenDay)) {
       // 7日前
       return '#008000';
     }

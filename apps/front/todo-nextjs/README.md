@@ -109,6 +109,12 @@ fetchした情報をキャッシュに保持するには、`services`としてfe
 
 SSRで使う場合は、[next-redux-wrapper](https://github.com/kirill-konshin/next-redux-wrapper)を使う[方法が公式で説明されています](https://redux-toolkit.js.org/rtk-query/usage/server-side-rendering)。
 
+mutationによって情報の削除や更新を行った場合、storeに保持しているキャッシュも同様に更新を行う必要があります。データ連携をするには、[RTK Query - Automated re-fetching](https://redux-toolkit.js.org/rtk-query/usage/automated-refetching)の章に説明されていますが、cache tagを使うと良いみたいです。
+
+しかし本アプリで使用したところ、Todoを完了した後にTodo取得APIを再度callしても、完了状態前のTodoを取得してきてしまい、情報の更新が行えませんでした。
+
+そのため、actionが実行された後に処理を行うonQueryStartedメソッドを使用しました。そのメソッド内で、キャッシュに保存しているTodoを完了状態にしたTodoのIDでフィルタし、キャッシュの更新を行っています。
+
 ##### fetchのエラーハンドリング
 
 RTK Queryのエラーハンドリングは、fetch hooksから`unwrap`関数をチェーンして`then`関数、`catch`関数を使ってエラーハンドリングを行います。

@@ -7,6 +7,8 @@ import {
   useDeleteTodoMutation,
 } from '~/services/todo';
 
+import { useToast } from '~/hooks/useToast';
+
 type Props = {
   todoId: number;
 };
@@ -14,6 +16,7 @@ type Props = {
 export default function TodoIconBox({ todoId }: Props) {
   const [changeTodoStatus] = useChangeStatusTodoMutation();
   const [deleteTodo] = useDeleteTodoMutation();
+  const { hookToast } = useToast();
 
   const uncheck = {
     has: false,
@@ -23,6 +26,8 @@ export default function TodoIconBox({ todoId }: Props) {
     has: true,
     click: async () => {
       await changeTodoStatus({ todo_id: String(todoId), status: STATUS.DONE });
+
+      hookToast('TODOを完了にしました');
     },
   };
   const squareEdit = {
@@ -33,6 +38,8 @@ export default function TodoIconBox({ todoId }: Props) {
     has: true,
     click: async () => {
       await deleteTodo({ todo_id: String(todoId) });
+
+      hookToast('TODOを削除しました');
     },
   };
 

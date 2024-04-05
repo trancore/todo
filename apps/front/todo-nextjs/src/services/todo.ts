@@ -15,6 +15,9 @@ type GetTodosResponse =
 type PostTodoRequest =
   paths['/todos']['post']['requestBody']['content']['application/json'];
 type PostTodoResponse = undefined;
+type DeleteTodosTodoIdParams =
+  paths['/todos/{todo_id}']['delete']['parameters']['path'];
+type DeleteTodosTodoIdResponse = undefined;
 type PutTodosTodoIdStatusPath =
   paths['/todos/{todo_id}/status']['put']['parameters']['path'];
 type PutTodosTodoIdStatusRequest =
@@ -53,20 +56,20 @@ export const todoApi = createApi({
       PutTodosTodoIdStatusResponse,
       PutTodosTodoIdStatusPath & PutTodosTodoIdStatusRequest
     >({
-      query: ({ todo_Id: todoId, status }) => ({
+      query: ({ todo_id: todoId, status }) => ({
         url: `/todos/${todoId}/status`,
         method: 'put',
         data: {
           status,
         },
       }),
-      async onQueryStarted({ todo_Id }, { dispatch }) {
+      async onQueryStarted({ todo_id: todoId }, { dispatch }) {
         dispatch(
           todoApi.util.updateQueryData(
             'getTodos',
             `${STATUS.TODO},${STATUS.WIP}`,
             (draft) => {
-              return draft.filter((value) => value.id !== todo_Id);
+              return draft.filter((value) => value.id !== Number(todoId));
             },
           ),
         );

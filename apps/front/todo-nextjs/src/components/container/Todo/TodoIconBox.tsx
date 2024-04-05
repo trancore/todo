@@ -2,7 +2,10 @@
 
 import { STATUS } from '~/constants';
 
-import { useChangeStatusTodoMutation } from '~/services/todo';
+import {
+  useChangeStatusTodoMutation,
+  useDeleteTodoMutation,
+} from '~/services/todo';
 
 type Props = {
   todoId: number;
@@ -10,6 +13,7 @@ type Props = {
 
 export default function TodoIconBox({ todoId }: Props) {
   const [changeTodoStatus] = useChangeStatusTodoMutation();
+  const [deleteTodo] = useDeleteTodoMutation();
 
   const uncheck = {
     has: false,
@@ -27,7 +31,9 @@ export default function TodoIconBox({ todoId }: Props) {
   };
   const trashCan = {
     has: true,
-    click: () => {},
+    click: async () => {
+      await deleteTodo({ todo_id: String(todoId) });
+    },
   };
 
   return (

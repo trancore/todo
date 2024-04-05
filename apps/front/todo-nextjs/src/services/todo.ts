@@ -52,6 +52,26 @@ export const todoApi = createApi({
         },
       }),
     }),
+    deleteTodo: builder.mutation<
+      DeleteTodosTodoIdResponse,
+      DeleteTodosTodoIdParams
+    >({
+      query: ({ todo_id: todoId }) => ({
+        url: `/todos/${todoId}`,
+        method: 'delete',
+      }),
+      async onQueryStarted({ todo_id }, { dispatch }) {
+        dispatch(
+          todoApi.util.updateQueryData(
+            'getTodos',
+            `${STATUS.TODO},${STATUS.WIP}`,
+            (draft) => {
+              return draft.filter((value) => value.id !== Number(todo_id));
+            },
+          ),
+        );
+      },
+    }),
     changeStatusTodo: builder.mutation<
       PutTodosTodoIdStatusResponse,
       PutTodosTodoIdStatusPath & PutTodosTodoIdStatusRequest
@@ -81,6 +101,7 @@ export const todoApi = createApi({
 export const {
   useGetTodosQuery,
   useCreateTodoMutation,
+  useDeleteTodoMutation,
   useChangeStatusTodoMutation,
   util: { getRunningQueriesThunk },
 } = todoApi;

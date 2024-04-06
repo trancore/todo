@@ -1,4 +1,4 @@
-﻿import { TodoForm } from '~/types/todo';
+﻿import { ModelType, TodoForm } from '~/types/todo';
 
 import { selectModal } from '~/features/modal';
 import { close, open } from '~/features/modal';
@@ -6,14 +6,15 @@ import { release, select } from '~/features/todo';
 
 import { useAppDispatch, useAppSelector } from '~/hooks/useRedux';
 
-export const useTodoModal = () => {
+export const useTodoModal = (type: ModelType) => {
   const storeModal = useAppSelector(selectModal);
   const dispatch = useAppDispatch();
 
-  const isOpendModal = storeModal.displayed;
+  const isOpendDetailModal = storeModal.displayedDetail;
+  const isOpendEditModal = storeModal.displayedEdit;
 
   const openTodoModal = (todo: TodoForm) => {
-    dispatch(open());
+    dispatch(open({ type: type }));
     dispatch(select(todo));
   };
 
@@ -22,5 +23,10 @@ export const useTodoModal = () => {
     dispatch(release());
   };
 
-  return { isOpendModal, openTodoModal, closeTodoModal };
+  return {
+    isOpendDetailModal,
+    isOpendEditModal,
+    openTodoModal,
+    closeTodoModal,
+  };
 };

@@ -4,3 +4,9 @@ export const STATUS = {
   WIP: 'WIP',
   DONE: 'DONE',
 } as const;
+
+/** モーダルタイプ */
+export const TYPE = {
+  DETAIL: 'DETAIL',
+  EDIT: 'EDIT',
+} as const;

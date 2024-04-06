@@ -1,4 +1,6 @@
-﻿/**
+﻿import { TYPE } from '~/constants';
+
+/**
  * TODO Form用型
  */
 export type TodoForm = {
@@ -9,3 +11,8 @@ export type TodoForm = {
   /** 対応期限 */
   deadlineAt?: string;
 };
+
+/**
+ * Todo Modalの種類
+ */
+export type ModelType = typeof TYPE.DETAIL | typeof TYPE.EDIT;

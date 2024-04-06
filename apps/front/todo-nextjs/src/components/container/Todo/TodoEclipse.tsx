@@ -2,6 +2,8 @@
 
 import TextEclipsePresentation from '~/components/presentational/Todo/TodoEclipse';
 
+import { TYPE } from '~/constants';
+
 import { useTodoModal } from '~/hooks/useTodoModal';
 
 type Props = {
@@ -11,7 +13,7 @@ type Props = {
 
 export default function TodoEclipse({ presentational, deadlineAt }: Props) {
   const { title, description } = presentational;
-  const { openTodoModal } = useTodoModal();
+  const { openTodoModal } = useTodoModal(TYPE.DETAIL);
 
   function openModal() {
     openTodoModal({ title, description, deadlineAt });

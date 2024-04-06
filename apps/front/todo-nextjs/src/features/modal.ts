@@ -1,18 +1,29 @@
 ﻿import { createSlice } from '@reduxjs/toolkit';
 
+import { ModelType } from '~/types/todo';
+
 import { RootState } from '~/store/root';
 
 export const modalSlice = createSlice({
   name: 'modal',
   initialState: {
-    displayed: false,
+    displayedDetail: false,
+    displayedEdit: false,
   },
   reducers: {
-    open: (state) => {
-      state.displayed = true;
+    open: (state, action: { payload: { type: ModelType } }) => {
+      if (action.payload.type === 'DETAIL') {
+        state.displayedDetail = true;
+      }
+      if (action.payload.type === 'EDIT') {
+        state.displayedEdit = true;
+      }
+
+      // typeが無い場合は何もしない
     },
     close: (state) => {
-      state.displayed = false;
+      state.displayedDetail = false;
+      state.displayedEdit = false;
     },
   },
 });

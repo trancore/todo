@@ -6,7 +6,8 @@ import TodoDetail from '~/components/container/Modal/TodoDetail';
 
 type Props = {
   children: JSX.Element;
-  opendModal: boolean;
+  opendTodoDetailModal: boolean;
+  opendTodoEditModal: boolean;
 };
 
 const StyledLayout = styled.div`
@@ -15,10 +16,15 @@ const StyledLayout = styled.div`
   max-width: 512px;
 `;
 
-export default function Layout({ children, opendModal }: Props) {
+export default function Layout({
+  children,
+  opendTodoDetailModal,
+  opendTodoEditModal,
+}: Props) {
   return (
     <>
-      {opendModal && <TodoDetail />}
+      {opendTodoDetailModal && <TodoDetail />}
+      {/* {opendTodoEditModal && <TodoEdit />} */}
       <Header />
       <Error />
       <StyledLayout>{children}</StyledLayout>

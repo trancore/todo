@@ -10,9 +10,13 @@ type Props = {
 
 export default function Layout({ children }: Props) {
   const store = useAppSelector(selectModal);
+  const { displayedDetail, displayedEdit } = store;
 
   return (
-    <LayoutPresentational opendModal={store.displayed}>
+    <LayoutPresentational
+      opendTodoDetailModal={displayedDetail}
+      opendTodoEditModal={displayedEdit}
+    >
       {children}
     </LayoutPresentational>
   );

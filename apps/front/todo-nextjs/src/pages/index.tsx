@@ -63,7 +63,7 @@ export default function Top() {
             ) : (
               <p>{''}</p>
             )}
-            <TodoIconBox todoId={todo.id} />
+            <TodoIconBox todoId={todo.id} todoForm={todo} />
           </StyledTodoUnder>
         </StyledTodo>
       ))}

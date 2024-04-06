@@ -3,6 +3,7 @@
 import Error from '~/components/container/Error/Error';
 import Header from '~/components/container/Header/Header';
 import TodoDetail from '~/components/container/Modal/TodoDetail';
+import TodoEdit from '~/components/container/Modal/TodoEdit';
 
 type Props = {
   children: JSX.Element;
@@ -24,7 +25,7 @@ export default function Layout({
   return (
     <>
       {opendTodoDetailModal && <TodoDetail />}
-      {/* {opendTodoEditModal && <TodoEdit />} */}
+      {opendTodoEditModal && <TodoEdit />}
       <Header />
       <Error />
       <StyledLayout>{children}</StyledLayout>

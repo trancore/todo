@@ -1,4 +1,6 @@
-﻿import TodoIconBoxPresentation from '~/components/presentational/Todo/TodoIconBox';
+﻿import { TodoForm } from '~/types/todo';
+
+import TodoIconBoxPresentation from '~/components/presentational/Todo/TodoIconBox';
 
 import { STATUS } from '~/constants';
 
@@ -8,15 +10,18 @@ import {
 } from '~/services/todo';
 
 import { useToast } from '~/hooks/useToast';
+import { useTodoModal } from '~/hooks/useTodoModal';
 
 type Props = {
   todoId: number;
+  todoForm: TodoForm;
 };
 
-export default function TodoIconBox({ todoId }: Props) {
+export default function TodoIconBox({ todoId, todoForm }: Props) {
   const [changeTodoStatus] = useChangeStatusTodoMutation();
   const [deleteTodo] = useDeleteTodoMutation();
   const { hookToast } = useToast();
+  const { openTodoModal: openTodoEditModal } = useTodoModal('EDIT');
 
   const uncheck = {
     has: false,
@@ -32,7 +37,9 @@ export default function TodoIconBox({ todoId }: Props) {
   };
   const squareEdit = {
     has: true,
-    click: () => {},
+    click: () => {
+      openTodoEditModal(todoForm);
+    },
   };
   const trashCan = {
     has: true,

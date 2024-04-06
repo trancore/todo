@@ -653,6 +653,12 @@ paths:
       tags:
         - Todos
       deprecated: false
+      parameters:
+        - in: query
+          name: status
+          schema:
+            type: string
+          description: Todo状態
       responses:
         '200':
           description: 成功
@@ -1983,12 +1989,12 @@ paths:
                   - instance
   '/todos/{todo_id}/status':
     parameters:
-      - name: todo_Id
+      - name: todo_id
         description: TodoID
         in: path
         required: true
         schema:
-          type: integer
+          type: string
         example: 1
     put:
       summary: TODO-006 Todo状態更新

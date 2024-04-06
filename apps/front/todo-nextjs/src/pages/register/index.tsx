@@ -4,6 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
+import { TodoForm } from '~/types/todo';
+
 import yup from '~/libs/yup';
 
 import { hide as hideError, show as showError } from '~/features/error';
@@ -20,12 +22,6 @@ import { PAGE_PATH } from '~/constants';
 import { useCreateTodoMutation } from '~/services/todo';
 
 import { useAppDispatch } from '~/hooks/useRedux';
-
-type Inputs = {
-  title: string;
-  description?: string;
-  deadlineAt?: string;
-};
 
 const inputsSchema = yup.object().shape({
   title: yup.string().todoText(),
@@ -47,7 +43,7 @@ export default function Register() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>({
+  } = useForm<TodoForm>({
     mode: 'onChange',
     resolver: yupResolver(inputsSchema),
   });
@@ -55,7 +51,7 @@ export default function Register() {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  const submit: SubmitHandler<Inputs> = (inputs) => {
+  const submit: SubmitHandler<TodoForm> = (inputs) => {
     createTodo(inputs)
       .unwrap()
       .then(() => {

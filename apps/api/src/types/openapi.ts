@@ -501,6 +501,12 @@ export interface paths {
   "/todos": {
     /** TODO-001 Todo一覧取得 */
     get: {
+      parameters: {
+        query?: {
+          /** @description Todo状態 */
+          status?: string;
+        };
+      };
       responses: {
         /** @description 成功 */
         200: {
@@ -1393,7 +1399,7 @@ export interface paths {
            * @description TodoID
            * @example 1
            */
-          todo_Id: number;
+          todo_id: string;
         };
       };
       /** @description Todo状態 */
@@ -1564,7 +1570,7 @@ export interface paths {
          * @description TodoID
          * @example 1
          */
-        todo_Id: number;
+        todo_id: string;
       };
     };
   };

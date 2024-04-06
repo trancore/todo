@@ -63,7 +63,13 @@ Next.js では、CSS として `Styled-component`を使用するため、ロジ�
 
 ### 4.JavaScript 実装
 
-#### Formライブラリとバリデーション
+#### JavaScript実装時の共通実装
+
+JavaScriptを実装するとき、共通仕様として実装する必要があります。これを各個人がそれぞれに実装しようとすると、車輪の発明を行なってしまったり、統一されていないコードを生み出してしまいます。
+
+そのため、ある程度は先に実装しておく必要があります。
+
+##### Formライブラリとバリデーション
 
 Formライブラリには、[React-Hooks-Form](https://react-hook-form.com/get-started)を使用しています。以前から使用しているライブラリであり、後述するバリデーションスキーマである[yup](https://github.com/jquense/yup)の導入も既知であるため使用しています。他ライブラリを使用する理由がなかったため、React-Hooks-Formを選択しました。
 
@@ -73,7 +79,7 @@ Formライブラリには、[React-Hooks-Form](https://react-hook-form.com/get-s
 
 React-Hooks-Formとyupの実装は、[src/pages/register/index.tsx](/apps/front/todo-nextjs/src/pages/register/index.tsx)を参考にしてください。
 
-#### Reduxによる状態管理
+##### Reduxによる状態管理
 
 [Redux](https://redux.js.org/introduction/getting-started)は以下のデータフローによって状態を管理しています。
 
@@ -93,7 +99,7 @@ React-Hooks-Formとyupの実装は、[src/pages/register/index.tsx](/apps/front/
 
 そして、上記で定義した`Store`や`State`の情報を型情報として持つために、`dispatch`, `Store`を取得するための`hooks`を作成しています（[hooksの例](/apps/front/todo-nextjs/src/hooks/useRedux.ts)）。
 
-#### RTK Queryを使ったfetchとキャッシュ保持
+##### RTK Queryを使ったfetchとキャッシュ保持
 
 [RTK Query](https://redux.js.org/introduction/getting-started)は、fetchしたデータを上記のstore機構を使ってキャッシュを保持しているのではないか、と思う。。（ここは、公式ドキュメントを確認する）。
 
@@ -103,11 +109,29 @@ fetchした情報をキャッシュに保持するには、`services`としてfe
 
 SSRで使う場合は、[next-redux-wrapper](https://github.com/kirill-konshin/next-redux-wrapper)を使う[方法が公式で説明されています](https://redux-toolkit.js.org/rtk-query/usage/server-side-rendering)。
 
-#### fetchのエラーハンドリング
+mutationによって情報の削除や更新を行った場合、storeに保持しているキャッシュも同様に更新を行う必要があります。データ連携をするには、[RTK Query - Automated re-fetching](https://redux-toolkit.js.org/rtk-query/usage/automated-refetching)の章に説明されていますが、cache tagを使うと良いみたいです。
+
+しかし本アプリで使用したところ、Todoを完了した後にTodo取得APIを再度callしても、完了状態前のTodoを取得してきてしまい、情報の更新が行えませんでした。
+
+そのため、actionが実行された後に処理を行うonQueryStartedメソッドを使用しました。そのメソッド内で、キャッシュに保存しているTodoを完了状態にしたTodoのIDでフィルタし、キャッシュの更新を行っています。
+
+##### fetchのエラーハンドリング
 
 RTK Queryのエラーハンドリングは、fetch hooksから`unwrap`関数をチェーンして`then`関数、`catch`関数を使ってエラーハンドリングを行います。
 
-#### mock server
+##### mock server
 
 mswは、API fetchをinterceptすることで、リクエストやレスポンスなどを代替して通信します。
 json-serverのようなThird Partyライブラリによるサーバの起動やNextのAPI Routesを使わない場合は、[/src/mock/server.ts](/apps/front/todo-nextjs/src/mock/server.ts)と[/src/mock/browser.ts](/apps/front/todo-nextjs/src/mock/browser.ts)を用意し、サーバレンダリング時やクライアントレンダリング後のfetchをinterceptできるようにする必要があります。
+
+##### RTK QueryのSSR対応
+
+RTK Queryを使ってSSRでfetchする場合は、以下を参考にしてください。
+
+- [RTK Query - Server Side Rendering](https://redux-toolkit.js.org/rtk-query/usage/server-side-rendering)
+
+ある程度省略しますが、Page Routerの場合、`getStaticProps`や`getServerSideProps`内でAPIをfetchしてstoreの初期値に情報を設定します。そして、Promiseを使ってfetchが終わるまで待たせます。
+
+この時、rootコンポーネントで設定しているstoreを、server sideで取得した情報が保存されたstoreを使うようにする必要があります。そのために、storeをwrapし、そのラッパー関数から`getServerSideProps`や`getStaticProps`を使ってstoreにfetchしたデータを保存させます。そして、wrapしたstoreをhooksでrootコンポーネントに設定します。これを設定しないと、SSR時にhydrationエラーが発生するので注意してください。
+
+また、`createApi`を呼び出す際に、`extractRehydrationInfo`オプションに再ハイドレーションの設定をします。

@@ -1,4 +1,5 @@
 ﻿import styled from 'styled-components';
+
 import Icon from '~/components/container/Icon/Icon';
 
 type Props = {

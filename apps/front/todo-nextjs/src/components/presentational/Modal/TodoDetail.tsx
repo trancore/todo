@@ -10,7 +10,7 @@ import { dateFormat } from '~/utils/date';
 type Props = {
   title: string;
   description: string | undefined;
-  deadline: Date | undefined;
+  deadlineAt: string | undefined;
 };
 
 const StyledButtonBox = styled.div`
@@ -33,10 +33,12 @@ const StyledContent = styled.div`
   }
 `;
 
-export default function TodoDetail({ title, description, deadline }: Props) {
+export default function TodoDetail({ title, description, deadlineAt }: Props) {
   const { formatToYYYYMMdd } = dateFormat();
 
-  const formattedDeadline = deadline ? formatToYYYYMMdd(deadline) : '';
+  const formattedDeadline = deadlineAt
+    ? formatToYYYYMMdd(new Date(deadlineAt))
+    : '';
 
   return (
     <Modal>

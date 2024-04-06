@@ -2,16 +2,21 @@
 
 import TextEclipsePresentation from '~/components/presentational/Todo/TodoEclipse';
 
+import { TYPE } from '~/constants';
+
+import { useTodoModal } from '~/hooks/useTodoModal';
+
 type Props = {
   presentational: Omit<ComponentProps<typeof TextEclipsePresentation>, 'click'>;
+  deadlineAt: string | undefined;
 };
 
-export default function TodoEclipse({ presentational }: Props) {
+export default function TodoEclipse({ presentational, deadlineAt }: Props) {
   const { title, description } = presentational;
+  const { openTodoModal } = useTodoModal(TYPE.DETAIL);
 
-  // TODO ロジックを実装する
   function openModal() {
-    return undefined;
+    openTodoModal({ title, description, deadlineAt });
   }
 
   return (

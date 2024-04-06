@@ -2,12 +2,16 @@
 
 import {
   DeleteTodosTodoIdResponse,
+  GetTodosParams,
   GetTodosResponse,
   GetTodosTodoIdResponse,
   PostTodoRequest,
   PostTodoResponse,
   PutTodosTodoIdRequest,
   PutTodosTodoIdResponse,
+  PutTodosTodoIdStatusParams,
+  PutTodosTodoIdStatusRequest,
+  PutTodosTodoIdStatusResponse,
   TodosTodoIdParams,
 } from '../types/api/todos';
 
@@ -17,17 +21,18 @@ const app = express;
 
 export const todoController = app.Router();
 
-const { getTodo, getTodos, postTodo, putTodo, deleteTodo } =
+const { getTodo, getTodos, postTodo, putTodo, deleteTodo, putTodoStatus } =
   await todoService();
 
 /** Todo一覧取得 */
 todoController.get(
   '/todos',
   async (
-    req: Request<undefined, GetTodosResponse, undefined, undefined>,
+    req: Request<undefined, GetTodosResponse, undefined, GetTodosParams>,
     res: Response<GetTodosResponse>,
   ) => {
-    const todos = await getTodos();
+    const { query } = req;
+    const todos = await getTodos(query);
     res.json(todos);
   },
 );
@@ -99,6 +104,27 @@ todoController.delete(
   ) => {
     const todoId = req.params.todo_id;
     await deleteTodo(todoId);
+    res.status(204).end();
+  },
+);
+
+/**
+ * Todo状態更新
+ */
+todoController.put(
+  '/todos/:todo_id/status',
+  async (
+    req: Request<
+      PutTodosTodoIdStatusParams,
+      PutTodosTodoIdStatusRequest,
+      PutTodosTodoIdStatusResponse,
+      undefined
+    >,
+    res: Response<undefined>,
+  ) => {
+    const todoId = req.params.todo_id;
+    const status = req.body;
+    putTodoStatus(todoId, status);
     res.status(204).end();
   },
 );

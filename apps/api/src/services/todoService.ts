@@ -1,8 +1,12 @@
-﻿import {
+﻿import { $Enums } from '@prisma/client';
+
+import {
+  GetTodosParams,
   GetTodosResponse,
   GetTodosTodoIdResponse,
   PostTodoRequest,
   PutTodosTodoIdRequest,
+  PutTodosTodoIdStatusRequest,
 } from '../types/api/todos';
 
 import { todoRepository } from '../repositories/todoRepository';
@@ -14,6 +18,7 @@ export const todoService = async () => {
     createTodo,
     updateTodo,
     deleteTodo: deleteTodoRepository,
+    putTodoStatus: putTodoStatusRepository,
   } = await todoRepository();
 
   const getTodo = async (
@@ -48,9 +53,13 @@ export const todoService = async () => {
     }
   };
 
-  const getTodos = async (): Promise<GetTodosResponse | undefined> => {
+  const getTodos = async (
+    params: GetTodosParams,
+  ): Promise<GetTodosResponse | undefined> => {
+    const status = params?.status?.split(',') as $Enums.STATUS[] | undefined;
+
     try {
-      const todos = await findAllTodos();
+      const todos = await findAllTodos(status);
       if (!todos || todos.length < 1) {
         // TODO 一旦適当にエラーを定義
         throw Error;
@@ -109,5 +118,22 @@ export const todoService = async () => {
     }
   };
 
-  return { getTodo, getTodos, postTodo, putTodo, deleteTodo };
+  const putTodoStatus = async (
+    todoId: string,
+    status: PutTodosTodoIdStatusRequest,
+  ) => {
+    try {
+      const todoIdNum = Number(todoId);
+      if (!todoIdNum) {
+        // TODO 一旦適当に定義
+        throw Error;
+      }
+
+      await putTodoStatusRepository(todoIdNum, status);
+    } catch (error) {
+      // TODO 一旦適当にエラーを定義
+    }
+  };
+
+  return { getTodo, getTodos, postTodo, putTodo, deleteTodo, putTodoStatus };
 };

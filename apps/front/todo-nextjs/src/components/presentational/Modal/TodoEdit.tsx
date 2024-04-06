@@ -1,7 +1,9 @@
 ﻿'use client';
 
-import { UseFormRegisterReturn } from 'react-hook-form';
+import { UseFormRegister } from 'react-hook-form';
 import styled from 'styled-components';
+
+import { TodoForm } from '~/types/todo';
 
 import Button from '~/components/container/Button/Button';
 import Date from '~/components/container/Form/Date';
@@ -10,14 +12,11 @@ import TextArea from '~/components/container/Form/TextArea';
 import TextForm from '~/components/container/Form/TextForm';
 import Modal from '~/components/container/Modal/Modal';
 
-import { dateFormat } from '~/utils/date';
-
 type Props = {
   title: string;
   description: string | undefined;
-  deadline: Date | undefined;
   errorMessage: string | undefined;
-  register: UseFormRegisterReturn | undefined;
+  register: UseFormRegister<TodoForm>;
 };
 
 const StyledContent = styled.div`
@@ -40,14 +39,9 @@ const StyledButtonBox = styled.div`
 export default function TodoEdit({
   title,
   description,
-  deadline,
   errorMessage,
   register,
 }: Props) {
-  const { formatToYYYYMMdd } = dateFormat();
-
-  const formattedDeadline = deadline ? formatToYYYYMMdd(deadline) : '';
-
   return (
     <Modal>
       <>
@@ -60,7 +54,7 @@ export default function TodoEdit({
                   labelName: 'タイトル',
                   placeholder: title,
                   errorMessage,
-                  register,
+                  register: register('title'),
                 }}
               />
             </StyledContent>
@@ -70,7 +64,7 @@ export default function TodoEdit({
                   labelName: '説明',
                   placeholder: description,
                   errorMessage,
-                  register,
+                  register: register('description'),
                 }}
               />
             </StyledContent>
@@ -79,7 +73,7 @@ export default function TodoEdit({
                 presentational={{
                   labelName: '期限',
                   errorMessage,
-                  register,
+                  register: register('deadlineAt'),
                 }}
               />
             </StyledContent>

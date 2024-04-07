@@ -11,6 +11,7 @@ type Props = {
   title: string;
   description: string | undefined;
   deadlineAt: string | undefined;
+  clickCompletedButton: () => void;
 };
 
 const StyledButtonBox = styled.div`
@@ -33,7 +34,12 @@ const StyledContent = styled.div`
   }
 `;
 
-export default function TodoDetail({ title, description, deadlineAt }: Props) {
+export default function TodoDetail({
+  title,
+  description,
+  deadlineAt,
+  clickCompletedButton,
+}: Props) {
   const { formatToYYYYMMdd } = dateFormat();
 
   const formattedDeadline = deadlineAt
@@ -57,7 +63,10 @@ export default function TodoDetail({ title, description, deadlineAt }: Props) {
           <p>{formattedDeadline}</p>
         </StyledContent>
         <StyledButtonBox>
-          <Button presentational={{ text: '完了' }} />
+          <Button
+            presentational={{ text: '完了' }}
+            onClick={clickCompletedButton}
+          />
           <StyledSecondButtonBox>
             <Button presentational={{ text: '編集', width: 10000 }} />
             <Button presentational={{ text: '削除', width: 10000 }} />

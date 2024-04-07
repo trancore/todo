@@ -7,17 +7,23 @@ import { RootState } from '~/store/root';
 export const todoSlice = createSlice({
   name: 'todo',
   initialState: {
+    id: '',
     title: '',
     description: '',
     deadlineAt: '',
   },
   reducers: {
-    select: (state, action: { payload: TodoForm }) => {
-      state.title = action.payload.title;
-      state.description = action.payload.deadlineAt || '';
-      state.deadlineAt = action.payload.deadlineAt || '';
+    select: (
+      state,
+      action: { payload: { id: string; todoForm: TodoForm } },
+    ) => {
+      state.id = action.payload.id;
+      state.title = action.payload.todoForm.title;
+      state.description = action.payload.todoForm.description || '';
+      state.deadlineAt = action.payload.todoForm.deadlineAt || '';
     },
     release: (state) => {
+      state.id = '';
       state.title = '';
       state.description = '';
       state.deadlineAt = '';

@@ -38,7 +38,7 @@ export default function TodoIconBox({ todoId, todoForm }: Props) {
   const squareEdit = {
     has: true,
     click: () => {
-      openTodoEditModal(todoForm);
+      openTodoEditModal(String(todoId), todoForm);
     },
   };
   const trashCan = {

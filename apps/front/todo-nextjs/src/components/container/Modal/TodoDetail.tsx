@@ -16,19 +16,27 @@ export default function TodoDetail() {
   const store = useAppSelector(selectTodo);
   const [changeTodoStatus] = useChangeStatusTodoMutation();
   const { hookToast } = useToast();
-  const { closeTodoModal } = useTodoModal('DETAIL');
+  const { closeTodoModal: closeTodoDetailModal } = useTodoModal('DETAIL');
+  const { openTodoModal: openTodoEditModal } = useTodoModal('EDIT');
 
   async function clickCompletedButton() {
     await changeTodoStatus({ todo_id: String(store.id), status: STATUS.DONE });
 
     hookToast('TODOを完了にしました');
-    closeTodoModal();
+    closeTodoDetailModal();
+  }
+
+  async function clickEditButton() {
+    closeTodoDetailModal();
+
+    openTodoEditModal(String(store.id), store);
   }
 
   return (
     <TodoDetailPresentational
       {...store}
       clickCompletedButton={clickCompletedButton}
+      clickEditButton={clickEditButton}
     />
   );
 }

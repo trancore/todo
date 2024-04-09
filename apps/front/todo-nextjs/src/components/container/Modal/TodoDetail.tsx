@@ -6,7 +6,10 @@ import TodoDetailPresentational from '~/components/presentational/Modal/TodoDeta
 
 import { STATUS } from '~/constants';
 
-import { useChangeStatusTodoMutation } from '~/services/todo';
+import {
+  useChangeStatusTodoMutation,
+  useDeleteTodoMutation,
+} from '~/services/todo';
 
 import { useAppSelector } from '~/hooks/useRedux';
 import { useToast } from '~/hooks/useToast';
@@ -15,6 +18,7 @@ import { useTodoModal } from '~/hooks/useTodoModal';
 export default function TodoDetail() {
   const store = useAppSelector(selectTodo);
   const [changeTodoStatus] = useChangeStatusTodoMutation();
+  const [deleteTodo] = useDeleteTodoMutation();
   const { hookToast } = useToast();
   const { closeTodoModal: closeTodoDetailModal } = useTodoModal('DETAIL');
   const { openTodoModal: openTodoEditModal } = useTodoModal('EDIT');
@@ -32,11 +36,19 @@ export default function TodoDetail() {
     openTodoEditModal(String(store.id), store);
   }
 
+  async function clickDeleteButton() {
+    await deleteTodo({ todo_id: String(store.id) });
+
+    closeTodoDetailModal();
+    hookToast('TODO削除しました');
+  }
+
   return (
     <TodoDetailPresentational
       {...store}
       clickCompletedButton={clickCompletedButton}
       clickEditButton={clickEditButton}
+      clickDeleteButton={clickDeleteButton}
     />
   );
 }

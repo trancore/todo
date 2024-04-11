@@ -60,8 +60,8 @@ export const todoApi = createApi({
         url: `/todos/${todoId}`,
         method: 'delete',
       }),
-      async onQueryStarted({ todo_id }, { dispatch }) {
-        dispatch(
+      async onQueryStarted({ todo_id }, { dispatch, queryFulfilled }) {
+        const result = dispatch(
           todoApi.util.updateQueryData(
             'getTodos',
             `${STATUS.TODO},${STATUS.WIP}`,
@@ -70,6 +70,8 @@ export const todoApi = createApi({
             },
           ),
         );
+
+        queryFulfilled.catch(result.undo);
       },
     }),
     changeStatusTodo: builder.mutation<
@@ -83,8 +85,8 @@ export const todoApi = createApi({
           status,
         },
       }),
-      async onQueryStarted({ todo_id: todoId }, { dispatch }) {
-        dispatch(
+      async onQueryStarted({ todo_id: todoId }, { dispatch, queryFulfilled }) {
+        const result = dispatch(
           todoApi.util.updateQueryData(
             'getTodos',
             `${STATUS.TODO},${STATUS.WIP}`,
@@ -93,6 +95,8 @@ export const todoApi = createApi({
             },
           ),
         );
+
+        queryFulfilled.catch(result.undo);
       },
     }),
   }),

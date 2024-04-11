@@ -17,17 +17,26 @@ import { useTodoModal } from '~/hooks/useTodoModal';
 
 export default function TodoDetail() {
   const store = useAppSelector(selectTodo);
-  const [changeTodoStatus] = useChangeStatusTodoMutation();
-  const [deleteTodo] = useDeleteTodoMutation();
+  const [changeTodoStatus, { isLoading: isLoadingCompleted }] =
+    useChangeStatusTodoMutation();
+  const [deleteTodo, { isLoading: isLoadingDeleted }] = useDeleteTodoMutation();
   const { hookToast } = useToast();
   const { closeTodoModal: closeTodoDetailModal } = useTodoModal('DETAIL');
   const { openTodoModal: openTodoEditModal } = useTodoModal('EDIT');
 
   async function clickCompletedButton() {
-    await changeTodoStatus({ todo_id: String(store.id), status: STATUS.DONE });
-
-    hookToast('TODOを完了にしました');
-    closeTodoDetailModal();
+    await changeTodoStatus({
+      todo_id: String(store.id),
+      status: STATUS.DONE,
+    })
+      .unwrap()
+      .then(() => {
+        hookToast('TODOを完了にしました');
+        closeTodoDetailModal();
+      })
+      .catch(() => {
+        hookToast('エラーが発生しました。');
+      });
   }
 
   async function clickEditButton() {
@@ -37,15 +46,22 @@ export default function TodoDetail() {
   }
 
   async function clickDeleteButton() {
-    await deleteTodo({ todo_id: String(store.id) });
-
-    closeTodoDetailModal();
-    hookToast('TODO削除しました');
+    await deleteTodo({ todo_id: String(store.id) })
+      .unwrap()
+      .then(() => {
+        closeTodoDetailModal();
+        hookToast('TODO削除しました');
+      })
+      .catch(() => {
+        hookToast('エラーが発生しました。');
+      });
   }
 
   return (
     <TodoDetailPresentational
       {...store}
+      completedButtonDisabled={isLoadingCompleted}
+      deletedButtonDisabled={isLoadingDeleted}
       clickCompletedButton={clickCompletedButton}
       clickEditButton={clickEditButton}
       clickDeleteButton={clickDeleteButton}

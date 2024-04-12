@@ -11,6 +11,8 @@ type Props = {
   title: string;
   description: string | undefined;
   deadlineAt: string | undefined;
+  completedButtonDisabled: boolean;
+  deletedButtonDisabled: boolean;
   clickCompletedButton: () => void;
   clickEditButton: () => void;
   clickDeleteButton: () => void;
@@ -40,6 +42,8 @@ export default function TodoDetail({
   title,
   description,
   deadlineAt,
+  completedButtonDisabled,
+  deletedButtonDisabled,
   clickCompletedButton,
   clickEditButton,
   clickDeleteButton,
@@ -69,6 +73,7 @@ export default function TodoDetail({
         <StyledButtonBox>
           <Button
             presentational={{ text: '完了' }}
+            disabled={completedButtonDisabled}
             onClick={clickCompletedButton}
           />
           <StyledSecondButtonBox>
@@ -78,6 +83,7 @@ export default function TodoDetail({
             />
             <Button
               presentational={{ text: '削除', width: 10000 }}
+              disabled={deletedButtonDisabled}
               onClick={clickDeleteButton}
             />
           </StyledSecondButtonBox>

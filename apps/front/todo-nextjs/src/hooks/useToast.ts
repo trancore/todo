@@ -9,8 +9,9 @@ export const useToast = () => {
 
   function hookToast(text: string) {
     dispatch(showTodo({ text: text }));
-    const timeoutId = setTimeout(() => dispatch(hideTodo()), DELAY_TIME_SEC);
-    clearTimeout(timeoutId);
+    setTimeout(() => {
+      dispatch(hideTodo());
+    }, DELAY_TIME_SEC);
   }
 
   return { hookToast };

@@ -65,6 +65,11 @@ export const handlers = [
     return new HttpResponse(undefined, { status: 201 });
   }),
   http.put(`${process.env.TODO_API_URL}/todos/:todoId/status`, async () => {
+    // return new HttpResponse(undefined, { status: 204 });
+    throw new HttpResponse(undefined, { status: 404 });
+  }),
+  http.delete(`${process.env.TODO_API_URL}/todos/:todoId`, async () => {
     return new HttpResponse(undefined, { status: 204 });
+    // throw new HttpResponse(undefined, { status: 404 });
   }),
 ];

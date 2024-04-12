@@ -3,10 +3,11 @@
 type Props = {
   text: string;
   width?: number;
+  disabled?: boolean;
   onClick: () => void;
 };
 
-const StyledButton = styled.button<{ width?: number }>`
+const StyledButton = styled.button<{ width?: number; disabled?: boolean }>`
   border: none;
   border-radius: 9em;
   padding: 16px 12px;
@@ -15,12 +16,14 @@ const StyledButton = styled.button<{ width?: number }>`
   }};
   color: #ffffff;
   // TODO: storeでテーマ管理したい
-  background-color: #8f8f8f;
+  background-color: ${(props) => {
+    return props.disabled ? '#8f8f8f99' : '#8f8f8f';
+  }};
 `;
 
-export default function Button({ text, width, onClick }: Props) {
+export default function Button({ text, width, disabled, onClick }: Props) {
   return (
-    <StyledButton width={width} onClick={onClick}>
+    <StyledButton width={width} onClick={onClick} disabled={disabled}>
       {text}
     </StyledButton>
   );

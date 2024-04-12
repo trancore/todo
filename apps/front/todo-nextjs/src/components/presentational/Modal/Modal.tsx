@@ -29,6 +29,7 @@ const StyledContent = styled.div`
   height: 100%;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
+  overscroll-behavior-y: contain;
 `;
 const StyledIcon = styled.div`
   float: right;

@@ -8,15 +8,16 @@ import { useTodoModal } from '~/hooks/useTodoModal';
 
 type Props = {
   presentational: Omit<ComponentProps<typeof TextEclipsePresentation>, 'click'>;
+  id: string;
   deadlineAt: string | undefined;
 };
 
-export default function TodoEclipse({ presentational, deadlineAt }: Props) {
+export default function TodoEclipse({ presentational, id, deadlineAt }: Props) {
   const { title, description } = presentational;
   const { openTodoModal } = useTodoModal(TYPE.DETAIL);
 
   function openModal() {
-    openTodoModal({ title, description, deadlineAt });
+    openTodoModal(id, { title, description, deadlineAt });
   }
 
   return (

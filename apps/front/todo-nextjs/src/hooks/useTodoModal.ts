@@ -13,9 +13,9 @@ export const useTodoModal = (type: ModelType) => {
   const isOpendDetailModal = storeModal.displayedDetail;
   const isOpendEditModal = storeModal.displayedEdit;
 
-  const openTodoModal = (todo: TodoForm) => {
+  const openTodoModal = (id: string, todo: TodoForm) => {
     dispatch(open({ type: type }));
-    dispatch(select(todo));
+    dispatch(select({ id: id, todoForm: todo }));
   };
 
   const closeTodoModal = () => {

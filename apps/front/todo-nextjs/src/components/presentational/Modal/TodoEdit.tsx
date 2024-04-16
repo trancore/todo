@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import { UseFormRegister } from 'react-hook-form';
+import { FormState, UseFormRegister } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { TodoForm } from '~/types/todo';
@@ -15,7 +15,7 @@ import Modal from '~/components/container/Modal/Modal';
 type Props = {
   title: string;
   description: string | undefined;
-  errorMessage: string | undefined;
+  formState: FormState<TodoForm>;
   register: UseFormRegister<TodoForm>;
 };
 
@@ -39,9 +39,10 @@ const StyledButtonBox = styled.div`
 export default function TodoEdit({
   title,
   description,
-  errorMessage,
+  formState,
   register,
 }: Props) {
+  const { errors, isValid } = formState;
   return (
     <Modal>
       <>
@@ -53,7 +54,7 @@ export default function TodoEdit({
                 presentational={{
                   labelName: 'タイトル',
                   placeholder: title,
-                  errorMessage,
+                  errorMessage: errors.title?.message,
                   register: register('title'),
                 }}
               />
@@ -63,7 +64,7 @@ export default function TodoEdit({
                 presentational={{
                   labelName: '説明',
                   placeholder: description,
-                  errorMessage,
+                  errorMessage: errors.description?.message,
                   register: register('description'),
                 }}
               />
@@ -72,13 +73,13 @@ export default function TodoEdit({
               <Date
                 presentational={{
                   labelName: '期限',
-                  errorMessage,
+                  errorMessage: errors.deadlineAt?.message,
                   register: register('deadlineAt'),
                 }}
               />
             </StyledContent>
             <StyledButtonBox>
-              <Button presentational={{ text: '編集' }} />
+              <Button presentational={{ text: '編集' }} disabled={!isValid} />
             </StyledButtonBox>
           </>
         </Form>

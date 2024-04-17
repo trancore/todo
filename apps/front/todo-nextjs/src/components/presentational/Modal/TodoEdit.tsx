@@ -17,6 +17,7 @@ type Props = {
   description: string | undefined;
   formState: FormState<TodoForm>;
   register: UseFormRegister<TodoForm>;
+  onClickEdit: () => void;
 };
 
 const StyledContent = styled.div`
@@ -41,6 +42,7 @@ export default function TodoEdit({
   description,
   formState,
   register,
+  onClickEdit,
 }: Props) {
   const { errors, isValid } = formState;
   return (
@@ -79,7 +81,11 @@ export default function TodoEdit({
               />
             </StyledContent>
             <StyledButtonBox>
-              <Button presentational={{ text: '編集' }} disabled={!isValid} />
+              <Button
+                presentational={{ text: '編集' }}
+                disabled={!isValid}
+                onClick={onClickEdit}
+              />
             </StyledButtonBox>
           </>
         </Form>

@@ -38,7 +38,7 @@ export default function TodoEdit() {
         hookToast('Todoが更新されました');
       })
       .catch(() => {
-        // TODO: エラーテキストが画面に出てしまう。
+        closeTodoModal();
         dispatch(showError({ text: 'エラーが発生しました' }));
       });
   };

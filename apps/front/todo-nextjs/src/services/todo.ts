@@ -18,6 +18,11 @@ type PostTodoResponse = undefined;
 type DeleteTodosTodoIdParams =
   paths['/todos/{todo_id}']['delete']['parameters']['path'];
 type DeleteTodosTodoIdResponse = undefined;
+type PutTodosTodoIdParams =
+  paths['/todos/{todo_id}']['put']['parameters']['path'];
+type PutTodosTodoIdRequest =
+  paths['/todos/{todo_id}']['put']['requestBody']['content']['application/json'];
+type PutTodosTodoIdResponse = undefined;
 type PutTodosTodoIdStatusPath =
   paths['/todos/{todo_id}/status']['put']['parameters']['path'];
 type PutTodosTodoIdStatusRequest =
@@ -74,6 +79,41 @@ export const todoApi = createApi({
         queryFulfilled.catch(result.undo);
       },
     }),
+    editTodo: builder.mutation<
+      PutTodosTodoIdResponse,
+      PutTodosTodoIdParams & PutTodosTodoIdRequest
+    >({
+      query: ({ todo_id: todoId, title, description, deadlineAt }) => ({
+        url: `/todos/${todoId}`,
+        method: 'put',
+        data: {
+          title,
+          description,
+          deadlineAt,
+        },
+      }),
+      async onQueryStarted(
+        { todo_id: todoId, title, description, deadlineAt },
+        { dispatch, queryFulfilled },
+      ) {
+        const result = dispatch(
+          todoApi.util.updateQueryData(
+            'getTodos',
+            `${STATUS.TODO},${STATUS.WIP}`,
+            (draft) => {
+              const updatedTodo = { title, description, deadlineAt };
+              return draft.map((value) =>
+                value.id === Number(todoId)
+                  ? { ...value, ...updatedTodo }
+                  : value,
+              );
+            },
+          ),
+        );
+
+        queryFulfilled.catch(result.undo);
+      },
+    }),
     changeStatusTodo: builder.mutation<
       PutTodosTodoIdStatusResponse,
       PutTodosTodoIdStatusPath & PutTodosTodoIdStatusRequest
@@ -106,6 +146,7 @@ export const {
   useGetTodosQuery,
   useCreateTodoMutation,
   useDeleteTodoMutation,
+  useEditTodoMutation,
   useChangeStatusTodoMutation,
   util: { getRunningQueriesThunk },
 } = todoApi;

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import { TodoForm } from '~/types/todo';
 
-import yup from '~/libs/yup';
+import { todoSchema } from '~/libs/yup';
 
 import { hide as hideError, show as showError } from '~/features/error';
 import { hide as hideTodo, show as showTodo } from '~/features/toast';
@@ -22,12 +22,6 @@ import { PAGE_PATH } from '~/constants';
 import { useCreateTodoMutation } from '~/services/todo';
 
 import { useAppDispatch } from '~/hooks/useRedux';
-
-const inputsSchema = yup.object().shape({
-  title: yup.string().todoText(),
-  description: yup.string().todoDescription(),
-  deadline: yup.date().todoDeadline(),
-});
 
 const StyledInputForm = styled.div`
   margin-bottom: 36px;
@@ -45,7 +39,7 @@ export default function Register() {
     formState: { errors },
   } = useForm<TodoForm>({
     mode: 'onChange',
-    resolver: yupResolver(inputsSchema),
+    resolver: yupResolver(todoSchema),
   });
   const [createTodo] = useCreateTodoMutation();
   const dispatch = useAppDispatch();

@@ -125,15 +125,16 @@ export const todoApi = createApi({
           status,
         },
       }),
-      async onQueryStarted({ todo_id: todoId }, { dispatch, queryFulfilled }) {
+      async onQueryStarted(
+        { todo_id: todoId, status },
+        { dispatch, queryFulfilled },
+      ) {
+        const args =
+          status === STATUS.DONE ? `${STATUS.TODO},${STATUS.WIP}` : STATUS.DONE;
         const result = dispatch(
-          todoApi.util.updateQueryData(
-            'getTodos',
-            `${STATUS.TODO},${STATUS.WIP}`,
-            (draft) => {
-              return draft.filter((value) => value.id !== Number(todoId));
-            },
-          ),
+          todoApi.util.updateQueryData('getTodos', args, (draft) => {
+            return draft.filter((value) => value.id !== Number(todoId));
+          }),
         );
 
         queryFulfilled.catch(result.undo);

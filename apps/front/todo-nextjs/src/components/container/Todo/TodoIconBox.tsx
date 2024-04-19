@@ -31,7 +31,11 @@ export default function TodoIconBox({ todoId, todoForm, hasIcons }: Props) {
 
   const uncheck = {
     has: hasIcons.hasUncheck || false,
-    click: () => {},
+    click: async () => {
+      await changeTodoStatus({ todo_id: String(todoId), status: STATUS.TODO });
+
+      hookToast('TODOを未完了にしました');
+    },
   };
   const check = {
     has: hasIcons.hasCheck || false,

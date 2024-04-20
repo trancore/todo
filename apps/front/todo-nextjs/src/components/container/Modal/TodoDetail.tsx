@@ -1,10 +1,12 @@
 ﻿'use client';
 
+import { useRouter } from 'next/router';
+
 import { selectTodo } from '~/features/todo';
 
 import TodoDetailPresentational from '~/components/presentational/Modal/TodoDetail';
 
-import { STATUS } from '~/constants';
+import { PAGE_PATH, STATUS } from '~/constants';
 
 import {
   useChangeStatusTodoMutation,
@@ -20,14 +22,18 @@ export default function TodoDetail() {
   const [changeTodoStatus, { isLoading: isLoadingCompleted }] =
     useChangeStatusTodoMutation();
   const [deleteTodo, { isLoading: isLoadingDeleted }] = useDeleteTodoMutation();
+  const { pathname } = useRouter();
   const { hookToast } = useToast();
   const { closeTodoModal: closeTodoDetailModal } = useTodoModal('DETAIL');
   const { openTodoModal: openTodoEditModal } = useTodoModal('EDIT');
+
+  const locateCompleted = pathname === PAGE_PATH.COMPLETED;
 
   async function clickCompletedButton() {
     await changeTodoStatus({
       todo_id: String(store.id),
       status: STATUS.DONE,
+      pathname,
     })
       .unwrap()
       .then(() => {
@@ -46,7 +52,7 @@ export default function TodoDetail() {
   }
 
   async function clickDeleteButton() {
-    await deleteTodo({ todo_id: String(store.id) })
+    await deleteTodo({ todo_id: String(store.id), pathname })
       .unwrap()
       .then(() => {
         closeTodoDetailModal();
@@ -60,6 +66,7 @@ export default function TodoDetail() {
   return (
     <TodoDetailPresentational
       {...store}
+      locateCompleted={locateCompleted}
       completedButtonDisabled={isLoadingCompleted}
       deletedButtonDisabled={isLoadingDeleted}
       clickCompletedButton={clickCompletedButton}

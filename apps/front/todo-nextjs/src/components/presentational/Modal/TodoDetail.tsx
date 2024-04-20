@@ -11,6 +11,7 @@ type Props = {
   title: string;
   description: string | undefined;
   deadlineAt: string | undefined;
+  locateCompleted: boolean;
   completedButtonDisabled: boolean;
   deletedButtonDisabled: boolean;
   clickCompletedButton: () => void;
@@ -42,6 +43,7 @@ export default function TodoDetail({
   title,
   description,
   deadlineAt,
+  locateCompleted,
   completedButtonDisabled,
   deletedButtonDisabled,
   clickCompletedButton,
@@ -70,24 +72,26 @@ export default function TodoDetail({
           <h3>期限</h3>
           <p>{formattedDeadline}</p>
         </StyledContent>
-        <StyledButtonBox>
-          <Button
-            presentational={{ text: '完了' }}
-            disabled={completedButtonDisabled}
-            onClick={clickCompletedButton}
-          />
-          <StyledSecondButtonBox>
+        {!locateCompleted && (
+          <StyledButtonBox>
             <Button
-              presentational={{ text: '編集', width: 10000 }}
-              onClick={clickEditButton}
+              presentational={{ text: '完了' }}
+              disabled={completedButtonDisabled}
+              onClick={clickCompletedButton}
             />
-            <Button
-              presentational={{ text: '削除', width: 10000 }}
-              disabled={deletedButtonDisabled}
-              onClick={clickDeleteButton}
-            />
-          </StyledSecondButtonBox>
-        </StyledButtonBox>
+            <StyledSecondButtonBox>
+              <Button
+                presentational={{ text: '編集', width: 10000 }}
+                onClick={clickEditButton}
+              />
+              <Button
+                presentational={{ text: '削除', width: 10000 }}
+                disabled={deletedButtonDisabled}
+                onClick={clickDeleteButton}
+              />
+            </StyledSecondButtonBox>
+          </StyledButtonBox>
+        )}
       </>
     </Modal>
   );

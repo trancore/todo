@@ -8,7 +8,7 @@ import { todoAxiosBaseQuery } from '~/libs/reduxQuery';
 
 import { RootState } from '~/store/root';
 
-import { STATUS } from '~/constants';
+import { PAGE_PATH, STATUS } from '~/constants';
 
 type GetTodosResponse =
   paths['/todos']['get']['responses']['200']['content']['application/json'];
@@ -28,6 +28,8 @@ type PutTodosTodoIdStatusPath =
 type PutTodosTodoIdStatusRequest =
   paths['/todos/{todo_id}/status']['put']['requestBody']['content']['application/json'];
 type PutTodosTodoIdStatusResponse = undefined;
+/** storeのクエリ判別用に画面のURLパス名用型定義 */
+type PathName = { pathname: string };
 
 function isHydrateAction(action: Action): action is PayloadAction<RootState> {
   return action.type === HYDRATE;
@@ -59,21 +61,24 @@ export const todoApi = createApi({
     }),
     deleteTodo: builder.mutation<
       DeleteTodosTodoIdResponse,
-      DeleteTodosTodoIdParams
+      DeleteTodosTodoIdParams & PathName
     >({
       query: ({ todo_id: todoId }) => ({
         url: `/todos/${todoId}`,
         method: 'delete',
       }),
-      async onQueryStarted({ todo_id }, { dispatch, queryFulfilled }) {
+      async onQueryStarted(
+        { todo_id, pathname },
+        { dispatch, queryFulfilled },
+      ) {
+        const args =
+          pathname === PAGE_PATH.COMPLETED
+            ? STATUS.DONE
+            : `${STATUS.TODO},${STATUS.WIP}`;
         const result = dispatch(
-          todoApi.util.updateQueryData(
-            'getTodos',
-            `${STATUS.TODO},${STATUS.WIP}`,
-            (draft) => {
-              return draft.filter((value) => value.id !== Number(todo_id));
-            },
-          ),
+          todoApi.util.updateQueryData('getTodos', args, (draft) => {
+            return draft.filter((value) => value.id !== Number(todo_id));
+          }),
         );
 
         queryFulfilled.catch(result.undo);
@@ -116,7 +121,7 @@ export const todoApi = createApi({
     }),
     changeStatusTodo: builder.mutation<
       PutTodosTodoIdStatusResponse,
-      PutTodosTodoIdStatusPath & PutTodosTodoIdStatusRequest
+      PutTodosTodoIdStatusPath & PutTodosTodoIdStatusRequest & PathName
     >({
       query: ({ todo_id: todoId, status }) => ({
         url: `/todos/${todoId}/status`,
@@ -125,15 +130,18 @@ export const todoApi = createApi({
           status,
         },
       }),
-      async onQueryStarted({ todo_id: todoId }, { dispatch, queryFulfilled }) {
+      async onQueryStarted(
+        { todo_id: todoId, pathname },
+        { dispatch, queryFulfilled },
+      ) {
+        const args =
+          pathname === PAGE_PATH.COMPLETED
+            ? STATUS.DONE
+            : `${STATUS.TODO},${STATUS.WIP}`;
         const result = dispatch(
-          todoApi.util.updateQueryData(
-            'getTodos',
-            `${STATUS.TODO},${STATUS.WIP}`,
-            (draft) => {
-              return draft.filter((value) => value.id !== Number(todoId));
-            },
-          ),
+          todoApi.util.updateQueryData('getTodos', args, (draft) => {
+            return draft.filter((value) => value.id !== Number(todoId));
+          }),
         );
 
         queryFulfilled.catch(result.undo);

@@ -1,6 +1,19 @@
 ﻿import styled from 'styled-components';
+
+import { wrapper } from '~/store/root';
+
 import TodoEclipse from '~/components/container/Todo/TodoEclipse';
 import TodoIconBox from '~/components/container/Todo/TodoIconBox';
+
+import { STATUS } from '~/constants';
+
+import {
+  getRunningQueriesThunk,
+  getTodos,
+  useGetTodosQuery,
+} from '~/services/todo';
+
+import { dateFormat } from '~/utils/date';
 
 const StyledTodoList = styled.div`
   display: flex;
@@ -17,58 +30,61 @@ const StyledTodoUnder = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+const StyledTodoDeadlineAt = styled.p<{ color: string }>`
+  color: ${({ color }) => color};
+  font-weight: bold;
+`;
 
 export default function Completed() {
+  const { data: todoList } = useGetTodosQuery(`${STATUS.DONE}`, {
+    refetchOnMountOrArgChange: true,
+  });
+
+  const { formatToYYYYMMdd, colorizeDate } = dateFormat();
+
   return (
     <>
       <h1>完了済み</h1>
       <StyledTodoList>
-        <StyledTodo>
-          <TodoEclipse
-            presentational={{ title: 'test', description: 'description' }}
-          />
-          <StyledTodoUnder>
-            <p>2024/01/01</p>
-            <TodoIconBox />
-          </StyledTodoUnder>
-        </StyledTodo>
-        <StyledTodo>
-          <TodoEclipse
-            presentational={{ title: 'test', description: 'description' }}
-          />
-          <StyledTodoUnder>
-            <p>2024/01/01</p>
-            <TodoIconBox />
-          </StyledTodoUnder>
-        </StyledTodo>
-        <StyledTodo>
-          <TodoEclipse
-            presentational={{ title: 'test', description: 'description' }}
-          />
-          <StyledTodoUnder>
-            <p>2024/01/01</p>
-            <TodoIconBox />
-          </StyledTodoUnder>
-        </StyledTodo>
-        <StyledTodo>
-          <TodoEclipse
-            presentational={{ title: 'test', description: 'description' }}
-          />
-          <StyledTodoUnder>
-            <p>2024/01/01</p>
-            <TodoIconBox />
-          </StyledTodoUnder>
-        </StyledTodo>
-        <StyledTodo>
-          <TodoEclipse
-            presentational={{ title: 'test', description: 'description' }}
-          />
-          <StyledTodoUnder>
-            <p>2024/01/01</p>
-            <TodoIconBox />
-          </StyledTodoUnder>
-        </StyledTodo>
+        {(todoList ?? []).map((todo) => {
+          return (
+            <StyledTodo key={todo.id}>
+              <TodoEclipse
+                presentational={{
+                  title: todo.title,
+                  description: todo.description,
+                }}
+                id={String(todo.id)}
+                deadlineAt={todo.deadlineAt}
+              />
+              <StyledTodoUnder>
+                {todo.deadlineAt ? (
+                  <StyledTodoDeadlineAt
+                    color={colorizeDate(new Date(todo.deadlineAt))}
+                  >
+                    {formatToYYYYMMdd(new Date(todo.deadlineAt))}
+                  </StyledTodoDeadlineAt>
+                ) : (
+                  <p>{''}</p>
+                )}
+                <TodoIconBox
+                  todoId={todo.id}
+                  hasIcons={{ hasUncheck: true, hasTrashCan: true }}
+                />
+              </StyledTodoUnder>
+            </StyledTodo>
+          );
+        })}
       </StyledTodoList>
     </>
   );
 }
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async () => {
+    await store.dispatch(getTodos.initiate(`${STATUS.DONE}`));
+    await Promise.all(store.dispatch(getRunningQueriesThunk()));
+
+    return { props: '' };
+  },
+);

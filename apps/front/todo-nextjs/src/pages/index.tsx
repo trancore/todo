@@ -64,7 +64,15 @@ export default function Top() {
             ) : (
               <p>{''}</p>
             )}
-            <TodoIconBox todoId={todo.id} todoForm={todo} />
+            <TodoIconBox
+              todoId={todo.id}
+              hasIcons={{
+                hasCheck: true,
+                hasSquareEdit: true,
+                hasTrashCan: true,
+              }}
+              todoForm={todo}
+            />
           </StyledTodoUnder>
         </StyledTodo>
       ))}

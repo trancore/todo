@@ -1,8 +1,11 @@
 ﻿import styled from 'styled-components';
+
 import Icon from '~/components/container/Icon/Icon';
 
 type Props = {
   isSignin: boolean;
+  hasPlusIcon: boolean;
+  onClickPlusIcon: () => void;
 };
 
 const StyledHeader = styled.header`
@@ -16,7 +19,11 @@ const StyledHeadingOne = styled.h1`
   margin: auto;
 `;
 
-export default function Header({ isSignin }: Props) {
+export default function Header({
+  isSignin,
+  hasPlusIcon,
+  onClickPlusIcon,
+}: Props) {
   return (
     <StyledHeader>
       {isSignin ? (
@@ -24,15 +31,19 @@ export default function Header({ isSignin }: Props) {
           <Icon
             presentational={{ name: 'Menu', size: 64 }}
             clickIcon={() => {}}
-          ></Icon>
+          />
           <Icon
             presentational={{ name: 'UserCircle', size: 64 }}
             clickIcon={() => {}}
-          ></Icon>
-          <Icon
-            presentational={{ name: 'Plus', size: 64 }}
-            clickIcon={() => {}}
-          ></Icon>
+          />
+          {hasPlusIcon ? (
+            <Icon
+              presentational={{ name: 'Plus', size: 64 }}
+              clickIcon={onClickPlusIcon}
+            />
+          ) : (
+            <Icon presentational={{ name: 'None', size: 64 }} />
+          )}
         </>
       ) : (
         <StyledHeadingOne>todo</StyledHeadingOne>

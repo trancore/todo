@@ -3,11 +3,15 @@
 import Link from 'next/link';
 
 import styled from 'styled-components';
+
+import { slidein } from '~/libs/styledComponent';
+
 import Icon from '~/components/container/Icon/Icon';
 
 type Props = {
   userName: string;
   clickIcon: () => void;
+  onClickOutside: () => void;
 };
 
 const StyledBackFloat = styled.div`
@@ -27,6 +31,11 @@ const StyledMenu = styled.div`
   flex-direction: column;
   background-color: #4d4d4d;
   color: #ffffff;
+
+  animation: ${slidein} 0.3s ease-in;
+`;
+const StyledOuterMenu = styled.div`
+  flex-grow: 1;
 `;
 const StyledMenuTitleBox = styled.div`
   width: 100%;
@@ -53,7 +62,7 @@ const StyledWrapIcon = styled.div`
   flex-direction: row-reverse;
 `;
 
-export default function Menu({ userName, clickIcon }: Props) {
+export default function Menu({ userName, clickIcon, onClickOutside }: Props) {
   return (
     <StyledBackFloat>
       <StyledMenu>
@@ -78,6 +87,7 @@ export default function Menu({ userName, clickIcon }: Props) {
           />
         </StyledWrapIcon>
       </StyledMenu>
+      <StyledOuterMenu onClick={onClickOutside}></StyledOuterMenu>
     </StyledBackFloat>
   );
 }

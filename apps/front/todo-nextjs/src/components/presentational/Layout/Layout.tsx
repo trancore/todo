@@ -2,13 +2,15 @@
 
 import Error from '~/components/container/Error/Error';
 import Header from '~/components/container/Header/Header';
+import Menu from '~/components/container/Menu/Menu';
 import TodoDetail from '~/components/container/Modal/TodoDetail';
 import TodoEdit from '~/components/container/Modal/TodoEdit';
 
 type Props = {
   children: JSX.Element;
-  opendTodoDetailModal: boolean;
-  opendTodoEditModal: boolean;
+  openedTodoDetailModal: boolean;
+  openedTodoEditModal: boolean;
+  openedMenu: boolean;
 };
 
 const StyledLayout = styled.div`
@@ -19,13 +21,15 @@ const StyledLayout = styled.div`
 
 export default function Layout({
   children,
-  opendTodoDetailModal,
-  opendTodoEditModal,
+  openedTodoDetailModal,
+  openedTodoEditModal,
+  openedMenu,
 }: Props) {
   return (
     <>
-      {opendTodoDetailModal && <TodoDetail />}
-      {opendTodoEditModal && <TodoEdit />}
+      {openedMenu && <Menu />}
+      {openedTodoDetailModal && <TodoDetail />}
+      {openedTodoEditModal && <TodoEdit />}
       <Header />
       <Error />
       <StyledLayout>{children}</StyledLayout>

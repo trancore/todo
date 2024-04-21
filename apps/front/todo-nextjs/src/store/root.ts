@@ -3,6 +3,7 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { createWrapper } from 'next-redux-wrapper';
 
 import errorReducer from '~/features/error';
+import menuReducer from '~/features/menu';
 import modalReducer from '~/features/modal';
 import toastReducer from '~/features/toast';
 import todoReducer from '~/features/todo';
@@ -15,11 +16,12 @@ export type AppDispatch = typeof rootStore.dispatch;
 
 export const rootStore = configureStore({
   reducer: {
-    toast: toastReducer,
-    [todoApi.reducerPath]: todoApi.reducer,
     error: errorReducer,
+    menu: menuReducer,
     modal: modalReducer,
+    toast: toastReducer,
     todo: todoReducer,
+    [todoApi.reducerPath]: todoApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(todoApi.middleware),

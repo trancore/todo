@@ -5,6 +5,7 @@ import Icon from '~/components/container/Icon/Icon';
 type Props = {
   isSignin: boolean;
   hasPlusIcon: boolean;
+  onClickMenuIcon: () => void;
   onClickPlusIcon: () => void;
 };
 
@@ -22,6 +23,7 @@ const StyledHeadingOne = styled.h1`
 export default function Header({
   isSignin,
   hasPlusIcon,
+  onClickMenuIcon,
   onClickPlusIcon,
 }: Props) {
   return (
@@ -30,7 +32,7 @@ export default function Header({
         <>
           <Icon
             presentational={{ name: 'Menu', size: 64 }}
-            clickIcon={() => {}}
+            clickIcon={onClickMenuIcon}
           />
           <Icon
             presentational={{ name: 'UserCircle', size: 64 }}

@@ -1,14 +1,24 @@
-﻿import { ComponentProps } from 'react';
+﻿import { close } from '~/features/menu';
 
 import MenuPresentational from '~/components/presentational/Menu/Menu';
 
-type Props = {
-  presentational: Omit<ComponentProps<typeof MenuPresentational>, 'clickIcon'>;
-};
+import { useAppDispatch } from '~/hooks/useRedux';
 
-export default function Menu({ presentational }: Props) {
+export default function Menu() {
+  const dispatch = useAppDispatch();
+
   function clickIcon() {
     // TODO: ロジックを実装する
   }
-  return <MenuPresentational {...presentational} clickIcon={clickIcon} />;
+  function onClickOutside() {
+    dispatch(close());
+  }
+
+  return (
+    <MenuPresentational
+      userName="test"
+      clickIcon={clickIcon}
+      onClickOutside={onClickOutside}
+    />
+  );
 }

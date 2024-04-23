@@ -25,3 +25,12 @@ export const popup = keyframes`
     display: none;
   }
 `;
+
+export const slidein = keyframes`
+  0% {
+    transform: translateX(-300px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+`;

@@ -9,10 +9,6 @@ import Toast from '~/components/container/Toast/Toast';
 
 import { useAppWrappedStore } from '~/hooks/useRedux';
 
-const GlobalStyle = createGlobalStyle`
-  ${reset}
-`;
-
 if (
   process.env.NODE_ENV === 'development' &&
   process.env.NEXT_PUBLIC_USE_MOCK === 'true'
@@ -33,3 +29,11 @@ export default function App({ Component, pageProps }: AppProps) {
     </Provider>
   );
 }
+
+const GlobalStyle = createGlobalStyle`
+  ${reset}
+  a:any-link {
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+`;

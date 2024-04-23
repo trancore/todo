@@ -1,4 +1,5 @@
-﻿import { selectModal } from '~/features/modal';
+﻿import { selectMenu } from '~/features/menu';
+import { selectModal } from '~/features/modal';
 
 import LayoutPresentational from '~/components/presentational/Layout/Layout';
 
@@ -9,13 +10,14 @@ type Props = {
 };
 
 export default function Layout({ children }: Props) {
-  const store = useAppSelector(selectModal);
-  const { displayedDetail, displayedEdit } = store;
+  const { displayedDetail, displayedEdit } = useAppSelector(selectModal);
+  const { opened: openedMenu } = useAppSelector(selectMenu);
 
   return (
     <LayoutPresentational
-      opendTodoDetailModal={displayedDetail}
-      opendTodoEditModal={displayedEdit}
+      openedTodoDetailModal={displayedDetail}
+      openedTodoEditModal={displayedEdit}
+      openedMenu={openedMenu}
     >
       {children}
     </LayoutPresentational>

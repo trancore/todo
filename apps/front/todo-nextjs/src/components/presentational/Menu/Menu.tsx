@@ -11,7 +11,7 @@ import Icon from '~/components/container/Icon/Icon';
 type Props = {
   userName: string;
   clickIcon: () => void;
-  onClickOutside: () => void;
+  closeMenu: () => void;
 };
 
 const StyledBackFloat = styled.div`
@@ -62,7 +62,7 @@ const StyledWrapIcon = styled.div`
   flex-direction: row-reverse;
 `;
 
-export default function Menu({ userName, clickIcon, onClickOutside }: Props) {
+export default function Menu({ userName, clickIcon, closeMenu }: Props) {
   return (
     <StyledBackFloat>
       <StyledMenu>
@@ -71,7 +71,7 @@ export default function Menu({ userName, clickIcon, onClickOutside }: Props) {
         </StyledMenuTitleBox>
         <StyledMenuContentBox>
           <StyledMenuContentList>
-            <Link href={'/completed'}>
+            <Link href={'/completed'} onClick={closeMenu}>
               <h3>完了済TODO</h3>
             </Link>
           </StyledMenuContentList>
@@ -87,7 +87,7 @@ export default function Menu({ userName, clickIcon, onClickOutside }: Props) {
           />
         </StyledWrapIcon>
       </StyledMenu>
-      <StyledOuterMenu onClick={onClickOutside}></StyledOuterMenu>
+      <StyledOuterMenu onClick={closeMenu}></StyledOuterMenu>
     </StyledBackFloat>
   );
 }

@@ -10,7 +10,7 @@ export default function Menu() {
   function clickIcon() {
     // TODO: ロジックを実装する
   }
-  function onClickOutside() {
+  function closeMenu() {
     dispatch(close());
   }
 
@@ -18,7 +18,7 @@ export default function Menu() {
     <MenuPresentational
       userName="test"
       clickIcon={clickIcon}
-      onClickOutside={onClickOutside}
+      closeMenu={closeMenu}
     />
   );
 }

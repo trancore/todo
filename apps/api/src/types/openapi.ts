@@ -10,7 +10,7 @@ export interface paths {
      * SIGN-001 サインアップ
      * @deprecated
      */
-    post: {
+    get: {
       responses: {
         /** @description 成功 */
         201: {
@@ -112,7 +112,7 @@ export interface paths {
   };
   "/sign_in": {
     /** SIGN-002 サインイン */
-    post: {
+    get: {
       responses: {
         /** @description 成功 */
         201: {
@@ -214,7 +214,7 @@ export interface paths {
   };
   "/sign_out": {
     /** SIGN-003 サインアウト */
-    post: {
+    get: {
       responses: {
         /** @description 成功 */
         201: {

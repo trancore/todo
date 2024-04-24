@@ -17,7 +17,7 @@ tags:
     description: Todoに関するAPI。
 paths:
   /sign_up:
-    post:
+    get:
       summary: SIGN-001 サインアップ
       tags:
         - Signs
@@ -151,7 +151,7 @@ paths:
                   - detail
                   - instance
   /sign_in:
-    post:
+    get:
       summary: SIGN-002 サインイン
       tags:
         - Signs
@@ -285,7 +285,7 @@ paths:
                   - detail
                   - instance
   /sign_out:
-    post:
+    get:
       summary: SIGN-003 サインアウト
       tags:
         - Signs

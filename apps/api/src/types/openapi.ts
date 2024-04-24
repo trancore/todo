@@ -10,7 +10,7 @@ export interface paths {
      * SIGN-001 サインアップ
      * @deprecated
      */
-    get: {
+    post: {
       responses: {
         /** @description 成功 */
         201: {
@@ -112,7 +112,7 @@ export interface paths {
   };
   "/sign_in": {
     /** SIGN-002 サインイン */
-    get: {
+    post: {
       responses: {
         /** @description 成功 */
         201: {
@@ -214,7 +214,7 @@ export interface paths {
   };
   "/sign_out": {
     /** SIGN-003 サインアウト */
-    get: {
+    post: {
       responses: {
         /** @description 成功 */
         201: {
@@ -503,7 +503,7 @@ export interface paths {
     get: {
       parameters: {
         query?: {
-          /** @description Todo状態 */
+          /** @description Todo状態。複数の状態を指定する場合は、","で区切る。 */
           status?: string;
         };
       };

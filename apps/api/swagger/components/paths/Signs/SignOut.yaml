@@ -1,4 +1,4 @@
-get:
+post:
   summary: SIGN-003 サインアウト
   tags:
     - Signs

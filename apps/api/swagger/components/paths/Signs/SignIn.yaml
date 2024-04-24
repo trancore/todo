@@ -1,4 +1,4 @@
-get:
+post:
   summary: SIGN-002 サインイン
   tags:
     - Signs

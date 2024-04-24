@@ -10,13 +10,13 @@ export const signController = app.Router();
 const { signIn, signOut } = await signService();
 
 /** サインイン */
-signController.get(
+signController.post(
   '/sign_in',
   passport.authenticate('github', { scope: ['user:email'] }),
 );
 
 /** サインインコールバック */
-signController.get(
+signController.post(
   '/auth/github/callback',
   passport.authenticate('github'),
   async (
@@ -30,7 +30,7 @@ signController.get(
 );
 
 /** サインアウト */
-signController.get(
+signController.post(
   '/sign_out',
   async (
     req: Request<undefined, undefined, undefined, undefined>,

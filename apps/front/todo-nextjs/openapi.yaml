@@ -17,7 +17,7 @@ tags:
     description: Todoに関するAPI。
 paths:
   /sign_up:
-    get:
+    post:
       summary: SIGN-001 サインアップ
       tags:
         - Signs
@@ -151,7 +151,7 @@ paths:
                   - detail
                   - instance
   /sign_in:
-    get:
+    post:
       summary: SIGN-002 サインイン
       tags:
         - Signs
@@ -285,7 +285,7 @@ paths:
                   - detail
                   - instance
   /sign_out:
-    get:
+    post:
       summary: SIGN-003 サインアウト
       tags:
         - Signs
@@ -658,7 +658,8 @@ paths:
           name: status
           schema:
             type: string
-          description: Todo状態
+            example: 'WIP,TODO'
+          description: 'Todo状態。複数の状態を指定する場合は、","で区切る。'
       responses:
         '200':
           description: 成功

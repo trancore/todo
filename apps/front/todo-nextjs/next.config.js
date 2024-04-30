@@ -20,6 +20,8 @@ const nextConfig = {
   env: {
     // TODO APIサーバのURL
     TODO_API_URL: 'http://localhost:8080/api/v1',
+    // NextAuth.js用環境変数
+    NEXTAUTH_URL: 'http://localhost:3000',
   },
 };
 

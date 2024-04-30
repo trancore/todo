@@ -1,6 +1,7 @@
 ﻿import { AppProps } from 'next/app';
 
-import { Provider } from 'react-redux';
+import { SessionProvider } from 'next-auth/react';
+import { Provider as StateProvider } from 'react-redux';
 import reset from 'sanitize.css';
 import { createGlobalStyle } from 'styled-components';
 
@@ -16,17 +17,22 @@ if (
   require('~/mock');
 }
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   const { store, props } = useAppWrappedStore(pageProps);
 
   return (
-    <Provider store={store}>
-      <GlobalStyle />
-      <Layout>
-        <Component {...props} />
-      </Layout>
-      <Toast />
-    </Provider>
+    <StateProvider store={store}>
+      <SessionProvider session={session}>
+        <GlobalStyle />
+        <Layout>
+          <Component {...props} />
+        </Layout>
+        <Toast />
+      </SessionProvider>
+    </StateProvider>
   );
 }
 

@@ -47,6 +47,18 @@ yarn
 
 詳しい使い方は、[こちらのリポジトリ](https://github.com/trancore/auto-create_storybook)をご覧ください。
 
+## 🌲環境変数
+
+漏洩してはいけない、Webサービスで登録したクライアントIDやシークレットキーは、ルートディレクトリに.envファイルを作成して、そのファイルに設定する。
+
+以下の環境変数に対して、クライアントIDやクライアントシークレットーキーを各種サービスから取得して設定してください。
+
+```zsh
+# OAuth認可キー
+GITHUB_CLIENT_ID=""
+GITHUB_CLIENT_SECRET=""
+```
+
 ### 1. 技術選定
 
 [issue: Next.js 開発環境構築と技術選定 #18](https://github.com/trancore/todo/issues/18)

@@ -57,6 +57,14 @@ yarn
 # OAuth認可キー
 GITHUB_CLIENT_ID=""
 GITHUB_CLIENT_SECRET=""
+# JWTを暗号化しトークンをハッシュするために使用
+NEXTAUTH_SECRET=""
+```
+
+※ シークレットにはopensslコマンドでランダムな文字列を生成すると便利です。
+
+```zsh
+openssl rand -base64 32
 ```
 
 ### 1. 技術選定

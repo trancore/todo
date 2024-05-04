@@ -503,7 +503,7 @@ export interface paths {
     get: {
       parameters: {
         query?: {
-          /** @description Todo状態 */
+          /** @description Todo状態。複数の状態を指定する場合は、","で区切る。 */
           status?: string;
         };
       };

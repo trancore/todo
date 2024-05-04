@@ -15,6 +15,7 @@
 | yup                        | v1.3.3     | バリデーションスキーマ用ライブラリ                               |
 | axios                      | v1.6.8     | データフェッチライブラリリ                                       |
 | Redux                      | v9.1.0     | 状態管理ライブラリ                                               |
+| NextAuth                   | v4.24.7    | Next.js用認証ライブラリ                                          |
 | RTK Query                  | v2.0.1     | データフェッチとキャッシュ用ライブラリ                           |
 | msw                        | v2.0.11    | APIモックサーバ用ライブラリ                                      |
 | jest                       | v29.7.0    | Unit Test, コンポーネントテスト用ライブラリ                      |
@@ -45,6 +46,26 @@ yarn
 ## 📚auto-create-storybook
 
 詳しい使い方は、[こちらのリポジトリ](https://github.com/trancore/auto-create_storybook)をご覧ください。
+
+## 🌲環境変数
+
+漏洩してはいけない、Webサービスで登録したクライアントIDやシークレットキーは、ルートディレクトリに.envファイルを作成して、そのファイルに設定する。
+
+以下の環境変数に対して、クライアントIDやクライアントシークレットーキーを各種サービスから取得して設定してください。
+
+```zsh
+# OAuth認可キー
+GITHUB_CLIENT_ID=""
+GITHUB_CLIENT_SECRET=""
+# JWTを暗号化しトークンをハッシュするために使用
+NEXTAUTH_SECRET=""
+```
+
+※ シークレットにはopensslコマンドでランダムな文字列を生成すると便利です。
+
+```zsh
+openssl rand -base64 32
+```
 
 ### 1. 技術選定
 

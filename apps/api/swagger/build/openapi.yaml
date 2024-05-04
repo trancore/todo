@@ -658,7 +658,8 @@ paths:
           name: status
           schema:
             type: string
-          description: Todo状態
+            example: 'WIP,TODO'
+          description: 'Todo状態。複数の状態を指定する場合は、","で区切る。'
       responses:
         '200':
           description: 成功

@@ -1,23 +1,26 @@
-﻿import { close } from '~/features/menu';
+﻿import { signOut } from 'next-auth/react';
+
+import { close } from '~/features/menu';
 
 import MenuPresentational from '~/components/presentational/Menu/Menu';
 
 import { useAppDispatch } from '~/hooks/useRedux';
+import { useSignin } from '~/hooks/useSignin';
 
 export default function Menu() {
   const dispatch = useAppDispatch();
+  const { getUser } = useSignin();
 
-  function clickIcon() {
-    // TODO: ロジックを実装する
-  }
+  const username = getUser()?.user?.name || '';
+
   function closeMenu() {
     dispatch(close());
   }
 
   return (
     <MenuPresentational
-      userName="test"
-      clickIcon={clickIcon}
+      userName={username}
+      signOut={signOut}
       closeMenu={closeMenu}
     />
   );

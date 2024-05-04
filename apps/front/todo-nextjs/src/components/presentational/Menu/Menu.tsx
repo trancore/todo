@@ -10,7 +10,7 @@ import Icon from '~/components/container/Icon/Icon';
 
 type Props = {
   userName: string;
-  clickIcon: () => void;
+  signOut: () => void;
   closeMenu: () => void;
 };
 
@@ -62,7 +62,7 @@ const StyledWrapIcon = styled.div`
   flex-direction: row-reverse;
 `;
 
-export default function Menu({ userName, clickIcon, closeMenu }: Props) {
+export default function Menu({ userName, signOut, closeMenu }: Props) {
   return (
     <StyledBackFloat>
       <StyledMenu>
@@ -83,7 +83,7 @@ export default function Menu({ userName, clickIcon, closeMenu }: Props) {
               size: 64,
               color: '#FFFFFF',
             }}
-            clickIcon={clickIcon}
+            clickIcon={signOut}
           />
         </StyledWrapIcon>
       </StyledMenu>

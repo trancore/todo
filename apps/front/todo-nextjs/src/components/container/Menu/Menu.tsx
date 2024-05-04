@@ -5,9 +5,13 @@ import { close } from '~/features/menu';
 import MenuPresentational from '~/components/presentational/Menu/Menu';
 
 import { useAppDispatch } from '~/hooks/useRedux';
+import { useSignin } from '~/hooks/useSignin';
 
 export default function Menu() {
   const dispatch = useAppDispatch();
+  const { getUser } = useSignin();
+
+  const username = getUser()?.user?.name || '';
 
   function closeMenu() {
     dispatch(close());
@@ -15,7 +19,7 @@ export default function Menu() {
 
   return (
     <MenuPresentational
-      userName="test"
+      userName={username}
       signOut={signOut}
       closeMenu={closeMenu}
     />

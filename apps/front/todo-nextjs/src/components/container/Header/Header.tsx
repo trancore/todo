@@ -8,14 +8,13 @@ import HeaderPresentational from '~/components/presentational/Header/Header';
 import { PAGE_PATH } from '~/constants';
 
 import { useAppDispatch } from '~/hooks/useRedux';
+import { useSignin } from '~/hooks/useSignin';
 
 export default function Header() {
   const dispatch = useAppDispatch();
   const { push } = useRouterNav();
   const { pathname } = useRouter();
-
-  // TODO サインイン、サインアウト処理ができてから対応する。
-  const isSignin = true;
+  const { isAuth } = useSignin();
 
   const hasPlusIcon = pathname !== PAGE_PATH.REGISTER;
 
@@ -26,12 +25,17 @@ export default function Header() {
     push(PAGE_PATH.REGISTER);
   }
 
+  function onClickuserIcon() {
+    push(PAGE_PATH.TOP);
+  }
+
   return (
     <HeaderPresentational
-      isSignin={isSignin}
+      isSignin={isAuth}
       hasPlusIcon={hasPlusIcon}
       onClickMenuIcon={onClickMenuIcon}
       onClickPlusIcon={onClickPlusIcon}
+      onClickUserIcon={onClickuserIcon}
     />
   );
 }

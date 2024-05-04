@@ -7,6 +7,7 @@ type Props = {
   hasPlusIcon: boolean;
   onClickMenuIcon: () => void;
   onClickPlusIcon: () => void;
+  onClickUserIcon: () => void;
 };
 
 const StyledHeader = styled.header`
@@ -25,6 +26,7 @@ export default function Header({
   hasPlusIcon,
   onClickMenuIcon,
   onClickPlusIcon,
+  onClickUserIcon,
 }: Props) {
   return (
     <StyledHeader>
@@ -36,7 +38,7 @@ export default function Header({
           />
           <Icon
             presentational={{ name: 'UserCircle', size: 64 }}
-            clickIcon={() => {}}
+            clickIcon={onClickUserIcon}
           />
           {hasPlusIcon ? (
             <Icon

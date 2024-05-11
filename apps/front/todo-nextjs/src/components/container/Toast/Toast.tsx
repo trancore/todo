@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import { selectToast } from '~/features/toast';
+import { selectToast } from '~/state/toast';
 
 import ToastPresentational from '~/components/presentational/Toast/Toast';
 

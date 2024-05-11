@@ -2,13 +2,12 @@
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { hide as hideError, show as showError } from '~/state/error';
+import { selectTodo } from '~/state/todo';
 
 import { TodoForm } from '~/types/todo';
 
 import { todoSchema } from '~/libs/yup';
-
-import { hide as hideError, show as showError } from '~/features/error';
-import { selectTodo } from '~/features/todo';
 
 import TodoEditPresentational from '~/components/presentational/Modal/TodoEdit';
 

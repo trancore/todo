@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/router';
 
-import { selectTodo } from '~/features/todo';
+import { selectTodo } from '~/state/todo';
 
 import TodoDetailPresentational from '~/components/presentational/Modal/TodoDetail';
 

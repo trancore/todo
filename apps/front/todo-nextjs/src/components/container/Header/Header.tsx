@@ -1,7 +1,7 @@
 ﻿import { useRouter as useRouterNav } from 'next/navigation';
 import { useRouter } from 'next/router';
 
-import { open } from '~/features/menu';
+import { open } from '~/state/menu';
 
 import HeaderPresentational from '~/components/presentational/Header/Header';
 

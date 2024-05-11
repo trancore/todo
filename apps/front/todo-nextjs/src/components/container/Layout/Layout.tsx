@@ -1,5 +1,5 @@
-﻿import { selectMenu } from '~/features/menu';
-import { selectModal } from '~/features/modal';
+﻿import { selectMenu } from '~/state/menu';
+import { selectModal } from '~/state/modal';
 
 import LayoutPresentational from '~/components/presentational/Layout/Layout';
 

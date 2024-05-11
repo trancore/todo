@@ -1,12 +1,11 @@
 ﻿import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { createWrapper } from 'next-redux-wrapper';
-
-import errorReducer from '~/features/error';
-import menuReducer from '~/features/menu';
-import modalReducer from '~/features/modal';
-import toastReducer from '~/features/toast';
-import todoReducer from '~/features/todo';
+import errorReducer from '~/state/error';
+import menuReducer from '~/state/menu';
+import modalReducer from '~/state/modal';
+import toastReducer from '~/state/toast';
+import todoReducer from '~/state/todo';
 
 import { todoApi } from '~/services/todo';
 

@@ -1,4 +1,4 @@
-﻿import { hide as hideTodo, show as showTodo } from '~/features/toast';
+﻿import { hide as hideTodo, show as showTodo } from '~/state/toast';
 
 import { useAppDispatch } from '~/hooks/useRedux';
 

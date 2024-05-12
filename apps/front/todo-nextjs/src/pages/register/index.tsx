@@ -22,6 +22,8 @@ import { useCreateTodoMutation } from '~/services/todo';
 
 import { useAppDispatch } from '~/hooks/useRedux';
 
+import { scrollTop } from '~/utils/scroll';
+
 const StyledInputForm = styled.div`
   margin-bottom: 36px;
   display: flex;
@@ -57,6 +59,7 @@ export default function Register() {
       })
       .catch(() => {
         dispatch(showError({ text: 'エラーが発生しました' }));
+        scrollTop();
       });
   };
 

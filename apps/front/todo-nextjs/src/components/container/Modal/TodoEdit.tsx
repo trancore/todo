@@ -17,6 +17,8 @@ import { useAppDispatch, useAppSelector } from '~/hooks/useRedux';
 import { useToast } from '~/hooks/useToast';
 import { useTodoModal } from '~/hooks/useTodoModal';
 
+import { scrollTop } from '~/utils/scroll';
+
 export default function TodoEdit() {
   const dispatch = useAppDispatch();
   const storeTodo = useAppSelector(selectTodo);
@@ -39,6 +41,7 @@ export default function TodoEdit() {
       .catch(() => {
         closeTodoModal();
         dispatch(showError({ text: 'エラーが発生しました' }));
+        scrollTop();
       });
   };
 

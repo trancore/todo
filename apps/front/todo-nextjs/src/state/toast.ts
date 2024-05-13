@@ -10,6 +10,8 @@ export const toastSlice = createSlice({
   },
   reducers: {
     show: (state, action: { payload: { text: string } }) => {
+      if (typeof action.payload.text !== 'string') return;
+
       state.text = action.payload.text;
       state.displayed = true;
     },

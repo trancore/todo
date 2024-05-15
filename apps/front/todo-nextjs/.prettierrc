@@ -22,6 +22,8 @@
     "^~/hooks/(.*)$",
     "^~/utils/(.*)$",
     "^~/mock/(.*)$",
+    "^@/__mocks__/(.*)$",
+    "^@/__tests__/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,

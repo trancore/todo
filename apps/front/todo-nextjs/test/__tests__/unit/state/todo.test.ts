@@ -1,26 +1,27 @@
 ﻿import reducer, { release, select } from '~/state/todo';
 
-describe('🔧Reducer: toast.ts', () => {
+describe('🔧Reducer: todo.ts', () => {
+  const initialState = {
+    id: '',
+    title: '',
+    description: '',
+    deadlineAt: '',
+  };
+  const dummyState = {
+    id: '1',
+    title: 'test',
+    description: 'testtesttest',
+    deadlineAt: '2024-01-01',
+  };
+
   it('初期stateを取得する。', () => {
-    expect(reducer(undefined, { type: 'unknown' })).toEqual({
-      id: '',
-      title: '',
-      description: '',
-      deadlineAt: '',
-    });
+    expect(reducer(undefined, { type: 'unknown' })).toEqual(initialState);
   });
 
   it('select()を実行する。', () => {
-    const previousState = {
-      id: '',
-      title: '',
-      description: '',
-      deadlineAt: '',
-    };
-
     expect(
       reducer(
-        previousState,
+        initialState,
         select({
           id: '1',
           todoForm: {
@@ -30,25 +31,13 @@ describe('🔧Reducer: toast.ts', () => {
           },
         }),
       ),
-    ).toEqual({
-      id: '1',
-      title: 'test',
-      description: 'testtesttest',
-      deadlineAt: '2024-01-01',
-    });
+    ).toEqual(dummyState);
   });
 
   it('不正なIDを登録する。', () => {
-    const previousState = {
-      id: '',
-      title: '',
-      description: '',
-      deadlineAt: '',
-    };
-
     expect(
       reducer(
-        previousState,
+        initialState,
         select({
           // @ts-expect-error エラーとなる値をわざと指定するため
           id: 1,
@@ -59,20 +48,13 @@ describe('🔧Reducer: toast.ts', () => {
           },
         }),
       ),
-    ).toEqual(previousState);
+    ).toEqual(initialState);
   });
 
   it('不正なTodoを登録する。', () => {
-    const previousState = {
-      id: '',
-      title: '',
-      description: '',
-      deadlineAt: '',
-    };
-
     expect(
       reducer(
-        previousState,
+        initialState,
         select({
           id: '1',
           todoForm: {
@@ -85,22 +67,10 @@ describe('🔧Reducer: toast.ts', () => {
           },
         }),
       ),
-    ).toEqual(previousState);
+    ).toEqual(initialState);
   });
 
   it('release()を実行する。', () => {
-    const previousState = {
-      id: '1',
-      title: 'test',
-      description: 'testtesttest',
-      deadlineAt: '2024-01-01',
-    };
-
-    expect(reducer(previousState, release())).toEqual({
-      id: '',
-      title: '',
-      description: '',
-      deadlineAt: '',
-    });
+    expect(reducer(dummyState, release())).toEqual(initialState);
   });
 });

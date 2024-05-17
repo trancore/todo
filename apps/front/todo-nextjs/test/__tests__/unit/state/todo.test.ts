@@ -1,19 +1,24 @@
-﻿import reducer, { release, select } from '~/state/todo';
+﻿/**
+ * @jest-environment node
+ */
+import reducer, { release, select } from '~/state/todo';
+
+import { store } from '@/__mocks__/setup';
+
+const initialState = {
+  id: '',
+  title: '',
+  description: '',
+  deadlineAt: '',
+};
+const dummyState = {
+  id: '1',
+  title: 'test',
+  description: 'testtesttest',
+  deadlineAt: '2024-01-01',
+};
 
 describe('🔧Reducer: todo.ts', () => {
-  const initialState = {
-    id: '',
-    title: '',
-    description: '',
-    deadlineAt: '',
-  };
-  const dummyState = {
-    id: '1',
-    title: 'test',
-    description: 'testtesttest',
-    deadlineAt: '2024-01-01',
-  };
-
   it('初期stateを取得する。', () => {
     expect(reducer(undefined, { type: 'unknown' })).toEqual(initialState);
   });
@@ -72,5 +77,26 @@ describe('🔧Reducer: todo.ts', () => {
 
   it('release()を実行する。', () => {
     expect(reducer(dummyState, release())).toEqual(initialState);
+  });
+});
+
+describe('🔧Selector: todo.ts', () => {
+  beforeAll(() => {
+    store.dispatch(
+      select({
+        id: '1',
+        todoForm: {
+          title: 'test',
+          description: 'testtesttest',
+          deadlineAt: '2024-01-01',
+        },
+      }),
+    );
+  });
+
+  it('storeからtodoを取得する。', async () => {
+    const rootStore = store.getState().todo;
+
+    expect(rootStore).toEqual(dummyState);
   });
 });

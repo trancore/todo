@@ -4,7 +4,7 @@ import { todoApi as todoApiSlice } from '~/services/todo';
 
 import { server } from '@/__mocks__/server';
 
-const store = rootStore;
+export const store = rootStore;
 
 beforeAll(() => {
   server.listen();

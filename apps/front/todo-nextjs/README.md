@@ -156,3 +156,62 @@ RTK Queryを使ってSSRでfetchする場合は、以下を参考にしてくだ
 この時、rootコンポーネントで設定しているstoreを、server sideで取得した情報が保存されたstoreを使うようにする必要があります。そのために、storeをwrapし、そのラッパー関数から`getServerSideProps`や`getStaticProps`を使ってstoreにfetchしたデータを保存させます。そして、wrapしたstoreをhooksでrootコンポーネントに設定します。これを設定しないと、SSR時にhydrationエラーが発生するので注意してください。
 
 また、`createApi`を呼び出す際に、`extractRehydrationInfo`オプションに再ハイドレーションの設定をします。
+
+### 5.自動テスト
+
+#### Unitテスト
+
+このアプリケーションでのUnitテストは、以下のディレクトリやファイルに対してテストを作成します。
+
+- /utils （単なる計算を行うだけの共通関数をまとめたもの）
+- /state （状態管理やRTK Queryを使用した際のキャッシュ機構とフェッチ処理をまとめたもの）
+- /hooks （ライフサイクルや他 hooks をラップしたロジックをまとめたもの）
+
+##### hooksのテスト
+
+hooksをテストしようとすると、以下のようなエラーが出てきてしまい、hooks単体をテストすることができません。
+
+```
+console.error
+    Warning: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+    1. You might have mismatching versions of React and the renderer (such as React DOM)
+    2. You might be breaking the Rules of Hooks
+    3. You might have more than one copy of React in the same app
+    See https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.
+```
+
+そのため、これを回避するために、`@testing-library/react-hooks`を用います。
+
+##### Reduxのテスト
+
+[Redux - Writing Tests](https://redux.js.org/usage/writing-tests#setting-up-a-test-environment)：テストの書き方は、公式で紹介しています。
+
+###### Reducersのテスト
+
+Reducersは実装の詳細であるため、明示的なUnitテストは必要ありません。しかし、もしReducersが複雑なロジックを持ち、ユニットテストの信頼性を高めたい場合は、簡単にテストを行うことができます。
+
+特定の入力状態とアクションでReducersを呼び出し、結果の状態が期待値と一致することを保証すれば良いです。
+
+###### Selectorsのテスト
+
+Selectorsも一般的には純粋な関数であるため、Reducersと同じ基本的なアプローチでテストすることができます。
+
+初期値を設定し、それらの入力でセレクタ関数を呼び出し、その結果が期待される出力と一致することをテストします。
+
+しかし、ほとんどのセレクタは最後の入力を記憶するようにメモ化されているので、テスト内で使用される場所によってはセレクタが新しい値を生成すると期待していたのに、キャッシュされた値を返しているケースに注意する必要があります。
+
+##### Actions CreatorsとThunksのテスト
+
+Reduxでは、Actions Creatorは純粋なオブジェクトを返す関数です。
+
+Actions Creatorを手動で書くのではなく、`createSlice`で自動生成させるか、`createAction`で作成することを公式では推奨しています。そのため、Actions Creatorを自分でテストする必要ありません（Redux Toolkitのメンテナがすでにやってくれている）。
+
+Actions Creatorの戻り値は、アプリケーション内の実装の詳細とみなされ、統合テストスタイルに従う場合、明示的なテストは必要ありません。
+
+同様に、Redux Thunkを使ったThunkについても、手動で書くのではなく、`@reduxjs/toolkit`の`createAsyncThunk`を使うことを推奨しています。このThunkは、Thunkのライフサイクルに基づいて、保留、完了、拒否されたアクションの適切なタイプをディスパッチします。
+
+公式では、Thunkの振る舞いをアプリケーションの実装の詳細であると考えており、**Thunkを単独でテストするのではなく**、サンクを使用しているコンポーネント群（またはアプリ全体）をテストすることでカバーすることを推奨しています。
+
+msw、miragejs、jest-fetch-mock、fetch-mockなどのツールを使って、fetch/xhrレベルで非同期リクエストをモックすることを推奨しています。このレベルでリクエストをモックすることで、Thunkのロジックをテストの中で変更する必要がなくなります。
+
+##### middleware.ts （リクエストが完了する前にコードを実行させることができる）

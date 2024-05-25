@@ -214,4 +214,16 @@ Actions Creatorの戻り値は、アプリケーション内の実装の詳細�
 
 msw、miragejs、jest-fetch-mock、fetch-mockなどのツールを使って、fetch/xhrレベルで非同期リクエストをモックすることを推奨しています。このレベルでリクエストをモックすることで、Thunkのロジックをテストの中で変更する必要がなくなります。
 
+##### hooksのテスト
+
+hooksは`ReactComponent`やhooks関数内でしか使うことができません。
+
+そのため、`@testing-library/react`の`renderHook`関数を用いてhooksをwrapする必要があります。
+
+また、テストする際に各モジュールから`import`している場合、それを`jest.fn()`や`jest.spyOn()`でモックする必要があります。この時、テストしたいものをモックしないように注意してください。
+
+実装例は、こちら([@/unit/hooks/useToast.test.ts](/test/__tests__/unit/hooks/useToast.test.ts))をご覧ください。
+
+hooksの中で状態を扱っている場合があります。状態そのもののテストに関しては、Reduxのテストで対応しているため、hooksの中ではモックさせます。
+
 ##### middleware.ts （リクエストが完了する前にコードを実行させることができる）

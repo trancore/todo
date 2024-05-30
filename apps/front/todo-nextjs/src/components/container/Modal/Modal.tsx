@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import { close } from '~/features/modal';
+import { close } from '~/state/modal';
 
 import ModalPresentational from '~/components/presentational/Modal/Modal';
 

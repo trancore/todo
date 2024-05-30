@@ -3,13 +3,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styled from 'styled-components';
+import { hide as hideError, show as showError } from '~/state/error';
+import { hide as hideTodo, show as showTodo } from '~/state/toast';
 
 import { TodoForm } from '~/types/todo';
 
 import { todoSchema } from '~/libs/yup';
-
-import { hide as hideError, show as showError } from '~/features/error';
-import { hide as hideTodo, show as showTodo } from '~/features/toast';
 
 import Button from '~/components/container/Button/Button';
 import DateForm from '~/components/container/Form/Date';
@@ -22,6 +21,8 @@ import { PAGE_PATH } from '~/constants';
 import { useCreateTodoMutation } from '~/services/todo';
 
 import { useAppDispatch } from '~/hooks/useRedux';
+
+import { scrollTop } from '~/utils/scroll';
 
 const StyledInputForm = styled.div`
   margin-bottom: 36px;
@@ -58,6 +59,7 @@ export default function Register() {
       })
       .catch(() => {
         dispatch(showError({ text: 'エラーが発生しました' }));
+        scrollTop();
       });
   };
 

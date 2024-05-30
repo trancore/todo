@@ -10,6 +10,7 @@
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
+    "^=/(.*)$",
     "^~/types/(.*)$",
     "^~/libs/(.*)$",
     "^~/store/(.*)$",
@@ -21,6 +22,8 @@
     "^~/hooks/(.*)$",
     "^~/utils/(.*)$",
     "^~/mock/(.*)$",
+    "^@/__mocks__/(.*)$",
+    "^@/__tests__/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,

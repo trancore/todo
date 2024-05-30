@@ -1,6 +1,5 @@
 ﻿import { signOut } from 'next-auth/react';
-
-import { close } from '~/features/menu';
+import { close } from '~/state/menu';
 
 import MenuPresentational from '~/components/presentational/Menu/Menu';
 

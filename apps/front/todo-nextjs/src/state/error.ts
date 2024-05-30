@@ -2,8 +2,6 @@
 
 import { RootState } from '~/store/root';
 
-import { scrollTop } from '~/utils/scroll';
-
 export const errorSlice = createSlice({
   name: 'error',
   initialState: {
@@ -12,9 +10,10 @@ export const errorSlice = createSlice({
   },
   reducers: {
     show: (state, action: { payload: { text: string } }) => {
+      if (typeof action.payload.text !== 'string') return;
+
       state.text = action.payload.text;
       state.displayed = true;
-      scrollTop();
     },
     hide: (state) => {
       state.displayed = false;

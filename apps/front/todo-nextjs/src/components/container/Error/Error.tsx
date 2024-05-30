@@ -1,4 +1,4 @@
-﻿import { selectError } from '~/features/error';
+﻿import { selectError } from '~/state/error';
 
 import ErrorPresentation from '~/components/presentational/Error/Error';
 

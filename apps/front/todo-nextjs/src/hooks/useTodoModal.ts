@@ -1,8 +1,8 @@
-﻿import { ModelType, TodoForm } from '~/types/todo';
+﻿import { selectModal } from '~/state/modal';
+import { close, open } from '~/state/modal';
+import { release, select } from '~/state/todo';
 
-import { selectModal } from '~/features/modal';
-import { close, open } from '~/features/modal';
-import { release, select } from '~/features/todo';
+import { ModelType, TodoForm } from '~/types/todo';
 
 import { useAppDispatch, useAppSelector } from '~/hooks/useRedux';
 

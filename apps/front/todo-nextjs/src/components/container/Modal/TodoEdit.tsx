@@ -2,13 +2,12 @@
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { hide as hideError, show as showError } from '~/state/error';
+import { selectTodo } from '~/state/todo';
 
 import { TodoForm } from '~/types/todo';
 
 import { todoSchema } from '~/libs/yup';
-
-import { hide as hideError, show as showError } from '~/features/error';
-import { selectTodo } from '~/features/todo';
 
 import TodoEditPresentational from '~/components/presentational/Modal/TodoEdit';
 
@@ -17,6 +16,8 @@ import { useEditTodoMutation } from '~/services/todo';
 import { useAppDispatch, useAppSelector } from '~/hooks/useRedux';
 import { useToast } from '~/hooks/useToast';
 import { useTodoModal } from '~/hooks/useTodoModal';
+
+import { scrollTop } from '~/utils/scroll';
 
 export default function TodoEdit() {
   const dispatch = useAppDispatch();
@@ -40,6 +41,7 @@ export default function TodoEdit() {
       .catch(() => {
         closeTodoModal();
         dispatch(showError({ text: 'エラーが発生しました' }));
+        scrollTop();
       });
   };
 

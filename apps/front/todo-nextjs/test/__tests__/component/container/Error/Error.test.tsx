@@ -38,7 +38,7 @@ describe('~/component/container/Error.tsx', () => {
     expect(paragraph).toBeVisible();
   });
 
-  it('propsで渡したテキストを表示する', () => {
+  it('テキストを表示する', () => {
     mockUseAppSelector.mockReturnValue({
       displayed: true,
       text: 'test',

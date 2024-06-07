@@ -167,7 +167,7 @@ RTK Queryを使ってSSRでfetchする場合は、以下を参考にしてくだ
 - /state （状態管理やRTK Queryを使用した際のキャッシュ機構とフェッチ処理をまとめたもの）
 - /hooks （ライフサイクルや他 hooks をラップしたロジックをまとめたもの）
 
-##### hooksのテスト
+###### hooksのテスト
 
 hooksをテストしようとすると、以下のようなエラーが出てきてしまい、hooks単体をテストすることができません。
 
@@ -182,7 +182,7 @@ console.error
 
 そのため、これを回避するために、`@testing-library/react-hooks`を用います。
 
-##### Reduxのテスト
+###### Reduxのテスト
 
 [Redux - Writing Tests](https://redux.js.org/usage/writing-tests#setting-up-a-test-environment)：テストの書き方は、公式で紹介しています。
 
@@ -200,7 +200,7 @@ Selectorsも一般的には純粋な関数であるため、Reducersと同じ基
 
 しかし、ほとんどのセレクタは最後の入力を記憶するようにメモ化されているので、テスト内で使用される場所によってはセレクタが新しい値を生成すると期待していたのに、キャッシュされた値を返しているケースに注意する必要があります。
 
-##### Actions CreatorsとThunksのテスト
+###### Actions CreatorsとThunksのテスト
 
 Reduxでは、Actions Creatorは純粋なオブジェクトを返す関数です。
 
@@ -214,7 +214,7 @@ Actions Creatorの戻り値は、アプリケーション内の実装の詳細�
 
 msw、miragejs、jest-fetch-mock、fetch-mockなどのツールを使って、fetch/xhrレベルで非同期リクエストをモックすることを推奨しています。このレベルでリクエストをモックすることで、Thunkのロジックをテストの中で変更する必要がなくなります。
 
-##### hooksのテスト
+###### hooksのテスト
 
 hooksは`ReactComponent`やhooks関数内でしか使うことができません。
 
@@ -232,3 +232,26 @@ hooksの中で状態を扱っている場合があります。状態そのもの
 
 - /components （画面で用いるコンポーネントをまとめたもの。画面表示だけでなく、ロジックを閉じ込めたためだけのものもある）
 - /pages （画面単位ごとのファイルをまとめたもの。）
+
+##### svgファイルのモック
+
+アイコンなどのsvgファイルをコンポーネントとして扱っている場合、Jestを用いたテストファイルではそのままsvgファイルを`import`できません。
+
+そのため、svgファイルが`import`された際にモックを利用するための設定をする必要があります。
+
+```typescript
+// jest.config.ts
+const config: Config = {
+  //...
+
+  moduleNameMapper: {
+    '^~/(.*)$': '<rootDir>/src/$1',
+    '^=/(.*)$': '<rootDir>/test/$1',
+    '^.+\\.(svg)$': '<rootDir>/test/__mocks__/svg.tsx',
+  },
+
+  //...
+};
+```
+
+実装は、[こちら](/test/__mocks__/svg.tsx)を参照してください。

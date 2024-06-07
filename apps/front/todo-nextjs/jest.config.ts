@@ -102,6 +102,7 @@ const config: Config = {
   moduleNameMapper: {
     '^~/(.*)$': '<rootDir>/src/$1',
     '^=/(.*)$': '<rootDir>/test/$1',
+    '^.+\\.(svg)$': '<rootDir>/test/__mocks__/svg.tsx',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader

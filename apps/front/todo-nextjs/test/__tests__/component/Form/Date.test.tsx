@@ -1,4 +1,4 @@
-﻿import { cleanup, queryAllByAltText, render } from '@testing-library/react';
+﻿import { cleanup, render } from '@testing-library/react';
 
 import Date from '~/components/container/Form/Date';
 
@@ -60,19 +60,5 @@ describe('~/components/container/Form/Date.tsx', () => {
     const errorMessageElement = getByText(mockErrorMessage);
 
     expect(errorMessageElement).toHaveTextContent(mockErrorMessage);
-  });
-
-  // どうやるか
-  it('フォームと連携する', () => {
-    const { getByLabelText } = render(
-      <Date
-        presentational={{
-          labelName: mockProps.labelName,
-          errorMessage: mockProps.errorMessage,
-          register: mockProps.register,
-        }}
-      />,
-    );
-    const inputElement = getByLabelText(mockProps.labelName);
   });
 });

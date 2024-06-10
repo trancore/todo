@@ -41,7 +41,9 @@ describe('~/components/container/Form/TextArea.tsx', () => {
         }}
       />,
     );
-    const errorMessageElement = container.querySelector('#date-error-message');
+    const errorMessageElement = container.querySelector(
+      '#textarea-error-message',
+    );
 
     expect(errorMessageElement).toHaveTextContent('');
   });

@@ -24,7 +24,7 @@ export default function TextArea({
         placeholder={placeholder}
         {...register}
       ></textarea>
-      <p id="date-error-message">{errorMessage}</p>
+      <p id="textarea-error-message">{errorMessage}</p>
     </>
   );
 }

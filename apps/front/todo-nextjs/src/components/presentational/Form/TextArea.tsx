@@ -17,9 +17,14 @@ export default function TextArea({
 }: Props) {
   return (
     <>
-      <label>{labelName}</label>
-      <textarea rows={10} placeholder={placeholder} {...register}></textarea>
-      <p>{errorMessage}</p>
+      <label htmlFor="textarea">{labelName}</label>
+      <textarea
+        id="textarea"
+        rows={10}
+        placeholder={placeholder}
+        {...register}
+      ></textarea>
+      <p id="date-error-message">{errorMessage}</p>
     </>
   );
 }

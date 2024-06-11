@@ -8,6 +8,7 @@ describe('~/components/container/Form/TextArea.tsx', () => {
   const mockProps = {
     labelName: 'testLabel',
     errorMessage: undefined,
+    placeholder: undefined,
     register: mockRegister(),
   };
 
@@ -21,6 +22,7 @@ describe('~/components/container/Form/TextArea.tsx', () => {
       <TextArea
         presentational={{
           labelName: mockProps.labelName,
+          placeholder: mockProps.placeholder,
           errorMessage: mockProps.errorMessage,
           register: mockProps.register,
         }}
@@ -31,11 +33,46 @@ describe('~/components/container/Form/TextArea.tsx', () => {
     expect(labelElement).toHaveTextContent(mockProps.labelName);
   });
 
+  it('プレースホルダーを表示しない', () => {
+    const mockPlaceholder = 'testPlaceholder';
+    const { queryByPlaceholderText } = render(
+      <TextArea
+        presentational={{
+          labelName: mockProps.labelName,
+          placeholder: mockProps.placeholder,
+          errorMessage: mockProps.errorMessage,
+          register: mockProps.register,
+        }}
+      />,
+    );
+    const placeholderElement = queryByPlaceholderText(mockPlaceholder);
+
+    expect(placeholderElement).toBeNull();
+  });
+
+  it('プレースホルダーを表示する', () => {
+    const mockPlaceholder = 'testPlaceholder';
+    const { queryByPlaceholderText } = render(
+      <TextArea
+        presentational={{
+          labelName: mockProps.labelName,
+          placeholder: mockPlaceholder,
+          errorMessage: mockProps.errorMessage,
+          register: mockProps.register,
+        }}
+      />,
+    );
+    const placeholderElement = queryByPlaceholderText(mockPlaceholder);
+
+    expect(placeholderElement).toBeDefined();
+  });
+
   it('エラーメッセージを表示しない', () => {
     const { container } = render(
       <TextArea
         presentational={{
           labelName: mockProps.labelName,
+          placeholder: mockProps.placeholder,
           errorMessage: mockProps.errorMessage,
           register: mockProps.register,
         }}
@@ -54,6 +91,7 @@ describe('~/components/container/Form/TextArea.tsx', () => {
       <TextArea
         presentational={{
           labelName: mockProps.labelName,
+          placeholder: mockProps.placeholder,
           errorMessage: mockErrorMessage,
           register: mockProps.register,
         }}

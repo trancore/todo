@@ -23,7 +23,7 @@ export default function TextArea({
         rows={10}
         placeholder={placeholder}
         {...register}
-      ></textarea>
+      />
       <p id="textarea-error-message">{errorMessage}</p>
     </>
   );

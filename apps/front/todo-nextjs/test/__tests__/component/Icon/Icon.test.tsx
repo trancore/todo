@@ -1,4 +1,4 @@
-﻿import { cleanup, render, screen, waitFor } from '@testing-library/react';
+﻿import { cleanup, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Icon from '~/components/container/Icon/Icon';

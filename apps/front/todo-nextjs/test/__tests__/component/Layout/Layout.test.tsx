@@ -8,9 +8,9 @@ const mockOpened = jest.fn();
 const mockUseAppDispatch = jest.fn();
 
 const mockUseAppSelector = jest.fn().mockImplementation(() => ({
-  displayedDetail: (...arg: unknown[]) => mockDisplayedDetail(...arg),
-  displayedEdit: (...arg: unknown[]) => mockDisplayedEdit(...arg),
-  opened: (...arg: unknown[]) => mockOpened(...arg),
+  displayedDetail: mockDisplayedDetail(),
+  displayedEdit: mockDisplayedEdit(),
+  opened: mockOpened(),
 }));
 jest.mock('~/hooks/useRedux', () => ({
   useAppSelector: (...arg: unknown[]) => mockUseAppSelector(...arg),
@@ -20,7 +20,7 @@ jest.mock(
   '~/components/container/Menu/Menu',
   () =>
     function MockMenu() {
-      return <div>mockMenu</div>;
+      return <div>MockMenu</div>;
     },
 );
 jest.mock(
@@ -47,7 +47,7 @@ jest.mock(
 
 describe('~/component/container/Layout/Layout.tsx', () => {
   const mockProps = {
-    children: <div>mockChildren</div>,
+    children: <div>MockChildren</div>,
   };
 
   beforeEach(() => {
@@ -60,8 +60,55 @@ describe('~/component/container/Layout/Layout.tsx', () => {
   it('メニューを表示する。', () => {
     mockOpened.mockReturnValue(true);
     const { getByText } = render(<Layout>{mockProps.children}</Layout>);
-    const mockElement = getByText('mockMenu');
+    const mockMenuElement = getByText('MockMenu');
 
-    expect(mockElement).toBeDefined();
+    expect(mockMenuElement).toBeDefined();
+  });
+
+  it('メニューを表示しない。', () => {
+    mockOpened.mockReturnValue(false);
+    const { queryByText } = render(<Layout>{mockProps.children}</Layout>);
+    const mockMenuElement = queryByText('MockMenu');
+
+    expect(mockMenuElement).toBeNull();
+  });
+
+  it('Todo詳細モーダルを表示する。', () => {
+    mockDisplayedDetail.mockReturnValue(true);
+    const { getByText } = render(<Layout>{mockProps.children}</Layout>);
+    const mockTodoDetailModalElement = getByText('MockTodoDetail');
+
+    expect(mockTodoDetailModalElement).toBeDefined();
+  });
+
+  it('Todo詳細モーダルを表示しない。', () => {
+    mockOpened.mockReturnValue(false);
+    const { queryByText } = render(<Layout>{mockProps.children}</Layout>);
+    const mockTodoDetailModalElement = queryByText('MockTodoDetail');
+
+    expect(mockTodoDetailModalElement).toBeNull();
+  });
+
+  it('Todo編集モーダルを表示する。', () => {
+    mockDisplayedDetail.mockReturnValue(true);
+    const { getByText } = render(<Layout>{mockProps.children}</Layout>);
+    const mockTodoEditModalElement = getByText('MockTodoDetail');
+
+    expect(mockTodoEditModalElement).toBeDefined();
+  });
+
+  it('Todo編集モーダルを表示しない。', () => {
+    mockOpened.mockReturnValue(false);
+    const { queryByText } = render(<Layout>{mockProps.children}</Layout>);
+    const mockTodoEditModalElement = queryByText('MockTodoDetail');
+
+    expect(mockTodoEditModalElement).toBeNull();
+  });
+
+  it('childrenを表示する。', () => {
+    const { getByText } = render(<Layout>{mockProps.children}</Layout>);
+    const children = getByText('MockChildren');
+
+    expect(children).toBeDefined();
   });
 });

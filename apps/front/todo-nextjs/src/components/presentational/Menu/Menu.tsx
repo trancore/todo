@@ -67,7 +67,7 @@ export default function Menu({ userName, signOut, closeMenu }: Props) {
     <StyledBackFloat>
       <StyledMenu>
         <StyledMenuTitleBox>
-          <h1>{userName}</h1>
+          <h1 id="user-name">{userName}</h1>
         </StyledMenuTitleBox>
         <StyledMenuContentBox>
           <StyledMenuContentList>
@@ -87,7 +87,10 @@ export default function Menu({ userName, signOut, closeMenu }: Props) {
           />
         </StyledWrapIcon>
       </StyledMenu>
-      <StyledOuterMenu onClick={closeMenu}></StyledOuterMenu>
+      <StyledOuterMenu
+        id="styled-outer-menu"
+        onClick={closeMenu}
+      ></StyledOuterMenu>
     </StyledBackFloat>
   );
 }

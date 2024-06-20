@@ -1,13 +1,12 @@
 ﻿import { cleanup, render, waitFor } from '@testing-library/react';
-import userEvent, { UserEvent } from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 
-import ButtonContainer from '~/components/container/Button/Button';
+import Button from '~/components/container/Button/Button';
 
 const mockOnClick = jest.fn();
 
 describe('~/component/container/Button.tsx', () => {
-  let user: UserEvent;
-  let button: HTMLElement;
+  const user = userEvent.setup();
 
   const mockProps = {
     presentational: {
@@ -20,9 +19,12 @@ describe('~/component/container/Button.tsx', () => {
 
   beforeEach(() => {
     mockOnClick.mockReset();
+    cleanup();
+  });
 
+  it('ボタンを押下すると、propsで渡したonClickを発火する。', async () => {
     const { getByRole } = render(
-      <ButtonContainer
+      <Button
         presentational={{
           text: mockProps.presentational.text,
           width: mockProps.presentational.width,
@@ -31,20 +33,59 @@ describe('~/component/container/Button.tsx', () => {
         onClick={mockProps.onClick}
       />,
     );
+    const button = getByRole('button');
 
-    user = userEvent.setup();
-    button = getByRole('button');
+    await user.click(button);
+    await waitFor(() => {
+      expect(mockOnClick).toHaveBeenCalled();
+    });
   });
 
   it('propsで渡した文言でボタンを表示する。', async () => {
+    const { getByRole } = render(
+      <Button
+        presentational={{
+          text: mockProps.presentational.text,
+          width: mockProps.presentational.width,
+        }}
+        disabled={mockProps.disabled}
+        onClick={mockProps.onClick}
+      />,
+    );
+    const button = getByRole('button');
+
     expect(button).toHaveTextContent('test');
   });
 
   it('propsで渡したサイズでボタンを表示する。', async () => {
+    const { getByRole } = render(
+      <Button
+        presentational={{
+          text: mockProps.presentational.text,
+          width: mockProps.presentational.width,
+        }}
+        disabled={mockProps.disabled}
+        onClick={mockProps.onClick}
+      />,
+    );
+    const button = getByRole('button');
+
     expect(button).toHaveStyle({ width: '128px' });
   });
 
   it('活性化したボタンを表示する。', async () => {
+    const { getByRole } = render(
+      <Button
+        presentational={{
+          text: mockProps.presentational.text,
+          width: mockProps.presentational.width,
+        }}
+        disabled={mockProps.disabled}
+        onClick={mockProps.onClick}
+      />,
+    );
+    const button = getByRole('button');
+
     expect(button).toBeEnabled();
   });
 
@@ -52,7 +93,7 @@ describe('~/component/container/Button.tsx', () => {
     cleanup();
 
     const { getByRole: getByRoleDisabled } = render(
-      <ButtonContainer
+      <Button
         presentational={{
           text: mockProps.presentational.text,
           width: mockProps.presentational.width,
@@ -64,12 +105,5 @@ describe('~/component/container/Button.tsx', () => {
     const disabledButton = getByRoleDisabled('button');
 
     expect(disabledButton).toBeDisabled();
-  });
-
-  it('ボタンを押下すると、propsで渡したonClickを発火する。', async () => {
-    await user.click(button);
-    await waitFor(() => {
-      expect(mockOnClick).toHaveBeenCalled();
-    });
   });
 });

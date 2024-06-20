@@ -11,9 +11,9 @@ type Props = {
 export default function Date({ labelName, errorMessage, register }: Props) {
   return (
     <>
-      <label>{labelName}</label>
-      <input type="date" {...register}></input>
-      <p>{errorMessage}</p>
+      <label htmlFor="date">{labelName}</label>
+      <input id="date" type="date" {...register}></input>
+      <p id="date-error-message">{errorMessage}</p>
     </>
   );
 }

@@ -17,9 +17,9 @@ export default function TextForm({
 }: Props) {
   return (
     <>
-      <label>{labelName}</label>
-      <input {...register} placeholder={placeholder}></input>
-      <p>{errorMessage}</p>
+      <label htmlFor="textform">{labelName}</label>
+      <input id="textform" {...register} placeholder={placeholder} />
+      <p id="textform-error-message">{errorMessage}</p>
     </>
   );
 }

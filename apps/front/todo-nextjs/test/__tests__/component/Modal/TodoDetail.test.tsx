@@ -3,6 +3,8 @@ import userEvent from '@testing-library/user-event';
 
 import TodoDetail from '~/components/container/Modal/TodoDetail';
 
+import { PAGE_PATH } from '~/constants';
+
 const mockPathneme = jest.fn();
 const mockUseAppSelector = jest.fn();
 const mockUseAppDispatch = jest.fn();
@@ -16,7 +18,7 @@ const mockCloseTodoDetailModal = jest.fn();
 const mockOpenTodoEditModal = jest.fn();
 
 const mockUseRouter = jest.fn().mockImplementation(() => ({
-  pathneme: mockPathneme(),
+  pathname: mockPathneme(),
 }));
 const mockUseChangeStatusTodoMutation = jest.fn().mockImplementation(() => [
   function changeTodoStatus() {
@@ -66,9 +68,6 @@ jest.mock('~/hooks/useTodoModal', () => ({
 }));
 
 describe('~/component/container/Modal/TodoDetail.tsx', () => {
-  const mockProps = {
-    children: <div>MockChildren</div>,
-  };
   const user = userEvent.setup();
 
   beforeEach(() => {
@@ -78,10 +77,36 @@ describe('~/component/container/Modal/TodoDetail.tsx', () => {
     cleanup();
   });
 
-  it('', () => {
-    const { getByText } = render(<TodoDetail />);
-    // const childrenElement = getByText('MockChildren');
-    // expect(childrenElement).toBeDefined();
+  it('TODO完了画面で表示している。', () => {
+    mockPathneme.mockReturnValue(PAGE_PATH.COMPLETED);
+
+    const { queryAllByRole } = render(<TodoDetail />);
+    const buttonElements = queryAllByRole('button');
+
+    expect(buttonElements).toHaveLength(0);
+
+    ['完了', '編集', '削除'].forEach((text) => {
+      const result = buttonElements.find(
+        (buttonElement) => (buttonElement.textContent = text),
+      );
+      expect(result).not.toBeDefined();
+    });
+  });
+
+  it('TODO完了画面意外で表示している。', () => {
+    mockPathneme.mockReturnValue(PAGE_PATH.TOP);
+
+    const { queryAllByRole } = render(<TodoDetail />);
+    const buttonElements = queryAllByRole('button');
+
+    expect(buttonElements).toHaveLength(3);
+
+    ['完了', '編集', '削除'].forEach((text) => {
+      const result = buttonElements.find(
+        (buttonElement) => (buttonElement.textContent = text),
+      );
+      expect(result).toBeDefined();
+    });
   });
 
   it('', async () => {

@@ -1,4 +1,4 @@
-﻿import { cleanup, render } from '@testing-library/react';
+﻿import { cleanup, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import TodoDetail from '~/components/container/Modal/TodoDetail';
@@ -9,7 +9,10 @@ const mockPathneme = jest.fn();
 const mockUseAppSelector = jest.fn();
 const mockUseAppDispatch = jest.fn();
 const mockSelectTodo = jest.fn();
-const mockChangeTodoStatus = jest.fn();
+// const mockChangeTodoStatus = jest.fn();
+const mockUnwrap = jest.fn();
+const mockThen = jest.fn();
+const mockCatch = jest.fn();
 const mockIsLoadingCompleted = jest.fn();
 const mockDeleteTodo = jest.fn();
 const mockIsLoadingDeleted = jest.fn();
@@ -17,6 +20,11 @@ const mockHookToast = jest.fn();
 const mockCloseTodoDetailModal = jest.fn();
 const mockOpenTodoEditModal = jest.fn();
 
+const mockChangeTodoStatus = jest.fn().mockImplementation(() => ({
+  unwrap: () => mockUnwrap(),
+  then: () => mockThen(),
+  catch: () => mockCatch(),
+}));
 const mockUseRouter = jest.fn().mockImplementation(() => ({
   pathname: mockPathneme(),
 }));
@@ -109,13 +117,15 @@ describe('~/component/container/Modal/TodoDetail.tsx', () => {
     });
   });
 
-  it('', async () => {
-    // const { container } = render(<Modal>{mockProps.children}</Modal>);
-    // const closeIconElement = container.querySelector('#Close');
-    // expect(closeIconElement).not.toBeNull();
-    // await user.click(closeIconElement!);
-    // await waitFor(() => {
-    //   //   expect(mockClose).toHaveBeenCalledTimes(1);
-    // });
+  it('完了ボタンをクリックする。', async () => {
+    mockPathneme.mockReturnValue(PAGE_PATH.TOP);
+
+    const { getByText } = render(<TodoDetail />);
+    const completedButtonElement = getByText('完了');
+
+    await user.click(completedButtonElement);
+    await waitFor(() => {
+      expect(mockChangeTodoStatus).toHaveBeenCalledTimes(1);
+    });
   });
 });

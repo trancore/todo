@@ -5,14 +5,11 @@ import TodoDetail from '~/components/container/Modal/TodoDetail';
 
 import { PAGE_PATH } from '~/constants';
 
+const mockUnwrap = jest.fn(() => new Promise(() => {}));
 const mockPathneme = jest.fn();
 const mockUseAppSelector = jest.fn();
 const mockUseAppDispatch = jest.fn();
 const mockSelectTodo = jest.fn();
-// const mockChangeTodoStatus = jest.fn();
-const mockUnwrap = jest.fn();
-const mockThen = jest.fn();
-const mockCatch = jest.fn();
 const mockIsLoadingCompleted = jest.fn();
 const mockDeleteTodo = jest.fn();
 const mockIsLoadingDeleted = jest.fn();
@@ -22,18 +19,16 @@ const mockOpenTodoEditModal = jest.fn();
 
 const mockChangeTodoStatus = jest.fn().mockImplementation(() => ({
   unwrap: () => mockUnwrap(),
-  then: () => mockThen(),
-  catch: () => mockCatch(),
 }));
 const mockUseRouter = jest.fn().mockImplementation(() => ({
   pathname: mockPathneme(),
 }));
-const mockUseChangeStatusTodoMutation = jest.fn().mockImplementation(() => [
-  function changeTodoStatus() {
-    mockChangeTodoStatus();
-  },
-  { isLoading: mockIsLoadingCompleted() },
-]);
+const mockUseChangeStatusTodoMutation = jest
+  .fn()
+  .mockImplementation(() => [
+    mockChangeTodoStatus,
+    { isLoading: mockIsLoadingCompleted() },
+  ]);
 const mockUseDeleteTodoMutation = jest.fn().mockImplementation(() => [
   function deleteTodo() {
     mockDeleteTodo();
@@ -41,7 +36,7 @@ const mockUseDeleteTodoMutation = jest.fn().mockImplementation(() => [
   { isLoading: mockIsLoadingDeleted() },
 ]);
 const mockUseToast = jest.fn().mockImplementation(() => ({
-  hookToast: () => mockHookToast(),
+  hookToast: (...args: unknown[]) => mockHookToast(...args),
 }));
 const mockUseTodoModal = jest.fn().mockImplementation(() => ({
   closeTodoModal: () => mockCloseTodoDetailModal(),
@@ -117,15 +112,36 @@ describe('~/component/container/Modal/TodoDetail.tsx', () => {
     });
   });
 
-  it('完了ボタンをクリックする。', async () => {
+  it('完了ボタンをクリックすると、正常終了する。', async () => {
     mockPathneme.mockReturnValue(PAGE_PATH.TOP);
+    mockUnwrap.mockResolvedValue(() => {});
 
     const { getByText } = render(<TodoDetail />);
     const completedButtonElement = getByText('完了');
 
     await user.click(completedButtonElement);
-    await waitFor(() => {
+    await waitFor(async () => {
       expect(mockChangeTodoStatus).toHaveBeenCalledTimes(1);
+      expect(mockUnwrap).toHaveBeenCalledTimes(1);
+      expect(mockHookToast).toHaveBeenCalledTimes(1);
+      expect(mockHookToast.mock.calls[0][0]).toBe('TODOを完了にしました');
+      expect(mockCloseTodoDetailModal).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it('完了ボタンをクリックしたが、エラーが発生する。', async () => {
+    mockPathneme.mockReturnValue(PAGE_PATH.TOP);
+    mockUnwrap.mockRejectedValue(() => {});
+
+    const { getByText } = render(<TodoDetail />);
+    const completedButtonElement = getByText('完了');
+
+    await user.click(completedButtonElement);
+    await waitFor(async () => {
+      expect(mockChangeTodoStatus).toHaveBeenCalledTimes(1);
+      expect(mockUnwrap).toHaveBeenCalledTimes(1);
+      expect(mockHookToast).toHaveBeenCalledTimes(1);
+      expect(mockHookToast.mock.calls[0][0]).toBe('エラーが発生しました。');
     });
   });
 });

@@ -40,17 +40,15 @@ const mockUseToast = jest.fn().mockImplementation(() => ({
 }));
 const mockUseTodoModal = jest.fn().mockImplementation(() => ({
   closeTodoModal: () => mockCloseTodoDetailModal(),
-  openTodoModal: () => mockOpenTodoEditModal(),
+  openTodoModal: (firstValue: unknown, secondValue: unknown) =>
+    mockOpenTodoEditModal(firstValue, secondValue),
 }));
 
 jest.mock('next/router', () => ({
   useRouter: () => mockUseRouter(),
 }));
 jest.mock('~/hooks/useRedux', () => ({
-  useAppSelector:
-    (...arg: unknown[]) =>
-    () =>
-      mockUseAppSelector(...arg),
+  useAppSelector: (...arg: unknown[]) => mockUseAppSelector(...arg),
   useAppDispatch:
     () =>
     (...arg: unknown[]) =>
@@ -72,9 +70,16 @@ jest.mock('~/hooks/useTodoModal', () => ({
 
 describe('~/component/container/Modal/TodoDetail.tsx', () => {
   const user = userEvent.setup();
+  const mockStore = {
+    id: '1',
+    title: 'mock-title',
+    description: 'mockDescription',
+    deadlineAt: '2024-01-01',
+  };
 
   beforeEach(() => {
     mockUseAppSelector.mockReset();
+    mockUseAppSelector.mockReturnValue(mockStore);
     mockIsLoadingCompleted.mockReset();
     mockIsLoadingDeleted.mockReset();
     cleanup();
@@ -112,7 +117,7 @@ describe('~/component/container/Modal/TodoDetail.tsx', () => {
     });
   });
 
-  it('完了ボタンをクリックすると、正常終了する。', async () => {
+  it('完了ボタンを押下するとトーストが表示される。', async () => {
     mockPathneme.mockReturnValue(PAGE_PATH.TOP);
     mockUnwrap.mockResolvedValue(() => {});
 
@@ -129,7 +134,7 @@ describe('~/component/container/Modal/TodoDetail.tsx', () => {
     });
   });
 
-  it('完了ボタンをクリックしたが、エラーが発生する。', async () => {
+  it('完了ボタンを押下したが、エラーが発生する。', async () => {
     mockPathneme.mockReturnValue(PAGE_PATH.TOP);
     mockUnwrap.mockRejectedValue(() => {});
 
@@ -142,6 +147,21 @@ describe('~/component/container/Modal/TodoDetail.tsx', () => {
       expect(mockUnwrap).toHaveBeenCalledTimes(1);
       expect(mockHookToast).toHaveBeenCalledTimes(1);
       expect(mockHookToast.mock.calls[0][0]).toBe('エラーが発生しました。');
+    });
+  });
+
+  it('編集ボタンを押下すると、TODO編集モーダルが表示する。', async () => {
+    mockPathneme.mockReturnValue(PAGE_PATH.TOP);
+
+    const { getByText } = render(<TodoDetail />);
+    const edittButtonElement = getByText('編集');
+
+    await user.click(edittButtonElement);
+    await waitFor(async () => {
+      expect(mockCloseTodoDetailModal).toHaveBeenCalledTimes(1);
+      expect(mockOpenTodoEditModal).toHaveBeenCalledTimes(1);
+      expect(mockOpenTodoEditModal.mock.calls[0][0]).toBe(mockStore.id);
+      expect(mockOpenTodoEditModal.mock.calls[0][1]).toBe(mockStore);
     });
   });
 });

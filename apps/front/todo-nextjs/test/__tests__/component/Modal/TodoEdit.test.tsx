@@ -50,7 +50,7 @@ jest.mock('react-hook-form', () => ({
       isValid: true,
     },
     register: () => {},
-    handleSubmit: () => {},
+    handleSubmit: () => mockEditTodo,
   }),
 }));
 
@@ -70,7 +70,7 @@ describe('~/component/container/Modal/TodoEdit.tsx', () => {
     cleanup();
   });
 
-  it('TODO完了画面で表示している。', async () => {
+  it('編集ボタンを押下する。', async () => {
     const { getByRole } = render(<TodoEdit />);
     const editButtonElement = getByRole('button');
 

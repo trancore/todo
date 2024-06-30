@@ -1,4 +1,4 @@
-﻿import { cleanup, render, waitFor } from '@testing-library/react';
+﻿import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import TodoEdit from '~/components/container/Modal/TodoEdit';
@@ -43,25 +43,20 @@ jest.mock('~/hooks/useToast', () => ({
 jest.mock('~/hooks/useTodoModal', () => ({
   useTodoModal: (...args: unknown[]) => mockUseTodoModal(...args),
 }));
-jest.mock('react-hook-form', () => ({
-  useForm: () => ({
-    formState: {
-      errors: {},
-      isValid: true,
-    },
-    register: () => {},
-    handleSubmit: () => mockEditTodo,
-  }),
-}));
 
 describe('~/component/container/Modal/TodoEdit.tsx', () => {
   const user = userEvent.setup();
 
   const mockStore = {
     id: '1',
-    title: 'mock-title',
+    title: 'mockTitle',
     description: 'mockDescription',
     deadlineAt: '2024-01-01',
+  };
+  const mockInput = {
+    title: 'mockInputTitle',
+    description: 'mockInputDescription',
+    deadlineAt: '2024-04-01',
   };
 
   beforeEach(() => {
@@ -71,15 +66,28 @@ describe('~/component/container/Modal/TodoEdit.tsx', () => {
   });
 
   it('編集ボタンを押下する。', async () => {
-    const { getByRole } = render(<TodoEdit />);
+    mockUnwrap.mockResolvedValue(() => {});
+
+    const { getByRole, container } = render(<TodoEdit />);
+    const titleInputElement = container.querySelector('#textform');
+    const descriptionInputElement = container.querySelector('#textarea');
+    const deadlineAtInputElement = container.querySelector('#date');
     const editButtonElement = getByRole('button');
+
+    expect(titleInputElement).not.toBeNull();
+    expect(descriptionInputElement).not.toBeNull();
+    expect(deadlineAtInputElement).not.toBeNull();
+
+    await user.type(titleInputElement!, mockInput.title);
+    await user.type(descriptionInputElement!, mockInput.description);
+    await user.type(deadlineAtInputElement!, mockInput.deadlineAt);
 
     await user.click(editButtonElement);
     await waitFor(async () => {
       expect(mockEditTodo).toHaveBeenCalledTimes(1);
       expect(mockUnwrap).toHaveBeenCalledTimes(1);
       expect(mockHookToast).toHaveBeenCalledTimes(1);
-      expect(mockHookToast.mock.calls[0][0]).toBe('TODOを完了にしました');
+      expect(mockHookToast.mock.calls[0][0]).toBe('Todoが更新されました');
       expect(mockCloseTodoDetailModal).toHaveBeenCalledTimes(1);
     });
   });

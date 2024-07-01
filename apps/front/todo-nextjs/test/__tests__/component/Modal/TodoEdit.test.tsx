@@ -65,20 +65,69 @@ describe('~/component/container/Modal/TodoEdit.tsx', () => {
     cleanup();
   });
 
+  describe('タイトル入力フォーム', () => {
+    it('有効なテキストを入力する。', async () => {
+      const { container, getByRole } = render(<TodoEdit />);
+      const titleInputElement = getByRole('textbox', { name: 'タイトル' });
+      const titleInputErrorElement = container.querySelector(
+        '#textform-error-message',
+      );
+
+      expect(titleInputErrorElement).not.toBeNull();
+
+      await user.type(titleInputElement!, mockInput.title);
+
+      expect(titleInputElement).toHaveValue(mockInput.title);
+      expect(titleInputErrorElement).toHaveTextContent('');
+    });
+
+    it('何も入力しない。', async () => {
+      const { container, getByRole } = render(<TodoEdit />);
+      const titleInputElement = getByRole('textbox', { name: 'タイトル' });
+      const titleInputErrorElement = container.querySelector(
+        '#textform-error-message',
+      );
+
+      expect(titleInputErrorElement).not.toBeNull();
+
+      await user.type(titleInputElement, mockInput.title);
+      await user.clear(titleInputElement);
+
+      expect(titleInputErrorElement).toHaveTextContent('必須項目です');
+    });
+
+    it('101文字のテキストを入力する。', async () => {
+      const { container, getByRole } = render(<TodoEdit />);
+      const titleInputElement = getByRole('textbox', { name: 'タイトル' });
+      const titleInputErrorElement = container.querySelector(
+        '#textform-error-message',
+      );
+      // 101文字
+      const inValidText =
+        '10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす1';
+
+      await user.type(titleInputElement!, inValidText);
+
+      expect(titleInputElement).toHaveValue(inValidText);
+      expect(titleInputErrorElement).toHaveTextContent(
+        '100文字以下で入力してください',
+      );
+    });
+  });
+
   it('編集ボタンを押下する。', async () => {
     mockUnwrap.mockResolvedValue(() => {});
 
     const { getByRole, container } = render(<TodoEdit />);
-    const titleInputElement = container.querySelector('#textform');
+    const titleInputElement = getByRole('textbox', { name: 'タイトル' });
     const descriptionInputElement = container.querySelector('#textarea');
     const deadlineAtInputElement = container.querySelector('#date');
     const editButtonElement = getByRole('button');
 
-    expect(titleInputElement).not.toBeNull();
     expect(descriptionInputElement).not.toBeNull();
     expect(deadlineAtInputElement).not.toBeNull();
 
-    await user.type(titleInputElement!, mockInput.title);
+    await user.type(titleInputElement, mockInput.title);
     await user.type(descriptionInputElement!, mockInput.description);
     await user.type(deadlineAtInputElement!, mockInput.deadlineAt);
 

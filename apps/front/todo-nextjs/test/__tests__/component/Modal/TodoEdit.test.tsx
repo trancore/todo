@@ -1,4 +1,4 @@
-﻿import { cleanup, render, screen, waitFor } from '@testing-library/react';
+﻿import { cleanup, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import TodoEdit from '~/components/container/Modal/TodoEdit';
@@ -102,6 +102,9 @@ describe('~/component/container/Modal/TodoEdit.tsx', () => {
       const titleInputErrorElement = container.querySelector(
         '#textform-error-message',
       );
+
+      expect(titleInputErrorElement).not.toBeNull();
+
       // 101文字
       const inValidText =
         '10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす1';
@@ -111,6 +114,44 @@ describe('~/component/container/Modal/TodoEdit.tsx', () => {
       expect(titleInputElement).toHaveValue(inValidText);
       expect(titleInputErrorElement).toHaveTextContent(
         '100文字以下で入力してください',
+      );
+    });
+  });
+
+  describe('説明入力フォーム', () => {
+    it('有効なテキストを入力する。', async () => {
+      const { container, getByRole } = render(<TodoEdit />);
+      const descriptionInputElement = getByRole('textbox', { name: '説明' });
+      const descriptionInputErrorElement = container.querySelector(
+        '#textarea-error-message',
+      );
+
+      expect(descriptionInputErrorElement).not.toBeNull();
+
+      await user.type(descriptionInputElement, mockInput.description);
+
+      expect(descriptionInputElement).toHaveValue(mockInput.description);
+      expect(descriptionInputErrorElement).toHaveTextContent('');
+    });
+
+    it('501文字のテキストを入力する。', async () => {
+      const { container, getByRole } = render(<TodoEdit />);
+      const descriptionInputElement = getByRole('textbox', { name: '説明' });
+      const descriptionInputErrorElement = container.querySelector(
+        '#textarea-error-message',
+      );
+
+      expect(descriptionInputErrorElement).not.toBeNull();
+
+      // 501文字
+      const inValidText =
+        '10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす10文字ですすすすす1';
+
+      await user.type(descriptionInputElement, inValidText);
+
+      expect(descriptionInputElement).toHaveValue(inValidText);
+      expect(descriptionInputErrorElement).toHaveTextContent(
+        '500文字以下で入力してください',
       );
     });
   });

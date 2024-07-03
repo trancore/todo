@@ -8,8 +8,8 @@ const mockClose = jest.fn();
 
 jest.mock('~/hooks/useRedux', () => ({
   useAppDispatch:
-    (...arg: unknown[]) =>
     () =>
+    (...arg: unknown[]) =>
       mockUseAppDispatch(...arg),
 }));
 jest.mock('~/state/modal', () => ({

@@ -1,4 +1,4 @@
-﻿import { cleanup, render, waitFor } from '@testing-library/react';
+﻿import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import TodoEdit from '~/components/container/Modal/TodoEdit';
@@ -153,6 +153,25 @@ describe('~/component/container/Modal/TodoEdit.tsx', () => {
       expect(descriptionInputErrorElement).toHaveTextContent(
         '500文字以下で入力してください',
       );
+    });
+  });
+
+  describe('期限入力フォーム', () => {
+    it('有効なテキストを入力する。', async () => {
+      const { container } = render(<TodoEdit />);
+      const deadlineAtInputElement = container.querySelector('#date');
+      const deadlineAtInputErrorElement = container.querySelector(
+        '#date-error-message',
+      );
+
+      expect(deadlineAtInputElement).not.toBeNull();
+      expect(deadlineAtInputErrorElement).not.toBeNull();
+
+      await user.type(deadlineAtInputElement!, mockInput.deadlineAt);
+
+      expect(deadlineAtInputElement!).toHaveAttribute('type', 'date');
+      expect(deadlineAtInputElement!).toHaveValue(mockInput.deadlineAt);
+      expect(deadlineAtInputErrorElement).toHaveTextContent('');
     });
   });
 

@@ -20,7 +20,7 @@
 | msw                        | v2.0.11    | APIモックサーバ用ライブラリ                                      |
 | jest                       | v29.7.0    | Unit Test, コンポーネントテスト用ライブラリ                      |
 | testing-library/react      | v14.1.2    | React用testing-libraryで、便利なテスティングマッチャーを提供する |
-| Cypress                    | v13.6.2    | E2E Test用ライブラリ                                             |
+| Cypress                    | v13.13.0   | E2E Test用ライブラリ                                             |
 
 ## yarn scriptsについて
 
@@ -281,3 +281,5 @@ const config: Config = {
 ```
 
 実装は、[こちら](/test/__mocks__/svg.tsx)を参照してください。
+
+#### EtoEテスト

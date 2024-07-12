@@ -57,6 +57,7 @@ yarn
 # OAuth認可キー
 GITHUB_CLIENT_ID=""
 GITHUB_CLIENT_SECRET=""
+NEXTAUTH_URL=""
 # JWTを暗号化しトークンをハッシュするために使用
 NEXTAUTH_SECRET=""
 ```

@@ -4,7 +4,9 @@ export default defineConfig({
   e2e: {
     specPattern: ['test/__tests__/e2e/**/*.cy.{ts,tsx}'],
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      config.baseUrl = 'http://localhost:3000';
+
+      return config;
     },
   },
 });

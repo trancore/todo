@@ -17,7 +17,7 @@
     "generate:swagger-type:api": "openapi-typescript ./openapi.yaml -o ./src/types/openapi.ts",
     "test:jest": "jest",
     "test:jest:watch": "jest --watch",
-    "test:open:cy": "cypress open"
+    "test:cy:open": "cypress open"
   },
   "dependencies": {
     "@formkit/tempo": "^0.0.17",

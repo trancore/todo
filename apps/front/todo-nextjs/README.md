@@ -17,7 +17,7 @@
 | Redux                      | v9.1.0     | 状態管理ライブラリ                                               |
 | NextAuth                   | v4.24.7    | Next.js用認証ライブラリ                                          |
 | RTK Query                  | v2.0.1     | データフェッチとキャッシュ用ライブラリ                           |
-| msw                        | v2.0.11    | APIモックサーバ用ライブラリ                                      |
+| msw                        | v2.3.4     | APIモックサーバ用ライブラリ                                      |
 | jest                       | v29.7.0    | Unit Test, コンポーネントテスト用ライブラリ                      |
 | testing-library/react      | v14.1.2    | React用testing-libraryで、便利なテスティングマッチャーを提供する |
 | Cypress                    | v13.13.0   | E2E Test用ライブラリ                                             |

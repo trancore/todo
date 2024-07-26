@@ -10,11 +10,13 @@ import Toast from '~/components/container/Toast/Toast';
 
 import { useAppWrappedStore } from '~/hooks/useRedux';
 
+import { initMocks } from '~/mock';
+
 if (
   process.env.NODE_ENV === 'development' &&
   process.env.NEXT_PUBLIC_USE_MOCK === 'true'
 ) {
-  require('~/mock');
+  initMocks();
 }
 
 export default function App({

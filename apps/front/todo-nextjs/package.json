@@ -17,6 +17,7 @@
     "generate:swagger-type:api": "openapi-typescript ./openapi.yaml -o ./src/types/openapi.ts",
     "test:jest": "jest",
     "test:jest:watch": "jest --watch",
+    "test:cy": "cypress run --no-runner-ui --browser chrome",
     "test:cy:open": "cypress open"
   },
   "dependencies": {

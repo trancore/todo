@@ -5,6 +5,10 @@ export default defineConfig({
     env: {
       BASE_URL: 'http://localhost:3000',
     },
+    retries: {
+      runMode: 5,
+      openMode: 5,
+    },
     specPattern: ['test/__tests__/e2e/**/*.cy.{ts,tsx}'],
     setupNodeEvents(on, config) {
       config.baseUrl = 'http://localhost:3000';

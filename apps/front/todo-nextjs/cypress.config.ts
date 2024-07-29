@@ -10,6 +10,7 @@ export default defineConfig({
       openMode: 5,
     },
     specPattern: ['test/__tests__/e2e/**/*.cy.{ts,tsx}'],
+    testIsolation: false,
     setupNodeEvents(on, config) {
       config.baseUrl = 'http://localhost:3000';
       return config;

@@ -4,7 +4,6 @@
   // https://docs.cypress.io/guides/end-to-end-testing/social-authentication
   it('サインイン画面からGitHubログインを行い、トップ画面にリダイレクトする。', () => {
     cy.signin();
-    cy.wait(20000);
 
     cy.url().should('equal', `${Cypress.env('BASE_URL')}/`);
   });

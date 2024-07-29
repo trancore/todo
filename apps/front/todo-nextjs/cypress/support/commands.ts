@@ -8,30 +8,22 @@
 // commands please read more here:
 // https://on.cypress.io/custom-commands
 // ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+
+Cypress.Commands.add('signin', () => {
+  cy.session('signin', () => {
+    cy.visit('/signin');
+    cy.get('button').click();
+    cy.get('button').click();
+
+    cy.origin('https://github.com', () => {
+      const username = (Cypress.env('GITHUB_USERNAME') as string) || '';
+      const password = (Cypress.env('GITHUB_PASSWORD') as string) || '';
+
+      cy.get('input[name="login"]').type(username);
+      cy.get('input[name="password"]').type(password, { log: false });
+      cy.get('input[name="commit"]').click();
+
+      cy.get('a[data-test-selector="gh-mobile-link"]').click();
+    });
+  });
+});

@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -15,9 +16,13 @@ Cypress.Commands.add('signin', () => {
   cy.session(
     'signin',
     () => {
-      cy.visit('/signin');
-      cy.get('button').click();
-      cy.get('button').click();
+      cy.visit('/signin')
+        .then(() => {
+          cy.get('button').click();
+        })
+        .then(() => {
+          cy.get('button').click();
+        });
 
       cy.origin('https://github.com', () => {
         const username = (Cypress.env('GITHUB_USERNAME') as string) || '';

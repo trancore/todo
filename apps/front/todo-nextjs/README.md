@@ -17,10 +17,10 @@
 | Redux                      | v9.1.0     | 状態管理ライブラリ                                               |
 | NextAuth                   | v4.24.7    | Next.js用認証ライブラリ                                          |
 | RTK Query                  | v2.0.1     | データフェッチとキャッシュ用ライブラリ                           |
-| msw                        | v2.0.11    | APIモックサーバ用ライブラリ                                      |
+| msw                        | v2.3.4     | APIモックサーバ用ライブラリ                                      |
 | jest                       | v29.7.0    | Unit Test, コンポーネントテスト用ライブラリ                      |
 | testing-library/react      | v14.1.2    | React用testing-libraryで、便利なテスティングマッチャーを提供する |
-| Cypress                    | v13.6.2    | E2E Test用ライブラリ                                             |
+| Cypress                    | v13.13.0   | E2E Test用ライブラリ                                             |
 
 ## yarn scriptsについて
 
@@ -49,6 +49,8 @@ yarn
 
 ## 🌲環境変数
 
+### Next.jsアプリケーション用の環境変数
+
 漏洩してはいけない、Webサービスで登録したクライアントIDやシークレットキーは、ルートディレクトリに.envファイルを作成して、そのファイルに設定する。
 
 以下の環境変数に対して、クライアントIDやクライアントシークレットーキーを各種サービスから取得して設定してください。
@@ -57,6 +59,7 @@ yarn
 # OAuth認可キー
 GITHUB_CLIENT_ID=""
 GITHUB_CLIENT_SECRET=""
+NEXTAUTH_URL=""
 # JWTを暗号化しトークンをハッシュするために使用
 NEXTAUTH_SECRET=""
 ```
@@ -65,6 +68,20 @@ NEXTAUTH_SECRET=""
 
 ```zsh
 openssl rand -base64 32
+```
+
+### Cypress用の環境変数
+
+Cypressでは、NextAuth.jsでログインを行うためのEtoEテストを行います。そのため、OAuthサービスへログインするためのユーザー名とパスワードを環境変数として読み込んでいます。またこのような漏洩してしまうと良くない変数については、ルートディレクトリに`cypress.env.json`として設定しています、  
+このアプリケーションではGithubのみOAuthサービスを使用していないため、以下のように設定してください。
+
+```json
+{
+  // GitHubのユーザー名
+  "GITHUB_USERNAME": "",
+  // GitHubのパスワード
+  "GITHUB_PASSWORD": ""
+}
 ```
 
 ## フロントエンド開発の進め方
@@ -281,3 +298,16 @@ const config: Config = {
 ```
 
 実装は、[こちら](/test/__mocks__/svg.tsx)を参照してください。
+
+#### EtoEテスト
+
+componentテストでも言えることなのですが、testライブラリを用いて画面要素を取得するには`selector`を指定し、`class`名や`id`から取得する必要があります。
+
+CSS in JSのStyled-componentやtailwindCSSなどのCSSライブラリやフレームワークを用いている場合、`class`名がよしなに設定されてしまいます。そして、それらの`class`名にはランダムな数字や文字列が含まれるため、`class`名による要素の取得がかなり煩雑になってしまいます。
+
+そのため、各要素にはtestライブラリから取得できるような、何らかの属性を持たせる必要があります。jestでは要素のテキストから取得することができるため、ある程度適当にHTMLのタグを実装しても大丈夫かもしれません。しかし、cypressではそれが出来ないため、セマンティクスな実装を行うように気を付けたり明示的に属性や`id`を設定する必要があります。
+
+##### NextAuth.jsでEtoEテストを行う方法
+
+このための実装は、公式に記載があります。  
+https://next-auth.js.org/tutorials/testing-with-cypress

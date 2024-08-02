@@ -27,7 +27,7 @@ const StyledToast = styled.div`
 export default function Toast({ text, displayed }: Props) {
   return (
     displayed && (
-      <StyledToast>
+      <StyledToast id="toast">
         <p>{text}</p>
       </StyledToast>
     )

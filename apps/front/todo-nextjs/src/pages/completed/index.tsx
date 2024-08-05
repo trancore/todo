@@ -48,7 +48,7 @@ export default function Completed() {
       <StyledTodoList>
         {(todoList ?? []).map((todo) => {
           return (
-            <StyledTodo key={todo.id}>
+            <StyledTodo key={todo.id} id="todo">
               <TodoEclipse
                 presentational={{
                   title: todo.title,

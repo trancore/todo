@@ -1,18 +1,4 @@
-import webpack from '@cypress/webpack-preprocessor';
 import { defineConfig } from 'cypress';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const webpackOptions = {
-  resolve: {
-    alias: {
-      '~': path.resolve(__dirname, 'src'),
-    },
-  },
-};
 
 export default defineConfig({
   e2e: {
@@ -28,8 +14,6 @@ export default defineConfig({
     testIsolation: false,
     setupNodeEvents(on, config) {
       config.baseUrl = 'http://localhost:3000';
-
-      on('file:preprocessor', webpack({ webpackOptions }));
 
       return config;
     },

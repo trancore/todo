@@ -4,7 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { hide as hideError, show as showError } from '~/state/error';
-import { hide as hideTodo, show as showTodo } from '~/state/toast';
 
 import { TodoForm } from '~/types/todo';
 

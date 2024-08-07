@@ -1,4 +1,6 @@
-﻿const TEST_TITLE = 'etoetesttitle';
+﻿export {};
+
+const TEST_TITLE = 'etoetesttitle';
 const TEST_DESCRIPTION = 'etoetestdescription';
 const TEST_DATE = '2024-01-01';
 
@@ -30,7 +32,7 @@ function testRegisterTodo() {
   it('トーストが表示される。', () => {
     cy.get('div#toast').find('p').should('have.text', 'TODOが作成されました');
     cy.wait(5000);
-    cy.get('div#toast').should('not.have.css', 'visibility', 'hidden');
+    cy.get('div#toast').should('not.exist');
   });
 
   it('登録したTODOが表示される。', () => {

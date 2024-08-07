@@ -21,6 +21,7 @@ import { PAGE_PATH } from '~/constants';
 import { useCreateTodoMutation } from '~/services/todo';
 
 import { useAppDispatch } from '~/hooks/useRedux';
+import { useToast } from '~/hooks/useToast';
 
 import { scrollTop } from '~/utils/scroll';
 
@@ -45,6 +46,7 @@ export default function Register() {
   const [createTodo] = useCreateTodoMutation();
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const { hookToast } = useToast();
 
   const submit: SubmitHandler<TodoForm> = (inputs) => {
     createTodo(inputs)
@@ -52,10 +54,7 @@ export default function Register() {
       .then(() => {
         dispatch(hideError());
         router.push(PAGE_PATH.TOP);
-
-        dispatch(showTodo({ text: 'TODOが作成されました' }));
-        const timeoutId = setTimeout(() => dispatch(hideTodo()), 2000);
-        clearTimeout(timeoutId);
+        hookToast('TODOが作成されました');
       })
       .catch(() => {
         dispatch(showError({ text: 'エラーが発生しました' }));

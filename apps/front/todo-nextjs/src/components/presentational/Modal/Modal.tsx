@@ -45,7 +45,7 @@ const StyledTodoContent = styled.div`
 export default function Modal({ children, clickClose }: Props) {
   return (
     <StyledBackFloat>
-      <StyledModalBox>
+      <StyledModalBox id="modal">
         <StyledContent>
           <StyledIcon>
             <Icon

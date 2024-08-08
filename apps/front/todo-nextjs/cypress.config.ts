@@ -14,6 +14,7 @@ export default defineConfig({
     testIsolation: false,
     setupNodeEvents(on, config) {
       config.baseUrl = 'http://localhost:3000';
+
       return config;
     },
   },

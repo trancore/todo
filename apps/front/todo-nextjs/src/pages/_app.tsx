@@ -25,6 +25,11 @@ export default function App({
 }: AppProps) {
   const { store, props } = useAppWrappedStore(pageProps);
 
+  if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
+    // EtoEテスト用
+    window.store = store;
+  }
+
   return (
     <StateProvider store={store}>
       <SessionProvider session={session}>

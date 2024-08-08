@@ -36,7 +36,7 @@ export default function TodoEdit() {
       .then(() => {
         dispatch(hideError());
         closeTodoModal();
-        hookToast('Todoが更新されました');
+        hookToast('TODOが更新されました');
       })
       .catch(() => {
         closeTodoModal();

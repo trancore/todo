@@ -57,6 +57,7 @@ export default function Top() {
           <StyledTodoUnder>
             {todo.deadlineAt ? (
               <StyledTodoDeadlineAt
+                test-id="todo-deadline"
                 color={colorizeDate(new Date(todo.deadlineAt))}
               >
                 {formatToYYYYMMdd(new Date(todo.deadlineAt))}

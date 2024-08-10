@@ -46,35 +46,38 @@ export default function Completed() {
     <>
       <h1>完了済み</h1>
       <StyledTodoList>
-        {(todoList ?? []).map((todo) => {
-          return (
-            <StyledTodo key={todo.id} id="todo">
-              <TodoEclipse
-                presentational={{
-                  title: todo.title,
-                  description: todo.description,
-                }}
-                id={String(todo.id)}
-                deadlineAt={todo.deadlineAt}
-              />
-              <StyledTodoUnder>
-                {todo.deadlineAt ? (
-                  <StyledTodoDeadlineAt
-                    color={colorizeDate(new Date(todo.deadlineAt))}
-                  >
-                    {formatToYYYYMMdd(new Date(todo.deadlineAt))}
-                  </StyledTodoDeadlineAt>
-                ) : (
-                  <p>{''}</p>
-                )}
-                <TodoIconBox
-                  todoId={todo.id}
-                  hasIcons={{ hasUncheck: true, hasTrashCan: true }}
-                />
-              </StyledTodoUnder>
-            </StyledTodo>
-          );
-        })}
+        {todoList && todoList.length > 0
+          ? todoList?.map((todo) => {
+              return (
+                <StyledTodo key={todo.id} id="todo">
+                  <TodoEclipse
+                    presentational={{
+                      title: todo.title,
+                      description: todo.description,
+                    }}
+                    id={String(todo.id)}
+                    deadlineAt={todo.deadlineAt}
+                  />
+                  <StyledTodoUnder>
+                    {todo.deadlineAt ? (
+                      <StyledTodoDeadlineAt
+                        color={colorizeDate(new Date(todo.deadlineAt))}
+                        test-id="todo-deadline"
+                      >
+                        {formatToYYYYMMdd(new Date(todo.deadlineAt))}
+                      </StyledTodoDeadlineAt>
+                    ) : (
+                      <p>{''}</p>
+                    )}
+                    <TodoIconBox
+                      todoId={todo.id}
+                      hasIcons={{ hasUncheck: true, hasTrashCan: true }}
+                    />
+                  </StyledTodoUnder>
+                </StyledTodo>
+              );
+            })
+          : []}
       </StyledTodoList>
     </>
   );

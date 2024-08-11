@@ -262,13 +262,18 @@ Unit テストや EtoE テストでは、正しいテキストの表示やクリ
 
 - `Role`(Jest)
 - `id`(attr)
+- `test-id`(attr)
 - `className`(attr)
 - スタイル(Jest)
 - テキスト
 
-要素をユニークに指定できる`id`を使って要素を取得した方が良いかと思います。
+要素をユニークに指定できる`test-id`を使って要素を取得した方が良いかと思います。
 
-※ そのため、テストを意識した実装をする場合、`id`を設定することを忘れないようにする必要があります。
+※ そのため、テストを意識した実装をする場合、`test-id`を設定することを忘れないようにする必要があります。
+
+##### 参考
+
+- [Best Practices - cypress](https://docs.cypress.io/guides/references/best-practices)
 
 #### VRT(Visual Regression Testing)
 

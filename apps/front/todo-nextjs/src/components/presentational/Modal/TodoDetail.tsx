@@ -62,15 +62,15 @@ export default function TodoDetail({
         <h1>詳細</h1>
         <StyledContent>
           <h3>タイトル</h3>
-          <p>{title}</p>
+          <p test-id="todo-title">{title}</p>
         </StyledContent>
         <StyledContent>
           <h3>説明</h3>
-          <p>{description}</p>
+          <p test-id="todo-description">{description}</p>
         </StyledContent>
         <StyledContent>
           <h3>期限</h3>
-          <p>{formattedDeadline}</p>
+          <p test-id="todo-deadline">{formattedDeadline}</p>
         </StyledContent>
         {!locateCompleted && (
           <StyledButtonBox>

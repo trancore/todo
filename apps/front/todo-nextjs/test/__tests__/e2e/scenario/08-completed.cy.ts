@@ -110,8 +110,27 @@ describe('TODO詳細モーダルからTODOを完了する。', () => {
     cy.get('button').should('have.length', 3);
   });
 
-  // TODO ここから
-  it('TODO完了ボタンを押下する。', () => {});
+  it('TODO完了ボタンを押下する。', () => {
+    cy.get('button').contains('完了').click();
+    cy.get('div#todo')
+      .first()
+      .find('[test-id="todo-title"]')
+      .then((paragraph) => {
+        todoTitle = paragraph.text();
+      });
+    cy.get('div#todo')
+      .first()
+      .find('[test-id="todo-description"]')
+      .then((paragraph) => {
+        todoDescription = paragraph.text();
+      });
+    cy.get('div#todo')
+      .first()
+      .find('[test-id="todo-deadline"]')
+      .then((paragraph) => {
+        todoDeadline = paragraph.text();
+      });
+  });
 
   it('トーストが表示される。', () => {
     cy.get('div#toast').find('p').should('have.text', 'TODOを完了にしました');

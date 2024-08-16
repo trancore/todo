@@ -100,18 +100,6 @@ describe('TODO詳細モーダルからTODOを完了する。', () => {
   });
 
   it('詳細なTODOを表示する。', () => {
-    cy.get('div#todo').first().click();
-
-    cy.get('div#modal')
-      .should('contain.text', '詳細')
-      .and('contain.text', 'タイトル')
-      .and('contain.text', '説明')
-      .and('contain.text', '期限');
-    cy.get('button').should('have.length', 3);
-  });
-
-  it('TODO完了ボタンを押下する。', () => {
-    cy.get('button').contains('完了').click();
     cy.get('div#todo')
       .first()
       .find('[test-id="todo-title"]')
@@ -130,6 +118,18 @@ describe('TODO詳細モーダルからTODOを完了する。', () => {
       .then((paragraph) => {
         todoDeadline = paragraph.text();
       });
+    cy.get('div#todo').first().click();
+
+    cy.get('div#modal')
+      .should('contain.text', '詳細')
+      .and('contain.text', 'タイトル')
+      .and('contain.text', '説明')
+      .and('contain.text', '期限');
+    cy.get('button').should('have.length', 3);
+  });
+
+  it('TODO完了ボタンを押下する。', () => {
+    cy.get('button').contains('完了').click();
   });
 
   it('トーストが表示される。', () => {

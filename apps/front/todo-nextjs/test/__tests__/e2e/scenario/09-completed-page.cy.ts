@@ -1,10 +1,6 @@
 ﻿describe('TODO完了画面にアクセスする。', () => {
   it('ログイン状態になる', () => {
-    cy.getAllCookies().then((cookies) => {
-      if (!cookies || (cookies && cookies.length < 3)) {
-        cy.signin();
-      }
-    });
+    cy.signin();
   });
 
   it('トップ画面に遷移する。', () => {

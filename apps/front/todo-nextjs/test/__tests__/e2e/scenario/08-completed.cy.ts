@@ -6,11 +6,7 @@ describe('トップ画面からTODOを完了する。', () => {
   let todoDeadline: string;
 
   it('ログイン状態になる', () => {
-    cy.getAllCookies().then((cookies) => {
-      if (!cookies || (cookies && cookies.length < 3)) {
-        cy.signin();
-      }
-    });
+    cy.signin();
   });
 
   it('トップ画面に遷移する。', () => {
@@ -86,11 +82,7 @@ describe('TODO詳細モーダルからTODOを完了する。', () => {
   let todoDeadline: string;
 
   it('ログイン状態になる', () => {
-    cy.getAllCookies().then((cookies) => {
-      if (!cookies || (cookies && cookies.length < 3)) {
-        cy.signin();
-      }
-    });
+    cy.signin();
   });
 
   it('トップ画面に遷移する。', () => {

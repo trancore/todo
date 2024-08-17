@@ -13,30 +13,34 @@
 Cypress.Commands.add('signin', () => {
   Cypress.session.clearAllSavedSessions();
 
-  cy.session(
-    'signin',
-    () => {
-      cy.visit('/signin')
-        .then(() => {
-          cy.get('button').click();
-        })
-        .then(() => {
-          cy.get('button').click();
-        });
+  cy.getAllCookies().then((cookies) => {
+    if (!cookies || (cookies && cookies.length < 3)) {
+      cy.session(
+        'signin',
+        () => {
+          cy.visit('/signin')
+            .then(() => {
+              cy.get('button').click();
+            })
+            .then(() => {
+              cy.get('button').click();
+            });
 
-      cy.origin('https://github.com', () => {
-        const username = (Cypress.env('GITHUB_USERNAME') as string) || '';
-        const password = (Cypress.env('GITHUB_PASSWORD') as string) || '';
+          cy.origin('https://github.com', () => {
+            const username = (Cypress.env('GITHUB_USERNAME') as string) || '';
+            const password = (Cypress.env('GITHUB_PASSWORD') as string) || '';
 
-        cy.get('input[name="login"]').type(username);
-        cy.get('input[name="password"]').type(password, { log: false });
-        cy.get('input[name="commit"]').click();
+            cy.get('input[name="login"]').type(username);
+            cy.get('input[name="password"]').type(password, { log: false });
+            cy.get('input[name="commit"]').click();
 
-        cy.get('a[data-test-selector="gh-mobile-link"]').click();
+            cy.get('a[data-test-selector="gh-mobile-link"]').click();
 
-        cy.wait(20000);
-      });
-    },
-    { cacheAcrossSpecs: true },
-  );
+            cy.wait(20000);
+          });
+        },
+        { cacheAcrossSpecs: true },
+      );
+    }
+  });
 });

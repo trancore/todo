@@ -6,11 +6,7 @@ const TEST_DATE = '2024-01-01';
 
 describe('トップ画面からTODOを編集する。', () => {
   it('ログイン状態になる', () => {
-    cy.getAllCookies().then((cookies) => {
-      if (!cookies || (cookies && cookies.length < 3)) {
-        cy.signin();
-      }
-    });
+    cy.signin();
   });
 
   it('トップ画面に遷移する。', () => {
@@ -88,11 +84,7 @@ describe('トップ画面からTODOを編集する。', () => {
 
 describe('TODO編集モーダルからTODOを編集する。', () => {
   it('ログイン状態になる', () => {
-    cy.getAllCookies().then((cookies) => {
-      if (!cookies || (cookies && cookies.length < 3)) {
-        cy.signin();
-      }
-    });
+    cy.signin();
   });
 
   it('トップ画面に遷移する。', () => {

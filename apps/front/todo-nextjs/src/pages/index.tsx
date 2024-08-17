@@ -2,6 +2,7 @@
 
 import { wrapper } from '~/store/root';
 
+import Icon from '~/components/container/Icon/Icon';
 import TodoEclipse from '~/components/container/Todo/TodoEclipse';
 import TodoIconBox from '~/components/container/Todo/TodoIconBox';
 
@@ -34,6 +35,11 @@ const StyledTodoDeadlineAt = styled.p<{ color: string }>`
   color: ${({ color }) => color};
   font-weight: bold;
 `;
+const StyledNotHave = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export default function Top() {
   const { data: todoList } = useGetTodosQuery(`${STATUS.TODO},${STATUS.WIP}`, {
@@ -43,41 +49,50 @@ export default function Top() {
   const { formatToYYYYMMdd, colorizeDate } = dateFormat();
 
   return (
-    <StyledTodoList>
-      {(todoList || []).map((todo) => (
-        <StyledTodo key={todo.id} id="todo">
-          <TodoEclipse
-            presentational={{
-              title: todo.title,
-              description: todo.description || '',
-            }}
-            id={String(todo.id)}
-            deadlineAt={todo.deadlineAt}
-          />
-          <StyledTodoUnder>
-            {todo.deadlineAt ? (
-              <StyledTodoDeadlineAt
-                test-id="todo-deadline"
-                color={colorizeDate(new Date(todo.deadlineAt))}
-              >
-                {formatToYYYYMMdd(new Date(todo.deadlineAt))}
-              </StyledTodoDeadlineAt>
-            ) : (
-              <p>{''}</p>
-            )}
-            <TodoIconBox
-              todoId={todo.id}
-              hasIcons={{
-                hasCheck: true,
-                hasSquareEdit: true,
-                hasTrashCan: true,
-              }}
-              todoForm={todo}
-            />
-          </StyledTodoUnder>
-        </StyledTodo>
-      ))}
-    </StyledTodoList>
+    <>
+      {todoList ? (
+        <StyledTodoList>
+          {todoList.map((todo) => (
+            <StyledTodo key={todo.id} id="todo">
+              <TodoEclipse
+                presentational={{
+                  title: todo.title,
+                  description: todo.description || '',
+                }}
+                id={String(todo.id)}
+                deadlineAt={todo.deadlineAt}
+              />
+              <StyledTodoUnder>
+                {todo.deadlineAt ? (
+                  <StyledTodoDeadlineAt
+                    test-id="todo-deadline"
+                    color={colorizeDate(new Date(todo.deadlineAt))}
+                  >
+                    {formatToYYYYMMdd(new Date(todo.deadlineAt))}
+                  </StyledTodoDeadlineAt>
+                ) : (
+                  <p>{''}</p>
+                )}
+                <TodoIconBox
+                  todoId={todo.id}
+                  hasIcons={{
+                    hasCheck: true,
+                    hasSquareEdit: true,
+                    hasTrashCan: true,
+                  }}
+                  todoForm={todo}
+                />
+              </StyledTodoUnder>
+            </StyledTodo>
+          ))}
+        </StyledTodoList>
+      ) : (
+        <StyledNotHave>
+          <Icon presentational={{ name: 'Check', size: 64 }} />
+          <h2>登録されたTODOはありません</h2>
+        </StyledNotHave>
+      )}
+    </>
   );
 }
 

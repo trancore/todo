@@ -1,10 +1,6 @@
 ﻿describe('トップ画面から詳細なTODOを確認する。', () => {
   it('ログイン状態になる', () => {
-    cy.getAllCookies().then((cookies) => {
-      if (!cookies || (cookies && cookies.length < 3)) {
-        cy.signin();
-      }
-    });
+    cy.signin();
   });
 
   it('トップ画面に遷移する。', () => {
@@ -33,11 +29,7 @@
 
 describe('TODO完了画面から詳細なTODOを確認する。', () => {
   it('ログイン状態になる', () => {
-    cy.getAllCookies().then((cookies) => {
-      if (!cookies || (cookies && cookies.length < 3)) {
-        cy.signin();
-      }
-    });
+    cy.signin();
   });
 
   it('TODO完了画面に遷移する。', () => {

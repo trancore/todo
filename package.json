@@ -7,8 +7,5 @@
   "type": "module",
   "scripts": {
     "container": "docker-compose up -d"
-  },
-  "devDependencies": {
-    "remark": "^15.0.1"
   }
 }

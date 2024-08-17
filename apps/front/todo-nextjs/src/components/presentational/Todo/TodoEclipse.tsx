@@ -30,8 +30,10 @@ const StyledTodoDescription = styled.p`
 export default function TodoEclipse({ title, description, click }: Props) {
   return (
     <StyledTodoEcipse onClick={click}>
-      <StyledTodoTitle>{title}</StyledTodoTitle>
-      <StyledTodoDescription>{description}</StyledTodoDescription>
+      <StyledTodoTitle test-id="todo-title">{title}</StyledTodoTitle>
+      <StyledTodoDescription test-id="todo-description">
+        {description}
+      </StyledTodoDescription>
     </StyledTodoEcipse>
   );
 }

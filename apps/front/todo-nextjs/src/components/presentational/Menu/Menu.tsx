@@ -65,7 +65,7 @@ const StyledWrapIcon = styled.div`
 export default function Menu({ userName, signOut, closeMenu }: Props) {
   return (
     <StyledBackFloat>
-      <StyledMenu>
+      <StyledMenu test-id="menu-float">
         <StyledMenuTitleBox>
           <h1 id="user-name">{userName}</h1>
         </StyledMenuTitleBox>

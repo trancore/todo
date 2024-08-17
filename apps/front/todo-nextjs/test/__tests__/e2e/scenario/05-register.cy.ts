@@ -60,11 +60,7 @@ function testRegisterTodo() {
 
 describe('CSRからTODOを登録する。', () => {
   it('ログイン状態になる', () => {
-    cy.getAllCookies().then((cookies) => {
-      if (!cookies || (cookies && cookies.length < 3)) {
-        cy.signin();
-      }
-    });
+    cy.signin();
   });
 
   it('トップ画面に遷移する。', () => {
@@ -85,11 +81,7 @@ describe('CSRからTODOを登録する。', () => {
 
 describe('SSRからTODOを登録する。', () => {
   it('ログイン状態になる', () => {
-    cy.getAllCookies().then((cookies) => {
-      if (!cookies || (cookies && cookies.length < 3)) {
-        cy.signin();
-      }
-    });
+    cy.signin();
   });
 
   it('TODO登録画面にアクセスする。', () => {

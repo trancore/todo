@@ -24,20 +24,18 @@ const nextConfig = {
     NEXTAUTH_URL: 'http://localhost:3000',
   },
   i18n: {
-    locales: ['ja', 'en-US'],
+    locales: ['ja', 'en'],
     defaultLocale: 'ja',
     domains: [
       {
         http: true,
         domain: 'localhost',
         defaultLocale: 'ja',
-        locales: ['ja'],
       },
       {
         http: true,
-        domain: 'en.localhost',
-        defaultLocale: 'en-US',
-        locales: ['en-US'],
+        domain: 'localhost',
+        defaultLocale: 'en',
       },
     ],
   },

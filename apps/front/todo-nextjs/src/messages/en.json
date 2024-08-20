@@ -1,0 +1,7 @@
+﻿{
+  "pages": {
+    "index": {
+      "notHaveTodos": "You don't have TODO."
+    }
+  }
+}

@@ -1,0 +1,7 @@
+﻿{
+  "pages": {
+    "index": {
+      "notHaveTodos": "登録されたTODOはありません"
+    }
+  }
+}

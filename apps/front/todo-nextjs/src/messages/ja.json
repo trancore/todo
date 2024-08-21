@@ -2,6 +2,10 @@
   "pages": {
     "index": {
       "notHaveTodos": "登録されたTODOはありません"
+    },
+    "error": {
+      "notFound": "このページは存在しません",
+      "inValid": "ページを表示できませんでした"
     }
   }
 }

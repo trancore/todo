@@ -1,4 +1,5 @@
-﻿import styled from 'styled-components';
+﻿import { useTranslations } from 'next-intl';
+import styled from 'styled-components';
 
 import { wrapper } from '~/store/root';
 
@@ -45,6 +46,7 @@ export default function Top() {
   const { data: todoList } = useGetTodosQuery(`${STATUS.TODO},${STATUS.WIP}`, {
     refetchOnMountOrArgChange: true,
   });
+  const t = useTranslations('pages');
 
   const { formatToYYYYMMdd, colorizeDate } = dateFormat();
 
@@ -89,7 +91,7 @@ export default function Top() {
       ) : (
         <StyledNotHave>
           <Icon presentational={{ name: 'Check', size: 64 }} />
-          <h2>登録されたTODOはありません</h2>
+          <h2>{t('index.notHaveTodos')}</h2>
         </StyledNotHave>
       )}
     </>
@@ -97,10 +99,17 @@ export default function Top() {
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    await store.dispatch(getTodos.initiate(`${STATUS.TODO},${STATUS.WIP}`));
-    await Promise.all(store.dispatch(getRunningQueriesThunk()));
+  (store) =>
+    async ({ locale }) => {
+      await store.dispatch(getTodos.initiate(`${STATUS.TODO},${STATUS.WIP}`));
+      await Promise.all(store.dispatch(getRunningQueriesThunk()));
 
-    return { props: '' };
-  },
+      const messages = await import(`~/messages/${locale}.json`);
+
+      return {
+        props: {
+          messages: messages.default,
+        },
+      };
+    },
 );

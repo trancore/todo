@@ -1,7 +1,7 @@
 ﻿// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import ja from '~/messages/ja.json';
-
 import * as yup from '~/libs/yup';
+
+import ja from '~/messages/ja.json';
 
 import { rootStore } from '~/store/root';
 

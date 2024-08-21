@@ -1,7 +1,3 @@
-import createNextIntlPlugin from 'next-intl/plugin';
-
-const withNextIntl = createNextIntlPlugin();
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack: (config) => {
@@ -30,19 +26,7 @@ const nextConfig = {
   i18n: {
     locales: ['ja', 'en'],
     defaultLocale: 'ja',
-    domains: [
-      {
-        http: true,
-        domain: 'localhost',
-        defaultLocale: 'ja',
-      },
-      {
-        http: true,
-        domain: 'localhost',
-        defaultLocale: 'en',
-      },
-    ],
   },
 };
 
-export default withNextIntl(nextConfig);
+export default nextConfig;

@@ -1,7 +1,11 @@
 ﻿// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import ja from '~/messages/ja.json';
+
 import * as yup from '~/libs/yup';
 
 import { rootStore } from '~/store/root';
+
+type Messages = typeof ja;
 
 declare module 'yup' {
   interface StringSchema<TType, TContext, TDefault, TFlags> {
@@ -16,4 +20,5 @@ declare global {
   interface Window {
     store: typeof rootStore;
   }
+  interface IntlMessages extends Messages {}
 }

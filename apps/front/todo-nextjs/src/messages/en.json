@@ -23,12 +23,23 @@
     },
     "signin": {
       "button": "Signin"
+    },
+    "signup": {
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "password": "Password"
+      },
+      "button": "Signup"
     }
   },
   "common": {
     "toast": {
       "error": "Error",
       "register": "Register TODO"
+    },
+    "button": {
+      "signup": "Signup"
     }
   }
 }

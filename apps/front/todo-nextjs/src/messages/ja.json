@@ -6,9 +6,26 @@
     "completed": {
       "heading": "完了済み"
     },
+    "register": {
+      "heading": "登録",
+      "form": {
+        "title": "タイトル",
+        "description": "説明",
+        "deadline": "期限"
+      },
+      "button": {
+        "register": "登録"
+      }
+    },
     "error": {
       "notFound": "このページは存在しません",
       "inValid": "ページを表示できませんでした"
+    }
+  },
+  "common": {
+    "toast": {
+      "error": "エラーが発生しました",
+      "register": "TODOが作成されました"
     }
   }
 }

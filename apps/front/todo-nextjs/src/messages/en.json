@@ -6,9 +6,26 @@
     "completed": {
       "heading": "Completed"
     },
+    "register": {
+      "heading": "Register",
+      "form": {
+        "title": "Title",
+        "description": "Description",
+        "deadline": "Deadline"
+      },
+      "button": {
+        "register": "Register"
+      }
+    },
     "error": {
       "notFound": "Not Found",
       "inValid": "Not Valid"
+    }
+  },
+  "common": {
+    "toast": {
+      "error": "Error.",
+      "register": "Register TODO"
     }
   }
 }

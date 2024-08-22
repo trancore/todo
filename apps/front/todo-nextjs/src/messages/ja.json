@@ -3,6 +3,9 @@
     "index": {
       "notHaveTodos": "登録されたTODOはありません"
     },
+    "completed": {
+      "heading": "完了済み"
+    },
     "error": {
       "notFound": "このページは存在しません",
       "inValid": "ページを表示できませんでした"

@@ -3,6 +3,9 @@
     "index": {
       "notHaveTodos": "You don't have TODO."
     },
+    "completed": {
+      "heading": "Completed"
+    },
     "error": {
       "notFound": "Not Found",
       "inValid": "Not Valid"

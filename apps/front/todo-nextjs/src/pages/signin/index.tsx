@@ -1,4 +1,7 @@
-﻿import { signIn } from 'next-auth/react';
+﻿import { GetServerSideProps } from 'next/types';
+
+import { signIn } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 import styled from 'styled-components';
 
 import Button from '~/components/container/Button/Button';
@@ -14,15 +17,27 @@ const StyledWrapButton = styled.div`
 `;
 
 export default function Signin() {
+  const tPage = useTranslations('pages.signin');
+
   return (
     <StyledSignup>
       <Icon presentational={{ name: 'UserCircle', size: 128 }} />
       <StyledWrapButton>
         <Button
-          presentational={{ text: 'サインイン', width: 128 }}
+          presentational={{ text: tPage('button'), width: 128 }}
           onClick={signIn}
         />
       </StyledWrapButton>
     </StyledSignup>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  const messages = await import(`~/messages/${locale}.json`);
+
+  return {
+    props: {
+      messages: messages.default,
+    },
+  };
+};

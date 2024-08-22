@@ -20,11 +20,14 @@
     "error": {
       "notFound": "Not Found",
       "inValid": "Not Valid"
+    },
+    "signin": {
+      "button": "Signin"
     }
   },
   "common": {
     "toast": {
-      "error": "Error.",
+      "error": "Error",
       "register": "Register TODO"
     }
   }

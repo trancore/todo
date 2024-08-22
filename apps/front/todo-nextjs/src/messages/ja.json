@@ -20,6 +20,9 @@
     "error": {
       "notFound": "このページは存在しません",
       "inValid": "ページを表示できませんでした"
+    },
+    "signin": {
+      "button": "サインイン"
     }
   },
   "common": {

@@ -22,13 +22,18 @@
       "inValid": "ページを表示できませんでした"
     },
     "signin": {
-      "button": "サインイン"
+      "button": {
+        "signin": "サインイン"
+      }
     },
     "signup": {
       "form": {
         "name": "名前",
         "email": "メールアドレス",
         "password": "パスワード"
+      },
+      "button": {
+        "signup": "サインアップ"
       }
     }
   },
@@ -36,9 +41,6 @@
     "toast": {
       "error": "エラーが発生しました",
       "register": "TODOが作成されました"
-    },
-    "button": {
-      "signup": "サインアップ"
     }
   }
 }

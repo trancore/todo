@@ -22,7 +22,9 @@
       "inValid": "Not Valid"
     },
     "signin": {
-      "button": "Signin"
+      "button": {
+        "signin": "Signin"
+      }
     },
     "signup": {
       "form": {
@@ -30,16 +32,15 @@
         "email": "Email",
         "password": "Password"
       },
-      "button": "Signup"
+      "button": {
+        "signup": "Signup"
+      }
     }
   },
   "common": {
     "toast": {
       "error": "Error",
       "register": "Register TODO"
-    },
-    "button": {
-      "signup": "Signup"
     }
   }
 }

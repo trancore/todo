@@ -24,7 +24,7 @@ export default function Signin() {
       <Icon presentational={{ name: 'UserCircle', size: 128 }} />
       <StyledWrapButton>
         <Button
-          presentational={{ text: tPage('button'), width: 128 }}
+          presentational={{ text: tPage('button.signin'), width: 128 }}
           onClick={signIn}
         />
       </StyledWrapButton>

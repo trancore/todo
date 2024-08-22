@@ -25,7 +25,6 @@ const StyledWrapButton = styled.div`
 // TODO 一旦放置
 export default function Signup() {
   const tPage = useTranslations('pages.signup');
-  const tCommonButton = useTranslations('common.button');
 
   return (
     <StyledSignup>
@@ -60,7 +59,7 @@ export default function Signup() {
           </StyledInputForm>
           <StyledWrapButton>
             <Button
-              presentational={{ text: tCommonButton('signup'), width: 128 }}
+              presentational={{ text: tPage('button.signup'), width: 128 }}
               onClick={() => {}}
             />
           </StyledWrapButton>

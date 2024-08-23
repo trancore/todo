@@ -1,0 +1,46 @@
+﻿{
+  "pages": {
+    "index": {
+      "notHaveTodos": "登録されたTODOはありません"
+    },
+    "completed": {
+      "heading": "完了済み"
+    },
+    "register": {
+      "heading": "登録",
+      "form": {
+        "title": "タイトル",
+        "description": "説明",
+        "deadline": "期限"
+      },
+      "button": {
+        "register": "登録"
+      }
+    },
+    "error": {
+      "notFound": "このページは存在しません",
+      "inValid": "ページを表示できませんでした"
+    },
+    "signin": {
+      "button": {
+        "signin": "サインイン"
+      }
+    },
+    "signup": {
+      "form": {
+        "name": "名前",
+        "email": "メールアドレス",
+        "password": "パスワード"
+      },
+      "button": {
+        "signup": "サインアップ"
+      }
+    }
+  },
+  "common": {
+    "toast": {
+      "error": "エラーが発生しました",
+      "register": "TODOが作成されました"
+    }
+  }
+}

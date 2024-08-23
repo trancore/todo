@@ -23,6 +23,10 @@ const nextConfig = {
     // NextAuth.js用環境変数
     NEXTAUTH_URL: 'http://localhost:3000',
   },
+  i18n: {
+    locales: ['ja', 'en'],
+    defaultLocale: 'ja',
+  },
 };
 
 export default nextConfig;

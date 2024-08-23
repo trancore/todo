@@ -1,0 +1,46 @@
+﻿{
+  "pages": {
+    "index": {
+      "notHaveTodos": "You don't have TODO."
+    },
+    "completed": {
+      "heading": "Completed"
+    },
+    "register": {
+      "heading": "Register",
+      "form": {
+        "title": "Title",
+        "description": "Description",
+        "deadline": "Deadline"
+      },
+      "button": {
+        "register": "Register"
+      }
+    },
+    "error": {
+      "notFound": "Not Found",
+      "inValid": "Not Valid"
+    },
+    "signin": {
+      "button": {
+        "signin": "Signin"
+      }
+    },
+    "signup": {
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "password": "Password"
+      },
+      "button": {
+        "signup": "Signup"
+      }
+    }
+  },
+  "common": {
+    "toast": {
+      "error": "Error",
+      "register": "Register TODO"
+    }
+  }
+}

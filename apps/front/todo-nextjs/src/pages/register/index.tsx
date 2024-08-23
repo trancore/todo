@@ -1,6 +1,8 @@
 ﻿import { useRouter } from 'next/navigation';
+import { GetServerSideProps } from 'next/types';
 
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useTranslations } from 'next-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { hide as hideError, show as showError } from '~/state/error';
@@ -46,6 +48,8 @@ export default function Register() {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { hookToast } = useToast();
+  const tPage = useTranslations('pages.register');
+  const tCommonToast = useTranslations('common.toast');
 
   const submit: SubmitHandler<TodoForm> = (inputs) => {
     createTodo(inputs)
@@ -53,37 +57,37 @@ export default function Register() {
       .then(() => {
         dispatch(hideError());
         router.push(PAGE_PATH.TOP);
-        hookToast('TODOが作成されました');
+        hookToast(tCommonToast('register'));
       })
       .catch(() => {
-        dispatch(showError({ text: 'エラーが発生しました' }));
+        dispatch(showError({ text: tCommonToast('error') }));
         scrollTop();
       });
   };
 
   return (
     <>
-      <h1>登録</h1>
+      <h1>{tPage('heading')}</h1>
       <Form>
         <>
           <StyledInputForm>
             <TextForm
               presentational={{
-                labelName: 'タイトル',
+                labelName: tPage('form.title'),
                 errorMessage: errors.title?.message,
                 register: register('title'),
               }}
             />
             <TextArea
               presentational={{
-                labelName: '説明',
+                labelName: tPage('form.description'),
                 errorMessage: errors.description?.message,
                 register: register('description'),
               }}
             />
             <DateForm
               presentational={{
-                labelName: '期限',
+                labelName: tPage('form.deadline'),
                 errorMessage: errors.deadlineAt?.message,
                 register: register('deadlineAt'),
               }}
@@ -91,7 +95,7 @@ export default function Register() {
           </StyledInputForm>
           <StyledButtonWrap>
             <Button
-              presentational={{ text: '登録', width: 128 }}
+              presentational={{ text: tPage('button.register'), width: 128 }}
               onClick={handleSubmit(submit)}
             ></Button>
           </StyledButtonWrap>
@@ -100,3 +104,13 @@ export default function Register() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  const messages = await import(`~/messages/${locale}.json`);
+
+  return {
+    props: {
+      messages: messages.default,
+    },
+  };
+};

@@ -1,4 +1,5 @@
-﻿import styled from 'styled-components';
+﻿import { useTranslations } from 'next-intl';
+import styled from 'styled-components';
 
 import { wrapper } from '~/store/root';
 
@@ -39,12 +40,13 @@ export default function Completed() {
   const { data: todoList } = useGetTodosQuery(`${STATUS.DONE}`, {
     refetchOnMountOrArgChange: true,
   });
+  const t = useTranslations('pages');
 
   const { formatToYYYYMMdd, colorizeDate } = dateFormat();
 
   return (
     <>
-      <h1>完了済み</h1>
+      <h1>{t('completed.heading')}</h1>
       <StyledTodoList>
         {todoList && todoList.length > 0
           ? todoList?.map((todo) => {
@@ -84,10 +86,17 @@ export default function Completed() {
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    await store.dispatch(getTodos.initiate(`${STATUS.DONE}`));
-    await Promise.all(store.dispatch(getRunningQueriesThunk()));
+  (store) =>
+    async ({ locale }) => {
+      await store.dispatch(getTodos.initiate(`${STATUS.DONE}`));
+      await Promise.all(store.dispatch(getRunningQueriesThunk()));
 
-    return { props: '' };
-  },
+      const messages = await import(`~/messages/${locale}.json`);
+
+      return {
+        props: {
+          messages: messages.default,
+        },
+      };
+    },
 );

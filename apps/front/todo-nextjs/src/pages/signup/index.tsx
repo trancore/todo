@@ -1,4 +1,8 @@
-﻿import styled from 'styled-components';
+﻿import { GetServerSideProps } from 'next/types';
+
+import { useTranslations } from 'next-intl';
+import styled from 'styled-components';
+
 import Button from '~/components/container/Button/Button';
 import Form from '~/components/container/Form/Form';
 import UserTextForm from '~/components/container/Form/UserTextForm';
@@ -17,8 +21,11 @@ const StyledInputForm = styled.div`
 const StyledWrapButton = styled.div`
   margin: 0 auto;
 `;
-
+// TODO サインアップ画面は、eメールとパスワードによる認証認可が実装されていないため
+// TODO 一旦放置
 export default function Signup() {
+  const tPage = useTranslations('pages.signup');
+
   return (
     <StyledSignup>
       <Icon presentational={{ name: 'UserCircle', size: 128 }} />
@@ -28,7 +35,7 @@ export default function Signup() {
             <UserTextForm
               type="text"
               presentational={{
-                labelName: '名前',
+                labelName: tPage('form.name'),
                 errorMessage: 'エラーメッセージが表示されます',
                 register: undefined,
               }}
@@ -36,7 +43,7 @@ export default function Signup() {
             <UserTextForm
               type="email"
               presentational={{
-                labelName: 'メールアドレス',
+                labelName: tPage('form.email'),
                 errorMessage: 'エラーメッセージが表示されます',
                 register: undefined,
               }}
@@ -44,17 +51,30 @@ export default function Signup() {
             <UserTextForm
               type="password"
               presentational={{
-                labelName: 'パスワード',
+                labelName: tPage('form.password'),
                 errorMessage: 'エラーメッセージが表示されます',
                 register: undefined,
               }}
             />
           </StyledInputForm>
           <StyledWrapButton>
-            <Button presentational={{ text: 'サインアップ', width: 128 }} />
+            <Button
+              presentational={{ text: tPage('button.signup'), width: 128 }}
+              onClick={() => {}}
+            />
           </StyledWrapButton>
         </>
       </Form>
     </StyledSignup>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  const messages = await import(`~/messages/${locale}.json`);
+
+  return {
+    props: {
+      messages: messages.default,
+    },
+  };
+};

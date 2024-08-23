@@ -10,5 +10,5 @@ export default withAuth({
 });
 
 export const config = {
-  matcher: ['/((?!signin|mockServiceWorker.js).*)'],
+  matcher: ['/((?!api|_next|signin|mockServiceWorker.js).*)'],
 };

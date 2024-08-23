@@ -1,6 +1,8 @@
 ﻿import { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
 
 import { SessionProvider } from 'next-auth/react';
+import { NextIntlClientProvider } from 'next-intl';
 import { Provider as StateProvider } from 'react-redux';
 import reset from 'sanitize.css';
 import { createGlobalStyle } from 'styled-components';
@@ -24,6 +26,7 @@ export default function App({
   pageProps: { session, ...pageProps },
 }: AppProps) {
   const { store, props } = useAppWrappedStore(pageProps);
+  const router = useRouter();
 
   if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
     // EtoEテスト用
@@ -31,15 +34,21 @@ export default function App({
   }
 
   return (
-    <StateProvider store={store}>
-      <SessionProvider session={session}>
-        <GlobalStyle />
-        <Layout>
-          <Component {...props} />
-        </Layout>
-        <Toast />
-      </SessionProvider>
-    </StateProvider>
+    <NextIntlClientProvider
+      locale={router.locale}
+      timeZone="Asia/Tokyo"
+      messages={pageProps.messages}
+    >
+      <StateProvider store={store}>
+        <SessionProvider session={session}>
+          <GlobalStyle />
+          <Layout>
+            <Component {...props} />
+          </Layout>
+          <Toast />
+        </SessionProvider>
+      </StateProvider>
+    </NextIntlClientProvider>
   );
 }
 

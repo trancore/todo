@@ -27,6 +27,7 @@
     "axios": "^1.6.8",
     "next": "14.0.4",
     "next-auth": "^4.24.7",
+    "next-intl": "^3.17.4",
     "next-redux-wrapper": "^8.1.0",
     "react": "^18",
     "react-dom": "^18",

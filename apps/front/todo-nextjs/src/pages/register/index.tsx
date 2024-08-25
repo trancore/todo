@@ -9,7 +9,7 @@ import { hide as hideError, show as showError } from '~/state/error';
 
 import { TodoForm } from '~/types/todo';
 
-import { todoSchema } from '~/libs/yup';
+import { createTodoSchema } from '~/libs/yup';
 
 import Button from '~/components/container/Button/Button';
 import DateForm from '~/components/container/Form/Date';
@@ -36,6 +36,8 @@ const StyledButtonWrap = styled.div`
 `;
 
 export default function Register() {
+  const todoSchema = createTodoSchema();
+
   const {
     register,
     handleSubmit,

@@ -42,5 +42,17 @@
       "error": "エラーが発生しました",
       "register": "TODOが作成されました"
     }
+  },
+  "libs": {
+    "yup": {
+      "error": "invalid validation error.",
+      "required": "必須項目です",
+      "max": {
+        "text": {
+          "one": "文字以下で入力してください",
+          "two": ""
+        }
+      }
+    }
   }
 }

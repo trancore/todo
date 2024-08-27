@@ -42,5 +42,17 @@
       "error": "Error",
       "register": "Register TODO"
     }
+  },
+  "libs": {
+    "yup": {
+      "error": "invalid validation error.",
+      "required": "Please Required",
+      "max": {
+        "text": {
+          "one": "Please enter no more than ",
+          "two": " characters."
+        }
+      }
+    }
   }
 }

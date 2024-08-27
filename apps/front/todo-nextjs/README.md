@@ -177,6 +177,28 @@ RTK Queryを使ってSSRでfetchする場合は、以下を参考にしてくだ
 
 また、`createApi`を呼び出す際に、`extractRehydrationInfo`オプションに再ハイドレーションの設定をします。
 
+#### next-intlと国際化対応
+
+Next.jsの場合、built-inでは現在の言語をサブドメインやパスに含めることができます。そのため、next/routerを使用してLocale情報を取得する必要があります。そして、取得したLocale情報からテキストが補完されているファイルへアクセスし、テキストを取得します。これらを自力で実装する必要があるため、ライブラリを用いた方が効率的ですし、Next.js公式でもライブラリを用いることを推奨しています。
+
+本アプリケーションでは、next-intlというライブラリを使っています。そこで、固定文言をできるだけ言語テキストファイルから取得するようにしたいです。  
+しかし、バリデーションスキーマライブラリであるyupでカスタムバリデーションを自作し、そこで固定文言を指定しているとします。この場合、hooks APIベースで開発されているnext-intlでは、このカスタムバリデーションでうまいこと言語テキストを組み込むことができません。そのため、以下のようにeslintの警告を無視する必要があります。
+
+```TypeScript
+export function createTodoSchema() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const t = useTranslations('libs.yup');
+
+  return yup.object().shape({
+    title: yup.string().todoText(t('required')),
+    description: yup.string().todoDescription(),
+    deadline: yup.date().todoDeadline(),
+  });
+}
+```
+
+そして、この`useTranslations`を`NextIntlClientProvider`内で呼び出すために、スキーマを作成する関数を作り、それをコンポーネント内で呼び出す必要があります。
+
 ### 5.自動テスト
 
 #### モックに初期値は必要か

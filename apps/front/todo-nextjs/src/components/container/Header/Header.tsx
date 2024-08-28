@@ -25,17 +25,12 @@ export default function Header() {
     push(PAGE_PATH.REGISTER);
   }
 
-  function onClickuserIcon() {
-    push(PAGE_PATH.TOP);
-  }
-
   return (
     <HeaderPresentational
       isSignin={isAuth}
       hasPlusIcon={hasPlusIcon}
       onClickMenuIcon={onClickMenuIcon}
       onClickPlusIcon={onClickPlusIcon}
-      onClickUserIcon={onClickuserIcon}
     />
   );
 }

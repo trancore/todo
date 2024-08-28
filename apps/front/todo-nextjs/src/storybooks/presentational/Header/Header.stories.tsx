@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
+
 import Header from '~/components/presentational/Header/Header';
 
 const meta: Meta<typeof Header> = {
@@ -21,11 +22,25 @@ export const Selectable: Story = {
 };
 export const Signin: Story = {
   render: () => {
-    return <Header isSignin={true} />;
+    return (
+      <Header
+        hasPlusIcon={true}
+        onClickMenuIcon={() => {}}
+        onClickPlusIcon={() => {}}
+        isSignin={true}
+      />
+    );
   },
 };
 export const Signout: Story = {
   render: () => {
-    return <Header isSignin={false} />;
+    return (
+      <Header
+        hasPlusIcon={true}
+        onClickMenuIcon={() => {}}
+        onClickPlusIcon={() => {}}
+        isSignin={false}
+      />
+    );
   },
 };

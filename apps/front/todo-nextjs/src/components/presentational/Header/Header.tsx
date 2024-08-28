@@ -1,13 +1,16 @@
-﻿import styled from 'styled-components';
+﻿import Link from 'next/link';
+
+import styled from 'styled-components';
 
 import Icon from '~/components/container/Icon/Icon';
+
+import { PAGE_PATH } from '~/constants';
 
 type Props = {
   isSignin: boolean;
   hasPlusIcon: boolean;
   onClickMenuIcon: () => void;
   onClickPlusIcon: () => void;
-  onClickUserIcon: () => void;
 };
 
 const StyledHeader = styled.header`
@@ -26,7 +29,6 @@ export default function Header({
   hasPlusIcon,
   onClickMenuIcon,
   onClickPlusIcon,
-  onClickUserIcon,
 }: Props) {
   return (
     <StyledHeader>
@@ -36,10 +38,15 @@ export default function Header({
             presentational={{ name: 'Menu', size: 64 }}
             clickIcon={onClickMenuIcon}
           />
-          <Icon
-            presentational={{ name: 'UserCircle', size: 64 }}
-            clickIcon={onClickUserIcon}
-          />
+          <Link href={PAGE_PATH.TOP}>
+            <Icon
+              presentational={{
+                name: 'UserCircle',
+                size: 64,
+                color: '#000000',
+              }}
+            />
+          </Link>
           {hasPlusIcon ? (
             <Icon
               presentational={{ name: 'Plus', size: 64 }}

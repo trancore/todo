@@ -199,7 +199,11 @@ export function createTodoSchema() {
 
 そして、この`useTranslations`を`NextIntlClientProvider`内で呼び出すために、スキーマを作成する関数を作り、それをコンポーネント内で呼び出す必要があります。
 
-### 5.自動テスト
+### 5.SEOとパフォーマンス最適化
+
+#### robot.txt
+
+### 6.自動テスト
 
 #### モックに初期値は必要か
 

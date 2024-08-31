@@ -131,7 +131,40 @@ HTML のテンプレート、デザインの CSS を作成します。
 
 もちろん、データフェッチやバリデーションなども、まずはベースとなる共通実装を行う必要があるので、ここで記載しているものだけではないことに注意してください。
 
-### 5. 自動テスト
+### 5.SEO とパフォーマンス最適化
+
+#### SEO について
+
+SEO については、Next.js tutorial では、以下のように説明しています。  
+（詳しくは[こちら](https://nextjs.org/learn-pages-router/seo/introduction-to-seo)）
+
+> SEO stands for Search Engine Optimization.  
+> The goal of SEO is to create a strategy that will increase your rankings position in search engine results. The higher the ranking, the more organic traffic to your site, which ultimately leads to more business for you!
+>
+> _What is - SEO? Next.js tutorial_
+>
+> > SEO とは、Search Engine Optimization（検索エンジン最適化）の略です。  
+> > SEO の目的は、検索エンジンの検索結果における順位を上げる戦略を立てることです。上位に表示されればされるほど、サイトへのオーガニックなトラフィックが増え、最終的にはビジネスの拡大につながります！
+
+そのため、検索エンジンによる検索を意識する必要がある場合は、この SEO を意識する必要があります。より詳細な内容は、上記のリンク先をご参照ください。
+
+SEO の対応をまとめると以下になります。
+
+##### クローリングのための実装
+
+- HTTP statu code の設定。ヘッダーに含まれる HTTP Status Code をクローラが解析し、任意の動作をします。そのため、正しい HTTP Status code を使う必要があります。
+- robot.txt。検索エンジンのクローラーに対して、サイトのどのページやファイルをリクエストできるか、またはできないかを指示するためのファイルです。
+- sitemap.xml。サイトマップとは、サイト上のページ、動画、その他のファイルに関する情報と、それらの間の関係を提供するファイルです。Google のような検索エンジンは、このファイルを読み取って、サイトをより効率的にクロールします。これにより、Google はウェブサイトに属する URL や、それらがいつ更新されたかを知ることができ、新しいコンテンツを効率的に検出し、サイトをクロールしやすくなります。
+
+##### metadata
+
+- meta robot tag。
+- canonical tag。
+- metadata
+- 構造化データ
+- URL 構造
+
+### 6. 自動テスト
 
 我々実装者が保証すべきことはホワイトボックステストであり、コードの動作を保証することをテストコードで伝えることができれば良いです。
 

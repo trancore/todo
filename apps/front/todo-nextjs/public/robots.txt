@@ -1,0 +1,6 @@
+﻿User-Agent:*
+Allow: /
+Disallow: /register
+Disallow: /completed
+Disallow: /signin
+Sitemap:http://localhost:3000/sitemap

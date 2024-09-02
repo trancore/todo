@@ -201,8 +201,6 @@ export function createTodoSchema() {
 
 ### 5.SEOとパフォーマンス最適化
 
-#### robot.txt
-
 ### 6.自動テスト
 
 #### モックに初期値は必要か

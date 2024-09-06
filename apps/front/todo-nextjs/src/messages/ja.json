@@ -1,7 +1,11 @@
 ﻿{
   "pages": {
     "index": {
-      "notHaveTodos": "登録されたTODOはありません"
+      "notHaveTodos": "登録されたTODOはありません",
+      "seo": {
+        "title": "TODO",
+        "description": "TODOトップ画面。"
+      }
     },
     "completed": {
       "heading": "完了済み"

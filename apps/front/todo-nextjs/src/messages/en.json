@@ -1,7 +1,11 @@
 ﻿{
   "pages": {
     "index": {
-      "notHaveTodos": "You don't have TODO."
+      "notHaveTodos": "You don't have TODO.",
+      "seo": {
+        "title": "TODO",
+        "description": "TODO top page."
+      }
     },
     "completed": {
       "heading": "Completed"

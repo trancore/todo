@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { wrapper } from '~/store/root';
 
 import Icon from '~/components/container/Icon/Icon';
+import Seo from '~/components/container/Seo/Seo';
 import TodoEclipse from '~/components/container/Todo/TodoEclipse';
 import TodoIconBox from '~/components/container/Todo/TodoIconBox';
 
@@ -46,12 +47,12 @@ export default function Top() {
   const { data: todoList } = useGetTodosQuery(`${STATUS.TODO},${STATUS.WIP}`, {
     refetchOnMountOrArgChange: true,
   });
-  const t = useTranslations('pages');
+  const t = useTranslations('pages.index');
 
   const { formatToYYYYMMdd, colorizeDate } = dateFormat();
 
   return (
-    <>
+    <Seo title={t('seo.title')} description={t('seo.description')}>
       {todoList ? (
         <StyledTodoList>
           {todoList.map((todo) => (
@@ -91,10 +92,10 @@ export default function Top() {
       ) : (
         <StyledNotHave>
           <Icon presentational={{ name: 'Check', size: 64 }} />
-          <h2>{t('index.notHaveTodos')}</h2>
+          <h2>{t('notHaveTodos')}</h2>
         </StyledNotHave>
       )}
-    </>
+    </Seo>
   );
 }
 

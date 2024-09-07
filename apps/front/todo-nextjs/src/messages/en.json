@@ -38,6 +38,10 @@
       },
       "button": {
         "signup": "Signup"
+      },
+      "seo": {
+        "title": "Signup",
+        "description": "Signup page."
       }
     }
   },

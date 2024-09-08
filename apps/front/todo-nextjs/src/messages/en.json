@@ -28,6 +28,10 @@
     "signin": {
       "button": {
         "signin": "Signin"
+      },
+      "seo": {
+        "title": "Signin",
+        "description": "Signin page."
       }
     },
     "signup": {

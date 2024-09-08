@@ -28,6 +28,10 @@
     "signin": {
       "button": {
         "signin": "サインイン"
+      },
+      "seo": {
+        "title": "サインイン",
+        "description": "サインイン画面。"
       }
     },
     "signup": {

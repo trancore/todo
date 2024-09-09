@@ -19,6 +19,10 @@
       },
       "button": {
         "register": "登録"
+      },
+      "seo": {
+        "title": "TODO登録",
+        "description": "TODOを登録します。"
       }
     },
     "error": {

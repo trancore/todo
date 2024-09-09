@@ -16,6 +16,7 @@ import DateForm from '~/components/container/Form/Date';
 import Form from '~/components/container/Form/Form';
 import TextArea from '~/components/container/Form/TextArea';
 import TextForm from '~/components/container/Form/TextForm';
+import Seo from '~/components/container/Seo/Seo';
 
 import { PAGE_PATH } from '~/constants';
 
@@ -50,7 +51,7 @@ export default function Register() {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { hookToast } = useToast();
-  const tPage = useTranslations('pages.register');
+  const tPages = useTranslations('pages.register');
   const tCommonToast = useTranslations('common.toast');
 
   const submit: SubmitHandler<TodoForm> = (inputs) => {
@@ -68,42 +69,44 @@ export default function Register() {
   };
 
   return (
-    <>
-      <h1>{tPage('heading')}</h1>
-      <Form>
-        <>
-          <StyledInputForm>
-            <TextForm
-              presentational={{
-                labelName: tPage('form.title'),
-                errorMessage: errors.title?.message,
-                register: register('title'),
-              }}
-            />
-            <TextArea
-              presentational={{
-                labelName: tPage('form.description'),
-                errorMessage: errors.description?.message,
-                register: register('description'),
-              }}
-            />
-            <DateForm
-              presentational={{
-                labelName: tPage('form.deadline'),
-                errorMessage: errors.deadlineAt?.message,
-                register: register('deadlineAt'),
-              }}
-            />
-          </StyledInputForm>
-          <StyledButtonWrap>
-            <Button
-              presentational={{ text: tPage('button.register'), width: 128 }}
-              onClick={handleSubmit(submit)}
-            ></Button>
-          </StyledButtonWrap>
-        </>
-      </Form>
-    </>
+    <Seo title={tPages('seo.title')} description={tPages('seo.description')}>
+      <>
+        <h1>{tPages('heading')}</h1>
+        <Form>
+          <>
+            <StyledInputForm>
+              <TextForm
+                presentational={{
+                  labelName: tPages('form.title'),
+                  errorMessage: errors.title?.message,
+                  register: register('title'),
+                }}
+              />
+              <TextArea
+                presentational={{
+                  labelName: tPages('form.description'),
+                  errorMessage: errors.description?.message,
+                  register: register('description'),
+                }}
+              />
+              <DateForm
+                presentational={{
+                  labelName: tPages('form.deadline'),
+                  errorMessage: errors.deadlineAt?.message,
+                  register: register('deadlineAt'),
+                }}
+              />
+            </StyledInputForm>
+            <StyledButtonWrap>
+              <Button
+                presentational={{ text: tPages('button.register'), width: 128 }}
+                onClick={handleSubmit(submit)}
+              ></Button>
+            </StyledButtonWrap>
+          </>
+        </Form>
+      </>
+    </Seo>
   );
 }
 

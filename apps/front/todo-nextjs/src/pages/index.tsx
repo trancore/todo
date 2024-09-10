@@ -1,4 +1,5 @@
 ﻿import { useTranslations } from 'next-intl';
+import { title } from 'process';
 import styled from 'styled-components';
 
 import { wrapper } from '~/store/root';
@@ -52,7 +53,9 @@ export default function Top() {
   const { formatToYYYYMMdd, colorizeDate } = dateFormat();
 
   return (
-    <Seo title={t('seo.title')} description={t('seo.description')}>
+    <Seo
+      metadata={{ title: t('seo.title'), description: t('seo.description') }}
+    >
       {todoList ? (
         <StyledTodoList>
           {todoList.map((todo) => (

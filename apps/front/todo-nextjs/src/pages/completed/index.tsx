@@ -46,7 +46,12 @@ export default function Completed() {
   const { formatToYYYYMMdd, colorizeDate } = dateFormat();
 
   return (
-    <Seo title={tPages('seo.title')} description={tPages('seo.description')}>
+    <Seo
+      metadata={{
+        title: tPages('seo.title'),
+        description: tPages('seo.description'),
+      }}
+    >
       <>
         <h1>{tPages('heading')}</h1>
         <StyledTodoList>

@@ -21,7 +21,12 @@ export default function Signin() {
   const tPages = useTranslations('pages.signin');
 
   return (
-    <Seo title={tPages('seo.title')} description={tPages('seo.description')}>
+    <Seo
+      metadata={{
+        title: tPages('seo.title'),
+        description: tPages('seo.description'),
+      }}
+    >
       <StyledSignup>
         <Icon presentational={{ name: 'UserCircle', size: 128 }} />
         <StyledWrapButton>

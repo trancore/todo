@@ -4,17 +4,20 @@ import SeoPresentational from '~/components/presentational/Seo/Seo';
 
 type Props = {
   children: JSX.Element;
-  title?: string;
-  description?: string;
+  metadata?: { title?: string; description?: string };
 };
 
 export default function Seo(props: Props) {
-  const { title: titleString, description } = props;
+  const { metadata } = props;
   return (
     <>
       <Head>
-        <title>{titleString}</title>
-        <meta name="description" content={description} key="description" />
+        <title>{metadata?.title}</title>
+        <meta
+          name="description"
+          content={metadata?.description}
+          key="description"
+        />
       </Head>
       <SeoPresentational>{props.children}</SeoPresentational>
     </>

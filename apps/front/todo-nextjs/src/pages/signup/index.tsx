@@ -28,7 +28,12 @@ export default function Signup() {
   const tPage = useTranslations('pages.signup');
 
   return (
-    <Seo title={tPage('seo.title')} description={tPage('seo.description')}>
+    <Seo
+      metadata={{
+        title: tPage('seo.title'),
+        description: tPage('seo.description'),
+      }}
+    >
       <StyledSignup>
         <Icon presentational={{ name: 'UserCircle', size: 128 }} />
         <Form submit={() => {}}>

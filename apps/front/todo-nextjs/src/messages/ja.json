@@ -8,7 +8,11 @@
       }
     },
     "completed": {
-      "heading": "完了済み"
+      "heading": "完了済み",
+      "seo": {
+        "title": "TODO 完了済み",
+        "description": "完了済みTODO画面。"
+      }
     },
     "register": {
       "heading": "登録",

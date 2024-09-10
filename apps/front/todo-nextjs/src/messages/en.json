@@ -8,7 +8,11 @@
       }
     },
     "completed": {
-      "heading": "Completed"
+      "heading": "Completed",
+      "seo": {
+        "title": "TODO Completed",
+        "description": "TODO Completed page."
+      }
     },
     "register": {
       "heading": "Register",

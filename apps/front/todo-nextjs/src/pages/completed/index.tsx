@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { wrapper } from '~/store/root';
 
+import Seo from '~/components/container/Seo/Seo';
 import TodoEclipse from '~/components/container/Todo/TodoEclipse';
 import TodoIconBox from '~/components/container/Todo/TodoIconBox';
 
@@ -40,48 +41,50 @@ export default function Completed() {
   const { data: todoList } = useGetTodosQuery(`${STATUS.DONE}`, {
     refetchOnMountOrArgChange: true,
   });
-  const t = useTranslations('pages');
+  const tPages = useTranslations('pages.completed');
 
   const { formatToYYYYMMdd, colorizeDate } = dateFormat();
 
   return (
-    <>
-      <h1>{t('completed.heading')}</h1>
-      <StyledTodoList>
-        {todoList && todoList.length > 0
-          ? todoList?.map((todo) => {
-              return (
-                <StyledTodo key={todo.id} id="todo">
-                  <TodoEclipse
-                    presentational={{
-                      title: todo.title,
-                      description: todo.description,
-                    }}
-                    id={String(todo.id)}
-                    deadlineAt={todo.deadlineAt}
-                  />
-                  <StyledTodoUnder>
-                    {todo.deadlineAt ? (
-                      <StyledTodoDeadlineAt
-                        color={colorizeDate(new Date(todo.deadlineAt))}
-                        test-id="todo-deadline"
-                      >
-                        {formatToYYYYMMdd(new Date(todo.deadlineAt))}
-                      </StyledTodoDeadlineAt>
-                    ) : (
-                      <p>{''}</p>
-                    )}
-                    <TodoIconBox
-                      todoId={todo.id}
-                      hasIcons={{ hasUncheck: true, hasTrashCan: true }}
+    <Seo title={tPages('seo.title')} description={tPages('seo.description')}>
+      <>
+        <h1>{tPages('heading')}</h1>
+        <StyledTodoList>
+          {todoList && todoList.length > 0
+            ? todoList?.map((todo) => {
+                return (
+                  <StyledTodo key={todo.id} id="todo">
+                    <TodoEclipse
+                      presentational={{
+                        title: todo.title,
+                        description: todo.description,
+                      }}
+                      id={String(todo.id)}
+                      deadlineAt={todo.deadlineAt}
                     />
-                  </StyledTodoUnder>
-                </StyledTodo>
-              );
-            })
-          : []}
-      </StyledTodoList>
-    </>
+                    <StyledTodoUnder>
+                      {todo.deadlineAt ? (
+                        <StyledTodoDeadlineAt
+                          color={colorizeDate(new Date(todo.deadlineAt))}
+                          test-id="todo-deadline"
+                        >
+                          {formatToYYYYMMdd(new Date(todo.deadlineAt))}
+                        </StyledTodoDeadlineAt>
+                      ) : (
+                        <p>{''}</p>
+                      )}
+                      <TodoIconBox
+                        todoId={todo.id}
+                        hasIcons={{ hasUncheck: true, hasTrashCan: true }}
+                      />
+                    </StyledTodoUnder>
+                  </StyledTodo>
+                );
+              })
+            : []}
+        </StyledTodoList>
+      </>
+    </Seo>
   );
 }
 

@@ -1,5 +1,4 @@
 ﻿import { useTranslations } from 'next-intl';
-import { title } from 'process';
 import styled from 'styled-components';
 
 import { wrapper } from '~/store/root';

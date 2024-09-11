@@ -7,7 +7,7 @@ import Seo from '~/components/container/Seo/Seo';
 import TodoEclipse from '~/components/container/Todo/TodoEclipse';
 import TodoIconBox from '~/components/container/Todo/TodoIconBox';
 
-import { STATUS } from '~/constants';
+import { TODO_STATUS } from '~/constants';
 
 import {
   getRunningQueriesThunk,
@@ -38,7 +38,7 @@ const StyledTodoDeadlineAt = styled.p<{ color: string }>`
 `;
 
 export default function Completed() {
-  const { data: todoList } = useGetTodosQuery(`${STATUS.DONE}`, {
+  const { data: todoList } = useGetTodosQuery(`${TODO_STATUS.DONE}`, {
     refetchOnMountOrArgChange: true,
   });
   const tPages = useTranslations('pages.completed');
@@ -96,7 +96,7 @@ export default function Completed() {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ locale }) => {
-      await store.dispatch(getTodos.initiate(`${STATUS.DONE}`));
+      await store.dispatch(getTodos.initiate(`${TODO_STATUS.DONE}`));
       await Promise.all(store.dispatch(getRunningQueriesThunk()));
 
       const messages = await import(`~/messages/${locale}.json`);

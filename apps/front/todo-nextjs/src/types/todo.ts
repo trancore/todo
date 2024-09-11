@@ -1,4 +1,4 @@
-﻿import { TYPE } from '~/constants';
+﻿import { TODO_TYPE } from '~/constants';
 
 /**
  * TODO Form用型
@@ -15,4 +15,4 @@ export type TodoForm = {
 /**
  * Todo Modalの種類
  */
-export type ModelType = typeof TYPE.DETAIL | typeof TYPE.EDIT;
+export type ModelType = typeof TODO_TYPE.DETAIL | typeof TODO_TYPE.EDIT;

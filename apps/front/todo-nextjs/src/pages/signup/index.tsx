@@ -7,6 +7,7 @@ import Button from '~/components/container/Button/Button';
 import Form from '~/components/container/Form/Form';
 import UserTextForm from '~/components/container/Form/UserTextForm';
 import Icon from '~/components/container/Icon/Icon';
+import Seo from '~/components/container/Seo/Seo';
 
 const StyledSignup = styled.div`
   display: flex;
@@ -27,45 +28,52 @@ export default function Signup() {
   const tPage = useTranslations('pages.signup');
 
   return (
-    <StyledSignup>
-      <Icon presentational={{ name: 'UserCircle', size: 128 }} />
-      <Form submit={() => {}}>
-        <>
-          <StyledInputForm>
-            <UserTextForm
-              type="text"
-              presentational={{
-                labelName: tPage('form.name'),
-                errorMessage: 'エラーメッセージが表示されます',
-                register: undefined,
-              }}
-            />
-            <UserTextForm
-              type="email"
-              presentational={{
-                labelName: tPage('form.email'),
-                errorMessage: 'エラーメッセージが表示されます',
-                register: undefined,
-              }}
-            />
-            <UserTextForm
-              type="password"
-              presentational={{
-                labelName: tPage('form.password'),
-                errorMessage: 'エラーメッセージが表示されます',
-                register: undefined,
-              }}
-            />
-          </StyledInputForm>
-          <StyledWrapButton>
-            <Button
-              presentational={{ text: tPage('button.signup'), width: 128 }}
-              onClick={() => {}}
-            />
-          </StyledWrapButton>
-        </>
-      </Form>
-    </StyledSignup>
+    <Seo
+      metadata={{
+        title: tPage('seo.title'),
+        description: tPage('seo.description'),
+      }}
+    >
+      <StyledSignup>
+        <Icon presentational={{ name: 'UserCircle', size: 128 }} />
+        <Form submit={() => {}}>
+          <>
+            <StyledInputForm>
+              <UserTextForm
+                type="text"
+                presentational={{
+                  labelName: tPage('form.name'),
+                  errorMessage: 'エラーメッセージが表示されます',
+                  register: undefined,
+                }}
+              />
+              <UserTextForm
+                type="email"
+                presentational={{
+                  labelName: tPage('form.email'),
+                  errorMessage: 'エラーメッセージが表示されます',
+                  register: undefined,
+                }}
+              />
+              <UserTextForm
+                type="password"
+                presentational={{
+                  labelName: tPage('form.password'),
+                  errorMessage: 'エラーメッセージが表示されます',
+                  register: undefined,
+                }}
+              />
+            </StyledInputForm>
+            <StyledWrapButton>
+              <Button
+                presentational={{ text: tPage('button.signup'), width: 128 }}
+                onClick={() => {}}
+              />
+            </StyledWrapButton>
+          </>
+        </Form>
+      </StyledSignup>
+    </Seo>
   );
 }
 

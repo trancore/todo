@@ -1,10 +1,22 @@
 ﻿{
   "pages": {
     "index": {
-      "notHaveTodos": "登録されたTODOはありません"
+      "notHaveTodos": "登録されたTODOはありません",
+      "seo": {
+        "title": "TODO",
+        "description": "TODOトップ画面。"
+      },
+      "ogp": {
+        "title": "TODO",
+        "description": "TODOトップ画面。"
+      }
     },
     "completed": {
-      "heading": "完了済み"
+      "heading": "完了済み",
+      "seo": {
+        "title": "TODO 完了済み",
+        "description": "完了済みTODO画面。"
+      }
     },
     "register": {
       "heading": "登録",
@@ -15,6 +27,10 @@
       },
       "button": {
         "register": "登録"
+      },
+      "seo": {
+        "title": "TODO登録",
+        "description": "TODOを登録します。"
       }
     },
     "error": {
@@ -24,6 +40,10 @@
     "signin": {
       "button": {
         "signin": "サインイン"
+      },
+      "seo": {
+        "title": "サインイン",
+        "description": "サインイン画面。"
       }
     },
     "signup": {
@@ -34,6 +54,10 @@
       },
       "button": {
         "signup": "サインアップ"
+      },
+      "seo": {
+        "title": "サインアップ",
+        "description": "サインアップ画面。"
       }
     }
   },

@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 import Button from '~/components/container/Button/Button';
 import Icon from '~/components/container/Icon/Icon';
+import Seo from '~/components/container/Seo/Seo';
 
 const StyledSignup = styled.div`
   display: flex;
@@ -17,18 +18,25 @@ const StyledWrapButton = styled.div`
 `;
 
 export default function Signin() {
-  const tPage = useTranslations('pages.signin');
+  const tPages = useTranslations('pages.signin');
 
   return (
-    <StyledSignup>
-      <Icon presentational={{ name: 'UserCircle', size: 128 }} />
-      <StyledWrapButton>
-        <Button
-          presentational={{ text: tPage('button.signin'), width: 128 }}
-          onClick={signIn}
-        />
-      </StyledWrapButton>
-    </StyledSignup>
+    <Seo
+      metadata={{
+        title: tPages('seo.title'),
+        description: tPages('seo.description'),
+      }}
+    >
+      <StyledSignup>
+        <Icon presentational={{ name: 'UserCircle', size: 128 }} />
+        <StyledWrapButton>
+          <Button
+            presentational={{ text: tPages('button.signin'), width: 128 }}
+            onClick={signIn}
+          />
+        </StyledWrapButton>
+      </StyledSignup>
+    </Seo>
   );
 }
 

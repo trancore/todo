@@ -4,10 +4,11 @@ import styled from 'styled-components';
 import { wrapper } from '~/store/root';
 
 import Icon from '~/components/container/Icon/Icon';
+import Seo from '~/components/container/Seo/Seo';
 import TodoEclipse from '~/components/container/Todo/TodoEclipse';
 import TodoIconBox from '~/components/container/Todo/TodoIconBox';
 
-import { STATUS } from '~/constants';
+import { OGP_TYPE, TODO_STATUS } from '~/constants';
 
 import {
   getRunningQueriesThunk,
@@ -43,15 +44,29 @@ const StyledNotHave = styled.div`
 `;
 
 export default function Top() {
-  const { data: todoList } = useGetTodosQuery(`${STATUS.TODO},${STATUS.WIP}`, {
-    refetchOnMountOrArgChange: true,
-  });
-  const t = useTranslations('pages');
+  const { data: todoList } = useGetTodosQuery(
+    `${TODO_STATUS.TODO},${TODO_STATUS.WIP}`,
+    {
+      refetchOnMountOrArgChange: true,
+    },
+  );
+  const t = useTranslations('pages.index');
+
+  const metadata = {
+    title: t('seo.title'),
+    description: t('seo.description'),
+  };
+  const ogp = {
+    title: t('ogp.title'),
+    description: t('ogp.description'),
+    type: OGP_TYPE.WEBSITE,
+    url: process.env.NEXT_PUBLIC_DOMAIN,
+  };
 
   const { formatToYYYYMMdd, colorizeDate } = dateFormat();
 
   return (
-    <>
+    <Seo metadata={metadata} ogp={ogp}>
       {todoList ? (
         <StyledTodoList>
           {todoList.map((todo) => (
@@ -91,17 +106,19 @@ export default function Top() {
       ) : (
         <StyledNotHave>
           <Icon presentational={{ name: 'Check', size: 64 }} />
-          <h2>{t('index.notHaveTodos')}</h2>
+          <h2>{t('notHaveTodos')}</h2>
         </StyledNotHave>
       )}
-    </>
+    </Seo>
   );
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ locale }) => {
-      await store.dispatch(getTodos.initiate(`${STATUS.TODO},${STATUS.WIP}`));
+      await store.dispatch(
+        getTodos.initiate(`${TODO_STATUS.TODO},${TODO_STATUS.WIP}`),
+      );
       await Promise.all(store.dispatch(getRunningQueriesThunk()));
 
       const messages = await import(`~/messages/${locale}.json`);

@@ -57,9 +57,14 @@ yarn
 以下の環境変数に対して、クライアントIDやクライアントシークレットーキーを各種サービスから取得して設定してください。
 
 ```zsh
+# このアプリケーションのドメイン名
+NEXT_PUBLIC_DOMAIN=""
+
 # OAuth認可キー
 GITHUB_CLIENT_ID=""
 GITHUB_CLIENT_SECRET=""
+
+# NextAuth用API URL
 NEXTAUTH_URL=""
 # JWTを暗号化しトークンをハッシュするために使用
 NEXTAUTH_SECRET=""
@@ -199,7 +204,9 @@ export function createTodoSchema() {
 
 そして、この`useTranslations`を`NextIntlClientProvider`内で呼び出すために、スキーマを作成する関数を作り、それをコンポーネント内で呼び出す必要があります。
 
-### 5.自動テスト
+### 5.SEOとパフォーマンス最適化
+
+### 6.自動テスト
 
 #### モックに初期値は必要か
 

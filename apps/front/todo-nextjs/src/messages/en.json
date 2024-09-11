@@ -1,10 +1,22 @@
 ﻿{
   "pages": {
     "index": {
-      "notHaveTodos": "You don't have TODO."
+      "notHaveTodos": "You don't have TODO.",
+      "seo": {
+        "title": "TODO",
+        "description": "TODO top page."
+      },
+      "ogp": {
+        "title": "TODO",
+        "description": "TODO top page."
+      }
     },
     "completed": {
-      "heading": "Completed"
+      "heading": "Completed",
+      "seo": {
+        "title": "TODO Completed",
+        "description": "TODO Completed page."
+      }
     },
     "register": {
       "heading": "Register",
@@ -15,6 +27,10 @@
       },
       "button": {
         "register": "Register"
+      },
+      "seo": {
+        "title": "TODO Register",
+        "description": "TODO Register page."
       }
     },
     "error": {
@@ -24,6 +40,10 @@
     "signin": {
       "button": {
         "signin": "Signin"
+      },
+      "seo": {
+        "title": "Signin",
+        "description": "Signin page."
       }
     },
     "signup": {
@@ -34,6 +54,10 @@
       },
       "button": {
         "signup": "Signup"
+      },
+      "seo": {
+        "title": "Signup",
+        "description": "Signup page."
       }
     }
   },

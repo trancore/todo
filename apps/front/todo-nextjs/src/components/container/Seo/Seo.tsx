@@ -2,6 +2,8 @@
 
 import SeoPresentational from '~/components/presentational/Seo/Seo';
 
+import { OGP_TYPE } from '~/constants';
+
 type Props = {
   children: JSX.Element;
   metadata?: {
@@ -11,7 +13,7 @@ type Props = {
   ogp?: {
     title: string;
     description: string;
-    type?: string;
+    type?: (typeof OGP_TYPE)[keyof typeof OGP_TYPE];
     image?: string;
     url?: string;
   };

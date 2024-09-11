@@ -5,6 +5,10 @@
       "seo": {
         "title": "TODO",
         "description": "TODO top page."
+      },
+      "ogp": {
+        "title": "TODO",
+        "description": "TODO top page."
       }
     },
     "completed": {

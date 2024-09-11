@@ -57,9 +57,14 @@ yarn
 以下の環境変数に対して、クライアントIDやクライアントシークレットーキーを各種サービスから取得して設定してください。
 
 ```zsh
+# このアプリケーションのドメイン名
+NEXT_PUBLIC_DOMAIN=""
+
 # OAuth認可キー
 GITHUB_CLIENT_ID=""
 GITHUB_CLIENT_SECRET=""
+
+# NextAuth用API URL
 NEXTAUTH_URL=""
 # JWTを暗号化しトークンをハッシュするために使用
 NEXTAUTH_SECRET=""

@@ -5,6 +5,10 @@
       "seo": {
         "title": "TODO",
         "description": "TODOトップ画面。"
+      },
+      "ogp": {
+        "title": "TODO",
+        "description": "TODOトップ画面。"
       }
     },
     "completed": {

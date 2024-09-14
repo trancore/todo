@@ -261,7 +261,8 @@ schema.org は「インターネット上、ウェブページ上、電子メー
 
 Schema.org のボキャブラリーは、RDFa, Microdata, JSON-LD を含む多くのエンコーディングで使用することができます。この中で Google が推奨しているのは JSON-LD です。JSON-LD は、2014 年 1 月に W3C の勧告となったオープンデータフォーマットで、スクリプトを用いることで HTML のどこにでも記述可能で、かつ 1 カ所で記述できる仕様になっています。
 
-[構造化データとは？メリット・書き方・種類・ツールまとめ](https://digitalidentity.co.jp/blog/seo/schema-org/structured-data.html)
+- [構造化データとは？メリット・書き方・種類・ツールまとめ](https://digitalidentity.co.jp/blog/seo/schema-org/structured-data.html)
+- [JSON-LD の基礎 - Zenn](https://zenn.dev/esnir/articles/basic-jdon-ld)
 
 様々な検索エンジンは、schema.org とは異なるボキャブラリーを適応させる可能性があり、ウェブサイトのボキャブラリーに記述されている全てのユースケースをカバーできる検索エンジンは存在しません。それぞれのケースで、どのボキャブラリーが受け入れられているかを必ずチェックしましょう。
 

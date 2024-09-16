@@ -11,11 +11,15 @@
     {
       "name": "front-nextjs",
       "path": "apps/front/todo-nextjs"
+    },
+    {
+      "name": "front-nuxtjs",
+      "path": "apps/front/todo-nuxtjs"
     }
   ],
   "settings": {
     "jest.runMode": { "type": "on-save", "runAllTestsOnStartup": false },
-    "jest.jestCommandLine": "yarn run test",
+    "jest.jestCommandLine": "yarn run test:jest",
     "jest.disabledWorkspaceFolders": ["root", "api"]
   }
 }

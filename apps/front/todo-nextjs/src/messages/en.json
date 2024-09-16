@@ -1,0 +1,82 @@
+﻿{
+  "pages": {
+    "index": {
+      "notHaveTodos": "You don't have TODO.",
+      "seo": {
+        "title": "TODO",
+        "description": "TODO top page."
+      },
+      "ogp": {
+        "title": "TODO",
+        "description": "TODO top page."
+      }
+    },
+    "completed": {
+      "heading": "Completed",
+      "seo": {
+        "title": "TODO Completed",
+        "description": "TODO Completed page."
+      }
+    },
+    "register": {
+      "heading": "Register",
+      "form": {
+        "title": "Title",
+        "description": "Description",
+        "deadline": "Deadline"
+      },
+      "button": {
+        "register": "Register"
+      },
+      "seo": {
+        "title": "TODO Register",
+        "description": "TODO Register page."
+      }
+    },
+    "error": {
+      "notFound": "Not Found",
+      "inValid": "Not Valid"
+    },
+    "signin": {
+      "button": {
+        "signin": "Signin"
+      },
+      "seo": {
+        "title": "Signin",
+        "description": "Signin page."
+      }
+    },
+    "signup": {
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "password": "Password"
+      },
+      "button": {
+        "signup": "Signup"
+      },
+      "seo": {
+        "title": "Signup",
+        "description": "Signup page."
+      }
+    }
+  },
+  "common": {
+    "toast": {
+      "error": "Error",
+      "register": "Register TODO"
+    }
+  },
+  "libs": {
+    "yup": {
+      "error": "invalid validation error.",
+      "required": "Please Required",
+      "max": {
+        "text": {
+          "one": "Please enter no more than ",
+          "two": " characters."
+        }
+      }
+    }
+  }
+}

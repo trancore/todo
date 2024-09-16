@@ -1,0 +1,21 @@
+{
+  "folders": [
+    {
+      "name": "root",
+      "path": "."
+    },
+    {
+      "name": "api",
+      "path": "apps/api"
+    },
+    {
+      "name": "front-nextjs",
+      "path": "apps/front/todo-nextjs"
+    }
+  ],
+  "settings": {
+    "jest.runMode": { "type": "on-save", "runAllTestsOnStartup": false },
+    "jest.jestCommandLine": "yarn run test",
+    "jest.disabledWorkspaceFolders": ["root", "api"]
+  }
+}

@@ -1,0 +1,82 @@
+﻿{
+  "pages": {
+    "index": {
+      "notHaveTodos": "登録されたTODOはありません",
+      "seo": {
+        "title": "TODO",
+        "description": "TODOトップ画面。"
+      },
+      "ogp": {
+        "title": "TODO",
+        "description": "TODOトップ画面。"
+      }
+    },
+    "completed": {
+      "heading": "完了済み",
+      "seo": {
+        "title": "TODO 完了済み",
+        "description": "完了済みTODO画面。"
+      }
+    },
+    "register": {
+      "heading": "登録",
+      "form": {
+        "title": "タイトル",
+        "description": "説明",
+        "deadline": "期限"
+      },
+      "button": {
+        "register": "登録"
+      },
+      "seo": {
+        "title": "TODO登録",
+        "description": "TODOを登録します。"
+      }
+    },
+    "error": {
+      "notFound": "このページは存在しません",
+      "inValid": "ページを表示できませんでした"
+    },
+    "signin": {
+      "button": {
+        "signin": "サインイン"
+      },
+      "seo": {
+        "title": "サインイン",
+        "description": "サインイン画面。"
+      }
+    },
+    "signup": {
+      "form": {
+        "name": "名前",
+        "email": "メールアドレス",
+        "password": "パスワード"
+      },
+      "button": {
+        "signup": "サインアップ"
+      },
+      "seo": {
+        "title": "サインアップ",
+        "description": "サインアップ画面。"
+      }
+    }
+  },
+  "common": {
+    "toast": {
+      "error": "エラーが発生しました",
+      "register": "TODOが作成されました"
+    }
+  },
+  "libs": {
+    "yup": {
+      "error": "invalid validation error.",
+      "required": "必須項目です",
+      "max": {
+        "text": {
+          "one": "文字以下で入力してください",
+          "two": ""
+        }
+      }
+    }
+  }
+}

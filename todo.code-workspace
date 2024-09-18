@@ -20,6 +20,6 @@
   "settings": {
     "jest.runMode": { "type": "on-save", "runAllTestsOnStartup": false },
     "jest.jestCommandLine": "yarn run test:jest",
-    "jest.disabledWorkspaceFolders": ["root", "api"]
+    "jest.disabledWorkspaceFolders": ["root", "api", "todo-nuxtjs"]
   }
 }

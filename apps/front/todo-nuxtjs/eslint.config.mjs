@@ -7,5 +7,9 @@ export default withNuxt(
     files: [
       '**/*.vue',
     ],
+    rules: {
+      // pagesにおいて"/"を許可うすために無視する
+      'vue/multi-word-component-names': 'off',
+    },
   },
 )

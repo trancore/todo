@@ -3,11 +3,15 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
+
   srcDir: '/src',
+
   devServer: {
     port: 3001,
   },
+
   modules: ['@nuxt/eslint',],
+
   eslint: {
     config: {
       stylistic: {
@@ -18,4 +22,6 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  compatibilityDate: '2024-09-21',
 },);

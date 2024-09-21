@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     enabled: true,
   },
 
-  srcDir: '/src',
+  srcDir: './src',
 
   devServer: {
     port: 3001,

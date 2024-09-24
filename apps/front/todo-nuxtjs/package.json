@@ -14,7 +14,8 @@
     "lint:css": "stylelint \"**/*.vue\"",
     "lint:css:fix": "stylelint \"**/*.vue\" --fix",
     "storybook:build": "storybook build",
-    "storybook": "storybook dev -p 6006 --no-open"
+    "storybook": "storybook dev -p 6006 --no-open",
+    "auto-create-storybook": "node --loader esbuild-register/loader -r esbuild-register ./scripts/auto-create-storybook.ts"
   },
   "dependencies": {
     "nuxt": "^3.13.0",
@@ -41,6 +42,8 @@
     "stylelint-config-recommended-scss": "^14.1.0",
     "stylelint-config-recommended-vue": "^1.5.0",
     "stylelint-config-standard": "^36.0.1",
+    "ts-morph": "^21.0.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.6.2",
     "vue-tsc": "^2.1.6"
   }

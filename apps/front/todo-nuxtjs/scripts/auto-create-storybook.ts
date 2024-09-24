@@ -60,10 +60,10 @@ const createStorybooks = (
       if (status.isDirectory()) {
         createStorybooks(fullPath, equalsToAbsolutePath, anotherStorybookPath);
       }
-      // 読み込んだ対象がファイルでない場合、もしくはtsxファイルでない場合は無視する
+      // 読み込んだ対象がファイルでない場合、もしくはtsファイルでない場合は無視する
       if (
         !status.isFile() ||
-        path.extname(componentFileOrDirectoryName) !== ".tsx"
+        path.extname(componentFileOrDirectoryName) !== ".ts"
       ) {
         return;
       }
@@ -74,10 +74,10 @@ const createStorybooks = (
       }
 
       // 生成処理
-      // ex: Table.tsx
+      // ex: Table.ts
       const componentFileName = componentFileOrDirectoryName;
       // ex: Table
-      let componentFile = path.basename(componentFileName, ".tsx");
+      let componentFile = path.basename(componentFileName, ".ts");
 
       if (componentFile === "index") {
         componentFile = path.basename(directoryPath);
@@ -87,11 +87,11 @@ const createStorybooks = (
       fs.mkdirSync(storybookDirectoryPath, { recursive: true });
       const storybookFilePath = path.join(
         storybookDirectoryPath,
-        `${componentFile}.stories.tsx`,
+        `${componentFile}.stories.ts`,
       );
 
       // 今処理しているファイルがstorybookファイルの場合は無視する
-      if (componentFileName.includes(".stories.tsx")) {
+      if (componentFileName.includes(".stories.ts")) {
         return;
       }
 
@@ -203,7 +203,7 @@ const createStorybooks = (
 
       const importComponentName = path
         .relative(directoryPath, fullPath)
-        .replace(".tsx", "");
+        .replace(".ts", "");
       const typeName = typeProps[0] && typeProps[0].typeName;
 
       // ---

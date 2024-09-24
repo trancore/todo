@@ -14,8 +14,7 @@
     "lint:css": "stylelint \"**/*.vue\"",
     "lint:css:fix": "stylelint \"**/*.vue\" --fix",
     "storybook:build": "storybook build",
-    "storybook": "storybook dev -p 6006 --no-open",
-    "auto-create-storybook": "node --loader esbuild-register/loader -r esbuild-register ./scripts/auto-create-storybook.ts"
+    "storybook": "storybook dev -p 6006 --no-open"
   },
   "dependencies": {
     "nuxt": "^3.13.0",

@@ -1,11 +1,11 @@
-﻿import type { Meta, StoryObj } from "@storybook/vue3";
-import { fn } from "@storybook/test";
-import Button from "~/components/Button/Button.vue";
+﻿import type { Meta, StoryObj } from '@storybook/vue3';
+import { fn } from '@storybook/test';
+import Button from '~/components/Button/Button.vue';
 
 const meta: Meta<typeof Button> = {
-  title: "Button/Button",
+  title: 'Button/Button',
   component: Button,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   // Add your own control here
 };
 export default meta;
@@ -17,7 +17,7 @@ type Story = StoryObj<typeof Button>;
  */
 export const Long: Story = {
   args: {
-    text: "完了",
+    text: '完了',
     width: 256,
     onClick: fn(),
   },
@@ -25,7 +25,7 @@ export const Long: Story = {
 
 export const SignIn: Story = {
   args: {
-    text: "サインイン",
+    text: 'サインイン',
     onClick: fn(),
   },
 };

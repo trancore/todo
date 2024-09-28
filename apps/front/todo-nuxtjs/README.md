@@ -115,13 +115,13 @@ JavaScript を実装するとき、共通仕様として実装する必要があ
 
 ##### Form ライブラリとバリデーション
 
-<!-- Form ライブラリには、[React-Hooks-Form](https://react-hook-form.com/get-started)を使用しています。以前から使用しているライブラリであり、後述するバリデーションスキーマである[yup](https://github.com/jquense/yup)の導入も既知であるため使用しています。他ライブラリを使用する理由がなかったため、React-Hooks-Form を選択しました。
+Formライブラリには、[FormKit](https://formkit.com)を使用しています。Vueでは一般的に使われているライブラリです。FormKitを使うメリットは、公式ドキュメントの[Why not...? - FormKit getting start -](https://formkit.com/getting-started/what-is-formkit)を参照してください。
 
-バリデーションスキーマには、yup を用いています。別のバリデーションスキーマには zod があるのですが、私自身は yup しか使ったことが無く、zod を使ったことがありません。
+<!-- バリデーションスキーマには、yup を用いています。別のバリデーションスキーマには zod があるのですが、私自身は yup しか使ったことが無く、zod を使ったことがありません。
 
 参考：[react-hook-form で yup と zod の違いを検証](https://zenn.dev/wintyo/articles/6122304cb56c86)
 
-React-Hooks-Form と yup の実装は、[src/pages/register/index.tsx](/apps/front/todo-nextjs/src/pages/register/index.tsx)を参考にしてください。 -->
+React-Hooks-Form と yup の実装は、[src/pages/register/index.tsx](/apps/front/todo-nextjs/src/pages/register/index.tsx)を参考にしてください。 --> -->
 
 ##### Pinia による状態管理
 

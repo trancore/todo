@@ -14,6 +14,7 @@ export default defineNuxtConfig({
   },
   formkit: {
     autoImport: true,
+    defaultConfig: false,
   },
   compatibilityDate: '2024-09-21',
 });

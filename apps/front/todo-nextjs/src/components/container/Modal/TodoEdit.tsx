@@ -7,7 +7,7 @@ import { selectTodo } from '~/state/todo';
 
 import { TodoForm } from '~/types/todo';
 
-import { todoSchema } from '~/libs/yup';
+import { createTodoSchema } from '~/libs/yup';
 
 import TodoEditPresentational from '~/components/presentational/Modal/TodoEdit';
 
@@ -20,6 +20,8 @@ import { useTodoModal } from '~/hooks/useTodoModal';
 import { scrollTop } from '~/utils/scroll';
 
 export default function TodoEdit() {
+  const todoSchema = createTodoSchema();
+
   const dispatch = useAppDispatch();
   const storeTodo = useAppSelector(selectTodo);
   const [editTodo] = useEditTodoMutation();

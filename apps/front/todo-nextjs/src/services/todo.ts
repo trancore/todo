@@ -8,7 +8,7 @@ import { todoAxiosBaseQuery } from '~/libs/reduxQuery';
 
 import { RootState } from '~/store/root';
 
-import { PAGE_PATH, STATUS } from '~/constants';
+import { PAGE_PATH, TODO_STATUS } from '~/constants';
 
 type GetTodosResponse =
   paths['/todos']['get']['responses']['200']['content']['application/json'];
@@ -73,8 +73,8 @@ export const todoApi = createApi({
       ) {
         const args =
           pathname === PAGE_PATH.COMPLETED
-            ? STATUS.DONE
-            : `${STATUS.TODO},${STATUS.WIP}`;
+            ? TODO_STATUS.DONE
+            : `${TODO_STATUS.TODO},${TODO_STATUS.WIP}`;
         const result = dispatch(
           todoApi.util.updateQueryData('getTodos', args, (draft) => {
             return draft.filter((value) => value.id !== Number(todo_id));
@@ -104,7 +104,7 @@ export const todoApi = createApi({
         const result = dispatch(
           todoApi.util.updateQueryData(
             'getTodos',
-            `${STATUS.TODO},${STATUS.WIP}`,
+            `${TODO_STATUS.TODO},${TODO_STATUS.WIP}`,
             (draft) => {
               const updatedTodo = { title, description, deadlineAt };
               return draft.map((value) =>
@@ -136,8 +136,8 @@ export const todoApi = createApi({
       ) {
         const args =
           pathname === PAGE_PATH.COMPLETED
-            ? STATUS.DONE
-            : `${STATUS.TODO},${STATUS.WIP}`;
+            ? TODO_STATUS.DONE
+            : `${TODO_STATUS.TODO},${TODO_STATUS.WIP}`;
         const result = dispatch(
           todoApi.util.updateQueryData('getTodos', args, (draft) => {
             return draft.filter((value) => value.id !== Number(todoId));

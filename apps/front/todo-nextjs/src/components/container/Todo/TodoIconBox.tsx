@@ -4,7 +4,7 @@ import { TodoForm } from '~/types/todo';
 
 import TodoIconBoxPresentation from '~/components/presentational/Todo/TodoIconBox';
 
-import { STATUS } from '~/constants';
+import { TODO_STATUS } from '~/constants';
 
 import {
   useChangeStatusTodoMutation,
@@ -37,7 +37,7 @@ export default function TodoIconBox({ todoId, todoForm, hasIcons }: Props) {
     click: async () => {
       await changeTodoStatus({
         todo_id: String(todoId),
-        status: STATUS.TODO,
+        status: TODO_STATUS.TODO,
         pathname,
       });
 
@@ -49,7 +49,7 @@ export default function TodoIconBox({ todoId, todoForm, hasIcons }: Props) {
     click: async () => {
       await changeTodoStatus({
         todo_id: String(todoId),
-        status: STATUS.DONE,
+        status: TODO_STATUS.DONE,
         pathname,
       });
 

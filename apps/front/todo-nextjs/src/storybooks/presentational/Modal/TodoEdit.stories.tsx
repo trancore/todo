@@ -1,4 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
+import { useForm } from 'react-hook-form';
+
+import { TodoForm } from '~/types/todo';
+
 import TodoEdit from '~/components/presentational/Modal/TodoEdit';
 
 const meta: Meta<typeof TodoEdit> = {
@@ -16,13 +20,15 @@ type Story = StoryObj<typeof TodoEdit>;
  */
 export const TodoEditModal: Story = {
   render: () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { formState, register } = useForm<TodoForm>({});
     return (
       <TodoEdit
         title="やることやることやること"
         description="やることやることやることやることやることやることやることやることやることやること"
-        deadline={new Date('2024/01/01')}
-        errorMessage="ダミーデータ"
-        register={undefined}
+        formState={formState}
+        register={register}
+        onClickEdit={() => {}}
       />
     );
   },

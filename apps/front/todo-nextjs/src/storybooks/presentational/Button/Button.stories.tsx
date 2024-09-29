@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
+
 import Button from '~/components/presentational/Button/Button';
 
 const meta: Meta<typeof Button> = {
@@ -23,12 +24,12 @@ export const Selectable: Story = {
 
 export const Long: Story = {
   render: () => {
-    return <Button text="完了" width={256} />;
+    return <Button text="完了" width={256} onClick={() => {}} />;
   },
 };
 
 export const SignIn: Story = {
   render: () => {
-    return <Button text="サインイン" />;
+    return <Button text="サインイン" onClick={() => {}} />;
   },
 };

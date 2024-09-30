@@ -1,15 +1,15 @@
 // @ts-check
-import withNuxt from './.nuxt/eslint.config.mjs'
+import withNuxt from "./.nuxt/eslint.config.mjs";
+import prettierConfig from "eslint-plugin-prettier/recommended";
 
 export default withNuxt(
   // Your custom configs here
   {
-    files: [
-      '**/*.vue',
-    ],
+    files: ["**/*.vue"],
     rules: {
-      // pagesにおいて"/"を許可うすために無視する
-      'vue/multi-word-component-names': 'off',
+      // pagesにおいて"/"を許可するために無視する
+      "vue/multi-word-component-names": "off",
     },
   },
-)
+  prettierConfig,
+);

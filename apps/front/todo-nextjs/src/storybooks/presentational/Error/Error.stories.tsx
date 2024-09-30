@@ -23,6 +23,6 @@ export const Selectable: Story = {
 
 export const ErrorMessage: Story = {
   render: () => {
-    return <Error text={'エラーが発生しました'} />;
+    return <Error displayed text={'エラーが発生しました'} />;
   },
 };

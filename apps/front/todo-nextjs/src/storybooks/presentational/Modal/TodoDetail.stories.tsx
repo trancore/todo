@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
+
 import TodoDetail from '~/components/presentational/Modal/TodoDetail';
 
 const meta: Meta<typeof TodoDetail> = {
@@ -20,7 +21,13 @@ export const TodoDetailModal: Story = {
       <TodoDetail
         title="やることやることやること"
         description="やることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやることやること"
-        deadline={new Date('2024/01/01')}
+        deadlineAt="2024/01/01"
+        locateCompleted={false}
+        completedButtonDisabled={false}
+        deletedButtonDisabled={false}
+        clickCompletedButton={() => {}}
+        clickEditButton={() => {}}
+        clickDeleteButton={() => {}}
       />
     );
   },

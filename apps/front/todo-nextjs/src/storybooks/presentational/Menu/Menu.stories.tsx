@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
+
 import Menu from '~/components/presentational/Menu/Menu';
 
 const meta: Meta<typeof Menu> = {
@@ -16,6 +17,8 @@ type Story = StoryObj<typeof Menu>;
  */
 export const Default: Story = {
   render: () => {
-    return <Menu userName="username" clickIcon={() => {}}></Menu>;
+    return (
+      <Menu userName="username" signOut={() => {}} closeMenu={() => {}}></Menu>
+    );
   },
 };

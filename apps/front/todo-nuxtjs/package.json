@@ -10,15 +10,37 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "lint:css": "stylelint \"**/*.vue\"",
+    "lint:css:fix": "stylelint \"**/*.vue\" --fix",
+    "storybook:build": "storybook build",
+    "storybook": "storybook dev -p 6006 --no-open"
   },
   "dependencies": {
     "nuxt": "^3.13.0",
+    "sass": "^1.79.3",
     "vue": "~3.5.6",
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^1.9.0",
     "@nuxt/eslint": "^0.5.7",
+    "@storybook/addon-essentials": "^8.3.2",
+    "@storybook/addon-interactions": "^8.3.2",
+    "@storybook/addon-links": "^8.3.2",
+    "@storybook/addon-onboarding": "^8.3.2",
+    "@storybook/blocks": "^8.3.2",
+    "@storybook/test": "^8.3.2",
+    "@storybook/vue3": "^8.3.2",
+    "@storybook/vue3-vite": "^8.3.2",
+    "eslint-plugin-prettier": "^5.2.1",
+    "postcss-html": "^1.7.0",
+    "prettier": "^3.3.3",
+    "storybook": "^8.3.2",
+    "stylelint": "^16.9.0",
+    "stylelint-config-recommended-scss": "^14.1.0",
+    "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-standard": "^36.0.1",
     "typescript": "^5.6.2",
     "vue-tsc": "^2.1.6"
   }

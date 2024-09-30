@@ -2,15 +2,17 @@
 
 ## 📡 使用ライブラリ・フレームワーク
 
-| ライブラリ・フレームワーク | バージョン | 使用意図                                                             |
-| -------------------------- | ---------- | -------------------------------------------------------------------- |
-| Volta                      | v1.1.1     | Node.js 管理ツール                                                   |
-| npm                        | v10.7.0    | Node の package マネージャー                                         |
-| TypeScript                 | v5.6.2     | 静的型付け用言語                                                     |
-| vue-tsc                    | v2.1.6     | Vue に対応した TypeScript コンパイル用ライブラリ                     |
-| Vue.js                     | v3.5.6     | JavaScript フレームワーク                                            |
-| Nuxt.js                    | v3.13.0    | Vue.js の Web フレームワーク                                         |
-| @nuxt/eslint               | v0.5.7     | Nuxt modules の ESLint。formatter は ESLint Stylistic を使用します。 |
+| ライブラリ・フレームワーク | バージョン | 使用意図                                         |
+| -------------------------- | ---------- | ------------------------------------------------ |
+| Volta                      | v1.1.1     | Node.js 管理ツール                               |
+| npm                        | v10.7.0    | Node の package マネージャー                     |
+| TypeScript                 | v5.6.2     | 静的型付け用言語                                 |
+| vue-tsc                    | v2.1.6     | Vue に対応した TypeScript コンパイル用ライブラリ |
+| Vue.js                     | v3.5.6     | JavaScript フレームワーク                        |
+| Nuxt.js                    | v3.13.0    | Vue.js の Web フレームワーク                     |
+| @nuxt/eslint               | v0.5.7     | Nuxt modules の ESLint。                         |
+| stylelint                  | ^16.9.0    | CSSのLinter                                      |
+| prettier                   | ^3.3.3     | コードformatter                                  |
 
 ## yarn scripts について
 
@@ -91,6 +93,18 @@ Cypress では、NextAuth.js でログインを行うための EtoE テストを
 
 ### 2. コンポーネント設計
 
+Nuxt.js は、Vue.js 特有の SFC(Single File Component)でコンポーネントを考える必要があります。  
+そのため、templete(HTML), style(CSS), script(JavaScript)を一つのファイルで実装するのが一般的になります。
+
+そのため、Nuxt.js 特有の考慮すべきことがあります。
+
+一つ目は style の scope です。基本的にはそのファイル内での scope を守るべきで、かつそのファイル以外の要素に style が適用されないようにするべきです。  
+この scope を守らなければ、どの style がどの template に適用されるのか管理できなくなってしまいます。
+
+二つ目は、Next.js のようにロジックと画面描画を別コンポーネントとして分ける必要がない、ということです。  
+このようなコンポーネント設計では、SFC である Vue.js ないしは Nuxt.js の特徴を活かすことができなくなってしまいます。
+そのため、コンポーネントの設計としては単に機能によってコンポーネントを分離・構築していくので良いです。
+
 ### 4.JavaScript 実装
 
 #### JavaScript 実装時の共通実装
@@ -101,13 +115,14 @@ JavaScript を実装するとき、共通仕様として実装する必要があ
 
 ##### Form ライブラリとバリデーション
 
-<!-- Form ライブラリには、[React-Hooks-Form](https://react-hook-form.com/get-started)を使用しています。以前から使用しているライブラリであり、後述するバリデーションスキーマである[yup](https://github.com/jquense/yup)の導入も既知であるため使用しています。他ライブラリを使用する理由がなかったため、React-Hooks-Form を選択しました。
+Formライブラリは、始めは[FormKit](https://formkit.com/?ref=madewithvuejs.com)を使おうとしましたが、styleの変更がどうやってもできませんでした。他フォームライブラリである[vueform](https://vueform.com/?ref=madewithvuejs.com)でも公式ドキュメントを見る限り出来なさそうなので、フォームライブラリは使わないことにしました。  
+tailwindCSSやMaterialUIなど何らかのCSSフレームワークを使っている場合は選択肢として考えられますが、これらを使わずにCSS(SCSS)だけで実装する場合は、どのフォームライブラリも使いにくいのかと思いました。
 
-バリデーションスキーマには、yup を用いています。別のバリデーションスキーマには zod があるのですが、私自身は yup しか使ったことが無く、zod を使ったことがありません。
+<!-- バリデーションスキーマには、yup を用いています。別のバリデーションスキーマには zod があるのですが、私自身は yup しか使ったことが無く、zod を使ったことがありません。
 
 参考：[react-hook-form で yup と zod の違いを検証](https://zenn.dev/wintyo/articles/6122304cb56c86)
 
-React-Hooks-Form と yup の実装は、[src/pages/register/index.tsx](/apps/front/todo-nextjs/src/pages/register/index.tsx)を参考にしてください。 -->
+React-Hooks-Form と yup の実装は、[src/pages/register/index.tsx](/apps/front/todo-nextjs/src/pages/register/index.tsx)を参考にしてください。 --> -->
 
 ##### Pinia による状態管理
 

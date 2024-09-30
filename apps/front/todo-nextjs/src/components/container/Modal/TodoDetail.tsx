@@ -6,7 +6,7 @@ import { selectTodo } from '~/state/todo';
 
 import TodoDetailPresentational from '~/components/presentational/Modal/TodoDetail';
 
-import { PAGE_PATH, STATUS } from '~/constants';
+import { PAGE_PATH, TODO_STATUS } from '~/constants';
 
 import {
   useChangeStatusTodoMutation,
@@ -32,7 +32,7 @@ export default function TodoDetail() {
   async function clickCompletedButton() {
     await changeTodoStatus({
       todo_id: String(store.id),
-      status: STATUS.DONE,
+      status: TODO_STATUS.DONE,
       pathname,
     })
       .unwrap()

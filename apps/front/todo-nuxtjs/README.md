@@ -115,7 +115,8 @@ JavaScript を実装するとき、共通仕様として実装する必要があ
 
 ##### Form ライブラリとバリデーション
 
-Formライブラリには、[FormKit](https://formkit.com)を使用しています。Vueでは一般的に使われているライブラリです。FormKitを使うメリットは、公式ドキュメントの[Why not...? - FormKit getting start -](https://formkit.com/getting-started/what-is-formkit)を参照してください。
+Formライブラリは、始めは[FormKit](https://formkit.com/?ref=madewithvuejs.com)を使おうとしましたが、styleの変更がどうやってもできませんでした。他フォームライブラリである[vueform](https://vueform.com/?ref=madewithvuejs.com)でも公式ドキュメントを見る限り出来なさそうなので、フォームライブラリは使わないことにしました。  
+tailwindCSSやMaterialUIなど何らかのCSSフレームワークを使っている場合は選択肢として考えられますが、これらを使わずにCSS(SCSS)だけで実装する場合は、どのフォームライブラリも使いにくいのかと思いました。
 
 <!-- バリデーションスキーマには、yup を用いています。別のバリデーションスキーマには zod があるのですが、私自身は yup しか使ったことが無く、zod を使ったことがありません。
 

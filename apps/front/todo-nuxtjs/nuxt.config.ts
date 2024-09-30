@@ -8,13 +8,9 @@ export default defineNuxtConfig({
   devServer: {
     port: 3001,
   },
-  modules: ['@nuxt/eslint', '@formkit/nuxt'],
+  modules: ['@nuxt/eslint'],
   eslint: {
     config: {},
-  },
-  formkit: {
-    autoImport: true,
-    defaultConfig: false,
   },
   compatibilityDate: '2024-09-21',
 });

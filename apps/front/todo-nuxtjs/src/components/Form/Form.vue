@@ -7,9 +7,9 @@ const { submit } = defineProps<Props>();
 </script>
 
 <template>
-  <FormKit type="form" class="form" @submit="submit">
+  <form type="form" class="form" @submit="submit">
     <slot />
-  </FormKit>
+  </form>
 </template>
 
 <style lang="scss" scoped>

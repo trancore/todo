@@ -17,6 +17,7 @@
     "storybook": "storybook dev -p 6006 --no-open"
   },
   "dependencies": {
+    "@nuxt/image": "^1.8.1",
     "nuxt": "^3.13.0",
     "sass": "^1.79.3",
     "vue": "~3.5.6",

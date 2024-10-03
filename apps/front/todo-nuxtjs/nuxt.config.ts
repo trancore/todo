@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   devServer: {
     port: 3001,
   },
-  modules: ['@nuxt/eslint'],
+  modules: ['@nuxt/eslint', '@nuxt/image'],
   eslint: {
     config: {},
   },

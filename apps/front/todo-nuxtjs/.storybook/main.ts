@@ -1,5 +1,6 @@
 import type { StorybookConfig } from '@storybook/vue3-vite';
 import path from 'path';
+import svgLoader from 'vite-svg-loader';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.ts'],
@@ -21,12 +22,26 @@ const config: StorybookConfig = {
     autodocs: 'tag',
   },
   viteFinal: async (config) => {
+    config.optimizeDeps = {
+      include: ['svgo'],
+    };
+
     if (config.resolve) {
       config.resolve.alias = {
         ...config.resolve?.alias,
         '~': path.resolve(__dirname, '../src'),
       };
     }
+
+    if (config.plugins) {
+      config.plugins = [
+        ...config.plugins,
+        svgLoader({
+          defaultImport: 'component',
+        }),
+      ];
+    }
+
     return config;
   },
 };

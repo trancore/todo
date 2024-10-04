@@ -8,9 +8,12 @@ export default defineNuxtConfig({
   devServer: {
     port: 3001,
   },
-  modules: ['@nuxt/eslint', '@nuxt/image'],
+  modules: ['@nuxt/eslint', 'nuxt-svgo'],
   eslint: {
     config: {},
+  },
+  svgo: {
+    defaultImport: 'component',
   },
   compatibilityDate: '2024-09-21',
 });

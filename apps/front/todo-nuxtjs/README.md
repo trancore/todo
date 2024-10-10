@@ -13,6 +13,7 @@
 | @nuxt/eslint               | v0.5.7     | Nuxt modules の ESLint。                         |
 | stylelint                  | ^16.9.0    | CSSのLinter                                      |
 | prettier                   | ^3.3.3     | コードformatter                                  |
+| date-fns                   | ^4.1.0     | 時間用ライブラリ                                 |
 
 ## yarn scripts について
 

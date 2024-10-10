@@ -23,18 +23,18 @@ export const Selectable: Story = {
 
 export const Created: Story = {
   render: () => {
-    return <Toast text="TODOを登録しました" />;
+    return <Toast text="TODOを登録しました" displayed />;
   },
 };
 
 export const Deleted: Story = {
   render: () => {
-    return <Toast text="TODOを削除しました" />;
+    return <Toast text="TODOを削除しました" displayed />;
   },
 };
 
 export const Updated: Story = {
   render: () => {
-    return <Toast text="TODOを編集しました" />;
+    return <Toast text="TODOを編集しました" displayed />;
   },
 };

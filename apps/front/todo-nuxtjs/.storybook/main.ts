@@ -1,6 +1,8 @@
 import type { StorybookConfig } from '@storybook/vue3-vite';
 import path from 'path';
 import svgLoader from 'vite-svg-loader';
+import AutoImportFunctions from 'unplugin-auto-import/vite';
+import AutoImportComponents from 'unplugin-vue-components/vite';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.ts'],
@@ -38,6 +40,14 @@ const config: StorybookConfig = {
         ...config.plugins,
         svgLoader({
           defaultImport: 'component',
+        }),
+        AutoImportFunctions({
+          imports: ['vue', 'date-fns'],
+          dts: '.nuxt/auto-imports.d.ts',
+        }),
+        AutoImportComponents({
+          dirs: ['src/components'],
+          dts: '.nuxt/components.d.ts',
         }),
       ];
     }

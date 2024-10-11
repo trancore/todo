@@ -17,6 +17,7 @@
     "storybook": "storybook dev -p 6006 --no-open"
   },
   "dependencies": {
+    "date-fns": "^4.1.0",
     "nuxt": "^3.13.0",
     "nuxt-svgo": "^4.0.6",
     "sass": "^1.79.3",
@@ -43,6 +44,8 @@
     "stylelint-config-recommended-vue": "^1.5.0",
     "stylelint-config-standard": "^36.0.1",
     "typescript": "^5.6.2",
+    "unplugin-auto-import": "^0.18.3",
+    "unplugin-vue-components": "^0.27.4",
     "vite-svg-loader": "^5.1.0",
     "vue-tsc": "^2.1.6"
   }

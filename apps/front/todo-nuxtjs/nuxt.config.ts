@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     port: 3001,
   },
   modules: ['@nuxt/eslint', 'nuxt-svgo'],
+  css: ['sanitize.css'],
   eslint: {
     config: {},
   },

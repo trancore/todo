@@ -7,13 +7,42 @@ type Props = {
 
 const { openedMenu, openedTodoDetailModal, openedTodoEditModal } =
   defineProps<Props>();
+
+const todo1 = {
+  title: 'test',
+  description: 'testtesttest',
+  deadlineAt: '2024-01-01',
+};
+const todo2 = {
+  title: 'test',
+  description: 'testtesttest',
+};
 </script>
 
 <template>
   <div>
     <Menu v-if="openedMenu" />
-    <TodoDetail v-if="openedTodoDetailModal" />
-    <TodoEdit v-if="openedTodoEditModal" />
+    <TodoDetail
+      v-if="openedTodoDetailModal"
+      :todo="todo1"
+      :locate-completed="true"
+      :disabled="{
+        completedButtonDisabled: false,
+        deletedButtonDisabled: false,
+      }"
+      :event="{
+        clickCompletedButton: () => {},
+        clickEditButton: () => {},
+        clickDeleteButton: () => {},
+      }"
+    />
+    <TodoEdit
+      v-if="openedTodoEditModal"
+      :todo="todo2"
+      :event="{
+        onClickEdit: () => {},
+      }"
+    />
     <HeaderCommonHeader />
     <Error :displayed="true" text="error" />
     <div class="layout">

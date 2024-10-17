@@ -21,8 +21,13 @@ const todo2 = {
 
 <template>
   <div>
-    <Menu v-if="openedMenu" />
-    <TodoDetail
+    <Menu
+      v-if="openedMenu"
+      user-name="username"
+      :sign-out="() => {}"
+      :close-menu="() => {}"
+    />
+    <ModalTodoDetail
       v-if="openedTodoDetailModal"
       :todo="todo1"
       :locate-completed="true"
@@ -36,7 +41,7 @@ const todo2 = {
         clickDeleteButton: () => {},
       }"
     />
-    <TodoEdit
+    <ModalTodoEdit
       v-if="openedTodoEditModal"
       :todo="todo2"
       :event="{

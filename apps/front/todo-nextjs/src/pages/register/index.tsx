@@ -69,7 +69,12 @@ export default function Register() {
   };
 
   return (
-    <Seo title={tPages('seo.title')} description={tPages('seo.description')}>
+    <Seo
+      ogp={{
+        title: tPages('seo.title'),
+        description: tPages('seo.description'),
+      }}
+    >
       <>
         <h1>{tPages('heading')}</h1>
         <Form>

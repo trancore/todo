@@ -1,4 +1,5 @@
-﻿import { format } from 'date-fns/format';
+﻿import { addDays, isBefore } from 'date-fns';
+import { format } from 'date-fns/format';
 
 /**
  * Date型をYYYY/MM/ddの形に変換する
@@ -14,28 +15,28 @@ export function formatToYyyyMMDd(date: Date) {
  * @param deadlineAt 対応期限
  * @returns カラーコード #
  */
-// export function colorizeDate(deadlineAt: Date) {
-//   const now = new Date();
-//   const afterThreeDay = addDay(now, 3);
-//   const afterSevenDay = addDay(now, 6);
+export function colorizeDate(deadlineAt: Date) {
+  const now = new Date();
+  const afterThreeDay = addDays(now, 3);
+  const afterSevenDay = addDays(now, 6);
 
-//   if (format(deadlineAt, 'YYYY-MM-DD') === format(now, 'YYYY-MM-DD')) {
-//     // 当日
-//     return '#ff4500';
-//   }
-//   if (isBefore(deadlineAt, now)) {
-//     // 期限切れ
-//     return '#ff0000';
-//   }
-//   if (isBefore(deadlineAt, afterThreeDay)) {
-//     // 3日前
-//     return '#bdb76b';
-//   }
-//   if (isBefore(deadlineAt, afterSevenDay)) {
-//     // 7日前
-//     return '#008000';
-//   }
+  if (format(deadlineAt, 'yyyy-MM-dd') === format(now, 'yyyy-MM-dd')) {
+    // 当日
+    return '#ff4500';
+  }
+  if (isBefore(deadlineAt, now)) {
+    // 期限切れ
+    return '#ff0000';
+  }
+  if (isBefore(deadlineAt, afterThreeDay)) {
+    // 3日前
+    return '#bdb76b';
+  }
+  if (isBefore(deadlineAt, afterSevenDay)) {
+    // 7日前
+    return '#008000';
+  }
 
-//   // 7日以降
-//   return '#000000';
-// }
+  // 7日以降
+  return '#000000';
+}

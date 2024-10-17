@@ -1,18 +1,18 @@
 ﻿<script setup lang="ts">
 type Props = {
-  uncheck: {
+  uncheck?: {
     has: boolean;
     click: () => void;
   };
-  check: {
+  check?: {
     has: boolean;
     click: () => void;
   };
-  squareEdit: {
+  squareEdit?: {
     has: boolean;
     click: () => void;
   };
-  trashCan: {
+  trashCan?: {
     has: boolean;
     click: () => void;
   };
@@ -24,20 +24,20 @@ const { uncheck, check, squareEdit, trashCan } = defineProps<Props>();
 <template>
   <div class="todo-icon-box">
     <Icon
-      v-if="uncheck.has"
+      v-if="uncheck?.has"
       name="Uncheck"
       :size="48"
       :click-icon="uncheck.click"
     />
-    <Icon v-if="check.has" name="Check" :size="48" :click-icon="check.click" />
+    <Icon v-if="check?.has" name="Check" :size="48" :click-icon="check.click" />
     <Icon
-      v-if="squareEdit.has"
+      v-if="squareEdit?.has"
       name="SquareEdit"
       :size="48"
       :click-icon="squareEdit.click"
     />
     <Icon
-      v-if="trashCan.has"
+      v-if="trashCan?.has"
       name="TrashCan"
       :size="48"
       :click-icon="trashCan.click"

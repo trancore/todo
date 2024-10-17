@@ -10,7 +10,14 @@ const { text, width, disabled, onClick } = defineProps<Props>();
 </script>
 
 <template>
-  <button class="button" :onclick="onClick">
+  <button
+    class="button"
+    :style="{
+      backgroundColor: disabled ? '#8f8f8f99' : '#8f8f8f',
+      width: width + `px`,
+    }"
+    :onclick="onClick"
+  >
     {{ text }}
   </button>
 </template>
@@ -20,10 +27,6 @@ const { text, width, disabled, onClick } = defineProps<Props>();
   border: none;
   border-radius: 9em;
   padding: 16px 12px;
-  width: v-bind(width) px;
   color: #fff;
-
-  // TODO: storeでテーマ管理したい
-  background-color: v-bind('disabled ? "#8f8f8f99": "#8f8f8f"');
 }
 </style>

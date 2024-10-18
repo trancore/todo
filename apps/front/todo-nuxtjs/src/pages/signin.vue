@@ -1,7 +1,4 @@
-﻿<script setup lang="ts">
-// TODO サインアップ画面は、eメールとパスワードによる認証認可が実装されていないため
-// TODO 一旦放置
-</script>
+﻿<script setup lang="ts"></script>
 
 <template>
   <div class="signin">

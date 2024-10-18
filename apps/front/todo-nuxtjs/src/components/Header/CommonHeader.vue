@@ -1,24 +1,32 @@
 ﻿<script setup lang="ts">
 import { PAGE_PATH } from '~/constants/page';
 
-type Props = {
-  isSignin: boolean;
-  hasPlusIcon: boolean;
-  onClickMenuIcon: () => void;
-  onClickPlusIcon: () => void;
-};
+const isSignin = ref(true);
+const hasPlusIcon = ref(true);
 
-defineProps<Props>();
+function onClickMenuIcon() {}
+function onClickPlusIcon() {}
 </script>
 
 <template>
   <header class="header">
     <template v-if="isSignin">
-      <Icon name="Menu" color="#000000" :size="64" />
+      <Icon
+        name="Menu"
+        color="#000000"
+        :size="64"
+        :click-icon="onClickMenuIcon"
+      />
       <NuxtLink :to="PAGE_PATH.TOP">
         <Icon name="UserCircle" color="#000000" :size="64" />
       </NuxtLink>
-      <Icon v-if="hasPlusIcon" name="Plus" color="#000000" :size="64" />
+      <Icon
+        v-if="hasPlusIcon"
+        name="Plus"
+        color="#000000"
+        :size="64"
+        :click-icon="onClickPlusIcon"
+      />
     </template>
     <h1 v-else class="title">todo</h1>
   </header>

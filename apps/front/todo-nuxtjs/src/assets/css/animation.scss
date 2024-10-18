@@ -28,3 +28,13 @@
     display: none;
   }
 }
+
+@keyframes slidein {
+  0% {
+    transform: translateX(-300px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

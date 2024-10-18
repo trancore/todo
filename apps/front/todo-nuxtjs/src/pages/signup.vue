@@ -8,17 +8,17 @@
     <Icon name="UserCircle" :size="128" />
     <Form :submit="() => {}">
       <div class="input-form">
-        <UserTextForm
+        <FormUserTextForm
           type="text"
           label-name="名前"
           error-message="エラーメッセージが表示されます"
         />
-        <UserTextForm
+        <FormUserTextForm
           type="email"
           label-name="メールアドレス"
           error-message="エラーメッセージが表示されます"
         />
-        <UserTextForm
+        <FormUserTextForm
           type="password"
           label-name="パスワード"
           error-message="エラーメッセージが表示されます"
@@ -43,8 +43,9 @@
     flex-direction: column;
   }
 
-  > .wrapped-button {
-    margin: 0 auto;
+  > form > .wrapped-button {
+    display: flex;
+    justify-content: center;
   }
 }
 </style>

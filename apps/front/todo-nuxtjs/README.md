@@ -143,23 +143,25 @@ React-Hooks-Form と yup の実装は、[src/pages/register/index.tsx](/apps/fro
 
 現在の Redux では、`slice`によって`state`, `reducer`, `action`を定義してしまいます（[定義の例](/apps/front/todo-nextjs/src/features)）。これらを`reducer`として`Store`に登録しています（[登録の例](/apps/front/todo-nextjs/src/store/root.ts)）。
 
-そして、上記で定義した`Store`や`State`の情報を型情報として持つために、`dispatch`, `Store`を取得するための`hooks`を作成しています（[hooks の例](/apps/front/todo-nextjs/src/hooks/useRedux.ts)）。
+そして、上記で定義した`Store`や`State`の情報を型情報として持つために、`dispatch`, `Store`を取得するための`hooks`を作成しています（[hooks の例](/apps/front/todo-nextjs/src/hooks/useRedux.ts)）。 -->
 
-##### RTK Query を使った fetch とキャッシュ保持
+##### fetch とキャッシュ保持
 
-[RTK Query](https://redux.js.org/introduction/getting-started)は、fetch したデータを上記の store 機構を使ってキャッシュを保持しているのではないか、と思う。。（ここは、公式ドキュメントを確認する）。
+Nuxt.jsではbuilt-inの`useFetch`, `useAsyncData`, `$fetch`があります。
 
-特に何も設定しなければ、RTK Query は fetch ライブラリを wrap しており、このライブラリを fetcher としています。もちろん、axios を fetcher として設定することもできます（[Axios の設定例](https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#axios-basequery)）。
+https://nuxt.com/docs/getting-started/data-fetching
 
-fetch した情報をキャッシュに保持するには、`services`として fetch するエンドポイントや`header`の設定を行います([services の定義例](/apps/front/todo-nextjs/src/services/todo.ts))。この services を store に登録します([store への登録例](/apps/front/todo-nextjs/src/store/root.ts))。
+> Nuxtは、サーバーとクライアントの両方の環境でisomorphic（またはuniversal）のコードを実行できるフレームワークです。Vueコンポーネントの`setup`関数で`$fetch`関数を使用してデータフェッチを実行すると、データが2回 fetchされる可能性があります。1回目はserverで（HTMLをレンダリングするために）、もう2回目はclientで（HTMLがハイドレートされるときに）です。これは、hydrationの問題を引き起こし、インタラクティブになるまでの時間を増加させ、予測不可能な動作を引き起こす可能性があります。  
+> `useFetch`および`useAsyncData`コンポーザブルは、server上でAPI呼び出しが行われた場合、データがペイロードでクライアントに転送されるようにすることで、この問題を解決しています。  
+> ペイロードは、`useNuxtApp().payload`を通じてアクセス可能なJavaScriptオブジェクトです。これは、hydration中にブラウザでコードが実行されたときに、同じデータの再fetchを避けるためにクライアントで使用されます。
 
-SSR で使う場合は、[next-redux-wrapper](https://github.com/kirill-konshin/next-redux-wrapper)を使う[方法が公式で説明されています](https://redux-toolkit.js.org/rtk-query/usage/server-side-rendering)。
+上記より、イベントによってデータフェッチを実行する必要がある場合は`$fetch`、serverやclientで呼び出す場合は`useFetch`や`useAsyncData`を用いるのが良いです。
 
-mutation によって情報の削除や更新を行った場合、store に保持しているキャッシュも同様に更新を行う必要があります。データ連携をするには、[RTK Query - Automated re-fetching](https://redux-toolkit.js.org/rtk-query/usage/automated-refetching)の章に説明されていますが、cache tag を使うと良いみたいです。
+では、`useFetch`と`useAsyncData`はどのような違いがあるのでしょうか。  
+`useFetch`は、`$fetch`をラップしたもので、SSRでも安全なネットワーク呼び出しを行うことができます。  
+一方で、`useAsyncData`は非同期ロジックをラップし、それが解決したら結果を返すcomposableです。とすると、`useAsyncData`はどのような時に使えば良いのか？となります。たとえば、CMSやサードパーティが独自のクエリレイヤーを提供している場合などに使われます。
 
-しかし本アプリで使用したところ、Todo を完了した後に Todo 取得 API を再度 call しても、完了状態前の Todo を取得してきてしまい、情報の更新が行えませんでした。
-
-そのため、action が実行された後に処理を行う onQueryStarted メソッドを使用しました。そのメソッド内で、キャッシュに保存している Todo を完了状態にした Todo の ID でフィルタし、キャッシュの更新を行っています。 -->
+本アプリでは、Todo APIを呼び出すcomposableを作成しています。
 
 ##### fetch のエラーハンドリング
 

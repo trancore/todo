@@ -14,6 +14,7 @@
 | stylelint                  | ^16.9.0    | CSSのLinter                                      |
 | prettier                   | ^3.3.3     | コードformatter                                  |
 | date-fns                   | ^4.1.0     | 時間用ライブラリ                                 |
+| Prism                      | ^4.1.0     | APIサーバーモック用ライブラリ                    |
 
 ## yarn scripts について
 

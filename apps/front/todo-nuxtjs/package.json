@@ -15,6 +15,7 @@
     "lint:css:fix": "stylelint \"**/*.vue\" --fix",
     "storybook:build": "storybook build",
     "storybook": "storybook dev -p 6006 --no-open",
+    "generate:swagger-type:api": "openapi-typescript ./openapi.yaml -o ./src/types/openapi.ts",
     "mock": "prism mock ../../api/swagger/build/openapi.yaml -p 8080"
   },
   "dependencies": {
@@ -39,6 +40,7 @@
     "@storybook/vue3": "^8.3.2",
     "@storybook/vue3-vite": "^8.3.2",
     "eslint-plugin-prettier": "^5.2.1",
+    "openapi-typescript": "^7.4.1",
     "postcss-html": "^1.7.0",
     "prettier": "^3.3.3",
     "storybook": "^8.3.2",

@@ -1,0 +1,2258 @@
+openapi: 3.1.0
+info:
+  title: Todo API
+  description: Todoアプリケーション用API
+  version: '1.0'
+servers:
+  - url: 'https://localhost:8080'
+    description: ローカル開発用
+  - url: 'https://sample.com'
+    description: モックサーバー用
+tags:
+  - name: Signs
+    description: ユーザーのサインイン状態に関するAPI。
+  - name: Users
+    description: ユーザー情報に関するAPI。
+  - name: Todos
+    description: Todoに関するAPI。
+paths:
+  /sign_up:
+    get:
+      summary: SIGN-001 サインアップ
+      tags:
+        - Signs
+      deprecated: true
+      responses:
+        '201':
+          description: 成功
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetBadRequest
+                description: Bad Request
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                  invalidParameters:
+                    type: array
+                    title: ValidationError
+                    description: Validation Error.
+                    items:
+                      type: object
+                      title: ValidationErrorDetail
+                      description: Validation Error Detail.
+                      properties:
+                        code:
+                          type: enum
+                          description: バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。
+                        fieldName:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの対象名。
+                        reason:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの理由。
+                      required:
+                        - code
+                        - fieldName
+                        - reason
+                required:
+                  - title
+                  - detail
+                  - instance
+              examples:
+                BadRequest:
+                  value:
+                    title: Your request didn't understand.
+                    detail: 'about:blank'
+                    instance: /example/400
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetUnauthorized
+                description: Unauthorized
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was unauthorized.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/401
+                required:
+                  - title
+                  - detail
+                  - instance
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetInternalServerError
+                description: Internal Server Error
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Server didn't understand.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/500
+                required:
+                  - title
+                  - detail
+                  - instance
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetServiceUnavailable
+                description: Service Unavailable
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Service didn't Unavailable.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/503
+                required:
+                  - title
+                  - detail
+                  - instance
+  /sign_in:
+    get:
+      summary: SIGN-002 サインイン
+      tags:
+        - Signs
+      deprecated: false
+      responses:
+        '201':
+          description: 成功
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetBadRequest
+                description: Bad Request
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                  invalidParameters:
+                    type: array
+                    title: ValidationError
+                    description: Validation Error.
+                    items:
+                      type: object
+                      title: ValidationErrorDetail
+                      description: Validation Error Detail.
+                      properties:
+                        code:
+                          type: enum
+                          description: バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。
+                        fieldName:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの対象名。
+                        reason:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの理由。
+                      required:
+                        - code
+                        - fieldName
+                        - reason
+                required:
+                  - title
+                  - detail
+                  - instance
+              examples:
+                BadRequest:
+                  value:
+                    title: Your request didn't understand.
+                    detail: 'about:blank'
+                    instance: /example/400
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetUnauthorized
+                description: Unauthorized
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was unauthorized.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/401
+                required:
+                  - title
+                  - detail
+                  - instance
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetInternalServerError
+                description: Internal Server Error
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Server didn't understand.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/500
+                required:
+                  - title
+                  - detail
+                  - instance
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetServiceUnavailable
+                description: Service Unavailable
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Service didn't Unavailable.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/503
+                required:
+                  - title
+                  - detail
+                  - instance
+  /sign_out:
+    get:
+      summary: SIGN-003 サインアウト
+      tags:
+        - Signs
+      deprecated: false
+      responses:
+        '201':
+          description: 成功
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetBadRequest
+                description: Bad Request
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                  invalidParameters:
+                    type: array
+                    title: ValidationError
+                    description: Validation Error.
+                    items:
+                      type: object
+                      title: ValidationErrorDetail
+                      description: Validation Error Detail.
+                      properties:
+                        code:
+                          type: enum
+                          description: バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。
+                        fieldName:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの対象名。
+                        reason:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの理由。
+                      required:
+                        - code
+                        - fieldName
+                        - reason
+                required:
+                  - title
+                  - detail
+                  - instance
+              examples:
+                BadRequest:
+                  value:
+                    title: Your request didn't understand.
+                    detail: 'about:blank'
+                    instance: /example/400
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetUnauthorized
+                description: Unauthorized
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was unauthorized.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/401
+                required:
+                  - title
+                  - detail
+                  - instance
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetInternalServerError
+                description: Internal Server Error
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Server didn't understand.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/500
+                required:
+                  - title
+                  - detail
+                  - instance
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetServiceUnavailable
+                description: Service Unavailable
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Service didn't Unavailable.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/503
+                required:
+                  - title
+                  - detail
+                  - instance
+  /user:
+    get:
+      summary: USER-001 ユーザー情報取得
+      tags:
+        - Users
+      deprecated: false
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetUser
+                description: 会員情報
+                properties:
+                  userId:
+                    type: integer
+                    description: ユーザーID
+                    example: 1
+                  nodeId:
+                    type: string
+                    description: ノードID
+                    example: 1
+                  name:
+                    type: string
+                    description: ユーザー名
+                    minLength: 1
+                    maxLength: 20
+                    example: ユーザー名
+                  mailAddress:
+                    type: string
+                    format: email
+                    description: メールアドレス
+                    minLength: 0
+                    maxLength: 255
+                    example: example@gmail.com
+                  createdAt:
+                    type: string
+                    format: date-time
+                    description: 作成日
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    description: 更新日
+                required:
+                  - userId
+                  - nodeId
+                  - name
+                  - createdAt
+                  - updatedAt
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetBadRequest
+                description: Bad Request
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                  invalidParameters:
+                    type: array
+                    title: ValidationError
+                    description: Validation Error.
+                    items:
+                      type: object
+                      title: ValidationErrorDetail
+                      description: Validation Error Detail.
+                      properties:
+                        code:
+                          type: enum
+                          description: バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。
+                        fieldName:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの対象名。
+                        reason:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの理由。
+                      required:
+                        - code
+                        - fieldName
+                        - reason
+                required:
+                  - title
+                  - detail
+                  - instance
+              examples:
+                BadRequest:
+                  value:
+                    title: Your request didn't understand.
+                    detail: 'about:blank'
+                    instance: /example/400
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetUnauthorized
+                description: Unauthorized
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was unauthorized.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/401
+                required:
+                  - title
+                  - detail
+                  - instance
+        '403':
+          description: Forbidden.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetForbidden
+                description: Forbidden
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was forbidden.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/403
+                required:
+                  - title
+                  - detail
+                  - instance
+        '404':
+          description: |-
+            Not Found.
+
+            ユーザー情報が見つからなかった場合。
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetNotFound
+                description: Not Found
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request couldn't find user.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/404
+                required:
+                  - title
+                  - detail
+                  - instance
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetInternalServerError
+                description: Internal Server Error
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Server didn't understand.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/500
+                required:
+                  - title
+                  - detail
+                  - instance
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetServiceUnavailable
+                description: Service Unavailable
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Service didn't Unavailable.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/503
+                required:
+                  - title
+                  - detail
+                  - instance
+  /todos:
+    get:
+      summary: TODO-001 Todo一覧取得
+      tags:
+        - Todos
+      deprecated: false
+      parameters:
+        - in: query
+          name: status
+          schema:
+            type: string
+            example: 'WIP,TODO'
+          description: 'Todo状態。複数の状態を指定する場合は、","で区切る。'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                title: GetTodos
+                description: Todo情報一覧
+                items:
+                  type: object
+                  title: GetTodo
+                  description: Todo情報
+                  properties:
+                    id:
+                      type: integer
+                      description: TodoID
+                      example: 1
+                    userId:
+                      type: integer
+                      description: ユーザーID
+                      example: 1
+                    title:
+                      type: string
+                      description: Todoタイトル
+                      minLength: 0
+                      maxLength: 101
+                      example: TodoタイトルTodoタイトルTodoタイトル
+                    description:
+                      type: string
+                      description: Todo説明
+                      minLength: 0
+                      maxLength: 501
+                      example: Todo説明Todo説明Todo説明
+                    deadlineAt:
+                      type: string
+                      format: date
+                      description: 対応期限
+                    status:
+                      type: string
+                      enum:
+                        - TODO
+                        - WIP
+                        - DONE
+                      description: |-
+                        対応状態。
+
+                        "TODO": 未着手。 
+                        "WIP": 対応中。
+                        "DONE": 完了。
+                    createdAt:
+                      type: string
+                      format: date-time
+                      description: 作成日
+                    updatedAt:
+                      type: string
+                      format: date-time
+                      description: 更新日
+                  required:
+                    - id
+                    - userId
+                    - title
+                    - status
+                    - createdAt
+                    - updatedAt
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetBadRequest
+                description: Bad Request
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                  invalidParameters:
+                    type: array
+                    title: ValidationError
+                    description: Validation Error.
+                    items:
+                      type: object
+                      title: ValidationErrorDetail
+                      description: Validation Error Detail.
+                      properties:
+                        code:
+                          type: enum
+                          description: バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。
+                        fieldName:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの対象名。
+                        reason:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの理由。
+                      required:
+                        - code
+                        - fieldName
+                        - reason
+                required:
+                  - title
+                  - detail
+                  - instance
+              examples:
+                BadRequest:
+                  value:
+                    title: Your request didn't understand.
+                    detail: 'about:blank'
+                    instance: /example/400
+                E400001:
+                  summary: E400001：必須エラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-003
+                    - TODO-004
+                    - TODO-006
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName} must exist.'
+                    instance: /example/400001
+                    invalidParameters:
+                      - code: E400001
+                        fieldName: '{fieldName}'
+                        reason: '{fieldName} must exist.'
+                E400003:
+                  summary: E400003：最大値エラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    `{value}` には、上限値が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-003
+                    - TODO-004
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName} must be less than {value}'
+                    instance: /example/400003
+                    invalidParameters:
+                      - code: E400003
+                        fieldName: '{fieldName}'
+                        reason: '{value}'
+                E400004:
+                  summary: E400004：パターンエラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-006
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName}''s pattern is wrong'
+                    instance: /example/400004
+                    invalidParameters:
+                      - code: E400004
+                        fieldName: '{fieldName}'
+                        reason: '{fieldName}''s pattern is wrong'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetUnauthorized
+                description: Unauthorized
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was unauthorized.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/401
+                required:
+                  - title
+                  - detail
+                  - instance
+        '403':
+          description: Forbidden.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetForbidden
+                description: Forbidden
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was forbidden.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/403
+                required:
+                  - title
+                  - detail
+                  - instance
+        '404':
+          description: |-
+            Not Found.
+
+            指定したTodoが見つからなかった場合。
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetNotFound
+                description: Not Found
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request couldn't find user.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/404
+                required:
+                  - title
+                  - detail
+                  - instance
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetInternalServerError
+                description: Internal Server Error
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Server didn't understand.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/500
+                required:
+                  - title
+                  - detail
+                  - instance
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetServiceUnavailable
+                description: Service Unavailable
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Service didn't Unavailable.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/503
+                required:
+                  - title
+                  - detail
+                  - instance
+    post:
+      summary: TODO-003 Todo作成
+      tags:
+        - Todos
+      deprecated: false
+      requestBody:
+        description: Todo情報
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              title: PostTodo
+              properties:
+                title:
+                  type: string
+                  minLength: 0
+                  maxLength: 101
+                  example: TodoタイトルTodoタイトルTodoタイトル
+                description:
+                  type: string
+                  description: Todo説明
+                  minLength: 0
+                  maxLength: 501
+                  example: Todo説明Todo説明Todo説明
+                deadlineAt:
+                  type: string
+                  format: date
+                  description: 対応期限
+              required:
+                - title
+      responses:
+        '201':
+          description: Created.
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetBadRequest
+                description: Bad Request
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                  invalidParameters:
+                    type: array
+                    title: ValidationError
+                    description: Validation Error.
+                    items:
+                      type: object
+                      title: ValidationErrorDetail
+                      description: Validation Error Detail.
+                      properties:
+                        code:
+                          type: enum
+                          description: バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。
+                        fieldName:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの対象名。
+                        reason:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの理由。
+                      required:
+                        - code
+                        - fieldName
+                        - reason
+                required:
+                  - title
+                  - detail
+                  - instance
+              examples:
+                BadRequest:
+                  value:
+                    title: Your request didn't understand.
+                    detail: 'about:blank'
+                    instance: /example/400
+                E400001:
+                  summary: E400001：必須エラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-003
+                    - TODO-004
+                    - TODO-006
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName} must exist.'
+                    instance: /example/400001
+                    invalidParameters:
+                      - code: E400001
+                        fieldName: '{fieldName}'
+                        reason: '{fieldName} must exist.'
+                E400003:
+                  summary: E400003：最大値エラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    `{value}` には、上限値が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-003
+                    - TODO-004
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName} must be less than {value}'
+                    instance: /example/400003
+                    invalidParameters:
+                      - code: E400003
+                        fieldName: '{fieldName}'
+                        reason: '{value}'
+                E400004:
+                  summary: E400004：パターンエラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-006
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName}''s pattern is wrong'
+                    instance: /example/400004
+                    invalidParameters:
+                      - code: E400004
+                        fieldName: '{fieldName}'
+                        reason: '{fieldName}''s pattern is wrong'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetUnauthorized
+                description: Unauthorized
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was unauthorized.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/401
+                required:
+                  - title
+                  - detail
+                  - instance
+        '403':
+          description: Forbidden.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetForbidden
+                description: Forbidden
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was forbidden.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/403
+                required:
+                  - title
+                  - detail
+                  - instance
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetInternalServerError
+                description: Internal Server Error
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Server didn't understand.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/500
+                required:
+                  - title
+                  - detail
+                  - instance
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetServiceUnavailable
+                description: Service Unavailable
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Service didn't Unavailable.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/503
+                required:
+                  - title
+                  - detail
+                  - instance
+  '/todos/{todo_id}':
+    parameters:
+      - name: todo_id
+        description: TodoID
+        in: path
+        required: true
+        schema:
+          type: string
+        example: 1
+    get:
+      summary: TODO-002 Todo取得
+      tags:
+        - Todos
+      deprecated: false
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetTodo
+                description: Todo情報
+                properties:
+                  id:
+                    type: integer
+                    description: TodoID
+                    example: 1
+                  userId:
+                    type: integer
+                    description: ユーザーID
+                    example: 1
+                  title:
+                    type: string
+                    description: Todoタイトル
+                    minLength: 0
+                    maxLength: 101
+                    example: TodoタイトルTodoタイトルTodoタイトル
+                  description:
+                    type: string
+                    description: Todo説明
+                    minLength: 0
+                    maxLength: 501
+                    example: Todo説明Todo説明Todo説明
+                  deadlineAt:
+                    type: string
+                    format: date
+                    description: 対応期限
+                  status:
+                    type: string
+                    enum:
+                      - TODO
+                      - WIP
+                      - DONE
+                    description: |-
+                      対応状態。
+
+                      "TODO": 未着手。 
+                      "WIP": 対応中。
+                      "DONE": 完了。
+                  createdAt:
+                    type: string
+                    format: date-time
+                    description: 作成日
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    description: 更新日
+                required:
+                  - id
+                  - userId
+                  - title
+                  - status
+                  - createdAt
+                  - updatedAt
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetBadRequest
+                description: Bad Request
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                  invalidParameters:
+                    type: array
+                    title: ValidationError
+                    description: Validation Error.
+                    items:
+                      type: object
+                      title: ValidationErrorDetail
+                      description: Validation Error Detail.
+                      properties:
+                        code:
+                          type: enum
+                          description: バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。
+                        fieldName:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの対象名。
+                        reason:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの理由。
+                      required:
+                        - code
+                        - fieldName
+                        - reason
+                required:
+                  - title
+                  - detail
+                  - instance
+              examples:
+                BadRequest:
+                  value:
+                    title: Your request didn't understand.
+                    detail: 'about:blank'
+                    instance: /example/400
+                E400001:
+                  summary: E400001：必須エラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-003
+                    - TODO-004
+                    - TODO-006
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName} must exist.'
+                    instance: /example/400001
+                    invalidParameters:
+                      - code: E400001
+                        fieldName: '{fieldName}'
+                        reason: '{fieldName} must exist.'
+                E400003:
+                  summary: E400003：最大値エラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    `{value}` には、上限値が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-003
+                    - TODO-004
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName} must be less than {value}'
+                    instance: /example/400003
+                    invalidParameters:
+                      - code: E400003
+                        fieldName: '{fieldName}'
+                        reason: '{value}'
+                E400004:
+                  summary: E400004：パターンエラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-006
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName}''s pattern is wrong'
+                    instance: /example/400004
+                    invalidParameters:
+                      - code: E400004
+                        fieldName: '{fieldName}'
+                        reason: '{fieldName}''s pattern is wrong'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetUnauthorized
+                description: Unauthorized
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was unauthorized.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/401
+                required:
+                  - title
+                  - detail
+                  - instance
+        '403':
+          description: Forbidden.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetForbidden
+                description: Forbidden
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was forbidden.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/403
+                required:
+                  - title
+                  - detail
+                  - instance
+        '404':
+          description: |-
+            Not Found.
+
+            指定したTodoが見つからなかった場合。
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetNotFound
+                description: Not Found
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request couldn't find user.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/404
+                required:
+                  - title
+                  - detail
+                  - instance
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetInternalServerError
+                description: Internal Server Error
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Server didn't understand.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/500
+                required:
+                  - title
+                  - detail
+                  - instance
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetServiceUnavailable
+                description: Service Unavailable
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Service didn't Unavailable.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/503
+                required:
+                  - title
+                  - detail
+                  - instance
+    put:
+      summary: TODO-004 Todo更新
+      tags:
+        - Todos
+      deprecated: false
+      requestBody:
+        description: Todo情報
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              title: PostTodo
+              properties:
+                title:
+                  type: string
+                  minLength: 0
+                  maxLength: 101
+                  example: TodoタイトルTodoタイトルTodoタイトル
+                description:
+                  type: string
+                  description: Todo説明
+                  minLength: 0
+                  maxLength: 501
+                  example: Todo説明Todo説明Todo説明
+                deadlineAt:
+                  type: string
+                  format: date
+                  description: 対応期限
+              required:
+                - title
+      responses:
+        '204':
+          description: No Content.
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetBadRequest
+                description: Bad Request
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                  invalidParameters:
+                    type: array
+                    title: ValidationError
+                    description: Validation Error.
+                    items:
+                      type: object
+                      title: ValidationErrorDetail
+                      description: Validation Error Detail.
+                      properties:
+                        code:
+                          type: enum
+                          description: バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。
+                        fieldName:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの対象名。
+                        reason:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの理由。
+                      required:
+                        - code
+                        - fieldName
+                        - reason
+                required:
+                  - title
+                  - detail
+                  - instance
+              examples:
+                BadRequest:
+                  value:
+                    title: Your request didn't understand.
+                    detail: 'about:blank'
+                    instance: /example/400
+                E400001:
+                  summary: E400001：必須エラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-003
+                    - TODO-004
+                    - TODO-006
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName} must exist.'
+                    instance: /example/400001
+                    invalidParameters:
+                      - code: E400001
+                        fieldName: '{fieldName}'
+                        reason: '{fieldName} must exist.'
+                E400003:
+                  summary: E400003：最大値エラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    `{value}` には、上限値が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-003
+                    - TODO-004
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName} must be less than {value}'
+                    instance: /example/400003
+                    invalidParameters:
+                      - code: E400003
+                        fieldName: '{fieldName}'
+                        reason: '{value}'
+                E400004:
+                  summary: E400004：パターンエラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-006
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName}''s pattern is wrong'
+                    instance: /example/400004
+                    invalidParameters:
+                      - code: E400004
+                        fieldName: '{fieldName}'
+                        reason: '{fieldName}''s pattern is wrong'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetUnauthorized
+                description: Unauthorized
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was unauthorized.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/401
+                required:
+                  - title
+                  - detail
+                  - instance
+        '403':
+          description: Forbidden.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetForbidden
+                description: Forbidden
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was forbidden.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/403
+                required:
+                  - title
+                  - detail
+                  - instance
+        '404':
+          description: |-
+            Not Found.
+
+            指定したTodoが見つからなかった場合。
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetNotFound
+                description: Not Found
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request couldn't find user.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/404
+                required:
+                  - title
+                  - detail
+                  - instance
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetInternalServerError
+                description: Internal Server Error
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Server didn't understand.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/500
+                required:
+                  - title
+                  - detail
+                  - instance
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetServiceUnavailable
+                description: Service Unavailable
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Service didn't Unavailable.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/503
+                required:
+                  - title
+                  - detail
+                  - instance
+    delete:
+      summary: TODO-005 Todo削除
+      tags:
+        - Todos
+      deprecated: false
+      responses:
+        '204':
+          description: No Content.
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetBadRequest
+                description: Bad Request
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                  invalidParameters:
+                    type: array
+                    title: ValidationError
+                    description: Validation Error.
+                    items:
+                      type: object
+                      title: ValidationErrorDetail
+                      description: Validation Error Detail.
+                      properties:
+                        code:
+                          type: enum
+                          description: バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。
+                        fieldName:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの対象名。
+                        reason:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの理由。
+                      required:
+                        - code
+                        - fieldName
+                        - reason
+                required:
+                  - title
+                  - detail
+                  - instance
+              examples:
+                BadRequest:
+                  value:
+                    title: Your request didn't understand.
+                    detail: 'about:blank'
+                    instance: /example/400
+                E400001:
+                  summary: E400001：必須エラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-003
+                    - TODO-004
+                    - TODO-006
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName} must exist.'
+                    instance: /example/400001
+                    invalidParameters:
+                      - code: E400001
+                        fieldName: '{fieldName}'
+                        reason: '{fieldName} must exist.'
+                E400003:
+                  summary: E400003：最大値エラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    `{value}` には、上限値が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-003
+                    - TODO-004
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName} must be less than {value}'
+                    instance: /example/400003
+                    invalidParameters:
+                      - code: E400003
+                        fieldName: '{fieldName}'
+                        reason: '{value}'
+                E400004:
+                  summary: E400004：パターンエラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-006
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName}''s pattern is wrong'
+                    instance: /example/400004
+                    invalidParameters:
+                      - code: E400004
+                        fieldName: '{fieldName}'
+                        reason: '{fieldName}''s pattern is wrong'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetUnauthorized
+                description: Unauthorized
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was unauthorized.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/401
+                required:
+                  - title
+                  - detail
+                  - instance
+        '403':
+          description: Forbidden.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetForbidden
+                description: Forbidden
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was forbidden.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/403
+                required:
+                  - title
+                  - detail
+                  - instance
+        '404':
+          description: |-
+            Not Found.
+
+            指定したTodoが見つからなかった場合。
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetNotFound
+                description: Not Found
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request couldn't find user.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/404
+                required:
+                  - title
+                  - detail
+                  - instance
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetInternalServerError
+                description: Internal Server Error
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Server didn't understand.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/500
+                required:
+                  - title
+                  - detail
+                  - instance
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetServiceUnavailable
+                description: Service Unavailable
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Service didn't Unavailable.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/503
+                required:
+                  - title
+                  - detail
+                  - instance
+  '/todos/{todo_id}/status':
+    parameters:
+      - name: todo_id
+        description: TodoID
+        in: path
+        required: true
+        schema:
+          type: string
+        example: 1
+    put:
+      summary: TODO-006 Todo状態更新
+      tags:
+        - Todos
+      deprecated: false
+      requestBody:
+        description: Todo状態
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              title: PutTodoStatus
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - TODO
+                    - WIP
+                    - DONE
+                  description: |-
+                    対応状態。
+
+                    "TODO": 未着手。 
+                    "WIP": 対応中。
+                    "DONE": 完了。
+              required:
+                - status
+      responses:
+        '204':
+          description: No Content.
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetBadRequest
+                description: Bad Request
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                  invalidParameters:
+                    type: array
+                    title: ValidationError
+                    description: Validation Error.
+                    items:
+                      type: object
+                      title: ValidationErrorDetail
+                      description: Validation Error Detail.
+                      properties:
+                        code:
+                          type: enum
+                          description: バリデーションエラーを判別するエラーコード。このコードは、fieldNameとは無関係で決まる。
+                        fieldName:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの対象名。
+                        reason:
+                          type: string
+                          description: 人間が読めるバリデーションエラーの理由。
+                      required:
+                        - code
+                        - fieldName
+                        - reason
+                required:
+                  - title
+                  - detail
+                  - instance
+              examples:
+                BadRequest:
+                  value:
+                    title: Your request didn't understand.
+                    detail: 'about:blank'
+                    instance: /example/400
+                E400001:
+                  summary: E400001：必須エラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-003
+                    - TODO-004
+                    - TODO-006
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName} must exist.'
+                    instance: /example/400001
+                    invalidParameters:
+                      - code: E400001
+                        fieldName: '{fieldName}'
+                        reason: '{fieldName} must exist.'
+                E400003:
+                  summary: E400003：最大値エラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    `{value}` には、上限値が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-003
+                    - TODO-004
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName} must be less than {value}'
+                    instance: /example/400003
+                    invalidParameters:
+                      - code: E400003
+                        fieldName: '{fieldName}'
+                        reason: '{value}'
+                E400004:
+                  summary: E400004：パターンエラー
+                  description: |-
+                    `{fieldName}` には、バリデーションエラーの対象名が動的に入る。
+
+                    起こりうるAPI
+                    - TODO-006
+                  value:
+                    title: Your request had validated errors.
+                    detail: '{fieldName}''s pattern is wrong'
+                    instance: /example/400004
+                    invalidParameters:
+                      - code: E400004
+                        fieldName: '{fieldName}'
+                        reason: '{fieldName}''s pattern is wrong'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetUnauthorized
+                description: Unauthorized
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was unauthorized.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/401
+                required:
+                  - title
+                  - detail
+                  - instance
+        '403':
+          description: Forbidden.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetForbidden
+                description: Forbidden
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request was forbidden.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/403
+                required:
+                  - title
+                  - detail
+                  - instance
+        '404':
+          description: |-
+            Not Found.
+
+            指定したTodoが見つからなかった場合。
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetNotFound
+                description: Not Found
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Your request couldn't find user.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別する URL 。
+                    example: /example/404
+                required:
+                  - title
+                  - detail
+                  - instance
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetInternalServerError
+                description: Internal Server Error
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Server didn't understand.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/500
+                required:
+                  - title
+                  - detail
+                  - instance
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                title: GetServiceUnavailable
+                description: Service Unavailable
+                properties:
+                  title:
+                    type: string
+                    description: 人間が読める形式の問題タイプの概要。エラーのタイトル。
+                    example: Service didn't Unavailable.
+                  detail:
+                    type: string
+                    description: この問題の発生に固有の人間が読める説明。エラーの説明。
+                    example: 'about:blank'
+                  instance:
+                    type: string
+                    description: 問題の特定の発生を識別するURL。
+                    example: /example/503
+                required:
+                  - title
+                  - detail
+                  - instance

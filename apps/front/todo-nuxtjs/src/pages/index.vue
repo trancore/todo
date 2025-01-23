@@ -12,8 +12,8 @@ const {
 
 const { toggleDetail } = useModalStore();
 
-if (error.value) {
-  // TODO エラー画面
+if (error.value !== null) {
+  createErrorPage(error.value);
 }
 
 const uncheck = {

@@ -16,7 +16,7 @@
     "storybook:build": "storybook build",
     "storybook": "storybook dev -p 6006 --no-open",
     "generate:swagger-type:api": "openapi-typescript ./openapi.yaml -o ./src/types/openapi.ts",
-    "mock": "prism mock ../../api/swagger/build/openapi.yaml -p 8080"
+    "mock": "prism mock ./openapi.yaml -p 8080"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.9.0",

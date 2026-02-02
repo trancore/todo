@@ -15,22 +15,22 @@ const { onClickEdit } = event;
 </script>
 
 <template>
-  <Modal>
+  <Modal :on-click-close="() => {}">
     <h1>編集</h1>
     <Form :submit="() => {}">
-      <TextForm
+      <FormTextForm
         class="content"
         label-name="タイトル"
         :placeholder="title"
         error-message="error"
       />
-      <TextArea
+      <FormTextArea
         class="content"
         label-name="説明"
         :placeholder="description"
         error-message="error"
       />
-      <Date class="content" label-name="期限" error-message="error" />
+      <FormDate class="content" label-name="期限" error-message="error" />
       <div class="button-box">
         <Button text="編集" :disabled="false" :on-click="onClickEdit" />
       </div>

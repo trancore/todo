@@ -1,5 +1,11 @@
 ﻿import type { UseFetchOptions } from 'nuxt/app';
-import type { OpenApiFetchOptions, OpenApiResponse } from '~/types/fetch';
+import type { AvailableRouterMethod } from 'nitropack';
+import type { FetchError } from 'ofetch';
+import type {
+  OpenApiFetchError,
+  OpenApiFetchOptions,
+  OpenApiResponse,
+} from '~/types/fetch';
 import type { paths as ApiPaths } from '~/types/openapi';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -35,7 +41,13 @@ const defineUseApiClient = <Endpoints extends Record<string, any>>() => {
     });
     const method = computed(() => options.method);
 
-    const { data, error, execute, refresh } = await useFetch(requestUrl.value, {
+    const { data, error, execute, refresh } = await useFetch<
+      void,
+      FetchError<OpenApiFetchError<Endpoints, Endpoint, Method>>,
+      string,
+      AvailableRouterMethod<string>,
+      OpenApiResponse<Endpoints, Endpoint, Method>
+    >(requestUrl.value, {
       ...options,
       method,
       $fetch: useNuxtApp().$api,

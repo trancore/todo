@@ -1,5 +1,5 @@
 ﻿<script setup lang="ts">
-import { formatToYyyyMMDd } from '~/utils/dete';
+import { formatToYyyyMMDd } from '~/utils/date';
 
 type Props = {
   todo: {

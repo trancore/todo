@@ -1,4 +1,5 @@
 ﻿<script setup lang="ts">
+const errorStore = useErrorStore();
 const menuStore = useMenuStore();
 const modalStore = useModalStore();
 
@@ -38,7 +39,7 @@ const todo2 = {
       }"
     />
     <HeaderCommonHeader />
-    <Error :displayed="true" text="error" />
+    <Error :displayed="errorStore.isOpen" text="error" />
     <div class="layout">
       <slot />
     </div>

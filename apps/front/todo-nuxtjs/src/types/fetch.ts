@@ -69,3 +69,22 @@ export type OpenApiFetchOptions<
 } & OpenApiFetchBody<Paths, Path, Method> &
   OpenApiFetchParams<Paths, Path, Method> &
   OpenApiFetchQuery<Paths, Path, Method>;
+
+export type OpenApiFetchError<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Paths extends Record<string, any>,
+  Path extends keyof Paths,
+  Method extends keyof Paths[Path],
+> = Paths[Path][Method]['responses']['400']['content']['application/json'] extends infer ErrorBadRequest
+  ? ErrorBadRequest
+  : Paths[Path][Method]['responses']['401']['content']['application/json'] extends infer ErrorUnauthorized
+    ? ErrorUnauthorized
+    : Paths[Path][Method]['responses']['403']['content']['application/json'] extends infer ErrorForbidden
+      ? ErrorForbidden
+      : Paths[Path][Method]['responses']['404']['content']['application/json'] extends infer ErrorNotFound
+        ? ErrorNotFound
+        : Paths[Path][Method]['responses']['500']['content']['application/json'] extends infer ErrorEnternalServer
+          ? ErrorEnternalServer
+          : Paths[Path][Method]['responses']['503']['content']['application/json'] extends infer ErrorServiceUnavailable
+            ? ErrorServiceUnavailable
+            : unknown;

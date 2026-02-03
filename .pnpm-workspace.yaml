@@ -1,0 +1,4 @@
+﻿packages:
+  - "apps/api"
+  - "apps/front/todo-nextjs"
+  - "apps/front/todo-nuxtjs"

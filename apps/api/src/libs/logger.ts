@@ -1,7 +1,7 @@
-﻿import { ErrorRequestHandler } from 'express';
+import type { ErrorRequestHandler } from 'express';
 import log4js from 'log4js';
 
-import { loggerConfig } from '../configurations/logger';
+import { loggerConfig } from '../configurations/logger.ts';
 
 type AccessLoggerOptions = {
   format?: log4js.Format | undefined;

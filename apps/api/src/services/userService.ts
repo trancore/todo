@@ -1,6 +1,6 @@
-﻿import { GetUserResponse } from '../types/api/users';
+import { GetUserResponse } from '../types/api/users.ts';
 
-import { userRepository } from '../repositories/userRepository';
+import { userRepository } from '../repositories/userRepository.ts';
 
 export const userService = async () => {
   const { findUser } = await userRepository();

@@ -1,13 +1,13 @@
-﻿import express, { Request, Response } from 'express';
+import express, { type Request, type Response } from 'express';
 import passport from 'passport';
 
-import { signService } from '../services/signService';
+import { signService } from '../services/signService.ts';
 
 const app = express;
 
 export const signController = app.Router();
 
-const { signIn, signOut } = await signService();
+const signServicePromise = signService();
 
 /** サインイン */
 signController.get(
@@ -23,6 +23,7 @@ signController.get(
     req: Request<undefined, undefined, undefined, undefined>,
     res: Response<undefined>,
   ) => {
+    const { signIn } = await signServicePromise;
     await signIn(req.user);
     // TODO 暫定対応
     res.status(201).end();
@@ -36,6 +37,7 @@ signController.get(
     req: Request<undefined, undefined, undefined, undefined>,
     res: Response<undefined>,
   ) => {
+    const { signOut } = await signServicePromise;
     await signOut(req);
 
     // TODO 暫定対応

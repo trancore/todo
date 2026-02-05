@@ -1,10 +1,10 @@
-﻿import { $Enums, Prisma, PrismaClient } from '@prisma/client';
-
-import {
+import type {
   PostTodoRequest,
   PutTodosTodoIdRequest,
   PutTodosTodoIdStatusRequest,
-} from '../types/api/todos';
+} from '../types/api/todos.ts';
+
+import { $Enums, PrismaClient } from '../../prisma/generated/prisma/client.ts';
 
 export const todoRepository = async () => {
   const prisma = new PrismaClient();

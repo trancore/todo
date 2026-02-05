@@ -1,10 +1,10 @@
-﻿import { Request } from 'express';
+import { type Request } from 'express';
 import passport from 'passport';
 
-import { AuthenticationData } from '../types/authentication';
+import type { AuthenticationData } from '../types/authentication.ts';
 
-import { tokenRepository } from '../repositories/tokenRepository';
-import { userRepository } from '../repositories/userRepository';
+import { tokenRepository } from '../repositories/tokenRepository.ts';
+import { userRepository } from '../repositories/userRepository.ts';
 
 passport.serializeUser((user, done) => {
   done(null, user);

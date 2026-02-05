@@ -1,15 +1,14 @@
-﻿import { $Enums } from '@prisma/client';
-
-import {
+import type {
   GetTodosParams,
   GetTodosResponse,
   GetTodosTodoIdResponse,
   PostTodoRequest,
   PutTodosTodoIdRequest,
   PutTodosTodoIdStatusRequest,
-} from '../types/api/todos';
+} from '../types/api/todos.ts';
 
-import { todoRepository } from '../repositories/todoRepository';
+import { $Enums } from '../../prisma/generated/prisma/client.ts';
+import { todoRepository } from '../repositories/todoRepository.ts';
 
 export const todoService = async () => {
   const {

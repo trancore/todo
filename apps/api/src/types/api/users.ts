@@ -1,4 +1,4 @@
-﻿import { paths } from '../openapi';
+import { paths } from '../openapi.ts';
 
 export type GetUserResponse =
   paths['/user']['get']['responses']['200']['content']['application/json'];

@@ -1,6 +1,6 @@
-﻿import express, { Request, Response } from 'express';
+import express, { type Request, type Response } from 'express';
 
-import {
+import type {
   DeleteTodosTodoIdResponse,
   GetTodosParams,
   GetTodosResponse,
@@ -13,16 +13,15 @@ import {
   PutTodosTodoIdStatusRequest,
   PutTodosTodoIdStatusResponse,
   TodosTodoIdParams,
-} from '../types/api/todos';
+} from '../types/api/todos.ts';
 
-import { todoService } from '../services/todoService';
+import { todoService } from '../services/todoService.ts';
 
 const app = express;
 
 export const todoController = app.Router();
 
-const { getTodo, getTodos, postTodo, putTodo, deleteTodo, putTodoStatus } =
-  await todoService();
+const todoServicePromise = todoService();
 
 /** Todo一覧取得 */
 todoController.get(
@@ -31,6 +30,7 @@ todoController.get(
     req: Request<undefined, GetTodosResponse, undefined, GetTodosParams>,
     res: Response<GetTodosResponse>,
   ) => {
+    const { getTodos } = await todoServicePromise;
     const { query } = req;
     const todos = await getTodos(query);
     res.json(todos);
@@ -44,6 +44,7 @@ todoController.post(
     req: Request<undefined, PostTodoResponse, PostTodoRequest, undefined>,
     res: Response<PostTodoResponse>,
   ) => {
+    const { postTodo } = await todoServicePromise;
     const requestTodo = req.body;
     await postTodo(requestTodo);
 
@@ -63,6 +64,7 @@ todoController.get(
     >,
     res: Response<GetTodosTodoIdResponse>,
   ) => {
+    const { getTodo } = await todoServicePromise;
     const todoId = req.params.todo_id;
     const todo = await getTodo(todoId);
     res.json(todo);
@@ -81,6 +83,7 @@ todoController.put(
     >,
     res: Response<PutTodosTodoIdResponse>,
   ) => {
+    const { putTodo } = await todoServicePromise;
     const todoId = req.params.todo_id;
     const requestTodo = req.body;
     await putTodo(todoId, requestTodo);
@@ -102,6 +105,7 @@ todoController.delete(
     >,
     res: Response<undefined>,
   ) => {
+    const { deleteTodo } = await todoServicePromise;
     const todoId = req.params.todo_id;
     await deleteTodo(todoId);
     res.status(204).end();
@@ -122,6 +126,7 @@ todoController.put(
     >,
     res: Response<undefined>,
   ) => {
+    const { putTodoStatus } = await todoServicePromise;
     const todoId = req.params.todo_id;
     const status = req.body;
     putTodoStatus(todoId, status);

@@ -1,6 +1,6 @@
-﻿import { PrismaClient } from '@prisma/client';
+import type { TokenData } from '../types/authentication.ts';
 
-import { TokenData } from '../types/authentication';
+import { PrismaClient } from '../../prisma/generated/prisma/client.ts';
 
 export const tokenRepository = async () => {
   const prisma = new PrismaClient();

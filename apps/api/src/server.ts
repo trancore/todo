@@ -1,24 +1,24 @@
 ﻿import cors from 'cors';
-import dotenv from 'dotenv';
+import { config } from 'dotenv';
 import express from 'express';
 import session from 'express-session';
 import passport from 'passport';
 import github from 'passport-github2';
 
-import { API } from './constants';
+import { API } from './constants/api.ts';
 
-import { signController } from './controllers/signController';
-import { todoController } from './controllers/todoController';
+import { signController } from './controllers/signController.ts';
+import { todoController } from './controllers/todoController.ts';
 
-import { accessLogger, logger, systemLogger } from './libs/logger';
+import { accessLogger, logger, systemLogger } from './libs/logger.ts';
 
-import { TokenData, UserData } from './types/authentication';
+import type { TokenData, UserData } from './types/authentication.ts';
 
-import { CONFIG } from './configurations/config';
-import { corsOptions } from './configurations/cors';
-import { SESSION_CONFIG } from './configurations/session';
+import { CONFIG } from './configurations/config.ts';
+import { corsOptions } from './configurations/cors.ts';
+import { SESSION_CONFIG } from './configurations/session.ts';
 
-dotenv.config();
+config();
 
 const PATH = `${API.API}/${CONFIG.API_VERSION}`;
 

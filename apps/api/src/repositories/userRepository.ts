@@ -1,6 +1,9 @@
-﻿import { PrismaClient, User } from '@prisma/client';
+import type { UserData } from '../types/authentication.ts';
 
-import { UserData } from '../types/authentication';
+import {
+  PrismaClient,
+  type User,
+} from '../../prisma/generated/prisma/client.ts';
 
 export const userRepository = async () => {
   const prisma = new PrismaClient();

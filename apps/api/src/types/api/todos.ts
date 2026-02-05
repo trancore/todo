@@ -1,4 +1,4 @@
-﻿import { paths } from '../openapi';
+import { type paths } from '../openapi.ts';
 
 export type GetTodosParams = paths['/todos']['get']['parameters']['query'];
 

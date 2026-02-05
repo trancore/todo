@@ -2,7 +2,7 @@
   // コンパイルする際のオプションを記述
   "compilerOptions": {
     // 出力するJSのバージョン
-    "target": "ES2017",
+    "target": "es2024",
     // コンパイルする際に使用する組み込みライブラリ
     // "lib": [],
     // 出力するJSのモジュールの仕組み
@@ -26,8 +26,9 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
     "typeRoots": ["./src/@types", "./node_modules/@types"]
     // non-relativeなimportにおいて、相対的なカレントディレクトリの指定
     // "baseUrl": "",

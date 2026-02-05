@@ -2,3 +2,4 @@
 
 /src/logs/*
 /prisma/migrations
+/prisma/generated

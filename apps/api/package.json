@@ -6,11 +6,14 @@
   },
   "type": "module",
   "scripts": {
-    "start": "nodemon",
-    "container": "docker-compose up -d",
-    "migrate": "prisma migrate dev --name init",
+    "build": "tsc",
+    "container": "docker-compose up --build -d",
+    "generate:prisma": "prisma generate",
     "generate:swagger": "swagger-cli bundle ./swagger/openapi.yaml -o ./swagger/build/openapi.yaml -t yaml -r",
-    "generate:swagger-type:api": "openapi-typescript ./swagger/build/openapi.yaml -o ./src/types/openapi.ts"
+    "generate:swagger-type:api": "openapi-typescript ./swagger/build/openapi.yaml -o ./src/types/openapi.ts",
+    "lint": "eslint ./**/*.ts",
+    "migrate": "prisma migrate dev --name init",
+    "start": "nodemon"
   },
   "dependencies": {
     "@prisma/client": "6.19.0",

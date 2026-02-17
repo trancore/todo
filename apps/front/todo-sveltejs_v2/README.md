@@ -59,9 +59,21 @@ pnpm install
 
 ### 1. 技術選定
 
-[issue: SvelteKitの環境構築と技術選定 #20](https://github.com/trancore/todo/issues/20)
+[issue: SvelteKit.jsの環境構築と技術選定 #20](https://github.com/trancore/todo/issues/20)
+
+svelte.js, sveltekit.jsでの開発に関してのさまざまなルールについては、公式ドキュメントを参照してください。
+
+<cite>
+
+[イントロダクション - sveltekit.js](https://svelte.jp/docs/kit/introduction)
+
+</cite>
 
 ### 2. コンポーネント設計
+
+svelte.jsは、vue.jsと同様にそのファイルの中にscript(JavaScript)、テンプレート(HTML)、style(CSS)を記述します。そのため、基本的にはvue.jsと同じ設計ができます。
+
+またsvelte.jsでは、そのファイルをサーバー専用とそれ以外に分けることができます。そのため、サーバーとクライアントで責務を明確にする必要があります。
 
 ### 4.JavaScript 実装
 

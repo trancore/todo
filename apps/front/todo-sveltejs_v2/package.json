@@ -13,7 +13,7 @@
 		"lint": "prettier --check . && eslint .",
 		"prepare": "svelte-kit sync || echo ''",
 		"preview": "vite preview",
-		"storybook": "storybook dev -p 6006",
+		"storybook": "storybook dev 6006 ",
 		"test": "pnpm run test:unit -- --run && pnpm run test:e2e",
 		"test:unit": "vitest",
 		"test:e2e": "playwright test"

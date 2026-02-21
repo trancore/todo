@@ -11,8 +11,6 @@
 		USER: 'user',
 		'USER-CROSS': 'user-cross'
 	} as const;
-	// 定数から型を生成したいため、eslintのルールを無効化
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const ICON_SYZE = {
 		16: 16,
 		24: 24,
@@ -23,17 +21,22 @@
 
 	interface Props {
 		type: (typeof ICON_TYPES)[keyof typeof ICON_TYPES];
-		size: (typeof ICON_SYZE)[keyof typeof ICON_SYZE];
+		size?: (typeof ICON_SYZE)[keyof typeof ICON_SYZE];
+		color?: string;
 	}
 
-	let { type, size }: Props = $props();
+	let { type, size = 24, color = 'bg-black' }: Props = $props();
 
-	const getIconType = () => {
+	/**
+	 * アイコンの種類に応じたクラス名を返す関数
+	 * @returns {string} クラス名
+	 */
+	const getIconType = (): string => {
 		switch (type) {
 			case ICON_TYPES.ADD:
-				return 'icon-[solar--add-circle-bold-duotone]';
+				return 'icon-[solar--add-circle-linear]';
 			case ICON_TYPES.CHECK:
-				return 'icon-[solar--check-circle-bold-duotone]';
+				return 'icon-[solar--check-circle-linear]';
 			case ICON_TYPES.HAMBURGER:
 				return 'icon-[solar--hamburger-menu-linear]';
 			case ICON_TYPES.INFO:
@@ -48,13 +51,24 @@
 				return 'icon-[solar--user-cross-rounded-bold]';
 		}
 	};
+	/**
+	 * アイコンのサイズに応じたクラス名を返す関数
+	 * @returns {string} クラス名
+	 */
+	const getIconSize = () => {
+		switch (size) {
+			case ICON_SYZE[16]:
+				return 'size-4';
+			case ICON_SYZE[24]:
+				return 'size-6';
+			case ICON_SYZE[32]:
+				return 'size-8';
+			case ICON_SYZE[48]:
+				return 'size-12';
+			case ICON_SYZE[64]:
+				return 'size-16';
+		}
+	};
 </script>
 
-<span
-	class={cn(
-		'',
-		getIconType(),
-		`size-${size / 4}`,
-		type === ICON_TYPES.ADD || type === ICON_TYPES.CHECK ? 'opacity-0' : ''
-	)}
-></span>
+<span class={cn(getIconType(), getIconSize(), color)}></span>

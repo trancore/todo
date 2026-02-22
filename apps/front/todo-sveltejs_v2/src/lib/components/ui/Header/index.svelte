@@ -1,6 +1,6 @@
 ﻿<script lang="ts">
-	import { cn } from '$lib/utils/cn/index.svelte';
 	import Icon from '$lib/components/common/Icon/index.svelte';
+	import { cn } from '$lib/utils/cn/index.svelte';
 
 	let isSignin = $state(true);
 	let isPC = $state(false);

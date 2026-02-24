@@ -13,7 +13,7 @@
 		"lint": "prettier --check . && eslint .",
 		"prepare": "svelte-kit sync || echo ''",
 		"preview": "vite preview",
-		"storybook": "storybook dev 6006 ",
+		"storybook": "storybook dev -p 6006 --no-open",
 		"test": "pnpm run test:unit -- --run && pnpm run test:e2e",
 		"test:unit": "vitest",
 		"test:e2e": "playwright test"
@@ -22,6 +22,7 @@
 		"@chromatic-com/storybook": "^5.0.1",
 		"@eslint/compat": "^2.0.2",
 		"@eslint/js": "^9.39.2",
+		"@ianvs/prettier-plugin-sort-imports": "^4.7.1",
 		"@iconify/json": "^2.2.440",
 		"@iconify/tailwind4": "^1.2.1",
 		"@inlang/paraglide-js": "^2.10.0",

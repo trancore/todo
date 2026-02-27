@@ -42,3 +42,12 @@
 		errorMessage: 'パスワードが違います'
 	}}
 />
+<Story
+	name="todo_title"
+	args={{
+		type: 'text',
+		label: 'タイトル',
+		placeholder: 'やることやることやること',
+		errorMessage: 'タイトルを入力してください'
+	}}
+/>

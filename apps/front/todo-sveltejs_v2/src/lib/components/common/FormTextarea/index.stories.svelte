@@ -15,7 +15,6 @@
 <Story
 	name="todo_description"
 	args={{
-		type: 'textarea',
 		label: '説明',
 		placeholder: 'やることやることやることやることやることやることやることやることやること',
 		errorMessage: '説明を入力してください'

@@ -2,3 +2,15 @@
 
 @plugin '@tailwindcss/typography';
 @plugin '@iconify/tailwind4';
+
+@layer base {
+}
+
+@layer components {
+}
+
+@layer utilities {
+	.float-bg {
+		@apply bg-black opacity-50;
+	}
+}

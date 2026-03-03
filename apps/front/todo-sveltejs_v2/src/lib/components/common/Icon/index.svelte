@@ -4,6 +4,7 @@
 	const ICON_TYPES = {
 		ADD: 'add',
 		CHECK: 'check',
+		CLOSE: 'close',
 		HAMBURGER: 'hamburger',
 		INFO: 'info',
 		PEN: 'pen',
@@ -37,6 +38,8 @@
 				return 'icon-[solar--add-circle-linear]';
 			case ICON_TYPES.CHECK:
 				return 'icon-[solar--check-circle-linear]';
+			case ICON_TYPES.CLOSE:
+				return 'icon-[solar--close-circle-linear]';
 			case ICON_TYPES.HAMBURGER:
 				return 'icon-[solar--hamburger-menu-linear]';
 			case ICON_TYPES.INFO:

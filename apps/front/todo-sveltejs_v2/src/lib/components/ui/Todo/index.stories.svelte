@@ -1,5 +1,6 @@
 ﻿<script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
+	import { SvelteDate } from 'svelte/reactivity';
 
 	import Todo from './index.svelte';
 
@@ -18,7 +19,7 @@
 		title: 'titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle',
 		description:
 			'descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription',
-		expired: new Date()
+		expired: new SvelteDate(Date.now() + 7 * 24 * 60 * 60 * 1000)
 	}}
 />
 <Story
@@ -27,16 +28,16 @@
 		title: 'titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle',
 		description:
 			'descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription',
-		expired: new Date()
+		expired: new SvelteDate(Date.now() + 5 * 24 * 60 * 60 * 1000)
 	}}
 />
 <Story
-	name="three_days_ago"
+	name="less_than_three_days"
 	args={{
 		title: 'titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle',
 		description:
 			'descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription',
-		expired: new Date()
+		expired: new SvelteDate(Date.now() + 2 * 24 * 60 * 60 * 1000)
 	}}
 />
 <Story
@@ -45,7 +46,7 @@
 		title: 'titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle',
 		description:
 			'descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription',
-		expired: new Date()
+		expired: new SvelteDate()
 	}}
 />
 <Story
@@ -54,6 +55,6 @@
 		title: 'titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle',
 		description:
 			'descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription',
-		expired: new Date()
+		expired: new SvelteDate(Date.now() - 1 * 24 * 60 * 60 * 1000)
 	}}
 />

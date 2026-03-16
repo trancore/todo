@@ -58,3 +58,13 @@
 		expired: new SvelteDate(Date.now() - 1 * 24 * 60 * 60 * 1000)
 	}}
 />
+<Story
+	name="completed"
+	args={{
+		title: 'titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle',
+		description:
+			'descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription',
+		expired: new SvelteDate(Date.now() + 7 * 24 * 60 * 60 * 1000),
+		isCompleted: true
+	}}
+/>

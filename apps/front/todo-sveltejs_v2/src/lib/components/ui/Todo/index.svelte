@@ -7,9 +7,10 @@
 		title: string;
 		description: string | undefined;
 		expired: Date;
+		isCompleted: boolean;
 	}
 
-	let { title, description, expired }: Props = $props();
+	let { title, description, expired, isCompleted }: Props = $props();
 
 	/**
 	 * 現在日時から期限までの日数を変換する関数
@@ -70,12 +71,18 @@
 			{formatYYYYMMHH(expired)}
 		</p>
 		<div class={cn('gap-4', 'flex')}>
-			<div class={cn('cursor-pointer')}>
-				<Icon type="check" size={32} />
-			</div>
-			<div class={cn('cursor-pointer')}>
-				<Icon type="pen" size={32} />
-			</div>
+			{#if isCompleted}
+				<div class={cn('cursor-pointer')}>
+					<Icon type="check" size={32} color="bg-gray-300" />
+				</div>
+			{:else}
+				<div class={cn('cursor-pointer')}>
+					<Icon type="check" size={32} />
+				</div>
+				<div class={cn('cursor-pointer')}>
+					<Icon type="pen" size={32} />
+				</div>
+			{/if}
 			<div class={cn('cursor-pointer')}>
 				<Icon type="trash" size={32} />
 			</div>
